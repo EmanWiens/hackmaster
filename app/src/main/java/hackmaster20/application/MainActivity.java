@@ -1,8 +1,11 @@
-package com.example.owner.hackmaster20;
+package hackmaster20.application;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-//test 
+
+import com.example.owner.hackmaster20.R;
+
+//test
 public class MainActivity extends AppCompatActivity {
 // comment vlad is awesome
     @Override
