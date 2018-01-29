@@ -1,4 +1,4 @@
-package com.example.owner.hackmaster20;
+package hackMaster;
 
 import org.junit.Test;
 
