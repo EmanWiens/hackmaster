@@ -1,3 +1,6 @@
-# HackMaster20
+# HackMaster2.0
 
-The fisrt description for what the project will be.
+The new start of the HackMaster game.
+
+# Andriod studio 
+Build once, if build doesn't work go to build->clean build. Then hit play.
