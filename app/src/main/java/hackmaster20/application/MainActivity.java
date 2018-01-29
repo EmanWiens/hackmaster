@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.view.View;
 import com.example.owner.hackmaster20.R;
 
-//test
+//test test 
 public class MainActivity extends AppCompatActivity {
 // comment vlad is awesome
     @Override
