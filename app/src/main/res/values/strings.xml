@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HackMaster2.0</string>
+    <string name="player_2">player 2</string>
+    <string name="player_1">Player 1</string>
 </resources>
