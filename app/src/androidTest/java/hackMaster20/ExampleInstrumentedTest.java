@@ -1,4 +1,4 @@
-package com.example.owner.hackmaster20;
+package hackMaster20;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
