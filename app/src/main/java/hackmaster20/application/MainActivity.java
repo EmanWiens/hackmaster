@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void playMessage(View v) {
         // do something
-        setContentView(R.layout.activity_duel);
+        setContentView(R.layout.sample_my_view);
         gameManager.setUpSingleGame();
     }
 }
