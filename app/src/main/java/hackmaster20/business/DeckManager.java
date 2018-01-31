@@ -1,5 +1,6 @@
 package hackmaster20.business;
 
+import hackmaster20.DrawToScreen;
 import hackmaster20.objects.CardClass;
 import hackmaster20.objects.ResourceClass;
 
@@ -10,7 +11,9 @@ import hackmaster20.objects.ResourceClass;
 public class DeckManager {
     private static CardClass[] deck = null;
 
-    public DeckManager() {
+    private static DrawToScreen mainActivity;
+    public DeckManager(DrawToScreen m) {
+        mainActivity = m;
     }
 
     public static CardClass[] testCards() {
@@ -21,7 +24,7 @@ public class DeckManager {
         CardClass tempCard = new CardClass("CPU Boost", "Upgrade", "Upgrade your CPU",
                 new ResourceManager(new ResourceClass(0, 0, 0, 0, 0,1, 0), null));
         cards[count] = tempCard;
-        tempCard.show();
+        // tempCard.show();
         count++;
 
         tempCard = new CardClass("More Cores", "Defense", "Upgrade your CPU",
@@ -42,6 +45,8 @@ public class DeckManager {
     public static CardClass[] dealCards(int deal) {
         CardClass[] cards = testCards(); // = new CardClass[deal];
         CardClass temp;
+
+        mainActivity.DrawCard(cards[0]);
 
         for (int i = 0; i < deal; i++) {
 

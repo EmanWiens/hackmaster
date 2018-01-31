@@ -25,11 +25,6 @@ public class CardClass {
         resManager = r;
     }
 
-    public void show() {
-        //TextView edit = (TextView)findViewById(R.id.card0);
-        //edit.setText(toString());
-    }
-
     public String toString() {
         String strung = null;
 
