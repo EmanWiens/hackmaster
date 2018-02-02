@@ -17,8 +17,10 @@ public class CardClass {
     private String description;
     private ResourceManager resManager;
     private String type;
+    private int id = 0;
 
-    public CardClass(String n, String t, String d, ResourceManager r) {
+    public CardClass(int i, String n, String t, String d, ResourceManager r) {
+        id = i;
         name = n;
         type = t;
         description = d;
@@ -28,8 +30,8 @@ public class CardClass {
     public String toString() {
         String strung = null;
 
-        strung = "Card\nName:" + name + " type:" + type + " description:" + description;
-        strung += "ResourceManager:" + resManager.toString();
+        strung = name + " type:" + type + " d:" + description;
+        strung += "R:" + resManager.toString();
 
         return strung;
     }

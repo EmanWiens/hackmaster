@@ -21,13 +21,13 @@ public class DeckManager {
         int count = 0;
         CardClass cards[] = new CardClass[10];
 
-        CardClass tempCard = new CardClass("CPU Boost", "Upgrade", "Upgrade your CPU",
+        CardClass tempCard = new CardClass(0, "CPU Boost", "Upgrade", "Upgrade your CPU",
                 new ResourceManager(new ResourceClass(0, 0, 0, 0, 0,1, 0), null));
         cards[count] = tempCard;
         // tempCard.show();
         count++;
 
-        tempCard = new CardClass("More Cores", "Defense", "Upgrade your CPU",
+        tempCard = new CardClass(1, "More Cores", "Defense", "Upgrade your CPU",
                 new ResourceManager(new ResourceClass(0, -5, 10, 0, 0,0, 0), null));
         cards[count] = tempCard;
         count++;
