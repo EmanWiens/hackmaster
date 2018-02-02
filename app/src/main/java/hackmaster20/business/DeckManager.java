@@ -54,4 +54,7 @@ public class DeckManager {
 
         return cards;
     }
+    public static int getSizeDeck() {
+        return deck.length;
+    }
 }
