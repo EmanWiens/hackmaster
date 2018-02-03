@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.example.owner.hackmaster20.R;
 
-import hackmaster20.DrawToScreen;
 import hackmaster20.business.GameManager;
 import hackmaster20.objects.CardClass;
 

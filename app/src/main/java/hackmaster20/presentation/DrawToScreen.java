@@ -1,4 +1,4 @@
-package hackmaster20;
+package hackmaster20.presentation;
 
 import hackmaster20.objects.CardClass;
 

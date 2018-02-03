@@ -1,9 +1,7 @@
 package hackMaster.businessTest;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import hackmaster20.DrawToScreen;
 import hackmaster20.business.DeckManager;
 
 import static junit.framework.Assert.assertNotNull;

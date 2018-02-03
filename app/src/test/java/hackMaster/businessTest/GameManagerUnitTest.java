@@ -2,9 +2,7 @@ package hackMaster.businessTest;
 
 import org.junit.Test;
 
-import hackmaster20.DrawToScreen;
 import hackmaster20.business.GameManager;
-import hackmaster20.presentation.MainActivity;
 
 import static junit.framework.Assert.assertEquals;
 

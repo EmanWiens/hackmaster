@@ -1,6 +1,6 @@
 package hackmaster20.business;
 
-import hackmaster20.DrawToScreen;
+import hackmaster20.presentation.DrawToScreen;
 import hackmaster20.objects.CardClass;
 import hackmaster20.persistence.CardsList;
 
