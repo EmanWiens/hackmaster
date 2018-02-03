@@ -1,4 +1,4 @@
-package hackMaster.ObjectsText;
+package hackMaster.objectsTest;
 
 import org.junit.Test;
 
@@ -12,5 +12,5 @@ public class CardClassUnitTest {
         // TODO write tests for initializing cards and test that it works
     }
 
-    // TODO test the functions in the CardClass functin
+    // TODO test the functions in the CardClass functions
 }

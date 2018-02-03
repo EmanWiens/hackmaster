@@ -1,4 +1,4 @@
-package hackMaster.ObjectsText;
+package hackMaster.objectsTest;
 
 import org.junit.Test;
 
