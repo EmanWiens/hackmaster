@@ -12,8 +12,8 @@ public class DeckManager {
     private static CardClass[] deck = null;
 
     private static DrawToScreen mainActivity;
-    public DeckManager(DrawToScreen m) {
-        mainActivity = m;
+    public DeckManager(DrawToScreen mainAct) {
+        mainActivity = mainAct;
     }
 
     public static CardClass[] testCards() {
@@ -35,6 +35,7 @@ public class DeckManager {
         return cards;
     }
 
+    // create a deck for the whole game
     public static void initDeck(int size) {
         CardClass[] cards = new CardClass[size];
         CardClass temp;

@@ -86,7 +86,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="670dp"
-        android:layout_height="116dp"
+        android:layout_height="232dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -96,20 +96,27 @@
 
         <TextView
             android:id="@+id/card2"
-            android:layout_width="86dp"
-            android:layout_height="100dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:text="card2"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card3"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/card1"
-            app:layout_constraintTop_toTopOf="@+id/card1" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/card0"
-            android:layout_width="86dp"
-            android:layout_height="100dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:text="card0"
@@ -117,63 +124,70 @@
             app:layout_constraintEnd_toStartOf="@+id/card1"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/card1"
-            android:layout_width="87dp"
-            android:layout_height="100dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:text="card1"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card2"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/card0"
-            app:layout_constraintTop_toTopOf="@+id/card0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/card4"
-            android:layout_width="86dp"
-            android:layout_height="100dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:text="card4"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card5"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/card3"
-            app:layout_constraintTop_toTopOf="@+id/card3" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/card5"
-            android:layout_width="87dp"
-            android:layout_height="100dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:text="card5"
-            app:layout_constraintEnd_toStartOf="@+id/card6"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/card4"
-            app:layout_constraintTop_toTopOf="@+id/card4" />
-
-        <TextView
-            android:id="@+id/card6"
-            android:layout_width="87dp"
-            android:layout_height="100dp"
-            android:background="@color/colorAccent"
-            android:text="card6"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/card5"
-            app:layout_constraintTop_toTopOf="@+id/card5" />
+            app:layout_constraintStart_toEndOf="@+id/card4"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/card3"
-            android:layout_width="87dp"
-            android:layout_height="100dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:text="card3"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card4"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/card2"
-            app:layout_constraintTop_toTopOf="@+id/card2" />
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout

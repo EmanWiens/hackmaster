@@ -19,18 +19,18 @@ public class CardClass {
     private String type;
     private int id = 0;
 
-    public CardClass(int i, String n, String t, String d, ResourceManager r) {
-        id = i;
-        name = n;
-        type = t;
+    public CardClass(int id, String name, String type, String d, ResourceManager resourceManager) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
         description = d;
-        resManager = r;
+        resManager = resourceManager;
     }
 
     public String toString() {
-        String strung = null;
+        String strung = "Error, there is not card.";
 
-        strung = name + " type:" + type + " d:" + description;
+        strung = name + " type:" + type;
         strung += "R:" + resManager.toString();
 
         return strung;

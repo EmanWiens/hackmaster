@@ -14,7 +14,9 @@ public class GameManager {
     private static PlayerClass player1;
     private static PlayerClass player2;
     private static DeckManager deckM;
+
     private static boolean playerTurn = true;
+    private static boolean paused = false;
 
     private static boolean singlePlayer = false;
 
@@ -23,9 +25,9 @@ public class GameManager {
 
     private static DrawToScreen mainActivity;
 
-    public GameManager(DrawToScreen m) {
-        mainActivity = m;
-        deckM = new DeckManager(m);
+    public GameManager(DrawToScreen mainAct) {
+        mainActivity = mainAct;
+        deckM = new DeckManager(mainAct);
         pStats = new playerStatsDatabase();
     }
 
@@ -37,5 +39,24 @@ public class GameManager {
         player1 = new PlayerClass("SMJVE",
                 new ResourceClass(0, 2, 2, 2, 2, 2, 2),
                 deckM.dealCards(dealCards));
+        // SinglePlayerGameLoop();
+    }
+
+    // gameManager methods to keep the game in a suspended loop
+    private static void SinglePlayerGameLoop() {
+        boolean exitGame = false;
+
+        while (true) {
+            if (exitGame) // break out at any point
+                break;
+        }
+    }
+
+    // suspend a loop until the player makes their turn
+    private static void waitForPlayer() {
+        boolean moveMade = false;
+
+        while (!moveMade) {
+        }
     }
 }
