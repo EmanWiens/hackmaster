@@ -27,6 +27,8 @@ public class CardClass {
         resManager = resourceManager;
     }
 
+    public String getName() { return name; }
+
     public String toString() {
         String strung = "Error, there is not card.";
 

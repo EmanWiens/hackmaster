@@ -20,7 +20,7 @@ public class GameManager {
 
     private static boolean singlePlayer = false;
 
-    private static final int dealCards = 7;
+    private static final int dealCards = 6;
     private static final int maxCards = 50;
 
     private static DrawToScreen mainActivity;

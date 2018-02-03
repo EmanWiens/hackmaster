@@ -7,5 +7,5 @@ import hackmaster20.objects.CardClass;
  */
 
 public interface DrawToScreen {
-    public void DrawCard(CardClass card);
+    public void DrawCard(CardClass card, int slot);
 }
