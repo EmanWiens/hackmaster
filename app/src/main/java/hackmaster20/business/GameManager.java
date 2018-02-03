@@ -25,6 +25,9 @@ public class GameManager {
 
     private static DrawToScreen mainActivity;
 
+    public static void setSinglePlayer(boolean set) { singlePlayer = set; }
+    public static DrawToScreen getMainAct() { return mainActivity; }
+
     public GameManager(DrawToScreen mainAct) {
         mainActivity = mainAct;
         deckM = new DeckManager(mainAct);
