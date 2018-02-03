@@ -19,4 +19,6 @@ public class PlayerClass {
 
     public CardClass getCard(int i) { return hand[i]; }
     public void setCard(int index, CardClass card) { hand[index] = card; }
+
+    // TODO write a listener function that listens to which card you clicked
 }
