@@ -33,7 +33,7 @@ public class CardClass {
         String strung = "Error, there is not card.";
 
         strung = name + " type:" + type;
-        strung += "R:" + resManager.toString();
+        strung += "\n" + resManager.toString();
 
         return strung;
     }

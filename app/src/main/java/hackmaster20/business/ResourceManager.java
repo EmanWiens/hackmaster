@@ -19,10 +19,11 @@ public class ResourceManager {
     public ResourceClass getEnemyR() { return enemy; }
 
     public String toString() {
-        String strung = "ResourceManager String\n";
+        String strung = "\nResources\n";
 
         if (player != null)
             strung += "player:" + player.toString();
+        strung+="\n";
         if (enemy != null)
             strung += "\nenemy:" + enemy.toString();
 

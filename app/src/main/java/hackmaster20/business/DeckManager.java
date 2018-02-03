@@ -32,13 +32,14 @@ public class DeckManager {
         cards[count] = tempCard;
         count++;
 
-        tempCard = new CardClass(1, "More Cores", "Defense", "Upgrade your CPU",
-                new ResourceManager(new ResourceClass(0, -5, 10, 0, 0,0, 0), null));
+        tempCard = new CardClass(1, "bot.net", "Attack", "Upgrade your CPU",
+                new ResourceManager(new ResourceClass(0, -5, 10, -3, 0,0, 2), null));
         cards[count] = tempCard;
         count++;
 
-        tempCard = new CardClass(1, "More Cores", "Defense", "Upgrade your CPU",
-                new ResourceManager(new ResourceClass(0, -5, 10, 0, 0,0, 0), null));
+        tempCard = new CardClass(1, "cut some wires", "Defense", "Upgrade your CPU",
+                new ResourceManager(new ResourceClass(0, 0, 0, -20, 0,0, 0)
+                        , new ResourceClass(-10, 0, 0, 0, 0,0, 0)));
         cards[count] = tempCard;
         count++;
 

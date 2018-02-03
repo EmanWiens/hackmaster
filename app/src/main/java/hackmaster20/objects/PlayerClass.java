@@ -1,7 +1,5 @@
 package hackmaster20.objects;
 
-import hackmaster20.persistence.playerStatsDatabase;
-
 /**
  * Created by Owner on 1/29/2018.
  */
@@ -13,9 +11,12 @@ public class PlayerClass {
     private int maxHealth = 100;
     private CardClass[] hand;
 
-    public PlayerClass(String n, ResourceClass r, CardClass[] c) {
-        name = n;
-        hand = c;
-        resource = r;
+    public PlayerClass(String name, ResourceClass resources, CardClass[] cards) {
+        this.name = name;
+        hand = cards;
+        resource = resources;
     }
+
+    public CardClass getCard(int i) { return hand[i]; }
+    public void setCard(int index, CardClass card) { hand[index] = card; }
 }
