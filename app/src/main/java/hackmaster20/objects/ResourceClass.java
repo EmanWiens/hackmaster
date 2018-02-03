@@ -31,6 +31,8 @@ public class ResourceClass {
     public int getCoreRate() { return coreRate; }
     public int getInfectionRate() { return infectionRate; }
 
+    // TODO function that adds all the filds of two resource fields
+
     public String toString() {
         String strung = "";
 

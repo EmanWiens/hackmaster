@@ -3,14 +3,14 @@ package hackmaster20.business;
 import hackmaster20.DrawToScreen;
 import hackmaster20.objects.PlayerClass;
 import hackmaster20.objects.ResourceClass;
-import hackmaster20.persistence.playerStatsDatabase;
+import hackmaster20.persistence.PlayerStatsSaves;
 
 /**
  * Created by Owner on 1/29/2018.
  */
 
 public class GameManager {
-    private static playerStatsDatabase pStats;
+    private static PlayerStatsSaves pStats;
     private static PlayerClass player1;
     private static PlayerClass player2;
     private static DeckManager deckM;
@@ -28,7 +28,7 @@ public class GameManager {
     public GameManager(DrawToScreen mainAct) {
         mainActivity = mainAct;
         deckM = new DeckManager(mainAct);
-        pStats = new playerStatsDatabase();
+        pStats = new PlayerStatsSaves();
     }
 
     public static void setUpSingleGame() {
@@ -49,6 +49,7 @@ public class GameManager {
         while (true) {
             if (exitGame) // break out at any point
                 break;
+            // TODO write the player check functions
         }
     }
 
@@ -57,6 +58,7 @@ public class GameManager {
         boolean moveMade = false;
 
         while (!moveMade) {
+            // TODO make the a listener that listens to which card you clicked
         }
     }
 }
