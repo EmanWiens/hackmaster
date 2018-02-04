@@ -15,7 +15,7 @@ public class GameManager {
     private static PlayerClass player2;
     private static DeckManager deckM;
 
-    private static boolean playerTurn = true;
+    private static boolean player1Turn = true;
     private static boolean paused = false;
 
     private static boolean singlePlayer = false;
@@ -27,6 +27,8 @@ public class GameManager {
 
     public static void setSinglePlayer(boolean set) { singlePlayer = set; }
     public static DrawToScreen getMainAct() { return mainActivity; }
+
+    public boolean getPlayerTurn() { return player1Turn; }
 
     public GameManager(DrawToScreen mainAct) {
         mainActivity = mainAct;

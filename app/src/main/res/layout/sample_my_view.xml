@@ -13,19 +13,23 @@
         android:layout_height="26dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginTop="46dp"
         android:text="@string/player_2"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar2"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout3" />
+        app:layout_constraintBottom_toTopOf="@+id/healthE"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/player2Img" />
 
     <TextView
         android:id="@+id/player1"
         android:layout_width="100dp"
-        android:layout_height="30dp"
+        android:layout_height="34dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="46dp"
         android:text="@string/player_1"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout" />
+        app:layout_constraintBottom_toTopOf="@+id/healthP"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/player1Img" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout3"
@@ -40,7 +44,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <TextView
-            android:id="@+id/minerE"
+            android:id="@+id/minerP"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginBottom="8dp"
@@ -48,13 +52,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="GPU Miner \n---\nCryptoCoin"
-            app:layout_constraintBottom_toTopOf="@+id/cSpeedE"
+            app:layout_constraintBottom_toTopOf="@+id/cSpeedP"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/cSpeedE"
+            android:id="@+id/cSpeedP"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginBottom="8dp"
@@ -62,13 +66,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="CPU\n---\nServer Bandwidth"
-            app:layout_constraintBottom_toTopOf="@+id/botnetE"
+            app:layout_constraintBottom_toTopOf="@+id/botnetP"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/minerE" />
+            app:layout_constraintTop_toBottomOf="@+id/minerP" />
 
         <TextView
-            android:id="@+id/botnetE"
+            android:id="@+id/botnetP"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginBottom="8dp"
@@ -79,7 +83,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cSpeedE" />
+            app:layout_constraintTop_toBottomOf="@+id/cSpeedP" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -209,7 +213,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/minerE"
+            android:id="@+id/minerP"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginBottom="8dp"
@@ -217,13 +221,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="GPU Miner \n---\nCryptoCoin"
-            app:layout_constraintBottom_toTopOf="@+id/cSpeedE"
+            app:layout_constraintBottom_toTopOf="@+id/cSpeedP"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/cSpeedE"
+            android:id="@+id/cSpeedP"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginBottom="8dp"
@@ -231,13 +235,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="CPU\n---\nServer Bandwidth"
-            app:layout_constraintBottom_toTopOf="@+id/botnetE"
+            app:layout_constraintBottom_toTopOf="@+id/botnetP"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/minerE" />
+            app:layout_constraintTop_toBottomOf="@+id/minerP" />
 
         <TextView
-            android:id="@+id/botnetE"
+            android:id="@+id/botnetP"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginBottom="8dp"
@@ -248,7 +252,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cSpeedE" />
+            app:layout_constraintTop_toBottomOf="@+id/cSpeedP" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -284,11 +288,12 @@
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="100dp"
-        android:layout_height="25dp"
+        android:layout_height="24dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout" />
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/healthP" />
 
     <ProgressBar
         android:id="@+id/progressBar2"
@@ -298,7 +303,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout3" />
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/healthE" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout4"
@@ -366,4 +372,27 @@
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+
+    <TextView
+        android:id="@+id/healthP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/player1"
+        tools:text="Health: 100%" />
+
+    <TextView
+        android:id="@+id/healthE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Health: 100%"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar2"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/player2" />
 </android.support.constraint.ConstraintLayout>

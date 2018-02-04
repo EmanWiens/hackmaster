@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void DrawCard(CardClass card, int slot) {
-        // int id = getResources().getIdentifier(card.getName(), null, null);
         TextView textView = null;
 
         if (slot == 0)
@@ -48,7 +47,10 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void cardPress(View v) {
-        TextView playedCard = (TextView)findViewById(R.id.playedCard1);
-        playedCard.setText(((TextView)v).getText());
+        if (gameManager.getPlayerTurn()) {
+            TextView playedCard = (TextView) findViewById(R.id.playedCard1);
+            playedCard.setText(((TextView) v).getText());
+            // TODO use this to call GameManager function to continue turn base
+        }
     }
 }
