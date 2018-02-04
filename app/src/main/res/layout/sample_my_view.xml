@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minHeight="69dp"
-    tools:context="hackmaster20.application.duelActivity">
+    tools:context="hackmaster20.application.MainActivity">
 
     <TextView
         android:id="@+id/player2"
@@ -103,6 +103,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
+            android:onClick="cardPress"
             android:text="card2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card3"
@@ -119,6 +120,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
+            android:onClick="cardPress"
             android:text="card0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card1"
@@ -135,6 +137,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
+            android:onClick="cardPress"
             android:text="card1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card2"
@@ -151,6 +154,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
+            android:onClick="cardPress"
             android:text="card4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card5"
@@ -167,6 +171,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
+            android:onClick="cardPress"
             android:text="card5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -182,6 +187,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
+            android:onClick="cardPress"
             android:text="card3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card4"

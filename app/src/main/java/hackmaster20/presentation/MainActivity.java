@@ -46,4 +46,9 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         setContentView(R.layout.sample_my_view);
         gameManager.setUpSingleGame();
     }
+
+    public void cardPress(View v) {
+        TextView playedCard = (TextView)findViewById(R.id.playedCard1);
+        playedCard.setText(((TextView)v).getText());
+    }
 }
