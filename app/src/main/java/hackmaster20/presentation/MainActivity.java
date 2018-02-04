@@ -4,6 +4,7 @@ package hackmaster20.presentation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,6 +22,15 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         super.onCreate(savedInstanceState);
         gameManager = new GameManager(this);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // TODO check game state on back button
+    }
+
+    public void statsPress(View v) {
+        setContentView(R.layout.sample_my_view);
     }
 
     public void DrawCard(CardClass card, int slot) {
@@ -43,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void playMessage(View v) {
-        setContentView(R.layout.sample_my_view);
+        setContentView(R.layout.battle_view);
         gameManager.setUpSingleGame();
     }
 
