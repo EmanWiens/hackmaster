@@ -56,6 +56,8 @@ public class GameManager {
             // TODO take out the card from the player and give the player a new card from the deck
             player1.setCard(cardIndex, DeckManager.getACard());
             // TODO apply the card to the player and enemy
+
+            // Thread.sleep(millis); // timer after the card is played
         }
         else {
 

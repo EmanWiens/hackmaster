@@ -108,6 +108,7 @@
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:onClick="cardPress"
+            android:paddingLeft="3dp"
             android:text="card2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card3"
@@ -125,6 +126,7 @@
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:onClick="cardPress"
+            android:paddingLeft="3dp"
             android:text="card0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card1"
@@ -142,6 +144,7 @@
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:onClick="cardPress"
+            android:paddingLeft="3dp"
             android:text="card1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card2"
@@ -159,6 +162,7 @@
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:onClick="cardPress"
+            android:paddingLeft="3dp"
             android:text="card4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card5"
@@ -176,6 +180,7 @@
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:onClick="cardPress"
+            android:paddingLeft="3dp"
             android:text="card5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -192,6 +197,7 @@
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:onClick="cardPress"
+            android:paddingLeft="3dp"
             android:text="card3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card4"
@@ -318,7 +324,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/playedCard1"
+            android:id="@+id/playedCard"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -326,14 +332,15 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
-            android:text="playedCard1"
+            android:paddingLeft="3dp"
+            android:text="playedCard"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/playedCard0"
+            app:layout_constraintStart_toEndOf="@+id/deck"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/playedCard0"
+            android:id="@+id/deck"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -341,9 +348,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
-            android:text="playedCard0"
+            android:paddingLeft="3dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/playedCard1"
+            app:layout_constraintEnd_toStartOf="@+id/playedCard"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
@@ -393,5 +400,6 @@
         android:text="Health: 100%"
         app:layout_constraintBottom_toTopOf="@+id/progressBar2"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
+        app:layout_constraintStart_toStartOf="@+id/player2"
         app:layout_constraintTop_toBottomOf="@+id/player2" />
 </android.support.constraint.ConstraintLayout>
