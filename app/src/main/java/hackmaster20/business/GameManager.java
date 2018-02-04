@@ -1,6 +1,5 @@
 package hackmaster20.business;
 
-import hackmaster20.objects.CardClass;
 import hackmaster20.presentation.DrawToScreen;
 import hackmaster20.objects.PlayerClass;
 import hackmaster20.objects.ResourceClass;
@@ -46,17 +45,6 @@ public class GameManager {
                 new ResourceClass(0, 2, 2, 2, 2, 2, 2),
                 deckM.dealCards(dealCards));
         // SinglePlayerGameLoop();
-    }
-
-    public static void playCardEvent(String name) {
-        // TODO write a function that finds the card played by the current player and does the game things with it
-        CardClass card;
-        if (player1Turn) {
-            // card = player1.searchCards();
-        }
-        else {
-            // card = player2.searchCards();
-        }
     }
 
     // gameManager methods to keep the game in a suspended loop
