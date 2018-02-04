@@ -4,7 +4,6 @@ package hackmaster20.presentation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void statsPress(View v) {
-        setContentView(R.layout.sample_my_view);
+        setContentView(R.layout.stats_view);
     }
 
     public void DrawCard(CardClass card, int slot) {

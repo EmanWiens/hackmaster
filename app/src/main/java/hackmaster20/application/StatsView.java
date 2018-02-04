@@ -1,4 +1,4 @@
-package com.example.owner.hackmaster20;
+package hackmaster20.application;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,10 +10,12 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.example.owner.hackmaster20.R;
+
 /**
  * TODO: document your custom view class.
  */
-public class MyView extends View {
+public class StatsView extends View {
     private String mExampleString; // TODO: use a default from R.string...
     private int mExampleColor = Color.RED; // TODO: use a default from R.color...
     private float mExampleDimension = 0; // TODO: use a default from R.dimen...
@@ -23,17 +25,17 @@ public class MyView extends View {
     private float mTextWidth;
     private float mTextHeight;
 
-    public MyView(Context context) {
+    public StatsView(Context context) {
         super(context);
         init(null, 0);
     }
 
-    public MyView(Context context, AttributeSet attrs) {
+    public StatsView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs, 0);
     }
 
-    public MyView(Context context, AttributeSet attrs, int defStyle) {
+    public StatsView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs, defStyle);
     }
