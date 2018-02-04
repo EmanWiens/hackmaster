@@ -47,10 +47,16 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void cardPress(View v) {
-        if (gameManager.getPlayerTurn()) {
+        String name[] = null;
+        if (gameManager.getPlayer1Turn()) {
+            name = ((TextView) v).getText().toString().split("\n");
             TextView playedCard = (TextView) findViewById(R.id.playedCard1);
             playedCard.setText(((TextView) v).getText());
-            // TODO use this to call GameManager function to continue turn base
         }
+
+            // TODO use this to call GameManager function to continue turn base
+        if (name != null)
+            gameManager.playCardEvent(name[0]);
+
     }
 }

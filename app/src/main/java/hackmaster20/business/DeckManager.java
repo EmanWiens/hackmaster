@@ -35,6 +35,12 @@ public class DeckManager {
 
         return cards;
     }
+
+    public static int getCardIndex(String name, CardClass[] hand) {
+        // TODO write the function that finds the card by comparinf the name and returns the index
+        return 0;
+    }
+
     public static int getSizeDeck() {
         return deck.length;
     }

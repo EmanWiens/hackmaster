@@ -1,5 +1,6 @@
 package hackmaster20.business;
 
+import hackmaster20.objects.CardClass;
 import hackmaster20.presentation.DrawToScreen;
 import hackmaster20.objects.PlayerClass;
 import hackmaster20.objects.ResourceClass;
@@ -28,7 +29,7 @@ public class GameManager {
     public static void setSinglePlayer(boolean set) { singlePlayer = set; }
     public static DrawToScreen getMainAct() { return mainActivity; }
 
-    public boolean getPlayerTurn() { return player1Turn; }
+    public boolean getPlayer1Turn() { return player1Turn; }
 
     public GameManager(DrawToScreen mainAct) {
         mainActivity = mainAct;
@@ -42,28 +43,19 @@ public class GameManager {
         deckM.initDeck(maxCards);
         // comething here isn't working
         player1 = new PlayerClass("SMJVE",
-                new ResourceClass(0, 2, 2, 2, 2, 2, 2),
+                new ResourceClass(100, 2, 2, 2, 2, 2, 2),
                 deckM.dealCards(dealCards));
-        // SinglePlayerGameLoop();
+        // TODO set up player 2
     }
 
-    // gameManager methods to keep the game in a suspended loop
-    private static void SinglePlayerGameLoop() {
-        boolean exitGame = false;
-
-        while (true) {
-            if (exitGame) // break out at any point
-                break;
-            // TODO write the player check functions
+    public static void playCardEvent(String name) {
+        // TODO find the player card by name
+        if (player1Turn) {
+            int cardIndex = player1.findPlayerCardIndex(name);
+            CardClass card = player1.getCardByIndex(cardIndex);
         }
-    }
+        else {
 
-    // suspend a loop until the player makes their turn
-    private static void waitForPlayer() {
-        boolean moveMade = false;
-
-        while (!moveMade) {
-            // TODO make the a listener that listens to which card you clicked
         }
     }
 }
