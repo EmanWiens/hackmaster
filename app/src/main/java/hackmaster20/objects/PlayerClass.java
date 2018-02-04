@@ -9,8 +9,7 @@ import hackmaster20.business.DeckManager;
 public class PlayerClass {
     private String name;
     private ResourceClass resource = null;
-    private int health = 100;
-    private int maxHealth = 100;
+    private int health;
     private CardClass[] hand;
 
     public PlayerClass(String name, ResourceClass resources, CardClass[] cards) {
@@ -19,6 +18,7 @@ public class PlayerClass {
         resource = resources;
     }
 
+    public CardClass[] getCards() { return hand; }
     public CardClass getCard(int i) { return hand[i]; }
     public void setCard(int index, CardClass card) { hand[index] = card; }
 

@@ -12,7 +12,7 @@ public class CardsList {
     public static CardClass[] presetCards() {
         // make some cards where you set all the specs
         int count = 0;
-        CardClass cards[] = new CardClass[10];
+        CardClass cards[] = new CardClass[7];
 
         // TO DO make a list of cards
 

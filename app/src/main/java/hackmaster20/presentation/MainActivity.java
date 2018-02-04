@@ -58,11 +58,10 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public void cardPress(View v) {
         String name[] = null;
-        if (gameManager.getPlayer1Turn()) {
-            name = ((TextView) v).getText().toString().split("\n");
-            TextView playedCard = (TextView) findViewById(R.id.playedCard);
-            playedCard.setText(((TextView) v).getText());
-        }
+        name = ((TextView) v).getText().toString().split("\n");
+        TextView playedCard = (TextView) findViewById(R.id.playedCard);
+        // Thread.sleep(500);
+        playedCard.setText(((TextView) v).getText());
 
         if (name != null)
             gameManager.playCardEvent(name[0]);

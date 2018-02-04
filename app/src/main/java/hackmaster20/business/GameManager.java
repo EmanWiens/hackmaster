@@ -41,15 +41,17 @@ public class GameManager {
         singlePlayer = true;
 
         deckM.initDeck(maxCards);
-        // comething here isn't working
-        player1 = new PlayerClass("SMJVE",
+        player1 = new PlayerClass("p1",
                 new ResourceClass(100, 2, 2, 2, 2, 2, 2),
                 deckM.dealCards(dealCards));
-        // TODO set up player 2
+        deckM.drawCards(player1.getCards());
+
+        player2 = new PlayerClass("p2",
+                new ResourceClass(100, 2, 2, 2, 2, 2, 2),
+                deckM.dealCards(dealCards));
     }
 
     public static void playCardEvent(String name) {
-        // TODO find the player card by name
         if (player1Turn) {
             int cardIndex = player1.findPlayerCardIndex(name);
             CardClass card = player1.getCardByIndex(cardIndex);

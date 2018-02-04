@@ -1,5 +1,7 @@
 package hackmaster20.business;
 
+import java.util.Random;
+
 import hackmaster20.presentation.DrawToScreen;
 import hackmaster20.objects.CardClass;
 import hackmaster20.persistence.CardsList;
@@ -10,6 +12,7 @@ import hackmaster20.persistence.CardsList;
 
 public class DeckManager {
     private static CardClass[] deck = null;
+    private static Random rand = new Random();
 
     private static DrawToScreen mainActivity;
     public DeckManager(DrawToScreen mainAct) {
@@ -18,22 +21,28 @@ public class DeckManager {
 
     // create a deck for the whole game
     public static void initDeck(int size) {
-        CardClass[] cards = new CardClass[size];
-        CardClass temp;
+        // CardClass[] cards = new CardClass[size];
+        // CardClass temp;
 
-        deck = cards;
+        // deck = cards;
+        deck = CardsList.presetCards();
     }
 
     public static CardClass[] dealCards(int deal) {
-        CardClass[] cards = CardsList.presetCards(); // = new CardClass[deal];
-        CardClass temp;
+        CardClass[] cards = new CardClass[deal];
 
-        // TODO hand out random card
         for (int i = 0; i < deal; i++) {
-            mainActivity.DrawCard(cards[i], i);
+            cards[i] = deck[i];
         }
 
         return cards;
+    }
+
+    public static void drawCards(CardClass[] list) {
+        for (int i = 0; i < list.length; i++) {
+            if (list[i] != null)
+                mainActivity.DrawCard(list[i], i);
+        }
     }
 
     public static int getCardIndex(String name, CardClass[] hand) {
