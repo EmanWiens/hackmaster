@@ -41,6 +41,11 @@ public class DeckManager {
         return 0;
     }
 
+    public static CardClass getACard() {
+        // TODO return a card to whomever played the card based on what cards have been played
+        return null;
+    }
+
     public static int getSizeDeck() {
         return deck.length;
     }

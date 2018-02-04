@@ -53,6 +53,9 @@ public class GameManager {
         if (player1Turn) {
             int cardIndex = player1.findPlayerCardIndex(name);
             CardClass card = player1.getCardByIndex(cardIndex);
+            // TODO take out the card from the player and give the player a new card from the deck
+            player1.setCard(cardIndex, DeckManager.getACard());
+            // TODO apply the card to the player and enemy
         }
         else {
 

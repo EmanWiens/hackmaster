@@ -14,11 +14,12 @@ import hackmaster20.objects.CardClass;
 
 public class MainActivity extends AppCompatActivity implements DrawToScreen {
     // give a "copy" of the interface to the gameManager
-    private GameManager gameManager = new GameManager(this);
+    private GameManager gameManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        gameManager = new GameManager(this);
         setContentView(R.layout.activity_main);
     }
 
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             playedCard.setText(((TextView) v).getText());
         }
 
-            // TODO use this to call GameManager function to continue turn base
         if (name != null)
             gameManager.playCardEvent(name[0]);
 
