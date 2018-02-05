@@ -18,7 +18,4 @@ public class PlayerClass {
         hand = c;
         resource = r;
     }
-    public String getName() {
-        return name;
-    }
 }
