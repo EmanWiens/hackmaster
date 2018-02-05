@@ -34,8 +34,11 @@ public class GameManager {
 
         deckM.initDeck(maxCards);
         // comething here isn't working
-        player1 = new PlayerClass("SMJVE",
+        player1 = new PlayerClass("HackerMan",
                 new ResourceClass(0, 2, 2, 2, 2, 2, 2),
                 deckM.dealCards(dealCards));
+    }
+    public static PlayerClass getPlayer(){
+        return player1;
     }
 }

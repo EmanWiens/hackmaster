@@ -1,5 +1,6 @@
 package hackmaster20.business;
 
+import hackmaster20.objects.PlayerClass;
 import hackmaster20.objects.ResourceClass;
 
 /**
@@ -7,24 +8,25 @@ import hackmaster20.objects.ResourceClass;
  */
 
 public class ResourceManager {
-    private ResourceClass player;
-    private ResourceClass enemy;
+    private static ResourceClass playerR;
+    private static ResourceClass enemyR;
 
     public ResourceManager(ResourceClass p, ResourceClass e) {
-        player = p;
-        enemy = e;
+        playerR = p;
+        enemyR = e;
     }
 
-    public ResourceClass getPlaterR() { return player; }
-    public ResourceClass getEnemyR() { return enemy; }
+    public static  ResourceClass getPlayerR() { return playerR; }
+    public static  ResourceClass getEnemyR() { return enemyR; }
 
-    public String toString() {
+
+    public  String toString() {
         String strung = "ResourceManager String\n";
 
-        if (player != null)
-            strung += "player:" + player.toString();
-        if (enemy != null)
-            strung += "\nenemy:" + enemy.toString();
+        if (playerR != null)
+            strung += "player:" + playerR.toString();
+        if (enemyR != null)
+            strung += "\nenemy:" + enemyR.toString();
 
         return strung;
     }

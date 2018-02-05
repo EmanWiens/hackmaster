@@ -35,4 +35,7 @@ public class CardClass {
 
         return strung;
     }
+    public String getName (){
+        return name;
+    }
 }
