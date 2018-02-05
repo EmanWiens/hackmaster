@@ -1,8 +1,10 @@
 package hackmaster20.business;
 
-import hackmaster20.DrawToScreen;
+import java.util.Random;
+
+import hackmaster20.presentation.DrawToScreen;
 import hackmaster20.objects.CardClass;
-import hackmaster20.objects.ResourceClass;
+import hackmaster20.persistence.CardsList;
 
 /**
  * Created by Owner on 1/29/2018.
@@ -10,50 +12,49 @@ import hackmaster20.objects.ResourceClass;
 
 public class DeckManager {
     private static CardClass[] deck = null;
+    private static Random rand = new Random();
 
     private static DrawToScreen mainActivity;
-    public DeckManager(DrawToScreen m) {
-        mainActivity = m;
+    public DeckManager(DrawToScreen mainAct) {
+        mainActivity = mainAct;
     }
 
-    public static CardClass[] testCards() {
-        // make some cards where you set all the specs
-        int count = 0;
-        CardClass cards[] = new CardClass[10];
-
-        CardClass tempCard = new CardClass(0, "CPU Boost", "Upgrade", "Upgrade your CPU",
-                new ResourceManager(new ResourceClass(0, 0, 0, 0, 0,1, 0), null));
-        cards[count] = tempCard;
-        // tempCard.show();
-        count++;
-
-        tempCard = new CardClass(1, "More Cores", "Defense", "Upgrade your CPU",
-                new ResourceManager(new ResourceClass(0, -5, 10, 0, 0,0, 0), null));
-        cards[count] = tempCard;
-        count++;
-
-        return cards;
-    }
-
+    // create a deck for the whole game
     public static void initDeck(int size) {
-        CardClass[] cards = new CardClass[size];
-        CardClass temp;
+        // CardClass[] cards = new CardClass[size];
+        // CardClass temp;
 
-        deck = cards;
+        // deck = cards;
+        deck = CardsList.presetCards();
     }
 
     public static CardClass[] dealCards(int deal) {
-        CardClass[] cards = testCards(); // = new CardClass[deal];
-        CardClass temp;
-
-        mainActivity.DrawCard(cards[0]);
+        CardClass[] cards = new CardClass[deal];
 
         for (int i = 0; i < deal; i++) {
-
+            cards[i] = deck[i];
         }
 
         return cards;
     }
+
+    public static void drawCards(CardClass[] list) {
+        for (int i = 0; i < list.length; i++) {
+            if (list[i] != null)
+                mainActivity.DrawCard(list[i], i);
+        }
+    }
+
+    public static int getCardIndex(String name, CardClass[] hand) {
+        // TODO write the function that finds the card by comparinf the name and returns the index
+        return 0;
+    }
+
+    public static CardClass getACard() {
+        // TODO return a card to whomever played the card based on what cards have been played
+        return null;
+    }
+
     public static int getSizeDeck() {
         return deck.length;
     }

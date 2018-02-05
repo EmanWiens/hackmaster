@@ -30,4 +30,27 @@ public class ResourceClass {
     public int getGpuMiner() { return gpuMiner; }
     public int getCoreRate() { return coreRate; }
     public int getInfectionRate() { return infectionRate; }
+
+    // TODO function that adds all the filds of two resource fields
+
+    public String toString() {
+        String strung = "";
+
+        if (health != 0)
+            strung +="\nHealth:"+health;
+        if (cryptoCoin != 0)
+            strung +="\nHCoin:"+cryptoCoin;
+        if (cpu != 0)
+            strung +="\nCPU:"+cpu;
+        if (botnet != 0)
+            strung +="\nBotnet:"+botnet;
+        if (gpuMiner != 0)
+            strung +="\nMiner:"+gpuMiner;
+        if (coreRate != 0)
+            strung +="\nTeraflops:"+coreRate;
+        if (infectionRate != 0)
+            strung +="\nBotRate:"+infectionRate;
+
+        return strung;
+    }
 }
