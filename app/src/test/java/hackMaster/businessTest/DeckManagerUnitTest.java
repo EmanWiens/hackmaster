@@ -7,6 +7,7 @@ import hackmaster20.DrawToScreen;
 import hackmaster20.business.DeckManager;
 
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
 
 /**
