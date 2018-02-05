@@ -18,14 +18,11 @@ public class ResourceManager {
     public ResourceClass getPlaterR() { return player; }
     public ResourceClass getEnemyR() { return enemy; }
 
-    // TODO make the function that adds up all the data fields (calls function from resource class)
-
     public String toString() {
-        String strung = "\nResources\n";
+        String strung = "ResourceManager String\n";
 
         if (player != null)
             strung += "player:" + player.toString();
-        strung+="\n";
         if (enemy != null)
             strung += "\nenemy:" + enemy.toString();
 

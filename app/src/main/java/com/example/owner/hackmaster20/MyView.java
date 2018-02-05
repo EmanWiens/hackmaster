@@ -1,4 +1,4 @@
-package hackmaster20.application;
+package com.example.owner.hackmaster20;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,12 +10,10 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.example.owner.hackmaster20.R;
-
 /**
  * TODO: document your custom view class.
  */
-public class StatsView extends View {
+public class MyView extends View {
     private String mExampleString; // TODO: use a default from R.string...
     private int mExampleColor = Color.RED; // TODO: use a default from R.color...
     private float mExampleDimension = 0; // TODO: use a default from R.dimen...
@@ -25,17 +23,17 @@ public class StatsView extends View {
     private float mTextWidth;
     private float mTextHeight;
 
-    public StatsView(Context context) {
+    public MyView(Context context) {
         super(context);
         init(null, 0);
     }
 
-    public StatsView(Context context, AttributeSet attrs) {
+    public MyView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs, 0);
     }
 
-    public StatsView(Context context, AttributeSet attrs, int defStyle) {
+    public MyView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs, defStyle);
     }
@@ -43,22 +41,22 @@ public class StatsView extends View {
     private void init(AttributeSet attrs, int defStyle) {
         // Load attributes
         final TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.BattleView, defStyle, 0);
+                attrs, R.styleable.MyView, defStyle, 0);
 
         mExampleString = a.getString(
-                R.styleable.BattleView_exampleString);
+                R.styleable.MyView_exampleString);
         mExampleColor = a.getColor(
-                R.styleable.BattleView_exampleColor,
+                R.styleable.MyView_exampleColor,
                 mExampleColor);
         // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
         // values that should fall on pixel boundaries.
         mExampleDimension = a.getDimension(
-                R.styleable.BattleView_exampleDimension,
+                R.styleable.MyView_exampleDimension,
                 mExampleDimension);
 
-        if (a.hasValue(R.styleable.BattleView_exampleDrawable)) {
+        if (a.hasValue(R.styleable.MyView_exampleDrawable)) {
             mExampleDrawable = a.getDrawable(
-                    R.styleable.BattleView_exampleDrawable);
+                    R.styleable.MyView_exampleDrawable);
             mExampleDrawable.setCallback(this);
         }
 

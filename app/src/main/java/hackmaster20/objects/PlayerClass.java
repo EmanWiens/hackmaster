@@ -1,6 +1,6 @@
 package hackmaster20.objects;
 
-import hackmaster20.business.DeckManager;
+import hackmaster20.persistence.playerStatsDatabase;
 
 /**
  * Created by Owner on 1/29/2018.
@@ -9,23 +9,13 @@ import hackmaster20.business.DeckManager;
 public class PlayerClass {
     private String name;
     private ResourceClass resource = null;
-    private int health;
+    private int health = 100;
+    private int maxHealth = 100;
     private CardClass[] hand;
 
-    public PlayerClass(String name, ResourceClass resources, CardClass[] cards) {
-        this.name = name;
-        hand = cards;
-        resource = resources;
+    public PlayerClass(String n, ResourceClass r, CardClass[] c) {
+        name = n;
+        hand = c;
+        resource = r;
     }
-
-    public CardClass[] getCards() { return hand; }
-    public CardClass getCard(int i) { return hand[i]; }
-    public void setCard(int index, CardClass card) { hand[index] = card; }
-
-    // TODO write a listener function that listens to which card you clicked
-    public int findPlayerCardIndex(String name) {
-        return DeckManager.getCardIndex(name, hand);
-    }
-
-    public CardClass getCardByIndex(int index) { return hand[index]; }
 }
