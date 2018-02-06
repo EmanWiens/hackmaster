@@ -19,4 +19,11 @@ public class GameManagerUnitTest {
         // TODO write the test functions for while the game is running
         // TODO tests for all the in game functions
     }
+    @Test
+    public void SingleGame_isCorrect() {
+        GameManager.setUpSingleGame();
+        //TODO
+       // System.out.println(GameManager.getPlayer().getName());
+      //  assertEquals("The name of  player should be", "HackerMan", GameManager.getPlayer().getName());
+    }
 }

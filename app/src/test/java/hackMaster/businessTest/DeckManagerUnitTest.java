@@ -2,10 +2,11 @@ package hackMaster.businessTest;
 
 import org.junit.Test;
 
+
 import hackmaster20.business.DeckManager;
+import hackmaster20.objects.CardClass;
 
 import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -23,5 +24,12 @@ public class DeckManagerUnitTest {
         DeckManager.initDeck(0);
         size = DeckManager.getSizeDeck();
         assertNotNull("The size should not be NULL", size);
+    }
+
+    @Test
+    public void Pick_Cards_isCorrect() {
+        //TODO
+      //  CardClass cards[] = DeckManager.pickCards();
+        //assertEquals("The name  of first Card should be CPU Boost", "CPU Boost", cards[0].getName());
     }
 }
