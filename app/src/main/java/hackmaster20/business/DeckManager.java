@@ -16,7 +16,7 @@ public class DeckManager {
         mainActivity = m;
     }
 
-    public static CardClass[] pickCards() {
+    public static CardClass[] testCards() {
         // make some cards where you set all the specs
         int count = 0;
         CardClass cards[] = new CardClass[10];
@@ -43,7 +43,7 @@ public class DeckManager {
     }
 
     public static CardClass[] dealCards(int deal) {
-        CardClass[] cards = pickCards(); // = new CardClass[deal];
+        CardClass[] cards = testCards(); // = new CardClass[deal];
         CardClass temp;
 
         mainActivity.DrawCard(cards[0]);

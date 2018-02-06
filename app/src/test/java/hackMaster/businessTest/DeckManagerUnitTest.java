@@ -1,15 +1,26 @@
 package hackMaster.businessTest;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import hackmaster20.DrawToScreen;
 import hackmaster20.business.DeckManager;
-import hackmaster20.objects.CardClass;
 
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
 
-
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ */
 public class DeckManagerUnitTest {
+    @Test
+    public void addition_isCorrect() throws Exception {
+        assertEquals(4, 2 + 2);
+    }
+
     @Test
     public void InitDeck_isCorrect() {
         DeckManager.initDeck(4);
@@ -21,10 +32,5 @@ public class DeckManagerUnitTest {
         DeckManager.initDeck(0);
         int size = DeckManager.getSizeDeck();
         assertNotNull("The size should not be NULL", size);
-    }
-    @Test
-    public void Pick_Cards_isCorrect() {
-        CardClass cards[] = DeckManager.pickCards();
-        assertEquals("The name  of first Card should be CPU Boost", "CPU Boost", cards[0].getName());
     }
 }
