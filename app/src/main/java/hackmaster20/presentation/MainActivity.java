@@ -2,6 +2,8 @@ package hackmaster20.presentation;
 
 // import hackmaster20.presentation.*;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,9 +32,29 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
         if (currLayoutId == R.id.main_activity)
             return;
-        else
-            setContentView(R.layout.main_activity);
+        else if (currLayoutId == R.id.battle_view) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("You are about to exit the game.")
+                    .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // FIRE ZE MISSILES!
+                            setContentView(R.layout.main_activity);
+                        }
+                    })
+                    .setNegativeButton("Stay in game", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+
+            builder.show();
+        }
+        else {
+            
+        }
     }
+
+
 
     public void statsPress(View v) {
         setContentView(R.layout.stats_view);
