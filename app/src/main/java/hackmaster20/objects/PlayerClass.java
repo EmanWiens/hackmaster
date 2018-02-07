@@ -13,10 +13,11 @@ public class PlayerClass {
     private CardClass[] hand;
     private int playerId;
 
-    public PlayerClass(String name, ResourceClass resources, CardClass[] cards) {
+    public PlayerClass(int id, String name, ResourceClass resources, CardClass[] cards) {
         this.name = name;
         hand = cards;
         resource = resources;
+        playerId = id;
     }
 
     public CardClass[] getCards() { return hand; }

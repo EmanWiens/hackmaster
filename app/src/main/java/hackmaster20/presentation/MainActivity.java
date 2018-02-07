@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public void drawPlayerResource(PlayerClass player) {
         // TODO Write the function that draws the resources of a player based on the ID
-        
+
     }
 
     public void statsPress(View v) {

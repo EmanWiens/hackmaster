@@ -55,15 +55,15 @@ public class GameManager {
         inGame = true;
 
         deckM.initDeck(maxCards);
-        player1 = new PlayerClass("p1",
-                new ResourceClass(100, 2, 2, 2, 2, 2, 2),
-                deckM.dealCards(dealCards));
+        player1 = new PlayerClass(0,
+                "p1",
+                new ResourceClass(100, 2, 2, 2, 2, 2, 2), deckM.dealCards(dealCards));
         deckM.drawCards(player1.getCards());
         resManager.drawPlayerResource(player1);
 
-        player2 = new PlayerClass("p2",
-                new ResourceClass(100, 2, 2, 2, 2, 2, 2),
-                deckM.dealCards(dealCards));
+        player2 = new PlayerClass(1,
+                "p2",
+                new ResourceClass(100, 2, 2, 2, 2, 2, 2), deckM.dealCards(dealCards));
     }
 
     public static void playCardEvent(String name) {
