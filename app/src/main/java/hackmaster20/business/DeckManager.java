@@ -4,7 +4,6 @@ import java.util.Random;
 
 import hackmaster20.presentation.DrawToScreen;
 import hackmaster20.objects.CardClass;
-import hackmaster20.persistence.CardsList;
 
 /**
  * Created by Owner on 1/29/2018.

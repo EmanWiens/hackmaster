@@ -1,4 +1,4 @@
-package hackmaster20.application;
+package hackmaster20.presentation;
 
 import android.content.Context;
 import android.content.res.TypedArray;

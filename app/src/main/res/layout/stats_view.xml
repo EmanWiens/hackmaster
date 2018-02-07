@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="hackmaster20.application.MainActivity">
 
-    <hackmaster20.application.StatsView
+    <hackmaster20.presentation.StatsView
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:background="#ccc"

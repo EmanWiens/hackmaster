@@ -4,7 +4,7 @@ import hackmaster20.objects.CardClass;
 import hackmaster20.presentation.DrawToScreen;
 import hackmaster20.objects.PlayerClass;
 import hackmaster20.objects.ResourceClass;
-import hackmaster20.persistence.PlayerStatsSaves;
+import hackmaster20.objects.PlayerStatsSaves;
 
 /**
  * Created by Owner on 1/29/2018.

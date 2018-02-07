@@ -1,4 +1,4 @@
-package hackmaster20.persistence;
+package hackmaster20.objects;
 
 /**
  * Created by Owner on 1/29/2018.

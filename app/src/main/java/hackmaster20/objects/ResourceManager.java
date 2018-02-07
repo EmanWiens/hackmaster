@@ -1,4 +1,4 @@
-package hackmaster20.business;
+package hackmaster20.objects;
 
 import hackmaster20.objects.ResourceClass;
 

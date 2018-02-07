@@ -1,13 +1,5 @@
 package hackmaster20.objects;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
-
-import com.example.owner.hackmaster20.R;
-
-import hackmaster20.business.ResourceManager;
-
 /**
  * Created by Owner on 1/29/2018.
  */

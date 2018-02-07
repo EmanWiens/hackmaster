@@ -2,8 +2,6 @@ package hackMaster.businessTest;
 
 import org.junit.Test;
 
-import hackmaster20.business.ResourceManager;
-
 import static org.junit.Assert.assertNull;
 
 /**

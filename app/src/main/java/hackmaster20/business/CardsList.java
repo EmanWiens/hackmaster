@@ -1,6 +1,6 @@
-package hackmaster20.persistence;
+package hackmaster20.business;
 
-import hackmaster20.business.ResourceManager;
+import hackmaster20.objects.ResourceManager;
 import hackmaster20.objects.CardClass;
 import hackmaster20.objects.ResourceClass;
 
@@ -9,6 +9,8 @@ import hackmaster20.objects.ResourceClass;
  */
 
 public class CardsList {
+
+    //
     public static CardClass[] presetCards() {
         // make some cards where you set all the specs
         int count = 0;
