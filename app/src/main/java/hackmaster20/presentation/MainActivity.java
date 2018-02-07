@@ -4,7 +4,6 @@ package hackmaster20.presentation;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -57,8 +56,21 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void drawPlayerResource(PlayerClass player) {
-        // TODO Write the function that draws the resources of a player based on the ID
+        if (player.getId() == 0) {
+            fillText((TextView)findViewById(R.id.minerP), player.minerToString());
+            fillText((TextView)findViewById(R.id.cSpeedP), player.cSpeedToString());
+            fillText((TextView)findViewById(R.id.botnetP), player.botnetToString());
+        }
+        else {
+            // TODO fix GUI (MinerE is linked to MinerE so on
+            //fillText((TextView)findViewById(R.id.minerE), player.minerToString());
+            //fillText((TextView)findViewById(R.id.cSpeedE), player.cSpeedToString());
+            // fillText((TextView)findViewById(R.id.botnetE), player.botnetToString());
+        }
+    }
 
+    private void fillText (TextView view, String string) {
+        view.setText(string);
     }
 
     public void statsPress(View v) {

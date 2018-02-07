@@ -20,6 +20,7 @@ public class PlayerClass {
         playerId = id;
     }
 
+    public int getId() { return playerId; }
     public CardClass[] getCards() { return hand; }
     public int cardsSize() { return hand.length; }
     public CardClass getCard(int i) { return hand[i]; }
@@ -29,4 +30,19 @@ public class PlayerClass {
     }
     public CardClass getCardByIndex(int index) { return hand[index]; }
     public ResourceClass getResource() { return resource; }
+
+    public String minerToString() {
+        return "\nMiners: " + resource.getGpuMiner() +
+                "\nHCoin: " + resource.getCryptoCoin();
+    }
+
+    public String cSpeedToString() {
+        return "\nCore Rate: " + resource.getCoreRate() +
+                "\nCPU: " + resource.getCpu();
+    }
+
+    public String botnetToString() {
+        return "\nBotnet gen.: " + resource.getInfectionRate() +
+                "\nBotnet: " + resource.getBotnet();
+    }
 }
