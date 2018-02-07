@@ -12,6 +12,7 @@ import hackmaster20.objects.CardClass;
 public class DeckManager {
     private static CardClass[] deck = null;
     private static Random rand = new Random();
+    private static int index = 0;
 
     private static DrawToScreen mainActivity;
 
@@ -45,6 +46,10 @@ public class DeckManager {
         }
     }
 
+    private static void updateIndex() {
+        index = (index + 1) % deck.length;
+    }
+
     public static int getCardIndex(String name, CardClass[] hand) {
         // TODO write the function that finds the card by comparing the name and returns the index
         //TODO Comment We have a lot of the same card names Maybe check by something unique like cardID?
@@ -62,6 +67,12 @@ public class DeckManager {
         }
         return index;
     }
+
+    public static CardClass getACard() {
+        updateIndex();
+        return deck[index];
+    }
+
     // TODO return a card to whomever played the card based on what cards have been played  //DONE
     public static CardClass getACard(int index) { return deck[index];}
     public static int getSizeDeck() {return deck.length;}
