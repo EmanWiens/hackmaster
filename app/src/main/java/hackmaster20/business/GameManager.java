@@ -15,6 +15,7 @@ public class GameManager {
     private static PlayerClass player1;
     private static PlayerClass player2;
     private static DeckManager deckM;
+    private static ResourceManager resManager;
 
     private static boolean player1Turn = true;
     private static boolean paused = false;
@@ -33,12 +34,20 @@ public class GameManager {
     public static boolean inGame() { return inGame; }
     public static void setInGame(boolean value) { inGame = value; }
 
+    public static int getPlayer() {
+        if(player1Turn)
+            return 0;
+        else
+            return 1;
+    }
+
     public boolean getPlayer1Turn() { return player1Turn; }
 
     public GameManager(DrawToScreen mainAct) {
         mainActivity = mainAct;
         deckM = new DeckManager(mainAct);
         pStats = new PlayerStatsSaves();
+        resManager = new ResourceManager(mainAct);
     }
 
     public static void setUpSingleGame() {
@@ -50,6 +59,7 @@ public class GameManager {
                 new ResourceClass(100, 2, 2, 2, 2, 2, 2),
                 deckM.dealCards(dealCards));
         deckM.drawCards(player1.getCards());
+        resManager.drawPlayerResource(player1);
 
         player2 = new PlayerClass("p2",
                 new ResourceClass(100, 2, 2, 2, 2, 2, 2),

@@ -20,19 +20,19 @@ public class ResourceManagerUnitTest {
     @Test
     public void Player_Resources_isNull() {
     //TODO
-      //  ResourceManager.getPlayerR();
-      //  assertNull("Player Resources should be null", ResourceManager.getPlayerR());
+      //  CardResource.getPlayerR();
+      //  assertNull("Player Resources should be null", CardResource.getPlayerR());
     }
     @Test
     public void Enemy_Resources_isNull() {
     //TODO
-    //    ResourceManager.getEnemyR();
-        //assertNull("Enemy Resources should be null", ResourceManager.getEnemyR());
+    //    CardResource.getEnemyR();
+        //assertNull("Enemy Resources should be null", CardResource.getEnemyR());
     }
     @Test
     public void toString_isCorrect() {
-//       ResourceManager.toString();
-//        assertNull("Enemy Resources should be null", ResourceManager.getEnemyR());
+//       CardResource.toString();
+//        assertNull("Enemy Resources should be null", CardResource.getEnemyR());
         //TO DO
     }
 

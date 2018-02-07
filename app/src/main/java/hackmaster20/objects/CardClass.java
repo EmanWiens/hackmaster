@@ -7,16 +7,16 @@ package hackmaster20.objects;
 public class CardClass {
     private String name;
     private String description;
-    private ResourceManager resManager;
+    private CardResource resManager;
     private String type;
     private int id = 0;
 
-    public CardClass(int id, String name, String type, String d, ResourceManager resourceManager) {
+    public CardClass(int id, String name, String type, String d, CardResource cardResource) {
         this.id = id;
         this.name = name;
         this.type = type;
         description = d;
-        resManager = resourceManager;
+        resManager = cardResource;
     }
 
     public String getName() { return name; }

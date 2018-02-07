@@ -14,6 +14,7 @@ import com.example.owner.hackmaster20.R;
 
 import hackmaster20.business.GameManager;
 import hackmaster20.objects.CardClass;
+import hackmaster20.objects.PlayerClass;
 
 public class MainActivity extends AppCompatActivity implements DrawToScreen {
     // give a "copy" of the interface to the gameManager
@@ -55,7 +56,10 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         }
     }
 
-
+    public void drawPlayerResource(PlayerClass player) {
+        // TODO Write the function that draws the resources of a player based on the ID
+        
+    }
 
     public void statsPress(View v) {
         setContentView(R.layout.stats_view);
