@@ -18,6 +18,7 @@ public class GameManager {
 
     private static boolean player1Turn = true;
     private static boolean paused = false;
+    private static boolean inGame = false;
 
     private static boolean singlePlayer = false;
 
@@ -28,6 +29,8 @@ public class GameManager {
 
     public static void setSinglePlayer(boolean set) { singlePlayer = set; }
     public static DrawToScreen getMainAct() { return mainActivity; }
+    public static boolean inGame() { return inGame; }
+    public static void setInGame(boolean value) { inGame = value; }
 
     public boolean getPlayer1Turn() { return player1Turn; }
 
@@ -39,6 +42,7 @@ public class GameManager {
 
     public static void setUpSingleGame() {
         singlePlayer = true;
+        inGame = true;
 
         deckM.initDeck(maxCards);
         player1 = new PlayerClass("p1",

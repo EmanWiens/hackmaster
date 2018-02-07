@@ -27,18 +27,18 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     @Override
     public void onBackPressed() {
-        View currtLayout = findViewById(android.R.id.content);
-        int currLayoutId = currtLayout.getId();
+        View currLayout = findViewById(android.R.id.content);
+        int currLayoutId = currLayout.getId();
 
         if (currLayoutId == R.id.main_activity)
             return;
-        else if (currLayoutId == R.id.battle_view) {
+        else if (gameManager.inGame()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("You are about to exit the game.")
                     .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            // FIRE ZE MISSILES!
                             setContentView(R.layout.main_activity);
+                            GameManager.setInGame(false);
                         }
                     })
                     .setNegativeButton("Stay in game", new DialogInterface.OnClickListener() {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             builder.show();
         }
         else {
-            
+
         }
     }
 
