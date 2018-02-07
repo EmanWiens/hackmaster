@@ -6,11 +6,11 @@ import hackmaster20.objects.ResourceClass;
  * Created by Owner on 1/29/2018.
  */
 
-public class ResourceManager {
+public class CardResource {
     private ResourceClass player;
     private ResourceClass enemy;
 
-    public ResourceManager(ResourceClass p, ResourceClass e) {
+    public CardResource(ResourceClass p, ResourceClass e) {
         player = p;
         enemy = e;
     }

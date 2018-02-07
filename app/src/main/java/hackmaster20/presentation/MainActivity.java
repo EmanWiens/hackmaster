@@ -2,6 +2,8 @@ package hackmaster20.presentation;
 
 // import hackmaster20.presentation.*;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,7 @@ import com.example.owner.hackmaster20.R;
 
 import hackmaster20.business.GameManager;
 import hackmaster20.objects.CardClass;
+import hackmaster20.objects.PlayerClass;
 
 public class MainActivity extends AppCompatActivity implements DrawToScreen {
     // give a "copy" of the interface to the gameManager
@@ -20,12 +23,54 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         gameManager = new GameManager(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
     }
 
     @Override
     public void onBackPressed() {
-        // TODO check game state on back button
+        View currLayout = findViewById(android.R.id.content);
+        int currLayoutId = currLayout.getId();
+
+        if (currLayoutId == R.id.main_activity)
+            return;
+        else if (gameManager.inGame()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("You are about to exit the game.")
+                    .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            setContentView(R.layout.main_activity);
+                            GameManager.setInGame(false);
+                        }
+                    })
+                    .setNegativeButton("Stay in game", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+
+            builder.show();
+        }
+        else {
+
+        }
+    }
+
+    public void drawPlayerResource(PlayerClass player) {
+        if (player.getId() == 0) {
+            fillText((TextView)findViewById(R.id.minerP), player.minerToString());
+            fillText((TextView)findViewById(R.id.cSpeedP), player.cSpeedToString());
+            fillText((TextView)findViewById(R.id.botnetP), player.botnetToString());
+        }
+        else {
+            // TODO fix GUI (MinerE is linked to MinerE so on
+            //fillText((TextView)findViewById(R.id.minerE), player.minerToString());
+            //fillText((TextView)findViewById(R.id.cSpeedE), player.cSpeedToString());
+            // fillText((TextView)findViewById(R.id.botnetE), player.botnetToString());
+        }
+    }
+
+    private void fillText (TextView view, String string) {
+        view.setText(string);
     }
 
     public void statsPress(View v) {
@@ -57,14 +102,11 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void cardPress(View v) {
-        String name[] = null;
-        name = ((TextView) v).getText().toString().split("\n");
+        String name[] = name = ((TextView) v).getText().toString().split("\n");
         TextView playedCard = (TextView) findViewById(R.id.playedCard);
-        // Thread.sleep(500);
         playedCard.setText(((TextView) v).getText());
 
-        if (name != null)
-            gameManager.playCardEvent(name[0]);
-
+        // SystemClock.sleep(500);
+        gameManager.playCardEvent(name[0]);
     }
 }

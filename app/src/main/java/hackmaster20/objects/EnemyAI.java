@@ -5,7 +5,11 @@ package hackmaster20.objects;
  */
 
 public class EnemyAI extends PlayerClass {
-    public EnemyAI(String n, ResourceClass r, CardClass[] c) {
-        super(n, r, c);
+    public EnemyAI(int id, String n, ResourceClass r, CardClass[] c) {
+        super(id, n, r, c);
+    }
+
+    public void playCard() {
+        // TODO A simple AI that plays a card
     }
 }
