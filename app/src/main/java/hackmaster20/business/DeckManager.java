@@ -12,6 +12,7 @@ import hackmaster20.objects.CardClass;
 public class DeckManager {
     private static CardClass[] deck = null;
     private static Random rand = new Random();
+    private static int index = 0;
 
     private static DrawToScreen mainActivity;
     public DeckManager(DrawToScreen mainAct) {
@@ -44,14 +45,18 @@ public class DeckManager {
         }
     }
 
+    private static void updateIndex() {
+        index = (index + 1) % deck.length;
+    }
+
     public static int getCardIndex(String name, CardClass[] hand) {
         // TODO write the function that finds the card by comparinf the name and returns the index
         return 0;
     }
 
     public static CardClass getACard() {
-        // TODO return a card to whomever played the card based on what cards have been played
-        return null;
+        updateIndex();
+        return deck[index];
     }
 
     public static int getSizeDeck() {

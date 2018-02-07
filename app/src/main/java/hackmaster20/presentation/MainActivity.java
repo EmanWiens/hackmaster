@@ -4,6 +4,7 @@ package hackmaster20.presentation;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -85,14 +86,11 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void cardPress(View v) {
-        String name[] = null;
-        name = ((TextView) v).getText().toString().split("\n");
+        String name[] = name = ((TextView) v).getText().toString().split("\n");
         TextView playedCard = (TextView) findViewById(R.id.playedCard);
-        // Thread.sleep(500);
         playedCard.setText(((TextView) v).getText());
 
-        if (name != null)
-            gameManager.playCardEvent(name[0]);
-
+        // SystemClock.sleep(500);
+        gameManager.playCardEvent(name[0]);
     }
 }

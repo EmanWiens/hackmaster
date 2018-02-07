@@ -27,6 +27,7 @@ public class GameManager {
 
     private static DrawToScreen mainActivity;
 
+    public static int handSize() { return dealCards; }
     public static void setSinglePlayer(boolean set) { singlePlayer = set; }
     public static DrawToScreen getMainAct() { return mainActivity; }
     public static boolean inGame() { return inGame; }
@@ -62,8 +63,6 @@ public class GameManager {
             // TODO take out the card from the player and give the player a new card from the deck
             player1.setCard(cardIndex, DeckManager.getACard());
             // TODO apply the card to the player and enemy
-
-            // Thread.sleep(millis); // timer after the card is played
         }
         else {
 

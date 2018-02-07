@@ -8,4 +8,5 @@ import hackmaster20.objects.CardClass;
 
 public interface DrawToScreen {
     void DrawCard(CardClass card, int slot);
+
 }

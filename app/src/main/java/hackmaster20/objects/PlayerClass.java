@@ -19,6 +19,7 @@ public class PlayerClass {
     }
 
     public CardClass[] getCards() { return hand; }
+    public int cardsSize() { return hand.length; }
     public CardClass getCard(int i) { return hand[i]; }
     public void setCard(int index, CardClass card) { hand[index] = card; }
 
