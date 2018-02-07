@@ -68,6 +68,10 @@ public class DeckManager {
         return index;
     }
 
+    public static CardClass getACard(int index){
+        return deck[index];
+    }
+
     public static CardClass getACard() {
         updateIndex();
         return deck[index];
