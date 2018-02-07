@@ -26,4 +26,6 @@ public class GameManagerUnitTest {
        // System.out.println(GameManager.getPlayer().getName());
       //  assertEquals("The name of  player should be", "HackerMan", GameManager.getPlayer().getName());
     }
+
+
 }

@@ -56,7 +56,8 @@ public class GameManager {
             int cardIndex = player1.findPlayerCardIndex(name);
             CardClass card = player1.getCardByIndex(cardIndex);
             // TODO take out the card from the player and give the player a new card from the deck
-            player1.setCard(cardIndex, DeckManager.getACard());
+            //TODO Comment Vlad: I made a return method get ACard Not Sure if setCard works but getCard() was returning NULL
+            player1.setCard(cardIndex, DeckManager.getACard(1));
             // TODO apply the card to the player and enemy
 
             // Thread.sleep(millis); // timer after the card is played

@@ -20,7 +20,9 @@ public class CardClass {
     }
 
     public String getName() { return name; }
-
+    public String getType() { return type; }
+    public int getID() { return id; }
+    public String getDescription() { return description; }
     public String toString() {
         String strung = "Error, there is not card.";
 

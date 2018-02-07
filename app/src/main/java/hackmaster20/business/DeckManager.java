@@ -14,6 +14,7 @@ public class DeckManager {
     private static Random rand = new Random();
 
     private static DrawToScreen mainActivity;
+
     public DeckManager(DrawToScreen mainAct) {
         mainActivity = mainAct;
     }
@@ -45,16 +46,24 @@ public class DeckManager {
     }
 
     public static int getCardIndex(String name, CardClass[] hand) {
-        // TODO write the function that finds the card by comparinf the name and returns the index
-        return 0;
+        // TODO write the function that finds the card by comparing the name and returns the index
+        //TODO Comment We have a lot of the same card names Maybe check by something unique like cardID?
+        //TODO Just seen you already made ID For Cards=) I will just make them unique
+        //TODO But still if you wanna search by name there are multiple cards with the same name. So which index we want from them?
+        //TODO We could also make the cardID correspond to index
+        //DONE
+        int index=0;
+        for (int i = 0; i<hand.length; i++)
+        {
+            if (name==hand[i].getName())
+            {
+                index=i;
+            }
+        }
+        return index;
     }
-
-    public static CardClass getACard() {
-        // TODO return a card to whomever played the card based on what cards have been played
-        return null;
-    }
-
-    public static int getSizeDeck() {
-        return deck.length;
-    }
+    // TODO return a card to whomever played the card based on what cards have been played  //DONE
+    public static CardClass getACard(int index) { return deck[index];}
+    public static int getSizeDeck() {return deck.length;}
+    public static CardClass[] getADeck() {return deck;}
 }
