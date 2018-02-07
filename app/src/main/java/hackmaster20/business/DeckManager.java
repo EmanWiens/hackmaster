@@ -74,7 +74,6 @@ public class DeckManager {
     }
 
     // TODO return a card to whomever played the card based on what cards have been played  //DONE
-    public static CardClass getACard(int index) { return deck[index];}
     public static int getSizeDeck() {return deck.length;}
     public static CardClass[] getADeck() {return deck;}
 }
