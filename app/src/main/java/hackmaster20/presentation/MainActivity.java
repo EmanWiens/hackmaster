@@ -20,12 +20,18 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         gameManager = new GameManager(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
     }
 
     @Override
     public void onBackPressed() {
-        // TODO check game state on back button
+        View currtLayout = findViewById(android.R.id.content);
+        int currLayoutId = currtLayout.getId();
+
+        if (currLayoutId == R.id.main_activity)
+            return;
+        else
+            setContentView(R.layout.main_activity);
     }
 
     public void statsPress(View v) {

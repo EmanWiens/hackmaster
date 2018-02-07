@@ -1,8 +1,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res/com.example.owner.hackmaster20"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stats_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context="hackmaster20.application.MainActivity">
 
     <hackmaster20.presentation.StatsView
