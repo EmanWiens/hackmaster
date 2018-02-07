@@ -1,0 +1,99 @@
+tempCard = new CardClass(count, "Upgrade Botnet", "Upgrade", "Increase Botnet Rate",
+                new ResourceManager(new ResourceClass(0, -2, 0, 0, 0, 0, 150), null));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Upgrade CPU", "Upgrade", "Increase CPU Calculations",
+                new ResourceManager(new ResourceClass(0, -2, 0, 0, 0, 10, 0), null));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Upgrade Hash Rate", "Upgrade", "Increase Cryptocurrency Mining Rate",
+                new ResourceManager(new ResourceClass(0, -2, 0, +1, 0, 0, 0), null));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Upgrade Hash Rate", "Upgrade", "Increase Cryptocurrency Mining Rate",
+                new ResourceManager(new ResourceClass(0, -2, 0, +1, 0, 0, 0), null));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "DDOS", "Attack", "Deals a Decent Amount of Damage to the Enemy",
+                new ResourceManager(new ResourceClass(0, 0, 0, -500, 0, 0, 0), new ResourceClass(-20, 0, 0, 0, 0, 0, 0)));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "File Transfer", "Attack", "Steal Enemy Resources",
+                new ResourceManager(new ResourceClass(8, 2, 20, -700, 0, 0, 0), new ResourceClass(-8, -2, -20, -300, 0, 0, 0)));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Pop-up", "Attack", "Deals a Small Amount of Damage to the Enemy",
+                new ResourceManager(new ResourceClass(0, 0, 0, -150, 0, 0, 0), new ResourceClass(-4, 0, 0, 0, 0, 0, 0)));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Anti-Virus", "Defence", "Gain a Small Amount of Health",
+                new ResourceManager(new ResourceClass(5, 0, -10, 0, 0, 0, 0), null));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Firewall", "Defence", "Gain a Decent Amount of Health",
+                new ResourceManager(new ResourceClass(10, 0, -40, 0, 0, 0, 0), null));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Play the Market", "Upgrade", "Spend 4 Cryptocoins Gain 8 Back",
+                new ResourceManager(new ResourceClass(0, 4, 0, 0, 0, 0, 0), null));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Overclock", "Upgrade", "Spend 4 Cryptocoins to Gain 40 Processing Power",
+                new ResourceManager(new ResourceClass(0, -4, 40, 0, 0, 0, 0), null));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Server Farm", "Upgrade", "Spend 4 Cryptocoins gain 400 Botnets",
+                new ResourceManager(new ResourceClass(0, -4, 400, 0, 0, 0, 0), null));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Expand", "Upgrade", "Increase the Rate of All Resources",
+                new ResourceManager(new ResourceClass(0, -10, 0, 0, 1, 5, 100), null));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Market Crash", "Upgrade", "Enemy Loses 20 Cryptocoins",
+                new ResourceManager(new ResourceClass(0, -8, 0, 0, 0, 0, 0), new ResourceClass(0, -20, 0, 0, 0, 0, 0)));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Network Outage", "Upgrade", "Enemy Loses 450 Botnets",
+                new ResourceManager(new ResourceClass(0, -8, 0, 0, 0, 0, 0), new ResourceClass(0, 0, 0, -450, 0, 0, 0)));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Throttle", "Upgrade", "Enemy Loses 20 Processing Power",
+                new ResourceManager(new ResourceClass(0, -8, 0, 0, 0, 0, 0), new ResourceClass(0, 0, -40, 0, 0, 0, 0)));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Hack!!", "Attack", "Deal a Small Amount of Damage to the Enemy",
+                new ResourceManager(new ResourceClass(0, -2, 0, 0, 0, 0, 0), new ResourceClass(5, 0, 0, 0, 0, 0, 0)));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Debug", "Attack", "Gain a Small Amount of Health",
+                new ResourceManager(new ResourceClass(5, -2, 0, 0, 0, 0, 0), null));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Exploit", "Attack", "Gain a Small Amount of Health and Deal Damage to the Enemy",
+                new ResourceManager(new ResourceClass(5, -5, 0, 0, 0, 0, 0), new ResourceClass(10, 0, 0, 0, 0, 0, 0)));
+        cards[count] = tempCard;
+        count++;
+
+        tempCard = new CardClass(count, "Zero Day", "Attack", "Deal a Large Amount of Damage to the Enemy While Also Taking Away Resources",
+                new ResourceManager(new ResourceClass(0, -10, 0, 0, 0, 0, 0), new ResourceClass(20, 0, 0, 0, -1, -5, -100)));
+        cards[count] = tempCard;
+        count++;
