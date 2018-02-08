@@ -64,6 +64,7 @@ public class GameManager {
         player2 = new PlayerClass(1,
                 "p2",
                 new ResourceClass(100, 2, 2, 2, 2, 2, 2), deckM.dealCards(dealCards));
+        resManager.drawPlayerResource(player2);
     }
 
     public static void playCardEvent(String name) {

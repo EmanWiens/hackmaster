@@ -21,15 +21,12 @@ public class CardsList {
         CardClass tempCard = new CardClass(0, "CPU Boost", "Upgrade", "Upgrade your CPU",
                 new CardResource(new ResourceClass(0, -10, 0, 0, 0,1, 0), null));
         cards[count] = tempCard;
-        // tempCard.show();
         count++;
 
-        //TODO Vlad: seems like it's a duplicate Card
-//        tempCard = new CardClass(0, "CPU Boost", "Upgrade", "Upgrade your CPU",
-//                new CardResource(new ResourceClass(0, -10, 0, 0, 0,1, 0), null));
-//        cards[count] = tempCard;
-//        // tempCard.show();
-//        count++;
+        tempCard = new CardClass(0, "CPU Boost", "Upgrade", "Upgrade your CPU",
+                new CardResource(new ResourceClass(0, -10, 0, 0, 0,1, 0), null));
+        cards[count] = tempCard;
+        count++;
 
         tempCard = new CardClass(1, "More Cores", "Defense", "Upgrade your CPU",
                 new CardResource(new ResourceClass(0, -5, 10, 0, 0,0, 0), null));
