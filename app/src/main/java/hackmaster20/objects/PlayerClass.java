@@ -26,6 +26,8 @@ public class PlayerClass {
     public CardClass[] getCards() { return hand; }
     public int cardsSize() { return hand.length; }
     public CardClass getCard(int i) { return hand[i]; }
+    public String getName() { return name; }
+
     public void setCard(int index, CardClass card) { hand[index] = card; }
     public int findPlayerCardIndex(String name) {
         return DeckManager.getCardIndex(name, hand);
