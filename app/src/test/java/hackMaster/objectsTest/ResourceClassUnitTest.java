@@ -19,11 +19,11 @@ public class ResourceClassUnitTest {
             {1,1001,51,4,54,3,56,2},
             {-2,999,49,2,52,1,54,0}
     };
+    private int numberToAdd;
 
     @Before
     public void setUp(){
         resource = new ResourceClass(1000,50,3, 53, 2, 55, 1);
-
     }
 
     @Test
@@ -44,7 +44,6 @@ public class ResourceClassUnitTest {
     public void testSingleResourceAddition() {
         System.out.println("Testing Single Resource Addition...\n");
 
-        int numberToAdd;
         // This could be written better...
         for(int i = 0; i < testCaseData.length; i++) {
             numberToAdd = testCaseData[i][0];
@@ -75,7 +74,6 @@ public class ResourceClassUnitTest {
     public void testAddResources() {
         System.out.println("\nTesting addResources...\n");
 
-        int numberToAdd;
         for(int i = 0; i < testCaseData.length; i++) {
             numberToAdd = testCaseData[i][0];
             resource.addResources(new ResourceClass(numberToAdd, numberToAdd, numberToAdd, numberToAdd, numberToAdd, numberToAdd, numberToAdd));
@@ -97,7 +95,14 @@ public class ResourceClassUnitTest {
 
     @Test
     public void testAddRates() {
+        System.out.println("\nTesting add Rates...\n");
 
+        resource.addMinerRate();
+        resource.addCSpeedRate();
+        resource.addBotnetRate();
+        assertEquals("hCoin should be 53",53, resource.gethCoin());
+        assertEquals("botnet should be 55",55, resource.getBotnet());
+        assertEquals("cpuRate should be 56",56, resource.getCpuRate());
     }
 
     @After
