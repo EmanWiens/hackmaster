@@ -24,7 +24,7 @@ public class CardClass {
     public int getID() { return id; }
     public String getDescription() { return description; }
     public String toString() {
-        String strung = "Error, there is not card.";
+        String strung;
 
         strung = name + "\ntype:" + type;
         strung += "\n" + resManager.toString();
