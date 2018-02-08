@@ -18,4 +18,12 @@ public class ResourceManager {
         ResourceClass resource = player.getResource();
         mainAct.drawPlayerResource(player);
     }
+
+    public static void applyTurnRate(PlayerClass p) {
+        p.addMinerRate();
+        p.addCSpeedRate();
+        p.addBotnetRate();
+
+        drawPlayerResource(p);
+    }
 }

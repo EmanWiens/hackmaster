@@ -6,7 +6,8 @@ import hackmaster20.business.DeckManager;
  * Created by Owner on 1/29/2018.
  */
 
-public class PlayerClass {
+public class
+PlayerClass {
     private String name;
     private ResourceClass resource = null;
     private int health;
@@ -32,17 +33,27 @@ public class PlayerClass {
     public ResourceClass getResource() { return resource; }
 
     public String minerToString() {
-        return "\nMiners: " + resource.getGpuMiner() +
-                "\nHCoin: " + resource.getCryptoCoin();
+        return "\nMiners: " + resource.getBotnetRate() +
+                "\nHCoin: " + resource.gethCoin();
     }
 
     public String cSpeedToString() {
-        return "\nCore Rate: " + resource.getCoreRate() +
-                "\nCPU: " + resource.getCpu();
+        return "\nCore Rate: " + resource.getCpuRate() +
+                "\nCPU: " + resource.gethCoinRate();
     }
 
     public String botnetToString() {
-        return "\nBotnet gen.: " + resource.getInfectionRate() +
+        return "\nBotnet gen.: " + resource.getTerraFlops() +
                 "\nBotnet: " + resource.getBotnet();
+    }
+
+    public void addMinerRate() {
+        resource.addMinerRate();
+    }
+    public void addCSpeedRate() {
+        resource.addCSpeedRate();
+    }
+    public void addBotnetRate() {
+        resource.addBotnetRate();
     }
 }

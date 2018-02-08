@@ -7,7 +7,7 @@ package hackmaster20.objects;
 public class CardClass {
     private String name;
     private String description;
-    private CardResource resManager;
+    private CardResource cardRes;
     private String type;
     private int id = 0;
 
@@ -16,9 +16,10 @@ public class CardClass {
         this.name = name;
         this.type = type;
         description = d;
-        resManager = cardResource;
+        cardRes = cardResource;
     }
 
+    public CardResource getCardResource() { return cardRes; }
     public String getName() { return name; }
     public String getType() { return type; }
     public int getID() { return id; }
@@ -27,7 +28,7 @@ public class CardClass {
         String strung = "Error, there is not card.";
 
         strung = name + "\ntype:" + type;
-        strung += "\n" + resManager.toString();
+        strung += "\n" + cardRes.toString();
 
         return strung;
     }

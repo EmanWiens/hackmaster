@@ -71,13 +71,20 @@ public class GameManager {
         if (player1Turn) {
             int cardIndex = player1.findPlayerCardIndex(name);
             CardClass card = DeckManager.dealNextCard();
-            // TODO take out the card from the player and give the player a new card from the deck
             player1.setCard(cardIndex, card);
             mainActivity.DrawCard(card, cardIndex);
-            // TODO apply the card to the player and enemy
+
+            // TODO apply played card
+            // ResourceManager.applyCard(player1Turn, player1, player2, card.getCardResource());
+
+            player1Turn = false;
+            resManager.applyTurnRate(player2);
         }
         else {
 
+
+            player1Turn = true;
+            resManager.applyTurnRate(player1);
         }
     }
 }
