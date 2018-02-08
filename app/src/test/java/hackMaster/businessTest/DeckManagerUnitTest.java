@@ -4,9 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-import hackmaster20.business.CardsList;
 import hackmaster20.business.DeckManager;
-import hackmaster20.objects.CardClass;
 
 import static java.sql.Types.NULL;
 import static junit.framework.Assert.assertNotNull;
@@ -41,25 +39,25 @@ public class DeckManagerUnitTest {
     @Test
     public void testDealOneCard() {
         //TODO Come up with more test cases to test Deal Card methods
-        assertEquals("The name  of first Card should be CPU Boost", "CPU Boost", DeckManager.getACard(0).getName());
-        assertEquals("The type  of first Card should be Upgrade", "Upgrade", DeckManager.getACard(0).getType());
-        assertEquals("The description  of first Card should be Upgrade", "Upgrade your CPU", DeckManager.getACard(0).getDescription());
+        assertEquals("The name  of first Card should be CPU Boost", "CPU Boost", DeckManager.getCardAt(0).getName());
+        assertEquals("The type  of first Card should be Upgrade", "Upgrade", DeckManager.getCardAt(0).getType());
+        assertEquals("The description  of first Card should be Upgrade", "Upgrade your CPU", DeckManager.getCardAt(0).getDescription());
     }
     @Test
     public void testDealTwoCards() {
-        assertEquals("The name  of first Card should be CPU Boost", "More Cores", DeckManager.getACard(1).getName());
-        assertEquals("The type  of first Card should be Upgrade", "Defense", DeckManager.getACard(1).getType());
-        assertEquals("The description  of first Card should be Upgrade your CPU", "Upgrade your CPU", DeckManager.getACard(1).getDescription());
+        assertEquals("The name  of first Card should be CPU Boost", "More Cores", DeckManager.getCardAt(1).getName());
+        assertEquals("The type  of first Card should be Upgrade", "Defense", DeckManager.getCardAt(1).getType());
+        assertEquals("The description  of first Card should be Upgrade your CPU", "Upgrade your CPU", DeckManager.getCardAt(1).getDescription());
 
-        assertEquals("The name  of first Card should be bot.net", "bot.net", DeckManager.getACard(2).getName());
-        assertEquals("The type  of first Card should be Attack", "Attack", DeckManager.getACard(2).getType());
-        assertEquals("The description  of first Card should be Upgrade your CPU", "Upgrade your CPU", DeckManager.getACard(2).getDescription());
+        assertEquals("The name  of first Card should be bot.net", "bot.net", DeckManager.getCardAt(2).getName());
+        assertEquals("The type  of first Card should be Attack", "Attack", DeckManager.getCardAt(2).getType());
+        assertEquals("The description  of first Card should be Upgrade your CPU", "Upgrade your CPU", DeckManager.getCardAt(2).getDescription());
     }
 
     @Test
     public void testInvalidDealCard() {
         try {
-            DeckManager.getACard(NULL).getName();
+            DeckManager.getCardAt(NULL).getName();
             fail("Null Pointer Expected");
         } catch (Throwable expected) {
         }
@@ -73,7 +71,7 @@ public class DeckManagerUnitTest {
     @Test
     public void testNullCard() {
         try {
-            DeckManager.getACard(NULL);
+            DeckManager.getCardAt(NULL);
             fail("Null Pointer Expected");
         } catch (Throwable expected) {
         }
