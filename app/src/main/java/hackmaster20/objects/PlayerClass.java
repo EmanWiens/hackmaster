@@ -8,9 +8,7 @@ import hackmaster20.business.ResourceManager;
  * Created by Owner on 1/29/2018.
  */
 
-public class
-
-PlayerClass {
+public class PlayerClass {
     private String name;
     private ResourceClass resource = null;
     private int health;
@@ -28,6 +26,8 @@ PlayerClass {
     public CardClass[] getCards() { return hand; }
     public int cardsSize() { return hand.length; }
     public CardClass getCard(int i) { return hand[i]; }
+    public String getName() { return name; }
+
     public void setCard(int index, CardClass card) { hand[index] = card; }
     public int findPlayerCardIndex(String name) {
         return DeckManager.getCardIndex(name, hand);
@@ -59,7 +59,6 @@ PlayerClass {
     public void addBotnetRate() {
         resource.addBotnetRate();
     }
-
     public void addResources(ResourceClass addRes) {
         resource.addResources(addRes);
     }
