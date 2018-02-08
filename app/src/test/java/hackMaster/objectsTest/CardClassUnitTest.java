@@ -21,12 +21,11 @@ public class CardClassUnitTest {
 
     @Before
     public void setUp(){
-        player1 = new ResourceClass(1000,50,50,50,2,2,2);
-        player2 = new ResourceClass(1000,50,50, 2, 2, 2, 2);
+        player1 = new ResourceClass(1000,50,3, 53, 2, 55, 1);
+        player2 = new ResourceClass(1000,56,8, 54, 1, 99, 10);
         resManager = new CardResource(player1, player2);
         cardObj = new CardClass(1, "TestCard_1", "Upgrade", "desc", resManager);
     }
-
 
     @Test
     public void testInitCardClass() {

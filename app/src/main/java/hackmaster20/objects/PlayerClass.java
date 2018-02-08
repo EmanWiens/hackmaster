@@ -8,9 +8,7 @@ import hackmaster20.business.ResourceManager;
  * Created by Owner on 1/29/2018.
  */
 
-public class
-
-PlayerClass {
+public class PlayerClass {
     private String name;
     private ResourceClass resource = null;
     private int health;
@@ -59,7 +57,6 @@ PlayerClass {
     public void addBotnetRate() {
         resource.addBotnetRate();
     }
-
     public void addResources(ResourceClass addRes) {
         resource.addResources(addRes);
     }
