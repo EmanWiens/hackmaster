@@ -31,7 +31,12 @@ public class ResourceClass {
     public int getCpuRate() { return cpuRate; }
     public int getTerraFlops() { return terraFlops; }
 
-    // TODO function that adds all the filds of two resource fields
+    public void addHCoin(int add) { hCoin += add; }
+    public void addHCoinRate(int add) { hCoinRate += add; }
+    public void addBotnet(int add) { botnet += add; }
+    public void addBotnetRate(int add) { botnetRate += add; }
+    public void addCpuRate(int add) { cpuRate += add; }
+    public void addTerraFlops(int add) { terraFlops += add; }
 
     public String toString() {
         String strung = "";
@@ -62,5 +67,15 @@ public class ResourceClass {
     }
     public void addBotnetRate() {
         botnet += botnetRate;
+    }
+
+    public void addResources(ResourceClass add) {
+        hCoin += add.hCoin;
+        hCoinRate += add.hCoinRate;
+        cpuRate += add.cpuRate;
+        terraFlops += terraFlops;
+        botnet += add.botnet;
+        botnetRate += botnetRate;
+        health += add.health;
     }
 }

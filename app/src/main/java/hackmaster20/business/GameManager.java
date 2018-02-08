@@ -1,6 +1,7 @@
 package hackmaster20.business;
 
 import hackmaster20.objects.CardClass;
+import hackmaster20.objects.EnemyAI;
 import hackmaster20.presentation.DrawToScreen;
 import hackmaster20.objects.PlayerClass;
 import hackmaster20.objects.ResourceClass;
@@ -61,7 +62,7 @@ public class GameManager {
         deckM.paintCard(player1.getCards());
         resManager.drawPlayerResource(player1);
 
-        player2 = new PlayerClass(1,
+        player2 = new EnemyAI(1,
                 "p2",
                 new ResourceClass(100, 2, 2, 2, 2, 2, 2), deckM.dealCards(dealCards));
         resManager.drawPlayerResource(player2);
@@ -69,22 +70,27 @@ public class GameManager {
 
     public static void playCardEvent(String name) {
         if (player1Turn) {
-            int cardIndex = player1.findPlayerCardIndex(name);
-            CardClass card = DeckManager.dealNextCard();
-            player1.setCard(cardIndex, card);
-            mainActivity.DrawCard(card, cardIndex);
-
-            // TODO apply played card
-            // ResourceManager.applyCard(player1Turn, player1, player2, card.getCardResource());
-
+            playerTurn(name, player1);
             player1Turn = false;
-            resManager.applyTurnRate(player2);
+
+            if (singlePlayer) {
+                // TODO player2.playNextCard();
+                // playerTurn(name, player2);
+                player1Turn = true;
+            }
         }
         else {
-
-
-            player1Turn = true;
-            resManager.applyTurnRate(player1);
         }
+    }
+
+    private static void playerTurn(String name, PlayerClass player) {
+        int cardIndex = player.findPlayerCardIndex(name);
+        CardClass card = DeckManager.dealNextCard();
+        player.setCard(cardIndex, card);
+        mainActivity.DrawCard(card, cardIndex);
+
+        ResourceManager.applyCard(player1Turn, player1, player2, card);
+
+        resManager.applyTurnRate(player2);
     }
 }

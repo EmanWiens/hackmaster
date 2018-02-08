@@ -20,6 +20,7 @@ public class CardResource {
 
     // TODO make the function that adds up all the data fields (calls function from resource class)
 
+
     public String toString() {
         String strung = "\nResources\n";
 

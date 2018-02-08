@@ -9,7 +9,8 @@ public class EnemyAI extends PlayerClass {
         super(id, n, r, c);
     }
 
-    public void playCard() {
+    public void playNextCard() {
         // TODO A simple AI that plays a card
+
     }
 }
