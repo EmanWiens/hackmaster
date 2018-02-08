@@ -70,9 +70,10 @@ public class GameManager {
     public static void playCardEvent(String name) {
         if (player1Turn) {
             int cardIndex = player1.findPlayerCardIndex(name);
-            CardClass card = player1.getCardByIndex(cardIndex);
+            CardClass card = DeckManager.dealNextCard();
             // TODO take out the card from the player and give the player a new card from the deck
-            player1.setCard(cardIndex, DeckManager.dealNextCard());
+            player1.setCard(cardIndex, card);
+            mainActivity.DrawCard(card, cardIndex);
             // TODO apply the card to the player and enemy
         }
         else {

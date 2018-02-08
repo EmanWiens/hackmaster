@@ -58,16 +58,16 @@ public class DeckManager {
         // I can't figure out how to get an item out of View (in MainView)
         // might do marc's thing where we shuffle the cards down one and the newest card is
         // always on the right (or left) of the screen
-        int index=0;
+        int j=0;
         for (int i = 0; i < hand.length; i++)
             if (name.equals(hand[i].getName()))
-                index=i;
+                j=i;
 
-        return index;
+        return j;
     }
 
-    public static CardClass getCardAt(int index){
-        return deck[index];
+    public static CardClass getCardAt(int i){
+        return deck[i];
     }
 
     public static CardClass dealNextCard() {
