@@ -37,4 +37,25 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         setContentView(R.layout.sample_my_view);
         gameManager.setUpSingleGame();
     }
+
+    public void pauseMessage(View v) {
+        setContentView(R.layout.pause_window);
+    }
+
+    public void pauseResumeMessage(View v) {
+        setContentView(R.layout.sample_my_view);
+    }
+
+    public void pauseExitMessage(View v) {
+        setContentView(R.layout.activity_main);
+    }
+
+    public void pauseStatsMessage(View v) {
+        // TODO: Link to the stats screen
+    }
+
+    public void pauseOptionMessage(View v) {
+        //TODO: Link to the option menu
+    }
+
 }
