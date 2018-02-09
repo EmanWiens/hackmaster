@@ -24,8 +24,8 @@ public class GameManager {
 
     private static boolean singlePlayer = false;
 
-    private static final int dealCards = 6;
-    private static final int maxCards = 50;
+    public static final int dealCards = 6;
+    public static final int maxCards = 50;
 
     private static DrawToScreen mainActivity;
 
@@ -68,28 +68,29 @@ public class GameManager {
         resManager.drawPlayerResource(player2);
     }
 
-    public static void playCardEvent(String name) {
+    public static void playCardEvent(int playerCard) {
         if (player1Turn) {
-            playerTurn(name, player1);
+            playerTurn(playerCard, player1);
             player1Turn = false;
 
             if (singlePlayer) {
-                // TODO player2.playNextCard();
-                // playerTurn(name, player2);
+                // TODO card = player2.playNextCard();
+                // player.setCard(playerCard, card);
                 player1Turn = true;
             }
         }
         else {
+            // playerTurn(name, player2);
         }
     }
 
-    private static void playerTurn(String name, PlayerClass player) {
-        int cardIndex = player.findPlayerCardIndex(name);
-        CardClass card = DeckManager.dealNextCard();
-        player.setCard(cardIndex, card);
-        mainActivity.DrawCard(card, cardIndex);
+    private static void playerTurn(int playerCard, PlayerClass player) {
+        // int cardIndex = player.findPlayerCardIndex(name);
+        CardClass nextCard = DeckManager.dealNextCard();
+        player.setCard(playerCard, nextCard);
+        mainActivity.DrawCard(nextCard, playerCard);
 
-        ResourceManager.applyCard(player1Turn, player1, player2, card);
+        ResourceManager.applyCard(player1Turn, player1, player2, nextCard);
 
         resManager.applyTurnRate(player2);
     }

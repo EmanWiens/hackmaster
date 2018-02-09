@@ -12,7 +12,7 @@ import hackmaster20.objects.CardClass;
 public class DeckManager {
     private static CardClass[] deck = null;
     private static Random rand = new Random();
-    private static int index = 0; // shuffle through the deck sequentially
+    private static int nextIndex = 0; // shuffle through the deck sequentially
 
     private static DrawToScreen mainActivity;
 
@@ -45,20 +45,11 @@ public class DeckManager {
     }
 
     private static void updateIndex() {
-        index = (index + 1) % deck.length;
+        nextIndex = (nextIndex + 1) % deck.length;
     }
 
     public static int getCardIndex(String name, CardClass[] hand) {
-        // TODO write the function that finds the card by comparing the name and returns the index
-        //TODO Comment We have a lot of the same card names Maybe check by something unique like cardID?
-        //TODO Just seen you already made ID For Cards=) I will just make them unique
-        //TODO But still if you wanna search by name there are multiple cards with the same name. So which index we want from them?
-        //TODO We could also make the cardID correspond to index
-        //DONE
-        // I can't figure out how to get an item out of View (in MainView)
-        // might do marc's thing where we shuffle the cards down one and the newest card is
-        // always on the right (or left) of the screen
-        int j=0;
+        int j=-1;
         for (int i = 0; i < hand.length; i++)
             if (name.equals(hand[i].getName()))
                 j=i;
@@ -72,7 +63,7 @@ public class DeckManager {
 
     public static CardClass dealNextCard() {
         updateIndex();
-        return deck[index];
+        return deck[nextIndex];
     }
 
     public static int getSizeDeck() { return deck.length; }
