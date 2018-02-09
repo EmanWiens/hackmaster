@@ -12,7 +12,7 @@ import hackmaster20.objects.CardClass;
 public class DeckManager {
     private static CardClass[] deck = null;
     private static Random rand = new Random();
-    private static int index = 0;
+    private static int index = 0; // shuffle through the deck sequentially
 
     private static DrawToScreen mainActivity;
 
@@ -20,7 +20,6 @@ public class DeckManager {
         mainActivity = mainAct;
     }
 
-    // create a deck for the whole game
     public static void initDeck(int size) {
         // CardClass[] cards = new CardClass[size];
         // CardClass temp;
@@ -32,14 +31,13 @@ public class DeckManager {
     public static CardClass[] dealCards(int deal) {
         CardClass[] cards = new CardClass[deal];
 
-        for (int i = 0; i < deal; i++) {
+        for (int i = 0; i < deal; i++)
             cards[i] = deck[i];
-        }
 
         return cards;
     }
 
-    public static void drawCards(CardClass[] list) {
+    public static void paintCard(CardClass[] list) {
         for (int i = 0; i < list.length; i++) {
             if (list[i] != null)
                 mainActivity.DrawCard(list[i], i);
@@ -57,27 +55,25 @@ public class DeckManager {
         //TODO But still if you wanna search by name there are multiple cards with the same name. So which index we want from them?
         //TODO We could also make the cardID correspond to index
         //DONE
-        int index=0;
-        for (int i = 0; i<hand.length; i++)
-        {
-            if (name==hand[i].getName())
-            {
-                index=i;
-            }
-        }
-        return index;
+        // I can't figure out how to get an item out of View (in MainView)
+        // might do marc's thing where we shuffle the cards down one and the newest card is
+        // always on the right (or left) of the screen
+        int j=0;
+        for (int i = 0; i < hand.length; i++)
+            if (name.equals(hand[i].getName()))
+                j=i;
+
+        return j;
     }
 
-    public static CardClass getACard(int index){
-        return deck[index];
+    public static CardClass getCardAt(int i){
+        return deck[i];
     }
 
-    public static CardClass getACard() {
+    public static CardClass dealNextCard() {
         updateIndex();
         return deck[index];
     }
 
-    // TODO return a card to whomever played the card based on what cards have been played  //DONE
-    public static int getSizeDeck() {return deck.length;}
-    public static CardClass[] getADeck() {return deck;}
+    public static int getSizeDeck() { return deck.length; }
 }

@@ -1,6 +1,8 @@
 package hackmaster20.objects;
 
 import hackmaster20.business.DeckManager;
+import hackmaster20.business.GameManager;
+import hackmaster20.business.ResourceManager;
 
 /**
  * Created by Owner on 1/29/2018.
@@ -24,6 +26,8 @@ public class PlayerClass {
     public CardClass[] getCards() { return hand; }
     public int cardsSize() { return hand.length; }
     public CardClass getCard(int i) { return hand[i]; }
+    public String getName() { return name; }
+
     public void setCard(int index, CardClass card) { hand[index] = card; }
     public int findPlayerCardIndex(String name) {
         return DeckManager.getCardIndex(name, hand);
@@ -32,17 +36,30 @@ public class PlayerClass {
     public ResourceClass getResource() { return resource; }
 
     public String minerToString() {
-        return "\nMiners: " + resource.getGpuMiner() +
-                "\nHCoin: " + resource.getCryptoCoin();
+        return "\nMiners: " + resource.getBotnetRate() +
+                "\nHCoin: " + resource.gethCoin();
     }
 
     public String cSpeedToString() {
-        return "\nCore Rate: " + resource.getCoreRate() +
-                "\nCPU: " + resource.getCpu();
+        return "\nCore Rate: " + resource.getCpuRate() +
+                "\nCPU: " + resource.gethCoinRate();
     }
 
     public String botnetToString() {
-        return "\nBotnet gen.: " + resource.getInfectionRate() +
+        return "\nBotnet gen.: " + resource.getTerraFlops() +
                 "\nBotnet: " + resource.getBotnet();
+    }
+
+    public void addMinerRate() {
+        resource.addMinerRate();
+    }
+    public void addCSpeedRate() {
+        resource.addCSpeedRate();
+    }
+    public void addBotnetRate() {
+        resource.addBotnetRate();
+    }
+    public void addResources(ResourceClass addRes) {
+        resource.addResources(addRes);
     }
 }

@@ -61,11 +61,10 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             fillText((TextView)findViewById(R.id.cSpeedP), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetP), player.botnetToString());
         }
-        else {
-            // TODO fix GUI (MinerE is linked to MinerE so on
-            //fillText((TextView)findViewById(R.id.minerE), player.minerToString());
-            //fillText((TextView)findViewById(R.id.cSpeedE), player.cSpeedToString());
-            // fillText((TextView)findViewById(R.id.botnetE), player.botnetToString());
+        else if (player.getId() == 1){
+            fillText((TextView)findViewById(R.id.minerE), player.minerToString());
+            fillText((TextView)findViewById(R.id.cSpeedE), player.cSpeedToString());
+            fillText((TextView)findViewById(R.id.botnetE), player.botnetToString());
         }
     }
 
@@ -107,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         playedCard.setText(((TextView) v).getText());
 
         // SystemClock.sleep(500);
-        gameManager.playCardEvent(name[0]);
+        if (gameManager.getPlayer1Turn())
+            gameManager.playCardEvent(name[0]);
     }
 }
