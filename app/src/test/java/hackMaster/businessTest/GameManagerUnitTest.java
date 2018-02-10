@@ -5,6 +5,7 @@ import org.junit.Test;
 import hackmaster20.business.GameManager;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
 
 /**
  * Created by Owner on 2/3/2018.
@@ -23,8 +24,21 @@ public class GameManagerUnitTest {
     public void SingleGame_isCorrect() {
         GameManager.setUpSingleGame();
         //TODO
-       // System.out.println(GameManager.getPlayer().getName());
-      //  assertEquals("The name of  player should be", "HackerMan", GameManager.getPlayer().getName());
+       // System.out.println(GameManager.getPlayerNum().getName());
+      //  assertEquals("The name of  player should be", "HackerMan", GameManager.getPlayerNum().getName());
+    }
+    @Test
+    public void getPlayerTest()
+    {
+        assertEquals(0,GameManager.getPlayerNum());
+        assertNotNull(GameManager.getPlayerNum());
+    }
+    @Test
+    public void playerTurnTest()
+    {
+       // GameManager.playerTurn("test", GameManager.getPlayer1());
+       // assertEquals(,);
+        assertNotNull(GameManager.getPlayerNum());
     }
 
 

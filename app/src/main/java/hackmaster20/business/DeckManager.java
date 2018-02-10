@@ -20,6 +20,8 @@ public class DeckManager {
         mainActivity = mainAct;
     }
 
+    public static void setDeck(CardClass[] set) { deck = set; }
+
     public static void initDeck(int size) {
         // CardClass[] cards = new CardClass[size];
         // CardClass temp;
@@ -49,26 +51,14 @@ public class DeckManager {
     }
 
     public static int getCardIndex(String name, CardClass[] hand) {
-        // TODO write the function that finds the card by comparing the name and returns the index
-        //TODO Comment We have a lot of the same card names Maybe check by something unique like cardID?
-        //TODO Just seen you already made ID For Cards=) I will just make them unique
-        //TODO But still if you wanna search by name there are multiple cards with the same name. So which index we want from them?
-        //TODO We could also make the cardID correspond to index
-        //DONE
-        // I can't figure out how to get an item out of View (in MainView)
-        // might do marc's thing where we shuffle the cards down one and the newest card is
-        // always on the right (or left) of the screen
         int j=0;
         for (int i = 0; i < hand.length; i++)
             if (name.equals(hand[i].getName()))
                 j=i;
-
         return j;
     }
 
-    public static CardClass getCardAt(int i){
-        return deck[i];
-    }
+    public static CardClass getCardAt(int i){return deck[i];}
 
     public static CardClass dealNextCard() {
         updateIndex();
@@ -76,4 +66,5 @@ public class DeckManager {
     }
 
     public static int getSizeDeck() { return deck.length; }
+    public static CardClass  [] getADeck() { return deck; }
 }

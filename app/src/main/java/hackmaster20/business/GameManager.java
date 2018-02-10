@@ -35,12 +35,16 @@ public class GameManager {
     public static boolean inGame() { return inGame; }
     public static void setInGame(boolean value) { inGame = value; }
 
-    public static int getPlayer() {
+    //TODO Not sure what it actually does, seems like getPlayer1Turn does the same by returning boolean object
+    public static int getPlayerNum() {
         if(player1Turn)
             return 0;
         else
             return 1;
     }
+    public static PlayerClass getPlayer1(){ return player1; }
+    public static PlayerClass getPlayer2(){ return player1; }
+
 
     public boolean getPlayer1Turn() { return player1Turn; }
 

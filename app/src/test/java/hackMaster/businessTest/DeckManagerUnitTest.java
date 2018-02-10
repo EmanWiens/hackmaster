@@ -1,15 +1,28 @@
 package hackMaster.businessTest;
 
+import android.support.annotation.Nullable;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 
-import hackmaster20.business.DeckManager;
+import java.io.InvalidClassException;
+import java.sql.Types;
 
-import static java.sql.Types.NULL;
+import hackmaster20.business.DeckManager;
+import hackmaster20.business.GameManager;
+import hackmaster20.objects.CardClass;
+import hackmaster20.objects.CardResource;
+import hackmaster20.objects.PlayerClass;
+import hackmaster20.objects.ResourceClass;
+import hackmaster20.presentation.DrawToScreen;
+
+import static android.util.JsonToken.NULL;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
+
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -20,21 +33,29 @@ public class DeckManagerUnitTest {
    // @Test
     @Before
     public void setUP(){
-        DeckManager.initDeck(4);
-        DeckManager.dealCards(6);
+        //DeckManager newDeckManager = new  DeckManager( this);
+        int count=0;
+        CardClass[] testDeck = new CardClass[4];
+        testDeck[count] = new CardClass(0, "CPU Boost", "Upgrade", "Upgrade your CPU",
+                new CardResource(new ResourceClass(0, -10, 0, 0, 0,1, 0), null));
+        count++;
+
+        testDeck[count] =  new CardClass(1, "More Cores", "Defense", "Upgrade your CPU",
+                new CardResource(new ResourceClass(0, -5, 10, 0, 0,0, 0), null));
+        count++;
+        testDeck[count] =  new CardClass(2, "bot.net", "Attack", "Upgrade your CPU",
+                new CardResource(new ResourceClass(0, -5, 10, -3, 0,0, 2), null));
+        count ++;
+        testDeck[count] = new CardClass(3, "^^&&^%$$^$(%$$#", "%$$%$%((^%$", "$$%(^)%%^%^",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, 0), null));
+        DeckManager.setDeck(testDeck);
     }
 
     @Test
     public void testInitDeckManager() {
         //TODO Cover cases when the deck is null and with different sizes
-        //DeckManager.initDeck(4);
-        int size = DeckManager.getSizeDeck();
-        assertEquals("The size should be 7", 7, size);
-
-//        DeckManager.initDeck(0);
-//        size = DeckManager.getSizeDeck();
-//        assertNotNull("The size should not be NULL", size);
-    }
+        fail("Test Init Deck ()");
+   }
 
     @Test
     public void testDealOneCard() {
@@ -55,25 +76,34 @@ public class DeckManagerUnitTest {
     }
 
     @Test
-    public void testInvalidDealCard() {
+    public void testNullPaintCard() {
         try {
-            DeckManager.getCardAt(NULL).getName();
+            DeckManager.paintCard(null);
             fail("Null Pointer Expected");
-        } catch (Throwable expected) {
+        } catch ( NullPointerException exp) {
         }
-        // TO DO: test things like "", "B-", "XYZ", " B", "+D", "A+A" //This is comment from Professors Example
     }
 
     @Test
     public void testGetCardIndex() {
         //TODO Waiting until we finilize with CardIndex
+        assertEquals("The Index should be 1",1,DeckManager.getCardIndex("More Cores",DeckManager.getADeck()));
+        assertEquals("The Index should be 0",0,DeckManager.getCardIndex("&#%%#&^&)@",DeckManager.getADeck()));
+        assertEquals("The Index should be 2",2,DeckManager.getCardIndex("bot.net",DeckManager.getADeck()));
     }
     @Test
-    public void testNullCard() {
+    public void testNullGetCardIndex() {
         try {
-            DeckManager.getCardAt(NULL);
+            DeckManager.getCardIndex(null,null);
             fail("Null Pointer Expected");
-        } catch (Throwable expected) {
+        } catch ( NullPointerException exp) {
         }
     }
+//TODO do more test for index and negative int
+    @Test
+    public void testCardIsNotNull() {
+           assertNotNull("Shouldn't be a Null",DeckManager.getCardAt(0));
+    }
+
+
 }
