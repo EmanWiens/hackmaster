@@ -60,6 +60,7 @@ public class DeckManagerUnitTest {
     @Test
     public void testDealOneCard() {
         //TODO Come up with more test cases to test Deal Card methods
+        // TODO call deckManager.dealCards and test that instead of calling the cards from deck
         assertEquals("The name  of first Card should be CPU Boost", "CPU Boost", DeckManager.getCardAt(0).getName());
         assertEquals("The type  of first Card should be Upgrade", "Upgrade", DeckManager.getCardAt(0).getType());
         assertEquals("The description  of first Card should be Upgrade", "Upgrade your CPU", DeckManager.getCardAt(0).getDescription());
@@ -93,6 +94,15 @@ public class DeckManagerUnitTest {
     }
     @Test
     public void testNullGetCardIndex() {
+
+    }
+    public void testGetCardAt() {
+        //TODO test card.getAt(i)
+    }
+    @Test
+    public void testNullCard() {
+        // TODO rename to "test card at index NULL"
+
         try {
             DeckManager.getCardIndex(null,null);
             fail("Null Pointer Expected");

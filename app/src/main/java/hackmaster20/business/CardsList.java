@@ -8,7 +8,8 @@ import hackmaster20.objects.ResourceClass;
  * Created by Owner on 1/29/2018.
  */
 
-public class CardsList {
+public class
+CardsList {
 
     //
     public static CardClass[] presetCards() {

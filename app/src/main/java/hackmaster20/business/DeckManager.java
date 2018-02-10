@@ -12,7 +12,7 @@ import hackmaster20.objects.CardClass;
 public class DeckManager {
     private static CardClass[] deck = null;
     private static Random rand = new Random();
-    private static int index = 0; // shuffle through the deck sequentially
+    private static int nextIndex = 0; // shuffle through the deck sequentially
 
     private static DrawToScreen mainActivity;
 
@@ -47,11 +47,11 @@ public class DeckManager {
     }
 
     private static void updateIndex() {
-        index = (index + 1) % deck.length;
+        nextIndex = (nextIndex + 1) % deck.length;
     }
 
     public static int getCardIndex(String name, CardClass[] hand) {
-        int j=0;
+        int j=-1;
         for (int i = 0; i < hand.length; i++)
             if (name.equals(hand[i].getName()))
                 j=i;
@@ -62,7 +62,7 @@ public class DeckManager {
 
     public static CardClass dealNextCard() {
         updateIndex();
-        return deck[index];
+        return deck[nextIndex];
     }
 
     public static int getSizeDeck() { return deck.length; }

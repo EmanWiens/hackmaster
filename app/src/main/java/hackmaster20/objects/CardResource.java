@@ -18,9 +18,6 @@ public class CardResource {
     public ResourceClass getPlaterR() { return player; }
     public ResourceClass getEnemyR() { return enemy; }
 
-    // TODO make the function that adds up all the data fields (calls function from resource class)
-
-
     public String toString() {
         String strung = "\nResources\n";
 

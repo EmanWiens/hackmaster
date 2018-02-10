@@ -4,6 +4,7 @@ package hackmaster20.presentation;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         else if (slot == 5)
             textView = (TextView)findViewById(R.id.card5);
 
-        textView.setText(card.toString());
+        textView.setText((slot+1) + ". " +card.toString());
     }
 
     public void playMessage(View v) {
@@ -105,8 +106,10 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         TextView playedCard = (TextView) findViewById(R.id.playedCard);
         playedCard.setText(((TextView) v).getText());
 
-        // SystemClock.sleep(500);
-        if (gameManager.getPlayer1Turn())
-            gameManager.playCardEvent(name[0]);
+        SystemClock.sleep(500);
+        if (gameManager.getPlayer1Turn()) {
+            gameManager.playCardEvent(Character.getNumericValue(name[0].charAt(0)) - 1);
+            // gameManager.playCardEvent(name[0]);
+        }
     }
 }
