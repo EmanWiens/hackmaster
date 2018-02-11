@@ -1,45 +1,70 @@
 package hackMaster.businessTest;
 
+import org.junit.Before;
 import org.junit.Test;
+
 
 import hackmaster20.business.GameManager;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.fail;
 
-/**
- * Created by Owner on 2/3/2018.
- */
 
 public class GameManagerUnitTest {
+    @Before
+    public void setUp(){
+        GameManager.setUpSingleGame(true);
+    }
     @Test
-    public void testSetupSingleGame() {
-        GameManager manager;
-
-        // TODO call set up single player and make sure that all the variables are set
+    public void testSetUpSingleGame() {
         // TODO write the test functions for while the game is running
         // TODO tests for all the in game functions
+        assertEquals("The name of player should be HackerMan", "HackerMan", GameManager.getPlayer1().getName());
+        assertEquals("The ID of player should be 0", 0, GameManager.getPlayer1().getId());
+        assertEquals("The health of player should be 100", 100, GameManager.getPlayer1().getResources().getHealth());
+        assertEquals("The hCoin of player should be 2",2, GameManager.getPlayer1().getResources().gethCoin());
+        assertEquals("The hCoinRate of player should be 2",2, GameManager.getPlayer1().getResources().gethCoinRate());
+        assertEquals("The botnet of player should be 2", 2, GameManager.getPlayer1().getResources().getBotnet());
+        assertEquals("The botnetRate of player should be 2", 2, GameManager.getPlayer1().getResources().getBotnetRate());
+        assertEquals("The CPURate of player should be 2", 2, GameManager.getPlayer1().getResources().getCpuRate());
+        assertEquals("The terraFlops of player should be 2", 2, GameManager.getPlayer1().getResources().getTerraFlops());
+
+
+        assertEquals("The ID of player should be 1", 1, GameManager.getPlayer2().getId());
+        assertEquals("The name of player should be Enemy Bot", "Enemy Bot", GameManager.getPlayer2().getName());
+        assertEquals("The health of player should be 100", 100, GameManager.getPlayer2().getResources().getHealth());
+        assertEquals("The hCoin of player should be 2",2, GameManager.getPlayer2().getResources().gethCoin());
+        assertEquals("The hCoinRate of player should be 2",2, GameManager.getPlayer2().getResources().gethCoinRate());
+        assertEquals("The botnet of player should be 2", 2, GameManager.getPlayer2().getResources().getBotnet());
+        assertEquals("The botnetRate of player should be 2", 2, GameManager.getPlayer2().getResources().getBotnetRate());
+        assertEquals("The CPURate of player should be 2", 2, GameManager.getPlayer2().getResources().getCpuRate());
+        assertEquals("The terraFlops of player should be 2", 2, GameManager.getPlayer2().getResources().getTerraFlops());
     }
+
     @Test
-    public void SingleGame_isCorrect() {
-        GameManager.setUpSingleGame();
-        //TODO
-       // System.out.println(GameManager.getPlayerNum().getName());
-      //  assertEquals("The name of  player should be", "HackerMan", GameManager.getPlayerNum().getName());
-    }
-    @Test
-    public void getPlayerTest()
+    public void testPlayerTestNotNull()
     {
-        assertEquals(0,GameManager.getPlayerNum());
         assertNotNull(GameManager.getPlayerNum());
     }
     @Test
-    public void playerTurnTest()
+    public void testPlayCardEvent()
     {
-       // GameManager.playerTurn("test", GameManager.getPlayer1());
-       // assertEquals(,);
-        assertNotNull(GameManager.getPlayerNum());
+        //TODO The PlayCardEvent() is Incomplete
+        //TODO Make test for PlayCard Event
+       GameManager.playCardEvent(0,true);
+        fail("Make Test for PlayCardEvent");
     }
+
+    @Test
+    public void testInvalidPlayCardEvent(){
+        try {
+            GameManager.playCardEvent(-1,true);
+            fail("ArrayIndexOutOfBoundsException Expected");
+        } catch ( ArrayIndexOutOfBoundsException exp) {
+        }
+    }
+
 
 
 }

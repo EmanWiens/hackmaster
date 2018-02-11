@@ -21,7 +21,6 @@ public class GameManager {
     private static boolean player1Turn = true;
     private static boolean paused = false;
     private static boolean inGame = false;
-
     private static boolean singlePlayer = false;
 
     public static final int dealCards = 6;
@@ -29,52 +28,35 @@ public class GameManager {
 
     private static DrawToScreen mainActivity;
 
-    public static int handSize() { return dealCards; }
-    public static void setSinglePlayer(boolean set) { singlePlayer = set; }
-    public static DrawToScreen getMainAct() { return mainActivity; }
-    public static boolean inGame() { return inGame; }
-    public static void setInGame(boolean value) { inGame = value; }
-
-    //TODO Not sure what it actually does, seems like getPlayer1Turn does the same by returning boolean object
-    public static int getPlayerNum() {
-        if(player1Turn)
-            return 0;
-        else
-            return 1;
-    }
-    public static PlayerClass getPlayer1(){ return player1; }
-    public static PlayerClass getPlayer2(){ return player1; }
-
-
-    public boolean getPlayer1Turn() { return player1Turn; }
-
     public GameManager(DrawToScreen mainAct) {
         mainActivity = mainAct;
         deckM = new DeckManager(mainAct);
         pStats = new PlayerStatsSaves();
         resManager = new ResourceManager(mainAct);
     }
-
-    public static void setUpSingleGame() {
+//Created boolean test since it fails at draw(Can't access presentation layer in tests)
+    public static void setUpSingleGame(boolean test) {
         singlePlayer = true;
         inGame = true;
 
         deckM.initDeck(maxCards);
         player1 = new PlayerClass(0,
-                "p1",
+                "HackerMan",
                 new ResourceClass(100, 2, 2, 2, 2, 2, 2), deckM.dealCards(dealCards));
-        deckM.paintCard(player1.getCards());
-        resManager.drawPlayerResource(player1);
 
         player2 = new EnemyAI(1,
-                "p2",
+                "Enemy Bot",
                 new ResourceClass(100, 2, 2, 2, 2, 2, 2), deckM.dealCards(dealCards));
-        resManager.drawPlayerResource(player2);
+        if (!test) {
+            deckM.paintCard(player1.getCards());
+            resManager.drawPlayerResource(player1);
+            resManager.drawPlayerResource(player2);
+        }
     }
 
-    public static void playCardEvent(int playerCard) {
+    public static void playCardEvent(int playerCard, boolean test) {
         if (player1Turn) {
-            playerTurn(playerCard, player1);
+            playerTurn(playerCard, player1, test);
             player1Turn = false;
 
             if (singlePlayer) {
@@ -88,14 +70,31 @@ public class GameManager {
         }
     }
 
-    private static void playerTurn(int playerCard, PlayerClass player) {
+    private static void playerTurn(int playerCard, PlayerClass player, boolean test) {
         // int cardIndex = player.findPlayerCardIndex(name);
         CardClass nextCard = DeckManager.dealNextCard();
         player.setCard(playerCard, nextCard);
-        mainActivity.DrawCard(nextCard, playerCard);
+        if (!test) {
+            mainActivity.DrawCard(nextCard, playerCard);
+        }
+        ResourceManager.applyCard(player1Turn, player1, player2, nextCard,test);
 
-        ResourceManager.applyCard(player1Turn, player1, player2, nextCard);
-
-        resManager.applyTurnRate(player2);
+        resManager.applyTurnRate(player2,test);
     }
+
+    public static int getPlayerNum() {
+        if(player1Turn)
+            return 0;
+        else
+            return 1;
+    }
+
+    public static void setInGame(boolean value) { inGame = value; }
+    public static void setSinglePlayer(boolean set) { singlePlayer = set; }
+    public static int handSize() { return dealCards; }
+    public static DrawToScreen getMainAct() { return mainActivity; }
+    public static boolean inGame() { return inGame; }
+    public static PlayerClass getPlayer1(){ return player1; }
+    public static PlayerClass getPlayer2(){ return player2; }
+    public boolean getPlayer1Turn() { return player1Turn; }
 }

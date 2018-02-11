@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public void playMessage(View v) {
         setContentView(R.layout.battle_view);
-        gameManager.setUpSingleGame();
+        gameManager.setUpSingleGame(false);
     }
 
     public void cardPress(View v) {
@@ -106,11 +106,45 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
         SystemClock.sleep(500);
         if (gameManager.getPlayer1Turn()) {
-            gameManager.playCardEvent(Character.getNumericValue(name[0].charAt(0)) - 1);
+            gameManager.playCardEvent(Character.getNumericValue(name[0].charAt(0)) - 1,false);
             // gameManager.playCardEvent(name[0]);
         }
 
         TextView playedCard = (TextView) findViewById(R.id.playedCard);
         playedCard.setText(((TextView) v).getText());
+    }
+
+    public void pauseMessage(View v) {
+        setContentView(R.layout.pause_view);
+    }
+
+    public void pauseResumeMessage(View v) {
+        setContentView(R.layout.battle_view);
+    }
+
+    public void pauseExitMessage(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("You are about to exit the game.")
+                .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        setContentView(R.layout.main_activity);
+                        GameManager.setInGame(false);
+                    }
+                })
+                .setNegativeButton("Stay in game", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+
+        builder.show();
+    }
+
+    public void pauseStatsMessage(View v) {
+        setContentView(R.layout.stats_view);
+    }
+
+    public void pauseOptionMessage(View v) {
+        //TODO: Link to options menu
     }
 }

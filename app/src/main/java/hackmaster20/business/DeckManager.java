@@ -20,8 +20,6 @@ public class DeckManager {
         mainActivity = mainAct;
     }
 
-    public static void setDeck(CardClass[] set) { deck = set; }
-
     public static void initDeck(int size) {
         // CardClass[] cards = new CardClass[size];
         // CardClass temp;
@@ -46,10 +44,6 @@ public class DeckManager {
         }
     }
 
-    private static void updateIndex() {
-        nextIndex = (nextIndex + 1) % deck.length;
-    }
-
     public static int getCardIndex(String name, CardClass[] hand) {
         int j=-1;
         for (int i = 0; i < hand.length; i++)
@@ -58,13 +52,17 @@ public class DeckManager {
         return j;
     }
 
-    public static CardClass getCardAt(int i){return deck[i];}
+    private static void updateIndex() {
+        nextIndex = (nextIndex + 1) % deck.length;
+    }
 
     public static CardClass dealNextCard() {
         updateIndex();
         return deck[nextIndex];
     }
 
+    public static CardClass getCardAt(int i){return deck[i];}
     public static int getSizeDeck() { return deck.length; }
     public static CardClass  [] getADeck() { return deck; }
+    public static void setDeck(CardClass[] set) { deck = set; }
 }
