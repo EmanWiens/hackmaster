@@ -17,6 +17,7 @@ public class ResourceManagerUnitTest {
     private CardClass[] testDeck = new CardClass[4];
     private PlayerClass player1;
     private PlayerClass  player2;
+    private PlayerClass  player3;
     private CardClass testCardEffectPlayerOnly;
     private CardClass testCardEffectEnemyCardOnly;
     private CardClass testCardEffectPlayerAndEnemy;
@@ -41,28 +42,24 @@ public class ResourceManagerUnitTest {
                 "Enemy Bot",
                 new ResourceClass(100, 1, 1, 1, 1, 1, 1), testDeck);
 
+        player3 = new PlayerClass(1,
+                "Tester",
+                new ResourceClass(100,1, 1, 1, 1, 1, 1), testDeck);
+
         testCardEffectPlayerOnly =  new CardClass(2, "bot.net", "Attack", "Upgrade your CPU",
                 new CardResource(new ResourceClass(100, 1, 1, 1, 1, 1, 1), null));
         testCardEffectEnemyCardOnly =  new CardClass(2, "bot.net", "Attack", "Upgrade your CPU",
                 new CardResource(new ResourceClass(0, 0, 0, 0, 0, 0, 0), new ResourceClass(-200, -2, -2, -2, -2, -2, -2)));
         testCardEffectPlayerAndEnemy =  new CardClass(2, "bot.net", "Attack", "Upgrade your CPU",
-                new CardResource(new ResourceClass(-10, -5, 0, 0, 0, 0, 0), new ResourceClass(-50, 0, 0, -2, -2, -2, -2)));
+                new CardResource(new ResourceClass(-10, -10, 0, 0, 0, 0, 0), new ResourceClass(-50, 0, 0, 0, 0, 0, 0)));
     }
 
     @Test
-    public void testNullApplyCard()
-    {
-        try {
-            ResourceManager.applyCard(true, null,null,null, true);
-            fail("Null Pointer Expected");
-        } catch ( NullPointerException exp) {
-        }
-    }
-    @Test
     public void testApplyCard()
     {
-        int [] Player1Res= new int[]{-10, -5, 0, 0, 0, 0, 0};
-        int [] Player2Res= new int[]{-50, 0, 0, -2, -2, -2, -2};
+        int [] Player1Res= new int[]{-10, -10, 0, 0, 0, 0, 0};
+        int [] Player2Res= new int[]{-50, 0, 0, 0, 0, 0, 0};
+
         ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerOnly, true);
         testIndividualResources(200,2,2, 2,2,2, 2, true);
 
@@ -74,14 +71,17 @@ public class ResourceManagerUnitTest {
 
         ResourceManager.applyCard(false,player1,player2, testCardEffectEnemyCardOnly, true);
         testIndividualResources(0,0,0, 0,0,0, 0, true);
-        System.out.println("The Health of Player1 "+player1.getResources().getHealth());
-        System.out.println("The Health of Player2 "+player2.getResources().getHealth());
+
         ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerAndEnemy, true);
         testEveryoneResources(Player1Res,Player2Res);
+
+        Player1Res= new int[]{-60, -10, 0, 0, 0, 0, 0};
+        Player2Res= new int[]{-60, -10, 0, 0, 0, 0, 0};
+
         ResourceManager.applyCard(false,player1,player2, testCardEffectPlayerAndEnemy, true);
         testEveryoneResources(Player1Res,Player2Res);
     }
-private void testIndividualResources(int health, int hCoin, int hCoinRate, int botnet, int botnetRate , int CPURate , int terraFlops, boolean player1ToCheck ) {
+    private void testIndividualResources(int health, int hCoin, int hCoinRate, int botnet, int botnetRate , int CPURate , int terraFlops, boolean player1ToCheck ) {
     if (player1ToCheck) {
         assertEquals("The health of player1 should be " + health, health, player1.getResources().getHealth());
         assertEquals("The hCoin of player1 should be " + hCoin, hCoin, player1.getResources().gethCoin());
@@ -120,6 +120,32 @@ private void testIndividualResources(int health, int hCoin, int hCoinRate, int b
 
     }
 
+    @Test
+    public void testApplyTurnRate(){
+        ResourceManager.applyTurnRate(player3,true);
+        assertEquals("The hCoinRate of player3 should be 2", 2,player3.getResources().gethCoin());
+        assertEquals("The terraFlops of player3 should be 2", 2,player3.getResources().getCpuRate());
+        assertEquals("The botnetRate of player3 should be 2", 2,player3.getResources().getBotnet());
+    }
+
+    @Test
+    public void testNullApplyTurnRate(){
+        try {
+            ResourceManager.applyTurnRate(null,true);
+            fail("Null Pointer Expected");
+        } catch ( NullPointerException exp) {
+        }
+    }
+
+    @Test
+    public void testNullApplyCard()
+    {
+        try {
+            ResourceManager.applyCard(true, null,null,null, true);
+            fail("Null Pointer Expected");
+        } catch ( NullPointerException exp) {
+        }
+    }
   @After
     public void tearDown() {
         player1=null;
@@ -127,13 +153,6 @@ private void testIndividualResources(int health, int hCoin, int hCoinRate, int b
         testCardEffectPlayerOnly =null;
         testCardEffectEnemyCardOnly =null;
   }
-
-    @Test
-    public void testInitResourceManager() {
-        // TODO write a few inits and tests to see that it works
-    }
-
-    // TODO test the functions that are in the resource manager
 
 
     @Test

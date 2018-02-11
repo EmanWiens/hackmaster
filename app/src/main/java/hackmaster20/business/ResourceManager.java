@@ -20,10 +20,9 @@ public class ResourceManager {
     }
 
     public static void applyTurnRate(PlayerClass p,boolean test) {
-        p.addMinerRate();
-        p.addCSpeedRate();
-        p.addBotnetRate();
-
+        p.increaseHcoinByRate();
+        p.increaseCSpeedByRate();
+        p.increaseBotnetByRate();
         if (!test) {
             drawPlayerResource(p);
         }
