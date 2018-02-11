@@ -33,7 +33,6 @@ public class PlayerClass {
     public int findPlayerCardIndex(String name) {
         return DeckManager.getCardIndex(name, hand);
     }
-    public CardClass getCardByIndex(int index) { return hand[index]; }
     public ResourceClass getResources() { return resources; }
 
     public String minerToString() {
