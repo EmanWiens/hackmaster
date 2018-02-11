@@ -85,12 +85,6 @@ public class PlayerClassUnitTest {
         assertNull("Test find out of bounce", player1.findPlayerCardIndex(name_first));
     }
 
-    @Test
-    public void testAddRatesAndResources() {
-        // TODO write test for adding resource for Player 1
-        fail("Write test for adding resources");
-    }
-
     @After
     public void tearDown(){
         player1_resource = null;
