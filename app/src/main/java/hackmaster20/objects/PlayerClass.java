@@ -1,8 +1,6 @@
 package hackmaster20.objects;
 
 import hackmaster20.business.DeckManager;
-import hackmaster20.business.GameManager;
-import hackmaster20.business.ResourceManager;
 
 /**
  * Created by Owner on 1/29/2018.
@@ -10,7 +8,7 @@ import hackmaster20.business.ResourceManager;
 
 public class PlayerClass {
     private String name;
-    private ResourceClass resource = null;
+    private ResourceClass resources = null;
     private int health;
     private CardClass[] hand;
     private int playerId;
@@ -18,7 +16,7 @@ public class PlayerClass {
     public PlayerClass(int id, String name, ResourceClass resources, CardClass[] cards) {
         this.name = name;
         hand = cards;
-        resource = resources;
+        this.resources = resources;
         playerId = id;
     }
 
@@ -33,33 +31,33 @@ public class PlayerClass {
         return DeckManager.getCardIndex(name, hand);
     }
     public CardClass getCardByIndex(int index) { return hand[index]; }
-    public ResourceClass getResource() { return resource; }
+    public ResourceClass getResources() { return resources; }
 
     public String minerToString() {
-        return "\nMiners: " + resource.getBotnetRate() +
-                "\nHCoin: " + resource.gethCoin();
+        return "\nMiners: " + resources.getBotnetRate() +
+                "\nHCoin: " + resources.gethCoin();
     }
 
     public String cSpeedToString() {
-        return "\nCore Rate: " + resource.getCpuRate() +
-                "\nCPU: " + resource.gethCoinRate();
+        return "\nCore Rate: " + resources.getCpuRate() +
+                "\nCPU: " + resources.gethCoinRate();
     }
 
     public String botnetToString() {
-        return "\nBotnet gen.: " + resource.getTerraFlops() +
-                "\nBotnet: " + resource.getBotnet();
+        return "\nBotnet gen.: " + resources.getTerraFlops() +
+                "\nBotnet: " + resources.getBotnet();
     }
 
     public void addMinerRate() {
-        resource.addMinerRate();
+        resources.addMinerRate();
     }
     public void addCSpeedRate() {
-        resource.addCSpeedRate();
+        resources.addCSpeedRate();
     }
     public void addBotnetRate() {
-        resource.addBotnetRate();
+        resources.addBotnetRate();
     }
     public void addResources(ResourceClass addRes) {
-        resource.addResources(addRes);
+        resources.addResources(addRes);
     }
 }

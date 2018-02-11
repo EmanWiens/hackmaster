@@ -60,8 +60,8 @@ public class DeckManagerUnitTest {
     @Test
     public void testInvalidDealCards(){
         try {
-            CardClass[] Deck =DeckManager.dealCards(-1);
-            fail("Null Pointer Expected");
+            DeckManager.dealCards(-1);
+            fail("NegativeArraySize Expected");
         } catch ( NegativeArraySizeException exp) {
         }
     }
@@ -116,7 +116,7 @@ public class DeckManagerUnitTest {
     public void testInvalidGetCardAt(){
         try {
             DeckManager.getCardAt(-1);
-            fail("Null Pointer Expected");
+            fail("ArrayIndexOutOfBounds Expected");
         } catch ( ArrayIndexOutOfBoundsException exp) {
         }
     }

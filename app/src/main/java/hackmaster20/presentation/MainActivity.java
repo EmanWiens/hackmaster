@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public void playMessage(View v) {
         setContentView(R.layout.battle_view);
-        gameManager.setUpSingleGame();
+        gameManager.setUpSingleGame(false);
     }
 
     public void cardPress(View v) {
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
         SystemClock.sleep(500);
         if (gameManager.getPlayer1Turn()) {
-            gameManager.playCardEvent(Character.getNumericValue(name[0].charAt(0)) - 1);
+            gameManager.playCardEvent(Character.getNumericValue(name[0].charAt(0)) - 1,false);
             // gameManager.playCardEvent(name[0]);
         }
     }
