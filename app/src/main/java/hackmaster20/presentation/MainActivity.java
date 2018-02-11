@@ -120,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public void pauseResumeMessage(View v) {
         setContentView(R.layout.battle_view);
+
+        GameManager.drawCurrentGame();
     }
 
     public void pauseExitMessage(View v) {

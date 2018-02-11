@@ -40,7 +40,7 @@ public class ResourceClass {
             strung +="\nBotnet: "+ botnet;
 
         if (cpuRate != 0)
-            strung +="\nCPU Rate: "+ cpuRate;
+            strung +="\nCore Rate: "+ cpuRate;
         if (terraFlops != 0)
             strung +="\nTerraflops: "+ terraFlops;
 

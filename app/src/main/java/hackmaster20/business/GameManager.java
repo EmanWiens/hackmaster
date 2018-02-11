@@ -88,6 +88,17 @@ public class GameManager {
             return 1;
     }
 
+    public static void drawCurrentGame() {
+        mainActivity.drawPlayerResource(player1);
+        mainActivity.drawPlayerResource(player2);
+        // TODO draw health
+        
+        if (player1Turn)
+            deckM.paintCard(player1.getCards());
+        else
+            deckM.paintCard(player1.getCards());
+    }
+
     public static void setInGame(boolean value) { inGame = value; }
     public static void setSinglePlayer(boolean set) { singlePlayer = set; }
     public static int handSize() { return dealCards; }
