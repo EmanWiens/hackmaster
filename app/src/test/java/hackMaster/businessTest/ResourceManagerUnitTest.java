@@ -89,7 +89,7 @@ public class ResourceManagerUnitTest {
         assertEquals("The botnet of player1 should be " + botnet, botnet, player1.getResources().getBotnet());
         assertEquals("The botnetRate of player1 should be " + botnetRate, botnetRate, player1.getResources().getBotnetRate());
         assertEquals("The CPURate of player1 should be " + CPURate, CPURate, player1.getResources().getCpuRate());
-        assertEquals("The terraFlops of player1 should be " + terraFlops, terraFlops, player1.getResources().getTerraFlops());
+        assertEquals("The terraFlops of player1 should be " + terraFlops, terraFlops, player1.getResources().getCpu());
     }
     else {
         assertEquals("The health of player2 should be " + health, health, player2.getResources().getHealth());
@@ -98,7 +98,7 @@ public class ResourceManagerUnitTest {
         assertEquals("The botnet of player2 should be " + botnet, botnet, player2.getResources().getBotnet());
         assertEquals("The botnetRate of player2 should be " + botnetRate, botnetRate, player2.getResources().getBotnetRate());
         assertEquals("The CPURate of player2 should be " + CPURate, CPURate, player2.getResources().getCpuRate());
-        assertEquals("The terraFlops of player2 should be " + terraFlops, terraFlops, player2.getResources().getTerraFlops());
+        assertEquals("The terraFlops of player2 should be " + terraFlops, terraFlops, player2.getResources().getCpu());
     }
 }
     private void testEveryoneResources(int [] Player1Res ,int [] Player2Res ) {
@@ -108,7 +108,7 @@ public class ResourceManagerUnitTest {
         assertEquals("The botnet of player1 should be " + Player1Res[3], Player1Res[3], player1.getResources().getBotnet());
         assertEquals("The botnetRate of player1 should be " + Player1Res[4], Player1Res[4], player1.getResources().getBotnetRate());
         assertEquals("The CPURate of player1 should be " + Player1Res[5], Player1Res[5], player1.getResources().getCpuRate());
-        assertEquals("The terraFlops of player1 should be " + Player1Res[6], Player1Res[6], player1.getResources().getTerraFlops());
+        assertEquals("The terraFlops of player1 should be " + Player1Res[6], Player1Res[6], player1.getResources().getCpu());
 
         assertEquals("The health of player2 should be " + Player2Res[0], Player2Res[0], player2.getResources().getHealth());
         assertEquals("The hCoin of player2 should be " + Player2Res[1], Player2Res[1], player2.getResources().gethCoin());
@@ -116,7 +116,7 @@ public class ResourceManagerUnitTest {
         assertEquals("The botnet of player2 should be " + Player2Res[3], Player2Res[3], player2.getResources().getBotnet());
         assertEquals("The botnetRate of player2 should be " + Player2Res[4], Player2Res[4], player2.getResources().getBotnetRate());
         assertEquals("The CPURate of player2 should be " + Player2Res[5], Player2Res[5], player2.getResources().getCpuRate());
-        assertEquals("The terraFlops of player2 should be " + Player2Res[6], Player2Res[6], player2.getResources().getTerraFlops());
+        assertEquals("The terraFlops of player2 should be " + Player2Res[6], Player2Res[6], player2.getResources().getCpu());
 
     }
 
