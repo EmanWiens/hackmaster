@@ -1,5 +1,7 @@
 package hackMaster.objectsTest;
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
@@ -32,7 +34,6 @@ public class PlayerClassUnitTest {
     @Before
     public void setUp(){
         DeckManager.initDeck( 4);
-        fail("DeckManager initDeck not done");
         player1_resource = new ResourceClass(1000,50,3, 53, 2, 55, 1);
         player1_cards = DeckManager.dealCards(7);
         player1 = new PlayerClass(1, "Test_Name", player1_resource, player1_cards);
@@ -45,7 +46,7 @@ public class PlayerClassUnitTest {
         // TODO write test functions for initializing the playerClass
         assertNotNull(player1);
         assertEquals("id should be 1",1,player1.getId());
-        assertEquals("name should be Test_Name",50,player1.getName());
+        assertEquals("name should be Test_Name","Test_Name",player1.getName());
         assertEquals("Test if card exists and has the correct amount of cards", 7, player1.getCards().length);
         assertSame("resource object should be same", player1_resource, player1.getResources());
     }
@@ -58,31 +59,32 @@ public class PlayerClassUnitTest {
         player1.setCard(1, generateCard(2,"test1", "t2","card 2"));
         player1.setCard(2, generateCard(3,"test3", "t3","card 3"));
         player1.setCard(6, generateCard(4,"test edge", "t4","card 4"));
-        player1.setCard(8, generateCard(5,"test out of bounce", "t5","card 5"));
+
         assertEquals("Test set first index", 1, player1.getCard(0).getID());
         assertEquals("Test set card 2", 2, player1.getCard(1).getID());
         assertEquals("Test set card 3", 3, player1.getCard(2).getID());
         assertEquals("Test set edge", 4, player1.getCard(6).getID());
-        assertNull("Test set out of bounce", player1.getCard(8));
+
+        try {
+            player1.setCard(8, generateCard(5,"test out of bounce", "t5","card 5"));
+        } catch ( ArrayIndexOutOfBoundsException exp) {
+            fail("setCard Out of bounce not handled");
+        }
     }
 
     @Test
     public void testFindCard() {
         // TODO write test for find card in Deck Manager
-        fail("Need to have DeckManager.getCardIndex() working and tested");
-        fail("Write some test for PlayerClass find card, and getCardByIndex");
         String name_first = player1.getCard(0).getName();
         String name2 = player1.getCard(1).getName();
         String name3 = player1.getCard(2).getName();
         String name_edge = player1.getCard(6).getName();
-        CardClass name_outOfBounce = player1.getCard(8);
 
         assertEquals("Test find first card", 0, player1.findPlayerCardIndex(name_first));
         assertEquals("Test find card 2", 1, player1.findPlayerCardIndex(name_first));
         assertEquals("Test find card 3", 2, player1.findPlayerCardIndex(name_first));
         assertEquals("Test find edge card", 6, player1.findPlayerCardIndex(name_first));
         assertNull("Test non-existing card", player1.findPlayerCardIndex("Test_null"));
-        assertNull("Test find out of bounce", player1.findPlayerCardIndex(name_first));
     }
 
     @After
