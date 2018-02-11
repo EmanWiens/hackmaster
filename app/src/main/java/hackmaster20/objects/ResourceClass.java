@@ -31,7 +31,7 @@ public class ResourceClass {
     public int getCpuRate() { return cpuRate; }
     public int getTerraFlops() { return terraFlops; }
 
-    public void addHealth(int add) {health += add;}
+    public void addHealth(int add) { health += add;}
     public void addHCoin(int add) { hCoin += add; }
     public void addHCoinRate(int add) { hCoinRate += add; }
     public void addBotnet(int add) { botnet += add; }
@@ -47,15 +47,15 @@ public class ResourceClass {
         if (hCoin != 0)
             strung +="\nHCoin:"+ hCoin;
         if (hCoinRate != 0)
-            strung +="\nCPU:"+ hCoinRate;
+            strung +="\nHCoin Rate"+ hCoinRate;
         if (botnet != 0)
             strung +="\nBotnet:"+botnet;
         if (botnetRate != 0)
             strung +="\nMiner:"+ botnetRate;
         if (cpuRate != 0)
-            strung +="\nTeraflops:"+ cpuRate;
+            strung +="\nCPU:"+ cpuRate;
         if (terraFlops != 0)
-            strung +="\nBotRate:"+ terraFlops;
+            strung +="\nTerraflops:"+ terraFlops;
 
         return strung;
     }
