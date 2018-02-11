@@ -1,5 +1,8 @@
 package hackmaster20.business;
 
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
+
 import hackmaster20.objects.CardClass;
 import hackmaster20.objects.EnemyAI;
 import hackmaster20.presentation.DrawToScreen;
@@ -56,14 +59,26 @@ public class GameManager {
 
     public static void playCardEvent(int playerCard, boolean test) {
         if (player1Turn) {
+            mainActivity.drawPlayedCard(player1.getCard(playerCard));
+
             resManager.applyTurnRate(player1,test);
             playerTurn(playerCard, player1, test);
             player1Turn = false;
 
             if (singlePlayer) {
+
+                try {
+                    Thread.sleep(1000);
+                }
+                catch (InterruptedException e) {
+                    // TODO do nothing
+                }
+
                 int enemyCard = ((EnemyAI)player2).playNextCard();
+                mainActivity.drawPlayedCard(player2.getCard(enemyCard));
+
                 resManager.applyTurnRate(player2, test);
-                playerTurn(playerCard, player2, test);
+                playerTurn(enemyCard, player2, test);
                 player1Turn = true;
             }
         }

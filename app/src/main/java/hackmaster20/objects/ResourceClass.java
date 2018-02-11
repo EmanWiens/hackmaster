@@ -77,7 +77,7 @@ public class ResourceClass {
         hCoin += hCoinRate;
     }
     public void increaseCSpeedByRate() {
-        cpuRate += terraFlops;
+        terraFlops += cpuRate;
     }
     public void increaseBotnetByRate() {
         botnet += botnetRate;
