@@ -76,7 +76,8 @@ public class GameManager {
         ResourceManager.applyCard(player1Turn, player1, player2, playedCard,test);
 
         player.setCard(playerCard, nextCard);
-        // resManager.applyTurnRate(player2,test);
+        resManager.applyTurnRate(player2,test);
+
         if (!test)
             mainActivity.DrawCard(nextCard, playerCard);
     }
@@ -92,7 +93,7 @@ public class GameManager {
         mainActivity.drawPlayerResource(player1);
         mainActivity.drawPlayerResource(player2);
         // TODO draw health
-        
+
         if (player1Turn)
             deckM.paintCard(player1.getCards());
         else

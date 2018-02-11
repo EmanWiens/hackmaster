@@ -8,6 +8,7 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.owner.hackmaster20.R;
@@ -61,11 +62,19 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             fillText((TextView)findViewById(R.id.minerP), player.minerToString());
             fillText((TextView)findViewById(R.id.cSpeedP), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetP), player.botnetToString());
+
+            fillText((TextView)findViewById(R.id.healthP), "Health: " + player.getHealth() + "%");
+            ProgressBar health = (ProgressBar)findViewById(R.id.healthPBarP);
+            health.setProgress(player.getHealth());
         }
         else if (player.getId() == 1){
             fillText((TextView)findViewById(R.id.minerE), player.minerToString());
             fillText((TextView)findViewById(R.id.cSpeedE), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetE), player.botnetToString());
+
+            fillText((TextView)findViewById(R.id.healthE), "Health: " + player.getHealth() + "%");
+            ProgressBar health = (ProgressBar)findViewById(R.id.healthPBarE);
+            health.setProgress(player.getHealth());
         }
     }
 

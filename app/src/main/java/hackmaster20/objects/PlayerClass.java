@@ -18,6 +18,7 @@ public class PlayerClass {
         hand = cards;
         this.resources = resources;
         playerId = id;
+        health = 100;
     }
 
     public int getId() { return playerId; }
@@ -25,6 +26,8 @@ public class PlayerClass {
     public int cardsSize() { return hand.length; }
     public CardClass getCard(int i) { return hand[i]; }
     public String getName() { return name; }
+
+    public void addHealth(int add) { health += add; }
 
     public void setCard(int index, CardClass card) { hand[index] = card; }
     public int findPlayerCardIndex(String name) {
@@ -59,5 +62,8 @@ public class PlayerClass {
     }
     public void addResources(ResourceClass addRes) {
         resources.addResources(addRes);
+        health += addRes.getHealth();
     }
+
+    public int getHealth() { return health; }
 }

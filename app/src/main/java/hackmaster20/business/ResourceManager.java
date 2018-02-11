@@ -30,19 +30,25 @@ public class ResourceManager {
     }
 
     public static void applyCard(boolean player1Turn, PlayerClass p1, PlayerClass p2, CardClass card,boolean test) {
-        if (player1Turn) {
+        if (player1Turn)
             ApplyCardToPlayer(p1, p2, card, test);
-        }
-        else {
+        else
             ApplyCardToPlayer(p2, p1, card, test);
-        }
     }
 
     private static void ApplyCardToPlayer(PlayerClass p1, PlayerClass p2, CardClass card, boolean test) {
-        if(card.getCardResource().getPlayerR() != null)
-             p1.addResources(card.getCardResource().getPlayerR());
-        if(card.getCardResource().getEnemyR() != null)
-             p2.addResources(card.getCardResource().getEnemyR());
+        if(card.getCardResource().getPlayerR() != null) {
+            p1.addResources(card.getCardResource().getPlayerR());
+
+//            p1.addHealth(card.getCardResource().getPlayerR().getHealth());
+//            p2.addHealth(card.getCardResource().getEnemyR().getHealth());
+        }
+        if(card.getCardResource().getEnemyR() != null) {
+            p2.addResources(card.getCardResource().getEnemyR());
+
+//            p2.addHealth(card.getCardResource().getPlayerR().getHealth());
+//            p1.addHealth(card.getCardResource().getEnemyR().getHealth());
+        }
         if (!test) {
             drawPlayerResource(p1);
             drawPlayerResource(p2);
