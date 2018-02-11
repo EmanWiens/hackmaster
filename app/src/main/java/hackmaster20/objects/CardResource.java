@@ -23,9 +23,9 @@ public class CardResource {
 
         if (player != null)
             strung += "Player:" + player.toString();
-        strung+="\n";
+        strung+="\n----\n";
         if (enemy != null)
-            strung += "\nEnemy:" + enemy.toString();
+            strung += "Enemy:" + enemy.toString();
 
         return strung;
     }

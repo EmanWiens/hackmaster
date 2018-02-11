@@ -65,7 +65,7 @@ public class ResourceClass {
     public int getCpuRate() { return cpuRate; }
     public int getTerraFlops() { return terraFlops; }
 
-    public void addHealth(int add) {health += add;}
+    public void addHealth(int add) { health += add; }
     public void addHCoin(int add) { hCoin += add; }
     public void addHCoinRate(int add) { hCoinRate += add; }
     public void addBotnet(int add) { botnet += add; }

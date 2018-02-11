@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
 
+import hackmaster20.objects.CardResource;
 import hackmaster20.objects.PlayerClass;
 import hackmaster20.objects.ResourceClass;
 import hackmaster20.objects.CardClass;
@@ -11,6 +12,8 @@ import hackmaster20.business.DeckManager;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.fail;
 
 /**
@@ -22,18 +25,19 @@ public class PlayerClassUnitTest {
     private CardClass[] player1_cards;
     private ResourceClass player1_resource;
 
+    //GenerateCard
+    private CardResource resManager;
+    private ResourceClass player2;
+
     @Before
     public void setUp(){
-        DeckManager.initDeck(4);
+        DeckManager.initDeck( 4);
         fail("DeckManager initDeck not done");
         player1_resource = new ResourceClass(1000,50,3, 53, 2, 55, 1);
         player1_cards = DeckManager.dealCards(7);
         player1 = new PlayerClass(1, "Test_Name", player1_resource, player1_cards);
-    }
-
-    @Test
-    public void runDeckManagerUnitTest() {
-        fail("Need to test DeckManager first, run Deck Manager Unit Test here?");
+        player2 = new ResourceClass(1000,56,8, 54, 1, 99, 10);
+        resManager = new CardResource(player1_resource, player2);
     }
 
     @Test
@@ -42,15 +46,24 @@ public class PlayerClassUnitTest {
         assertNotNull(player1);
         assertEquals("id should be 1",1,player1.getId());
         assertEquals("name should be Test_Name",50,player1.getName());
-        fail("Test if Player has resources");
-        fail("Test if Player has the correct cards");
+        assertEquals("Test if card exists and has the correct amount of cards", 7, player1.getCards().length);
+        assertSame("resource object should be same", player1_resource, player1.getResources());
     }
 
     // TODO write tests for the player class functions
     @Test
     public void testSetCards() {
         // TODO write test cases for setting cards
-        fail("Need to add test cases for set cards");
+        player1.setCard(0, generateCard(1,"test first index", "t1","card 1"));
+        player1.setCard(1, generateCard(2,"test1", "t2","card 2"));
+        player1.setCard(2, generateCard(3,"test3", "t3","card 3"));
+        player1.setCard(6, generateCard(4,"test edge", "t4","card 4"));
+        player1.setCard(8, generateCard(5,"test out of bounce", "t5","card 5"));
+        assertEquals("Test set first index", 1, player1.getCard(0).getID());
+        assertEquals("Test set card 2", 2, player1.getCard(1).getID());
+        assertEquals("Test set card 3", 3, player1.getCard(2).getID());
+        assertEquals("Test set edge", 4, player1.getCard(6).getID());
+        assertNull("Test set out of bounce", player1.getCard(8));
     }
 
     @Test
@@ -58,12 +71,18 @@ public class PlayerClassUnitTest {
         // TODO write test for find card in Deck Manager
         fail("Need to have DeckManager.getCardIndex() working and tested");
         fail("Write some test for PlayerClass find card, and getCardByIndex");
-    }
+        String name_first = player1.getCard(0).getName();
+        String name2 = player1.getCard(1).getName();
+        String name3 = player1.getCard(2).getName();
+        String name_edge = player1.getCard(6).getName();
+        CardClass name_outOfBounce = player1.getCard(8);
 
-    @Test
-    public void testAddRatesAndResources() {
-        // TODO write test for adding resource for Player 1
-        fail("Write test for adding resources");
+        assertEquals("Test find first card", 0, player1.findPlayerCardIndex(name_first));
+        assertEquals("Test find card 2", 1, player1.findPlayerCardIndex(name_first));
+        assertEquals("Test find card 3", 2, player1.findPlayerCardIndex(name_first));
+        assertEquals("Test find edge card", 6, player1.findPlayerCardIndex(name_first));
+        assertNull("Test non-existing card", player1.findPlayerCardIndex("Test_null"));
+        assertNull("Test find out of bounce", player1.findPlayerCardIndex(name_first));
     }
 
     @After
@@ -71,5 +90,11 @@ public class PlayerClassUnitTest {
         player1_resource = null;
         player1_cards = null;
         player1 = null;
+    }
+
+    // HELPER METHOD
+    private CardClass generateCard(int id, String name, String type, String desc) {
+        CardClass new_card = new CardClass(id, name, type, desc, resManager);
+        return new_card;
     }
 }

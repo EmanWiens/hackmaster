@@ -9,7 +9,6 @@ import hackmaster20.business.DeckManager;
 public class PlayerClass {
     private String name;
     private ResourceClass resources = null;
-    private int health;
     private CardClass[] hand;
     private int playerId;
 
@@ -30,7 +29,6 @@ public class PlayerClass {
     public int findPlayerCardIndex(String name) {
         return DeckManager.getCardIndex(name, hand);
     }
-    public CardClass getCardByIndex(int index) { return hand[index]; }
     public ResourceClass getResources() { return resources; }
 
     public String minerToString() {
@@ -60,4 +58,6 @@ public class PlayerClass {
     public void addResources(ResourceClass addRes) {
         resources.addResources(addRes);
     }
+
+    public int getHealth() { return resources.getHealth(); }
 }
