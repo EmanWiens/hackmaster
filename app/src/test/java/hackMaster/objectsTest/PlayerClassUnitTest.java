@@ -58,12 +58,12 @@ public class PlayerClassUnitTest {
         player1.setCard(0, generateCard(1,"test first index", "t1","card 1"));
         player1.setCard(1, generateCard(2,"test1", "t2","card 2"));
         player1.setCard(2, generateCard(3,"test3", "t3","card 3"));
-        player1.setCard(6, generateCard(4,"test edge", "t4","card 4"));
+        player1.setCard(6, generateCard(10,"test edge", "t4","card 4"));
 
         assertEquals("Test set first index", 1, player1.getCard(0).getID());
         assertEquals("Test set card 2", 2, player1.getCard(1).getID());
         assertEquals("Test set card 3", 3, player1.getCard(2).getID());
-        assertEquals("Test set edge", 4, player1.getCard(6).getID());
+        assertEquals("Test set edge", 10, player1.getCard(6).getID());
 
         try {
             player1.setCard(8, generateCard(5,"test out of bounce", "t5","card 5"));
@@ -81,10 +81,10 @@ public class PlayerClassUnitTest {
         String name_edge = player1.getCard(6).getName();
 
         assertEquals("Test find first card", 0, player1.findPlayerCardIndex(name_first));
-        assertEquals("Test find card 2", 1, player1.findPlayerCardIndex(name_first));
-        assertEquals("Test find card 3", 2, player1.findPlayerCardIndex(name_first));
-        assertEquals("Test find edge card", 6, player1.findPlayerCardIndex(name_first));
-        assertNull("Test non-existing card", player1.findPlayerCardIndex("Test_null"));
+        assertEquals("Test find card 2", 1, player1.findPlayerCardIndex(name2  ));
+        assertEquals("Test find card 3", 2, player1.findPlayerCardIndex(name3));
+        assertEquals("Test find edge card", 6, player1.findPlayerCardIndex(name_edge));
+        assertEquals("Test non-existing card", -1, player1.findPlayerCardIndex("Test_null"));
     }
 
     @After
