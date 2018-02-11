@@ -40,7 +40,7 @@ public class CardClassUnitTest {
     // TODO test the functions in the CardClass functions
     @Test
     public void testToString(){
-        String expectedOutput = String.format("TestCard_1\ntype:Upgrade\n%s", resManager.toString());
+        String expectedOutput = String.format("TestCard_1\nType:Upgrade\n%s", resManager.toString());
         System.out.println(cardObj);
         assertEquals(expectedOutput,cardObj.toString());
     }

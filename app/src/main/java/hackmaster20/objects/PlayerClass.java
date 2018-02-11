@@ -24,8 +24,6 @@ public class PlayerClass {
     public int cardsSize() { return hand.length; }
     public CardClass getCard(int i) { return hand[i]; }
     public String getName() { return name; }
-    
-    public void addHealth(int add) { health += add; }
 
     public void setCard(int index, CardClass card) {
         if(index < hand.length) {
