@@ -9,7 +9,6 @@ import hackmaster20.business.DeckManager;
 public class PlayerClass {
     private String name;
     private ResourceClass resources = null;
-    private int health;
     private CardClass[] hand;
     private int playerId;
 
@@ -18,7 +17,6 @@ public class PlayerClass {
         hand = cards;
         this.resources = resources;
         playerId = id;
-        health = 100;
     }
 
     public int getId() { return playerId; }
@@ -26,14 +24,14 @@ public class PlayerClass {
     public int cardsSize() { return hand.length; }
     public CardClass getCard(int i) { return hand[i]; }
     public String getName() { return name; }
-
+    
     public void addHealth(int add) { health += add; }
 
     public void setCard(int index, CardClass card) {
         if(index < hand.length) {
             hand[index] = card;
         } else {
-            System.out.println("Index " + index + " is out of bounce");
+            System.out.println("Index " + index + " is out of bounds");
         }
     }
 
@@ -70,19 +68,14 @@ public class PlayerClass {
                 "\n----\nBotnet: " + resources.getBotnet();
     }
 
-    public void addMinerRate() {
-        resources.increaseHcoinByRate();
-    }
-    public void addCSpeedRate() {
-        resources.increaseCSpeedByRate();
-    }
-    public void addBotnetRate() {
+    public void increaseHcoinByRate() {resources.increaseHcoinByRate();}
+    public void increaseCSpeedByRate() {resources.increaseCSpeedByRate();}
+    public void increaseBotnetByRate() {
         resources.increaseBotnetByRate();
     }
     public void addResources(ResourceClass addRes) {
         resources.addResources(addRes);
-        health += addRes.getHealth();
     }
 
-    public int getHealth() { return health; }
+    public int getHealth() { return resources.getHealth(); }
 }

@@ -1,5 +1,8 @@
 package hackmaster20.business;
 
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
+
 import hackmaster20.objects.CardClass;
 import hackmaster20.objects.EnemyAI;
 import hackmaster20.presentation.DrawToScreen;
@@ -56,12 +59,26 @@ public class GameManager {
 
     public static void playCardEvent(int playerCard, boolean test) {
         if (player1Turn) {
+            mainActivity.drawPlayedCard(player1.getCard(playerCard));
+
+            resManager.applyTurnRate(player1,test);
             playerTurn(playerCard, player1, test);
             player1Turn = false;
 
             if (singlePlayer) {
-                // TODO card = player2.playNextCard();
-                // player.setCard(playerCard, card);
+
+                try {
+                    Thread.sleep(1000);
+                }
+                catch (InterruptedException e) {
+                    // TODO do nothing
+                }
+
+                int enemyCard = ((EnemyAI)player2).playNextCard();
+                mainActivity.drawPlayedCard(player2.getCard(enemyCard));
+
+                resManager.applyTurnRate(player2, test);
+                playerTurn(enemyCard, player2, test);
                 player1Turn = true;
             }
         }
@@ -76,7 +93,6 @@ public class GameManager {
         ResourceManager.applyCard(player1Turn, player1, player2, playedCard,test);
 
         player.setCard(playerCard, nextCard);
-        resManager.applyTurnRate(player2,test);
 
         if (!test)
             mainActivity.DrawCard(nextCard, playerCard);
@@ -92,12 +108,11 @@ public class GameManager {
     public static void drawCurrentGame() {
         mainActivity.drawPlayerResource(player1);
         mainActivity.drawPlayerResource(player2);
-        // TODO draw health
 
         if (player1Turn)
             deckM.paintCard(player1.getCards());
         else
-            deckM.paintCard(player1.getCards());
+            deckM.paintCard(player2.getCards());
     }
 
     public static void setInGame(boolean value) { inGame = value; }
