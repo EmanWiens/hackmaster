@@ -31,16 +31,20 @@ public class ResourceManager {
 
     public static void applyCard(boolean player1Turn, PlayerClass p1, PlayerClass p2, CardClass card,boolean test) {
         if (player1Turn) {
-            p1.addResources(card.getCardResource().getPlaterR());
-            if (!test) {
-                drawPlayerResource(p1);
-            }
+            ApplyCardToPlayer(p1, p2, card, test);
         }
         else {
-            p2.addResources(card.getCardResource().getEnemyR());
-            if (!test) {
-                drawPlayerResource(p2);
-            }
+            ApplyCardToPlayer(p2, p1, card, test);
+        }
+    }
+
+    private static void ApplyCardToPlayer(PlayerClass p1, PlayerClass p2, CardClass card, boolean test) {
+        if(card.getCardResource().getPlayerR() != null)
+             p1.addResources(card.getCardResource().getPlayerR());
+        if(card.getCardResource().getEnemyR() != null)
+             p2.addResources(card.getCardResource().getEnemyR());
+        if (!test) {
+            drawPlayerResource(p2);
         }
     }
 }

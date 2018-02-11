@@ -49,13 +49,13 @@ public class PlayerClass {
     }
 
     public void addMinerRate() {
-        resources.addMinerRate();
+        resources.increaseHcoinByRate();
     }
     public void addCSpeedRate() {
-        resources.addCSpeedRate();
+        resources.increaseCSpeedByRate();
     }
     public void addBotnetRate() {
-        resources.addBotnetRate();
+        resources.increaseBotnetByRate();
     }
     public void addResources(ResourceClass addRes) {
         resources.addResources(addRes);
