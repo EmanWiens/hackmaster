@@ -24,11 +24,33 @@ public class PlayerClass {
     public int cardsSize() { return hand.length; }
     public CardClass getCard(int i) { return hand[i]; }
     public String getName() { return name; }
+    
+    public void addHealth(int add) { health += add; }
 
-    public void setCard(int index, CardClass card) { hand[index] = card; }
-    public int findPlayerCardIndex(String name) {
-        return DeckManager.getCardIndex(name, hand);
+    public void setCard(int index, CardClass card) {
+        if(index < hand.length) {
+            hand[index] = card;
+        } else {
+            System.out.println("Index " + index + " is out of bounds");
+        }
     }
+
+    public int findPlayerCardIndex(String name) {
+        int index = 0;
+        boolean found = false;
+        while(!found && index < hand.length) {
+            if(name.equals(hand[index].getName())){
+                found = true;
+            } else {
+                index++;
+            }
+        }
+        if(!found){
+            index = -1;
+        }
+        return index;
+    }
+
     public ResourceClass getResources() { return resources; }
 
     public String minerToString() {
