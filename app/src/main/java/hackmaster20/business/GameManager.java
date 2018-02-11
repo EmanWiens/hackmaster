@@ -71,15 +71,14 @@ public class GameManager {
     }
 
     private static void playerTurn(int playerCard, PlayerClass player, boolean test) {
-        // int cardIndex = player.findPlayerCardIndex(name);
         CardClass nextCard = DeckManager.dealNextCard();
-        player.setCard(playerCard, nextCard);
-        if (!test) {
-            mainActivity.DrawCard(nextCard, playerCard);
-        }
-        ResourceManager.applyCard(player1Turn, player1, player2, nextCard,test);
+        CardClass playedCard = player.getCard(playerCard);
+        ResourceManager.applyCard(player1Turn, player1, player2, playedCard,test);
 
-        resManager.applyTurnRate(player2,test);
+        player.setCard(playerCard, nextCard);
+        // resManager.applyTurnRate(player2,test);
+        if (!test)
+            mainActivity.DrawCard(nextCard, playerCard);
     }
 
     public static int getPlayerNum() {

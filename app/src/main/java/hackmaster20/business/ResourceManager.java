@@ -16,7 +16,6 @@ public class ResourceManager {
     }
 
     public static void drawPlayerResource(PlayerClass player) {
-        ResourceClass resource = player.getResources();
         mainAct.drawPlayerResource(player);
     }
 
