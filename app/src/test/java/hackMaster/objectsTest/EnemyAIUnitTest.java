@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class EnemyAIUnitTest {
     @Test
+    
     public void testEnemyAI() {
         // TODO write a function that test the enemy ai functions
     }
