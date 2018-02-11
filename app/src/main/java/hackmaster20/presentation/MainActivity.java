@@ -8,6 +8,7 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.owner.hackmaster20.R;
@@ -61,11 +62,19 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             fillText((TextView)findViewById(R.id.minerP), player.minerToString());
             fillText((TextView)findViewById(R.id.cSpeedP), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetP), player.botnetToString());
+
+            fillText((TextView)findViewById(R.id.healthP), "Health: " + player.getHealth() + "%");
+            ProgressBar health = (ProgressBar)findViewById(R.id.healthPBarP);
+            health.setProgress(player.getHealth());
         }
         else if (player.getId() == 1){
             fillText((TextView)findViewById(R.id.minerE), player.minerToString());
             fillText((TextView)findViewById(R.id.cSpeedE), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetE), player.botnetToString());
+
+            fillText((TextView)findViewById(R.id.healthE), "Health: " + player.getHealth() + "%");
+            ProgressBar health = (ProgressBar)findViewById(R.id.healthPBarE);
+            health.setProgress(player.getHealth());
         }
     }
 
@@ -103,15 +112,14 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public void cardPress(View v) {
         String name[] = name = ((TextView) v).getText().toString().split("\n");
+        TextView playedCard = (TextView) findViewById(R.id.playedCard);
+        playedCard.setText(((TextView) v).getText());
 
-        SystemClock.sleep(500);
+        SystemClock.sleep(1000);
         if (gameManager.getPlayer1Turn()) {
             gameManager.playCardEvent(Character.getNumericValue(name[0].charAt(0)) - 1,false);
             // gameManager.playCardEvent(name[0]);
         }
-
-        TextView playedCard = (TextView) findViewById(R.id.playedCard);
-        playedCard.setText(((TextView) v).getText());
     }
 
     public void pauseMessage(View v) {
@@ -120,6 +128,8 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public void pauseResumeMessage(View v) {
         setContentView(R.layout.battle_view);
+
+        GameManager.drawCurrentGame();
     }
 
     public void pauseExitMessage(View v) {

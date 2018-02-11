@@ -15,17 +15,17 @@ public class CardResource {
         enemy = e;
     }
 
-    public ResourceClass getPlaterR() { return player; }
+    public ResourceClass getPlayerR() { return player; }
     public ResourceClass getEnemyR() { return enemy; }
 
     public String toString() {
         String strung = "\nResources\n";
 
         if (player != null)
-            strung += "player:" + player.toString();
-        strung+="\n";
+            strung += "Player:" + player.toString();
+        strung+="\n----\n";
         if (enemy != null)
-            strung += "\nenemy:" + enemy.toString();
+            strung += "Enemy:" + enemy.toString();
 
         return strung;
     }
