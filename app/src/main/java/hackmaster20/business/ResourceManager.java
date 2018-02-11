@@ -44,6 +44,7 @@ public class ResourceManager {
         if(card.getCardResource().getEnemyR() != null)
              p2.addResources(card.getCardResource().getEnemyR());
         if (!test) {
+            drawPlayerResource(p1);
             drawPlayerResource(p2);
         }
     }

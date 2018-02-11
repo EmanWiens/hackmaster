@@ -22,10 +22,10 @@ public class CardResource {
         String strung = "\nResources\n";
 
         if (player != null)
-            strung += "player:" + player.toString();
+            strung += "Player:" + player.toString();
         strung+="\n";
         if (enemy != null)
-            strung += "\nenemy:" + enemy.toString();
+            strung += "\nEnemy:" + enemy.toString();
 
         return strung;
     }

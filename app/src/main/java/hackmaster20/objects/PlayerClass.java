@@ -34,18 +34,18 @@ public class PlayerClass {
     public ResourceClass getResources() { return resources; }
 
     public String minerToString() {
-        return "\nMiners: " + resources.getBotnetRate() +
-                "\nHCoin: " + resources.gethCoin();
+        return "\nMiners: " + resources.gethCoinRate() +
+                "\n----\nHackCoin: " + resources.gethCoin();
     }
 
     public String cSpeedToString() {
         return "\nCore Rate: " + resources.getCpuRate() +
-                "\nCPU: " + resources.gethCoinRate();
+                "\n----\nTerraflops: " + resources.getTerraFlops();
     }
 
     public String botnetToString() {
-        return "\nBotnet gen.: " + resources.getTerraFlops() +
-                "\nBotnet: " + resources.getBotnet();
+        return "\nBotnet gen.: " + resources.getBotnetRate() +
+                "\n----\nBotnet: " + resources.getBotnet();
     }
 
     public void addMinerRate() {

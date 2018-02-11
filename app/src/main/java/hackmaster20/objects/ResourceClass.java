@@ -23,40 +23,26 @@ public class ResourceClass {
         terraFlops = infecR;
     }
 
-
-//    public int getHealth() { return health; }
-//    public int gethCoin() { return hCoin; }
-//    public int gethCoinRate() { return hCoinRate; }
-//    public int getBotnet() { return botnet; }
-//    public int getBotnetRate() { return botnetRate; }
-//    public int getCpuRate() { return cpuRate; }
-//    public int getTerraFlops() { return terraFlops; }
-//
-//    public void addHealth(int add) { health += add;}
-//    public void addHCoin(int add) { hCoin += add; }
-//    public void addHCoinRate(int add) { hCoinRate += add; }
-//    public void addBotnet(int add) { botnet += add; }
-//    public void increaseBotnetByRate(int add) { botnetRate += add; }
-//    public void addCpuRate(int add) { cpuRate += add; }
-//    public void addTerraFlops(int add) { terraFlops += add; }
-
     public String toString() {
         String strung = "";
 
         if (health != 0)
-            strung +="\nHealth:"+health;
-        if (hCoin != 0)
-            strung +="\nHCoin:"+ hCoin;
+            strung +="\nHealth: "+health;
+
         if (hCoinRate != 0)
-            strung +="\nHCoin Rate"+ hCoinRate;
-        if (botnet != 0)
-            strung +="\nBotnet:"+botnet;
+            strung +="\nMiners: "+ hCoinRate;
+        if (hCoin != 0)
+            strung +="\nHackCoin: " + hCoin;
+
         if (botnetRate != 0)
-            strung +="\nMiner:"+ botnetRate;
+            strung +="\nBotnet gen.: "+botnetRate;
+        if (botnet != 0)
+            strung +="\nBotnet: "+ botnet;
+
         if (cpuRate != 0)
-            strung +="\nCPU:"+ cpuRate;
+            strung +="\nCPU Rate: "+ cpuRate;
         if (terraFlops != 0)
-            strung +="\nTerraflops:"+ terraFlops;
+            strung +="\nTerraflops: "+ terraFlops;
 
         return strung;
     }
@@ -96,5 +82,4 @@ public class ResourceClass {
     public void increaseBotnetByRate() {
         botnet += botnetRate;
     }
-
 }

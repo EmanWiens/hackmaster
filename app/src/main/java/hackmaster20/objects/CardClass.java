@@ -27,7 +27,7 @@ public class CardClass {
     public String toString() {
         String strung;
 
-        strung = name + "\ntype:" + type;
+        strung = name + "\nType:" + type;
         strung += "\n" + cardRes.toString();
 
         return strung;
