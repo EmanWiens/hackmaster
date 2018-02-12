@@ -97,9 +97,9 @@ public class ResourceClassUnitTest {
     public void testAddRates() {
         System.out.println("\nTesting add Rates...\n");
 
-        resource.addMinerRate();
-        resource.addCSpeedRate();
-        resource.addBotnetRate();
+        resource.increaseHcoinByRate();
+        resource.increaseCSpeedByRate();
+        resource.increaseBotnetByRate();
         assertEquals("hCoin should be 53",53, resource.gethCoin());
         assertEquals("botnet should be 55",55, resource.getBotnet());
         assertEquals("cpuRate should be 56",56, resource.getCpuRate());

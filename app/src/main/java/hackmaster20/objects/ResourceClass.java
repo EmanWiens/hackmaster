@@ -23,6 +23,23 @@ public class ResourceClass {
         terraFlops = infecR;
     }
 
+
+//    public int getHealth() { return health; }
+//    public int gethCoin() { return hCoin; }
+//    public int gethCoinRate() { return hCoinRate; }
+//    public int getBotnet() { return botnet; }
+//    public int getBotnetRate() { return botnetRate; }
+//    public int getCpuRate() { return cpuRate; }
+//    public int getTerraFlops() { return terraFlops; }
+//
+//    public void addHealth(int add) { health += add;}
+//    public void addHCoin(int add) { hCoin += add; }
+//    public void addHCoinRate(int add) { hCoinRate += add; }
+//    public void addBotnet(int add) { botnet += add; }
+//    public void increaseBotnetByRate(int add) { botnetRate += add; }
+//    public void addCpuRate(int add) { cpuRate += add; }
+//    public void addTerraFlops(int add) { terraFlops += add; }
+
     public String toString() {
         String strung = "";
 
@@ -31,15 +48,15 @@ public class ResourceClass {
         if (hCoin != 0)
             strung +="\nHCoin:"+ hCoin;
         if (hCoinRate != 0)
-            strung +="\nCPU:"+ hCoinRate;
+            strung +="\nHCoin Rate"+ hCoinRate;
         if (botnet != 0)
             strung +="\nBotnet:"+botnet;
         if (botnetRate != 0)
             strung +="\nMiner:"+ botnetRate;
         if (cpuRate != 0)
-            strung +="\nTeraflops:"+ cpuRate;
+            strung +="\nCPU:"+ cpuRate;
         if (terraFlops != 0)
-            strung +="\nBotRate:"+ terraFlops;
+            strung +="\nTerraflops:"+ terraFlops;
 
         return strung;
     }
@@ -61,6 +78,7 @@ public class ResourceClass {
     public int getBotnetRate() { return botnetRate; }
     public int getCpuRate() { return cpuRate; }
     public int getTerraFlops() { return terraFlops; }
+
     public void addHealth(int add) {health += add;}
     public void addHCoin(int add) { hCoin += add; }
     public void addHCoinRate(int add) { hCoinRate += add; }
@@ -68,13 +86,14 @@ public class ResourceClass {
     public void addBotnetRate(int add) { botnetRate += add; }
     public void addCpuRate(int add) { cpuRate += add; }
     public void addTerraFlops(int add) { terraFlops += add; }
-    public void addMinerRate() {
+
+    public void increaseHcoinByRate() {
         hCoin += hCoinRate;
     }
-    public void addCSpeedRate() {
+    public void increaseCSpeedByRate() {
         cpuRate += terraFlops;
     }
-    public void addBotnetRate() {
+    public void increaseBotnetByRate() {
         botnet += botnetRate;
     }
 
