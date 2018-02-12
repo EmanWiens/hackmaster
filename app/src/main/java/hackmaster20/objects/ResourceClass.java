@@ -54,7 +54,7 @@ public class ResourceClass {
         terraFlops += add.terraFlops;
         botnet += add.botnet;
         botnetRate += add.botnetRate;
-//        health += add.health;
+        health += add.health;
     }
 
     public int getHealth() { return health; }
