@@ -83,6 +83,12 @@ public class GameManager {
             mainActivity.DrawCard(nextCard, playerCard);
     }
 
+    // Discards a card from the players hand if he/she cannot play any of them
+    private static void discardCard(int playerCard, PlayerClass player) {
+        CardClass nextCard = DeckManager.dealNextCard();
+        player.setCard(playerCard, nextCard);
+    }
+
     public static int getPlayerNum() {
         if(player1Turn)
             return 0;
