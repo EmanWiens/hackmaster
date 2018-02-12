@@ -78,7 +78,7 @@ public class GameManager {
                     player1Turn = true;
                 }
 
-                
+
             }
         }
         else {
