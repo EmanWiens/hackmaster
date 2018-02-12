@@ -124,7 +124,7 @@ public class ResourceManagerUnitTest {
     public void testApplyTurnRate(){
         ResourceManager.applyTurnRate(player3,true);
         assertEquals("The hCoinRate of player3 should be 2", 2,player3.getResources().gethCoin());
-        assertEquals("The terraFlops of player3 should be 2", 2,player3.getResources().getCpuRate());
+        assertEquals("The terraFlops of player3 should be 2", 2,player3.getResources().getCpu());
         assertEquals("The botnetRate of player3 should be 2", 2,player3.getResources().getBotnet());
     }
 
