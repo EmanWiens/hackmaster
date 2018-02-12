@@ -76,7 +76,6 @@ public class GameManager {
 
                 int enemyCard = ((EnemyAI)player2).playNextCard();
                 mainActivity.drawPlayedCard(player2.getCard(enemyCard));
-
                 resManager.applyTurnRate(player2, test);
                 playerTurn(enemyCard, player2, test);
                 player1Turn = true;
