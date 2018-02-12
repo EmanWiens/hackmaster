@@ -11,3 +11,5 @@
 .idea/modules.xml
 .idea/misc.xml
 .idea/misc.xml
+*.xml
+.idea/modules.xml
