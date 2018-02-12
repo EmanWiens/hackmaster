@@ -9,8 +9,14 @@ public class EnemyAI extends PlayerClass {
         super(id, n, r, c);
     }
 
-    public void playNextCard() {
-        // TODO A simple AI that plays a card
+    private int nextCard = 0;
 
+    public int playNextCard() {
+        updateNextCard();
+        return nextCard;
+    }
+
+    private void updateNextCard() {
+        nextCard = (nextCard + 1) % cardsSize();
     }
 }
