@@ -269,7 +269,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/playedCard"
+            android:id="@+id/playedCard1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -278,14 +278,14 @@
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:paddingLeft="3dp"
-            android:text="playedCard"
+            android:text="playedCard1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/deck"
+            app:layout_constraintStart_toEndOf="@+id/playedCard0"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/deck"
+            android:id="@+id/playedCard0"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -294,8 +294,9 @@
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:paddingLeft="3dp"
+            android:text="playedCard0"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/playedCard"
+            app:layout_constraintEnd_toStartOf="@+id/playedCard1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
