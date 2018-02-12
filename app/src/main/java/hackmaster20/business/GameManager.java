@@ -89,6 +89,26 @@ public class GameManager {
         player.setCard(playerCard, nextCard);
     }
 
+    // Checks if the card at int slot is possible to play
+    private static boolean checkCard(int playerCard, PlayerClass player) {
+        boolean canPlay = true;
+        CardClass card = player.getCard(playerCard);
+
+        ResourceClass cardResource = card.getCardResource().getPlayerR();
+        ResourceClass playerResource = player.getResources();
+
+        if(playerResource.getHealth() < Math.abs(cardResource.getHealth()))
+            canPlay = false;
+        if(playerResource.gethCoin() < Math.abs(cardResource.gethCoin()))
+            canPlay = false;
+        if(playerResource.getBotnet() < Math.abs(cardResource.getBotnet()))
+            canPlay = false;
+        if(playerResource.getTerraFlops() < Math.abs(cardResource.getTerraFlops()))
+            canPlay = false;
+
+        return canPlay;
+    }
+
     public static int getPlayerNum() {
         if(player1Turn)
             return 0;
