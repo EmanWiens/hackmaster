@@ -58,13 +58,8 @@ public class GameManager {
         if (player1Turn) {
 
             if(checkCard(playerCard, player1)){
-<<<<<<< HEAD:app/src/main/java/HackMaster/business/GameManager.java
-                mainActivity.drawPlayedCard(player1.getCard(playerCard));
-                resManager.applyTurnRate(player1, test);
-=======
                 if (!test)
                     mainActivity.drawPlayedCard(player1.getCard(playerCard));
->>>>>>> working-code-Sam:app/src/main/java/hackmaster20/business/GameManager.java
                 playerTurn(playerCard, player1, test);
                 resManager.applyTurnRate(player2, test);
                 player1Turn = false;
