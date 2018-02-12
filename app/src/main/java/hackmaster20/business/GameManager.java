@@ -60,24 +60,12 @@ public class GameManager {
     public static void playCardEvent(int playerCard, boolean test) {
         if (player1Turn) {
             mainActivity.drawPlayedCard(player1.getCard(playerCard));
-             try {
-                    Thread.sleep(200);
-                }
-                catch (InterruptedException e) {
-                    // TODO do nothing
-                }
             resManager.applyTurnRate(player1,test);
             playerTurn(playerCard, player1, test);
             player1Turn = false;
 
             if (singlePlayer) {
-
-                /*try {
-                    Thread.sleep(1000);
-                }
-                catch (InterruptedException e) {
-                    // TODO do nothing
-                }*/
+                
                 int enemyCard = ((EnemyAI)player2).playNextCard();
                 mainActivity.drawPlayedCard(player2.getCard(enemyCard));
                 resManager.applyTurnRate(player2, test);
