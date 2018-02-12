@@ -59,6 +59,7 @@ public class GameManager {
 
     public static void playCardEvent(int playerCard, boolean test) {
         if (player1Turn) {
+
             if(checkCard(playerCard, player1)){
                 mainActivity.drawPlayedCard(player1.getCard(playerCard));
 
@@ -68,12 +69,6 @@ public class GameManager {
 
                 if (singlePlayer) {
 
-                    /*try {
-                        Thread.sleep(1000);
-                    }
-                    catch (InterruptedException e) {
-                        // TODO do nothing
-                    }*/
 
                     int enemyCard = ((EnemyAI) player2).playNextCard();
                     mainActivity.drawPlayedCard(player2.getCard(enemyCard));
@@ -81,6 +76,8 @@ public class GameManager {
                     playerTurn(enemyCard, player2, test);
                     player1Turn = true;
                 }
+
+
             }
         }
         else {
