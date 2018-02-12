@@ -15,7 +15,7 @@ public class CardResource {
         enemy = e;
     }
 
-    public ResourceClass getPlaterR() { return player; }
+    public ResourceClass getPlayerR() { return player; }
     public ResourceClass getEnemyR() { return enemy; }
 
     public String toString() {
