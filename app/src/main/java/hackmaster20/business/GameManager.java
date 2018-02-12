@@ -59,26 +59,28 @@ public class GameManager {
 
     public static void playCardEvent(int playerCard, boolean test) {
         if (player1Turn) {
-            mainActivity.drawPlayedCard(player1.getCard(playerCard));
+            if(checkCard(playerCard, player1)){
+                mainActivity.drawPlayedCard(player1.getCard(playerCard));
 
-            resManager.applyTurnRate(player1,test);
-            playerTurn(playerCard, player1, test);
-            player1Turn = false;
+                resManager.applyTurnRate(player1, test);
+                playerTurn(playerCard, player1, test);
+                player1Turn = false;
 
-            if (singlePlayer) {
+                if (singlePlayer) {
 
-                /*try {
-                    Thread.sleep(1000);
+                    /*try {
+                        Thread.sleep(1000);
+                    }
+                    catch (InterruptedException e) {
+                        // TODO do nothing
+                    }*/
+
+                    int enemyCard = ((EnemyAI) player2).playNextCard();
+                    mainActivity.drawPlayedCard(player2.getCard(enemyCard));
+                    resManager.applyTurnRate(player2, test);
+                    playerTurn(enemyCard, player2, test);
+                    player1Turn = true;
                 }
-                catch (InterruptedException e) {
-                    // TODO do nothing
-                }*/
-
-                int enemyCard = ((EnemyAI)player2).playNextCard();
-                mainActivity.drawPlayedCard(player2.getCard(enemyCard));
-                resManager.applyTurnRate(player2, test);
-                playerTurn(enemyCard, player2, test);
-                player1Turn = true;
             }
         }
         else {
@@ -117,7 +119,7 @@ public class GameManager {
             canPlay = false;
         if(playerResource.getBotnet() < Math.abs(cardResource.getBotnet()))
             canPlay = false;
-        if(playerResource.getTerraFlops() < Math.abs(cardResource.getTerraFlops()))
+        if(playerResource.getCpu() < Math.abs(cardResource.getCpu()))
             canPlay = false;
 
         return canPlay;
