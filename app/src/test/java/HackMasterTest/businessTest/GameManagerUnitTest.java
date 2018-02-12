@@ -51,8 +51,9 @@ public class GameManagerUnitTest {
     {
         //TODO The PlayCardEvent() is Incomplete
         //TODO Make test for PlayCard Event
-       GameManager.playCardEvent(0,true);
-        fail("Make Test for PlayCardEvent");
+       GameManager.playCardEvent(4,true);
+       assertEquals("Should be Player 1 Turn", 0, GameManager.getPlayerNum());
+       assertEquals("Should be card 12", 12, GameManager.getPlayer1().getCard(4).getID());
     }
 
 
@@ -63,8 +64,11 @@ public class GameManagerUnitTest {
             fail("ArrayIndexOutOfBoundsException Expected");
         } catch ( ArrayIndexOutOfBoundsException exp) {
         }
+        try {
+            GameManager.playCardEvent(6,true);
+            fail("ArrayIndexOutOfBoundsException Expected");
+        } catch ( ArrayIndexOutOfBoundsException exp) {
+        }
     }
-
-
 
 }

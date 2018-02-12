@@ -24,9 +24,10 @@ public class DeckManager {
     public static CardClass[] dealCards(int deal) {
         CardClass[] cards = new CardClass[deal];
 
-        for (int i = 0; i < deal; i++)
-            cards[i] = deck[i];
-
+        for (int i = 0; i < deal; i++) {
+            cards[i] = deck[nextIndex];
+            updateIndex();
+        }
         return cards;
     }
 
@@ -50,8 +51,9 @@ public class DeckManager {
     }
 
     public static CardClass dealNextCard() {
+        CardClass nextCard = deck[nextIndex];
         updateIndex();
-        return deck[nextIndex];
+        return nextCard;
     }
 
     public static CardClass getCardAt(int i){return deck[i];}
