@@ -56,6 +56,7 @@ public class GameManagerUnitTest {
         fail("Make Test for PlayCardEvent");
     }
 
+
     @Test
     public void testInvalidPlayCardEvent(){
         try {
