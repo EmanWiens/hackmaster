@@ -20,10 +20,9 @@ public class ResourceManager {
     }
 
     public static void applyTurnRate(PlayerClass p,boolean test) {
-        p.addMinerRate();
-        p.addCSpeedRate();
-        p.addBotnetRate();
-
+        p.increaseHcoinByRate();
+        p.increaseCSpeedByRate();
+        p.increaseBotnetByRate();
         if (!test) {
             drawPlayerResource(p);
         }
@@ -39,15 +38,9 @@ public class ResourceManager {
     private static void ApplyCardToPlayer(PlayerClass p1, PlayerClass p2, CardClass card, boolean test) {
         if(card.getCardResource().getPlayerR() != null) {
             p1.addResources(card.getCardResource().getPlayerR());
-
-//            p1.addHealth(card.getCardResource().getPlayerR().getHealth());
-//            p2.addHealth(card.getCardResource().getEnemyR().getHealth());
         }
         if(card.getCardResource().getEnemyR() != null) {
             p2.addResources(card.getCardResource().getEnemyR());
-
-//            p2.addHealth(card.getCardResource().getPlayerR().getHealth());
-//            p1.addHealth(card.getCardResource().getEnemyR().getHealth());
         }
         if (!test) {
             drawPlayerResource(p1);

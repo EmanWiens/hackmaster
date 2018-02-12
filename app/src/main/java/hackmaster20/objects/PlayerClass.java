@@ -46,13 +46,9 @@ public class PlayerClass {
                 "\n----\nBotnet: " + resources.getBotnet();
     }
 
-    public void addMinerRate() {
-        resources.increaseHcoinByRate();
-    }
-    public void addCSpeedRate() {
-        resources.increaseCSpeedByRate();
-    }
-    public void addBotnetRate() {
+    public void increaseHcoinByRate() {resources.increaseHcoinByRate();}
+    public void increaseCSpeedByRate() {resources.increaseCSpeedByRate();}
+    public void increaseBotnetByRate() {
         resources.increaseBotnetByRate();
     }
     public void addResources(ResourceClass addRes) {
