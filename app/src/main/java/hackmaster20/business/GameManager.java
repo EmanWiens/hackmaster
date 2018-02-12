@@ -62,19 +62,20 @@ public class GameManager {
 
 
             if(checkCard(playerCard, player1)){
-                mainActivity.drawPlayedCard(player1.getCard(playerCard));
-
-                resManager.applyTurnRate(player1, test);
+                if (!test)
+                    mainActivity.drawPlayedCard(player1.getCard(playerCard));
                 playerTurn(playerCard, player1, test);
+                resManager.applyTurnRate(player2, test);
                 player1Turn = false;
 
                 if (singlePlayer) {
 
 
                     int enemyCard = ((EnemyAI) player2).playNextCard();
-                    mainActivity.drawPlayedCard(player2.getCard(enemyCard));
-                    resManager.applyTurnRate(player2, test);
+                    if (!test)
+                        mainActivity.drawPlayedCard(player2.getCard(enemyCard));
                     playerTurn(enemyCard, player2, test);
+                    resManager.applyTurnRate(player1, test);
                     player1Turn = true;
                 }
 
@@ -93,7 +94,7 @@ public class GameManager {
 
         player.setCard(playerCard, nextCard);
 
-        if (!test)
+        if (!test && player.getId() == 0)
             mainActivity.DrawCard(nextCard, playerCard);
     }
 
