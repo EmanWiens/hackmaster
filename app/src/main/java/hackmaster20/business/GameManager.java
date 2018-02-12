@@ -59,17 +59,26 @@ public class GameManager {
 
     public static void playCardEvent(int playerCard, boolean test) {
         if (player1Turn) {
-            mainActivity.drawPlayedCard(player1.getCard(playerCard));
-            resManager.applyTurnRate(player1,test);
-            playerTurn(playerCard, player1, test);
-            player1Turn = false;
-            if (singlePlayer) {
 
-                int enemyCard = ((EnemyAI)player2).playNextCard();
-                mainActivity.drawPlayedCard(player2.getCard(enemyCard));
-                resManager.applyTurnRate(player2, test);
-                playerTurn(enemyCard, player2, test);
-                player1Turn = true;
+
+            if(checkCard(playerCard, player1)){
+                mainActivity.drawPlayedCard(player1.getCard(playerCard));
+
+                resManager.applyTurnRate(player1, test);
+                playerTurn(playerCard, player1, test);
+                player1Turn = false;
+
+                if (singlePlayer) {
+
+
+                    int enemyCard = ((EnemyAI) player2).playNextCard();
+                    mainActivity.drawPlayedCard(player2.getCard(enemyCard));
+                    resManager.applyTurnRate(player2, test);
+                    playerTurn(enemyCard, player2, test);
+                    player1Turn = true;
+                }
+
+                
             }
         }
         else {
@@ -86,6 +95,32 @@ public class GameManager {
 
         if (!test)
             mainActivity.DrawCard(nextCard, playerCard);
+    }
+
+    // Discards a card from the players hand if he/she cannot play any of them
+    private static void discardCard(int playerCard, PlayerClass player) {
+        CardClass nextCard = DeckManager.dealNextCard();
+        player.setCard(playerCard, nextCard);
+    }
+
+    // Checks if the card at int slot is possible to play
+    private static boolean checkCard(int playerCard, PlayerClass player) {
+        boolean canPlay = true;
+        CardClass card = player.getCard(playerCard);
+
+        ResourceClass cardResource = card.getCardResource().getPlayerR();
+        ResourceClass playerResource = player.getResources();
+
+        if(playerResource.getHealth() < Math.abs(cardResource.getHealth()))
+            canPlay = false;
+        if(playerResource.gethCoin() < Math.abs(cardResource.gethCoin()))
+            canPlay = false;
+        if(playerResource.getBotnet() < Math.abs(cardResource.getBotnet()))
+            canPlay = false;
+        if(playerResource.getCpu() < Math.abs(cardResource.getCpu()))
+            canPlay = false;
+
+        return canPlay;
     }
 
     public static int getPlayerNum() {
