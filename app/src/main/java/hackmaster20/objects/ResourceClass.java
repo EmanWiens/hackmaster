@@ -11,16 +11,16 @@ public class ResourceClass {
     private int botnet = 0;
     private int botnetRate = 0;
     private int cpuRate = 0;
-    private int terraFlops = 0;
+    private int cpu = 0;
 
-    public ResourceClass(int h, int crypt, int c, int bot, int gpu, int coreR, int infecR) {
-        health = h;
-        hCoin = crypt;
-        hCoinRate = c;
-        botnet = bot;
-        botnetRate = gpu;
-        cpuRate = coreR;
-        terraFlops = infecR;
+    public ResourceClass(int health, int hCoin, int hCoinRate, int botnet, int botnetRate, int cpu, int cpuRate) {
+        this.health = health;
+        this.hCoin = hCoin;
+        this.hCoinRate = hCoinRate;
+        this.botnet = botnet;
+        this.botnetRate = botnetRate;
+        this.cpu = cpu;
+        this.cpuRate = cpuRate;
     }
 
     public String toString() {
@@ -30,19 +30,19 @@ public class ResourceClass {
             strung +="\nHealth: "+health;
 
         if (hCoinRate != 0)
-            strung +="\nMiners: "+ hCoinRate;
+            strung +="\nHCoin Rate: "+ hCoinRate;
         if (hCoin != 0)
             strung +="\nHackCoin: " + hCoin;
 
         if (botnetRate != 0)
-            strung +="\nBotnet gen.: "+botnetRate;
+            strung +="\nBotnet gen.: " + botnetRate;
         if (botnet != 0)
             strung +="\nBotnet: "+ botnet;
 
         if (cpuRate != 0)
-            strung +="\nCore Rate: "+ cpuRate;
-        if (terraFlops != 0)
-            strung +="\nTerraflops: "+ terraFlops;
+            strung +="\nCPU Rate: "+ cpuRate;
+        if (cpu != 0)
+            strung +="\nCPU: "+ cpu;
 
         return strung;
     }
@@ -51,7 +51,7 @@ public class ResourceClass {
         hCoin += add.hCoin;
         hCoinRate += add.hCoinRate;
         cpuRate += add.cpuRate;
-        terraFlops += add.terraFlops;
+        cpu += add.cpu;
         botnet += add.botnet;
         botnetRate += add.botnetRate;
         health += add.health;
@@ -63,7 +63,7 @@ public class ResourceClass {
     public int getBotnet() { return botnet; }
     public int getBotnetRate() { return botnetRate; }
     public int getCpuRate() { return cpuRate; }
-    public int getTerraFlops() { return terraFlops; }
+    public int getCpu() { return cpu; }
 
     public void addHealth(int add) { health += add; }
     public void addHCoin(int add) { hCoin += add; }
@@ -71,13 +71,13 @@ public class ResourceClass {
     public void addBotnet(int add) { botnet += add; }
     public void addBotnetRate(int add) { botnetRate += add; }
     public void addCpuRate(int add) { cpuRate += add; }
-    public void addTerraFlops(int add) { terraFlops += add; }
+    public void addCpu(int add) { cpu += add; }
 
     public void increaseHcoinByRate() {
         hCoin += hCoinRate;
     }
-    public void increaseCSpeedByRate() {
-        cpuRate += terraFlops;
+    public void increaseCpuByRate() {
+        cpu += cpuRate;
     }
     public void increaseBotnetByRate() {
         botnet += botnetRate;

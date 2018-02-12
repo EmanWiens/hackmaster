@@ -28,7 +28,7 @@ public class GameManagerUnitTest {
         assertEquals("The botnet of player should be 2", 2, GameManager.getPlayer1().getResources().getBotnet());
         assertEquals("The botnetRate of player should be 2", 2, GameManager.getPlayer1().getResources().getBotnetRate());
         assertEquals("The CPURate of player should be 2", 2, GameManager.getPlayer1().getResources().getCpuRate());
-        assertEquals("The terraFlops of player should be 2", 2, GameManager.getPlayer1().getResources().getTerraFlops());
+        assertEquals("The terraFlops of player should be 2", 2, GameManager.getPlayer1().getResources().getCpu());
 
 
         assertEquals("The ID of player should be 1", 1, GameManager.getPlayer2().getId());
@@ -39,7 +39,7 @@ public class GameManagerUnitTest {
         assertEquals("The botnet of player should be 2", 2, GameManager.getPlayer2().getResources().getBotnet());
         assertEquals("The botnetRate of player should be 2", 2, GameManager.getPlayer2().getResources().getBotnetRate());
         assertEquals("The CPURate of player should be 2", 2, GameManager.getPlayer2().getResources().getCpuRate());
-        assertEquals("The terraFlops of player should be 2", 2, GameManager.getPlayer2().getResources().getTerraFlops());
+        assertEquals("The terraFlops of player should be 2", 2, GameManager.getPlayer2().getResources().getCpu());
     }
 
     @Test
