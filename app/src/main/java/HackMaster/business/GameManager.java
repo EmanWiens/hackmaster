@@ -134,6 +134,9 @@ public class GameManager {
     }
 
     public static void setInGame(boolean value) { inGame = value; }
+    public static void pauseGame() { paused = true; }
+    public static void unpauseGame() { paused = false; }
+    public static boolean gamePaused() { return paused; }
     public static void setSinglePlayer(boolean set) { singlePlayer = set; }
     public static int handSize() { return dealCards; }
     public static DrawToScreen getMainAct() { return mainActivity; }
