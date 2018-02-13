@@ -88,13 +88,11 @@ public class GameManager {
             mainActivity.DrawCard(nextCard, playerCard);
     }
 
-    private static boolean checkCard(int playerCard, PlayerClass player) {
+    public static boolean checkCard(int playerCard, PlayerClass player) {
         boolean canPlay = true;
         CardClass card = player.getCard(playerCard);
 
         ResourceClass cardResource = card.getCardResource().getPlayerR();
-        if (player.getId() == 1)
-            cardResource = card.getCardResource().getEnemyR();
         ResourceClass playerResource = player.getResources();
 
         if(playerResource.getHealth() < -cardResource.getHealth())
