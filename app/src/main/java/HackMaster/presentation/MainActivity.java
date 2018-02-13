@@ -1,6 +1,6 @@
 package HackMaster.presentation;
 
-// import hackmaster20.presentation.*;
+
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             fillText((TextView)findViewById(R.id.botnetP), player.botnetToString());
 
             fillText((TextView)findViewById(R.id.healthP), "Health: " + player.getHealth() + "%");
-            ProgressBar health = (ProgressBar)findViewById(R.id.healthPBarP);
+            ProgressBar health = findViewById(R.id.healthPBarP);
             health.setProgress(player.getHealth());
         }
         else if (player.getId() == 1){
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             fillText((TextView)findViewById(R.id.botnetE), player.botnetToString());
 
             fillText((TextView)findViewById(R.id.healthE), "Health: " + player.getHealth() + "%");
-            ProgressBar health = (ProgressBar)findViewById(R.id.healthPBarE);
+            ProgressBar health = findViewById(R.id.healthPBarE);
             health.setProgress(player.getHealth());
         }
     }
@@ -98,17 +98,17 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         TextView textView = null;
 
         if (slot == 0)
-            textView = (TextView)findViewById(R.id.card0);
+            textView = findViewById(R.id.card0);
         else if (slot == 1)
-            textView = (TextView)findViewById(R.id.card1);
+            textView = findViewById(R.id.card1);
         else if (slot == 2)
-            textView = (TextView)findViewById(R.id.card2);
+            textView = findViewById(R.id.card2);
         else if (slot == 3)
-            textView = (TextView)findViewById(R.id.card3);
+            textView = findViewById(R.id.card3);
         else if (slot == 4)
-            textView = (TextView)findViewById(R.id.card4);
+            textView = findViewById(R.id.card4);
         else if (slot == 5)
-            textView = (TextView)findViewById(R.id.card5);
+            textView = findViewById(R.id.card5);
 
         textView.setText((slot+1) + ". " +card.toString());
     }
@@ -119,9 +119,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void cardPress(View v) {
-        String name[] = name = ((TextView) v).getText().toString().split("\n");
-//        TextView playedCard = (TextView) findViewById(R.id.playedCard);
-//        playedCard.setText(card.toString());
+        String name[] = ((TextView) v).getText().toString().split("\n");
 
         if (gameManager.getPlayer1Turn()) {
             gameManager.playCardEvent(Character.getNumericValue(name[0].charAt(0)) - 1,false);
@@ -130,11 +128,11 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public void drawPlayedCard(CardClass card) {
         if (gameManager.getPlayer1Turn()) {
-            TextView playedCard = (TextView) findViewById(R.id.playedCard0);
+            TextView playedCard = findViewById(R.id.playedCard0);
             playedCard.setText(card.toString());
         }
         else {
-            TextView playedCard = (TextView) findViewById(R.id.playedCard1);
+            TextView playedCard = findViewById(R.id.playedCard1);
             playedCard.setText(card.toString());
         }
     }
@@ -170,10 +168,6 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public void pauseStatsMessage(View v) {
         setContentView(R.layout.stats_view);
-    }
-
-    public void pauseOptionMessage(View v) {
-        //TODO: Link to options menu
     }
 
     public void statsExitMessage(View v) {
