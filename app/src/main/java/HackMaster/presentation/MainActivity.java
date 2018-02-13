@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         String name[] = ((TextView) v).getText().toString().split("\n");
 
         if (gameManager.getPlayer1Turn()) {
-            gameManager.playCardEvent(Character.getNumericValue(name[0].charAt(0)) - 1,false);
+            gameManager.playCardEvent(Character.getNumericValue(name[0].charAt(0)) - 1);
         }
     }
 

@@ -1,15 +1,12 @@
 package HackMaster.business;
 
-import java.util.Random;
-
 import HackMaster.presentation.DrawToScreen;
 import HackMaster.objects.CardClass;
 
 
 public class DeckManager {
     private static CardClass[] deck = null;
-    private static Random rand = new Random();
-    private static int nextIndex = 0; // shuffle through the deck sequentially
+    private static int nextIndex = 0;
 
     private static DrawToScreen mainActivity;
 

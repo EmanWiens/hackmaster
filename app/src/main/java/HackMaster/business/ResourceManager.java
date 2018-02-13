@@ -4,9 +4,6 @@ import HackMaster.objects.CardClass;
 import HackMaster.objects.PlayerClass;
 import HackMaster.presentation.DrawToScreen;
 
-/**
- * Created by Owner on 2/6/2018.
- */
 
 public class ResourceManager {
     private static DrawToScreen mainAct;

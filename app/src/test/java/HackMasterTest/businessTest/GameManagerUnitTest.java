@@ -49,24 +49,20 @@ public class GameManagerUnitTest {
     @Test
     public void testPlayCardEvent()
     {
-        //TODO The PlayCardEvent() is Incomplete
-        //TODO Make test for PlayCard Event
-       GameManager.playCardEvent(4,true);
+       GameManager.playCardEvent(4);
        assertEquals("Should be Player 1 Turn", 0, GameManager.getPlayerNum());
-       //This test doesn't work, I have no idea why
-       //assertEquals("Should be card 12", 12, GameManager.getPlayer1().getCard(4).getID());
     }
 
 
     @Test
     public void testInvalidPlayCardEvent(){
         try {
-            GameManager.playCardEvent(-1,true);
+            GameManager.playCardEvent(-1);
             fail("ArrayIndexOutOfBoundsException Expected");
         } catch ( ArrayIndexOutOfBoundsException exp) {
         }
         try {
-            GameManager.playCardEvent(6,true);
+            GameManager.playCardEvent(6);
             fail("ArrayIndexOutOfBoundsException Expected");
         } catch ( ArrayIndexOutOfBoundsException exp) {
         }
