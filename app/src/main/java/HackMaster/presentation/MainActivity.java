@@ -176,10 +176,11 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         //TODO: Link to options menu
     }
 
-    public void statsBack(View v) {
-        if (gameManager.inGame() && gameManager.gamePaused())
+    public void statsExitMessage(View v) {
+        if (gameManager.inGame()) {
             setContentView(R.layout.pause_view);
-        else
+        } else {
             setContentView(R.layout.main_activity);
+        }
     }
 }

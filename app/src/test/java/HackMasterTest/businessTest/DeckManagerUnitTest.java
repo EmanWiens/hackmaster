@@ -13,16 +13,17 @@ import static org.junit.Assert.assertEquals;
 public class DeckManagerUnitTest {
     @Before
     public void setUP(){
+        DeckManager.resetIndex();
         int count=0;
         CardClass[] testDeck = new CardClass[4];
         testDeck[count] = new CardClass(0, "CPU Boost", "Upgrade", "Upgrade your CPU",
                 new CardResource(new ResourceClass(0, -10, 0, 0, 0,1, 0), null));
         count++;
 
-        testDeck[count] =  new CardClass(1, "More Cores", "Defense", "Upgrade your CPU",
+        testDeck[count] =  new CardClass(1, "More Cores", "Defense", "Defend your CPU",
                 new CardResource(new ResourceClass(0, -5, 10, 0, 0,0, 0), null));
         count++;
-        testDeck[count] =  new CardClass(2, "bot.net", "Attack", "Upgrade your CPU",
+        testDeck[count] =  new CardClass(2, "bot.net", "Attack", "Attack with your CPU",
                 new CardResource(new ResourceClass(0, -5, 10, -3, 0,0, 2), null));
         count ++;
         testDeck[count] = new CardClass(3, "^^&&^%$$^$(%$$#", "%$$%$%((^%$", "$$%(^)%%^%^",
@@ -45,14 +46,14 @@ public class DeckManagerUnitTest {
 
     @Test
     public void testDealTwoCards() {
-        CardClass[] Deck =DeckManager.dealCards(3);
-        assertEquals("The name  of first Card should be CPU Boost", "More Cores", Deck[1].getName());
-        assertEquals("The type  of first Card should be Upgrade", "Defense", Deck[1].getType());
-        assertEquals("The description  of first Card should be Upgrade your CPU", "Upgrade your CPU", Deck[1].getDescription());
+        CardClass[] Deck =DeckManager.dealCards(2);
+        assertEquals("The name  of first Card should be CPU Boost", "CPU Boost", Deck[0].getName());
+        assertEquals("The type  of first Card should be Upgrade", "Upgrade", Deck[0].getType());
+        assertEquals("The description  of first Card should be Upgrade your CPU", "Upgrade your CPU", Deck[0].getDescription());
 
-        assertEquals("The name  of first Card should be bot.net", "bot.net", Deck[2].getName());
-        assertEquals("The type  of first Card should be Attack", "Attack", Deck[2].getType());
-        assertEquals("The description  of first Card should be Upgrade your CPU", "Upgrade your CPU", Deck[2].getDescription());
+        assertEquals("The name  of second Card should be More Cores", "More Cores", Deck[1].getName());
+        assertEquals("The type  of second Card should be Defense", "Defense", Deck[1].getType());
+        assertEquals("The description  of second Card should be Defend your CPU", "Defend your CPU", Deck[1].getDescription());
     }
 
     @Test
@@ -83,15 +84,15 @@ public class DeckManagerUnitTest {
     @Test
     public void testDealNextCard() {
         CardClass Card1 = DeckManager.dealNextCard();
-        assertEquals("The name  of first Card should be CPU Boost", "More Cores", Card1.getName());
-        assertEquals("The type  of first Card should be Upgrade", "Defense", Card1.getType());
+        assertEquals("The name  of first Card should be CPU Boost", "CPU Boost", Card1.getName());
+        assertEquals("The type  of first Card should be Upgrade", "Upgrade", Card1.getType());
         assertEquals("The description  of first Card should be Upgrade your CPU", "Upgrade your CPU", Card1.getDescription());
 
         CardClass Card2 = DeckManager.dealNextCard();
 
-        assertEquals("The name  of first Card should be bot.net", "bot.net",Card2.getName());
-        assertEquals("The type  of first Card should be Attack", "Attack", Card2.getType());
-        assertEquals("The description  of first Card should be Upgrade your CPU", "Upgrade your CPU", Card2.getDescription());
+        assertEquals("The name  of first Card should be More Cores", "More Cores",Card2.getName());
+        assertEquals("The type  of first Card should be Defense", "Defense", Card2.getType());
+        assertEquals("The description  of first Card should be Defend your CPU", "Defend your CPU", Card2.getDescription());
 
     }
 
@@ -101,13 +102,13 @@ public class DeckManagerUnitTest {
         assertEquals("The type  of first Card should be Upgrade", "Upgrade", DeckManager.getCardAt(0).getType());
         assertEquals("The description  of first Card should be Upgrade", "Upgrade your CPU", DeckManager.getCardAt(0).getDescription());
 
-        assertEquals("The name  of first Card should be CPU Boost", "More Cores", DeckManager.getCardAt(1).getName());
-        assertEquals("The type  of first Card should be Upgrade", "Defense", DeckManager.getCardAt(1).getType());
-        assertEquals("The description  of first Card should be Upgrade your CPU", "Upgrade your CPU", DeckManager.getCardAt(1).getDescription());
+        assertEquals("The name  of first Card should be More Cores", "More Cores", DeckManager.getCardAt(1).getName());
+        assertEquals("The type  of first Card should be Defense", "Defense", DeckManager.getCardAt(1).getType());
+        assertEquals("The description  of first Card should be Defend your CPU", "Defend your CPU", DeckManager.getCardAt(1).getDescription());
 
         assertEquals("The name  of first Card should be bot.net", "bot.net", DeckManager.getCardAt(2).getName());
         assertEquals("The type  of first Card should be Attack", "Attack", DeckManager.getCardAt(2).getType());
-        assertEquals("The description  of first Card should be Upgrade your CPU", "Upgrade your CPU", DeckManager.getCardAt(2).getDescription());
+        assertEquals("The description  of first Card should be Attack with your CPU", "Attack with your CPU", DeckManager.getCardAt(2).getDescription());
     }
 
     @Test
