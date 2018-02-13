@@ -35,24 +35,33 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         if (currLayoutId == R.id.main_activity)
             return;
         else if (gameManager.inGame()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("You are about to exit the game.")
-                    .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            setContentView(R.layout.main_activity);
-                            GameManager.setInGame(false);
-                        }
-                    })
-                    .setNegativeButton("Stay in game", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User cancelled the dialog
-                        }
-                    });
+            if (!gameManager.gamePaused()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("You are about to exit the game.")
+                        .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                setContentView(R.layout.main_activity);
+                                GameManager.setInGame(false);
+                            }
+                        })
+                        .setNegativeButton("Stay in game", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                            }
+                        });
 
-            builder.show();
+                builder.show();
+            }
+            else if (gameManager.gamePaused()) {
+                setContentView(R.layout.battle_view);
+                GameManager.unpauseGame();
+                GameManager.drawCurrentGame();
+            }
         }
         else {
-
+            if (!gameManager.inGame()) {
+                setContentView(R.layout.main_activity);
+            }
         }
     }
 
@@ -131,12 +140,13 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void pauseMessage(View v) {
+        gameManager.pauseGame();
         setContentView(R.layout.pause_view);
     }
 
     public void pauseResumeMessage(View v) {
         setContentView(R.layout.battle_view);
-
+        gameManager.unpauseGame();
         GameManager.drawCurrentGame();
     }
 
