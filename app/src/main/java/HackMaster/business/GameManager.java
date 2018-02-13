@@ -63,6 +63,7 @@ public class GameManager {
                 playerTurn(playerCard, player1, test);
                 resManager.applyTurnRate(player2, test);
                 player1Turn = false;
+
                 if (singlePlayer) {
                     int enemyCard = ((EnemyAI) player2).playNextCard();
                     if (!test)
@@ -85,7 +86,7 @@ public class GameManager {
 
         player.setCard(playerCard, nextCard);
 
-        if (!test && player.getId() == 0)
+        if (!test && singlePlayer && player1Turn)
             mainActivity.DrawCard(nextCard, playerCard);
     }
 

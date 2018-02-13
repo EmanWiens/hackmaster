@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/HackMaster2.0.iml" filepath="$PROJECT_DIR$/HackMaster2.0.iml" />
-=======
-      <module fileurl="file://C:\Soft_Eng_Project\HackMaster20\HackMaster2.0.iml" filepath="C:\Soft_Eng_Project\HackMaster20\HackMaster2.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/HackMaster20.iml" filepath="$PROJECT_DIR$/HackMaster20.iml" />
-      <module fileurl="file://D:\Users\MARC-PC\Documents\GitHub\HackMaster2.0\HackMaster20.iml" filepath="D:\Users\MARC-PC\Documents\GitHub\HackMaster2.0\HackMaster20.iml" />
->>>>>>> 896398688473d3d074478993f366b15064e3b594
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
