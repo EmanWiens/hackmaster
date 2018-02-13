@@ -60,4 +60,5 @@ public class DeckManager {
     public static int getSizeDeck() { return deck.length; }
     public static CardClass  [] getADeck() { return deck; }
     public static void setDeck(CardClass[] set) { deck = set; }
+    public static void resetIndex() { nextIndex = 0; }
 }
