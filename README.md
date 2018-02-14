@@ -27,7 +27,7 @@ DrawToScreen.java<br />
 MainActivity.java<br /> <br /> 
    
   The project also contains a test package that mirrors the packages listed above. The test packages is located in HackMaster20/app/src/test/java/HackMasterTest/ <br /> <br />
-## Log.txt
+## Log File
  <br />
 The log file (log.txt) is located in the root directory. <br /> <br />
   
