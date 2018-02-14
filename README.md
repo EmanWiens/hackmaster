@@ -4,8 +4,31 @@ Write a readme.txt file that describes the contents of your electronic submissio
 
 This is HackMaster 2.0. It's a turn based card game in which you play cards for a cost of resource. Cards are used for either upgrading, defending, or attacking. The cards cost resources, and resources are incremented by resource rate each time it's the players turn (every second time). 
 
-The single player option is functional. The game is limited but works. Not all the buttons will lead somewhere but the ones pressed will. 
-Playing cards is dependent on the resource, so if you don't have the resources you won't be able to play the card (there is nothing right now that indicated that you can't play a card.
+## Major packages: 
+  Presentation - MainView 
+  Business - GameManager, DeckManager, ResourceManager
+  Objects - CardClass, CardsResource, PlayerClass, EnemyAI extends PlayerClass, PlayerStats, ResourceClass
+  Persietence - CardsList
+  
+
+## Log.txt
+The log file is in the root directory.
+
+
+## The button Layout/Hierarchy
+
+Single Player - The single player option is functional. The game is limited but works and is tested. Only known bug is that "Botnet gen." never goes up.
+  In game: Pause works.
+    Android Back button - prompts you if you want to leave the game.
+    Pause - shows you the pause screen and pauses the game
+      Exit game - all promt you if you want to exit the game.
+      Resume game - Android back button - brings you back in game
+      Stats - brings you to the player stats page
+        Back - brnigs you back to pause menu
+        Android back button - brings you back in game
+Local Multiplayer - Multiplayer - Options - Has no functionanlity yet
+Stats: brings you to the same stats page as in the game
+  Android back button - Back - brings you to main menu 
 
 
 ## Andriod studio 
