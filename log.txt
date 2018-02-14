@@ -1,0 +1,41 @@
+Iteration 1
+Jan 19, 2018: (2hrs) Plan what we want to make. The major idea is to make a game. Made the user story cards.
+Jan 26, 2018: (2.5) Got the game idea on track. We all had to get onto the same page 
+Jan 26, 2018: (3.5hrs) All got set up with android studio and GITHUB. Discussed what will be needed for the game to work.
+Jan 28, 2018: (Emanuel 1hr) Made package structure for existing files and added Main menu.
+Jan 29, 2018: (Emanuel 1hr) Minor background work (moved MainActivity into presentation etc.)
+Jan 29, 2018: (Emanuel, Marc 1.5hr) Discussed the core code structure of the project and planned the implementation of key components
+Jan 30, 2018: (Emanuel 6hrs) Made the Objects, Business, and Presentation classes that will be needed for the game. (DeckManager, GameManager, ResourceManager, CardClass, ResourceClass, PlayerClass, CardsList(formerly CardDatabase), and playerStatsDataBase)
+Feb 1, 2018: (Emanuel 3hrs) Can print to the screen (displays one card). 
+Printing to the screen is done through DrawToScreen.java interface.
+Feb 2, 2018: Group Meeting:Distributed tasks on Trello. Drew the gameplay on white board. Link Picture:toDo. 
+Minor changes to code (portrait view only)
+Feb 2: 2018: (Vlad 1hr) Started developing DeckManagerUnitTest. 
+Feb 3, 2018: (Emanuel 4hrs) Init single game works to the point of dealing cards to the player and displaying them. Dealing cards is done sequentially (first draw is card 0, second card is card 1, etc), for simpler testing and debugging.
+Feb 4: 2018: (Emanuel 6hrs) Added Test packages and with one or two skeleton functions. Added TODOs everywhere. Can instantiate single player game to the point of player1 and 2 being instantiated. Created empty Stats xml.
+Feb 4: 2018:(Vlad 2hrs) Finished version 1.0 DeckManagerUnitTest. Finished version 1.0 GameManagerUnitTest. Started developing DeckManagerUnitTest.
+Feb 5: 2018: (Marc 2hrs) Created initial deck
+Feb 6, 2018: (Emanuel 4.5hrs) Added function and dialog to backButton. Can show resources on screen. (player resource on enemy screen. Error with GUI.)
+Feb 7,2018 (Vlad 3hrs) Modified  DeckManagerUnitTest. Added more Tests along with minor changes in DeckManager & CardsList.
+Feb 7, 2018: (Emanuel 2hrs) Fix GUI. Turn base to play cards. Apply player turn rate.
+Feb 7, 2018: (Jansen 1.5hrs) Added JUnit tests for CardClass
+Feb 8, 2018: (Jansen 3.5hrs) Added Unit testing for ResourceClass, Fixed small bug in ResourceClass, small changes in JUnit tests for CardClass, Started Unit testing for PlayerClass. Added JUnit PlayerClass all Test Fails, Started fixing PlayerClass.
+Feb 8, 2018: (Marc 1hr) Created stats screen
+Feb 9, 2018: (Vlad, Marc, Emanuel 4hrs) Got together to work on some coding. Get known bugs out.
+Feb 9, 2018: (Sam 3hr) Added a functioning pause menu
+Feb 10, 2018: (Emaunel 2hrs) Tried to fix bug with cards being applied
+(Vlad 4hr) Updated the DeckManagerUnit test. Updated the GameManagerUnitTest. In order to complete the UnitTest for Persistance Layer: In functions where Presentation Layer is CalledAdded. Boolean variable to check if it's in test mode then don't Draw Cards. Fixed error messages for Invalid Test Cases at DeckManagerUnitTest. Printing to screen needs to be refactored.
+Feb 11, 2018: (2pm - 7:30pm) Group meeting with everyone to go over project and code. Got single player up and tested. The game is playable. Fixed bugs. 
+AI responds too fast (System.Thread stops printing to screen), player’s played card is on the top right, and the AI’s played card is on the top left of the screen (right is meant to be deck to draw cards from, left is played card)
+(Emanuel) Added player two AI, now responds by playing a card.
+(Vlad) Updated Resource Manager Unit Test v3.0. Minor fixes refactoring.
+(Marc) added unit tests for enemyAI and playerStatsSaveTest
+(Jansen) Updated JUnit PlayerClass Unit Test. fixed PlayerClass and small changes in ResourceClass. Ate 6 slices of pizza (Thanks Vlad)
+Sam: 2hr Bug fixes and Unit Tests
+Feb 12, 2018: (Emanuel 3.5 hrs) Fix minor things on repo. Edit ReadMe. Additions to back button. Changes to big user stories. Trying to get restricted cards to work.
+Feb 12, 2018: (Sam 2 hrs) Fixed Fail in DeckManagerUnitTest, added AllTests, added functionality to the stats exit button.
+Feb 13, 2018: (Sam 3 hrs) Cleaned up Presentation and Game Manager for Iteration 1. Added testCheckCard
+
+Known bugs
+1. “Botnet gen.” never increases.
+2. The two cards at the top: Left is meant to be deck (to draw cards from), and right is card played. The AI in single player has no delay so he plays his card instantly (System.Thread delays painting)
