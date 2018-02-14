@@ -4,7 +4,7 @@ HackMaster 2.0 is a turn based 2-player card game in which you play cards which 
 
 ## Major packages:
 <br />
-The main code of the project is currently split between four packages: Business, Objects, Persistence, and Presentation. These  packages is located in the directory HackMaster20/app/src/main/java/HackMaster. <br /> <br /> 
+The main code of the project is currently split between four packages: Business, Objects, Persistence, and Presentation. These  packages are in the directory HackMaster20/app/src/main/java/HackMaster. <br /> <br /> 
 
 The business package contains the files: <br />
 DeckManager.java<br />
