@@ -2,7 +2,7 @@
 
 Write a readme.txt file that describes the contents of your electronic submission. Identify the packages and major source code files. Describe where to find the log. Provide an overview of the major implemented features and where to find them in the GUI.
 
-HackMaster 2.0 is a turn based 2-player card game in which you play cards for a cost of resources. Cards are used for either upgrading, defending, or attacking. The cards cost resources, and resources are incremented by resource rate each time it's the players turn (every second time). 
+HackMaster 2.0 is a turn based 2-player card game in which you play cards for a cost of resources. Cards are used for either upgrading, defending, or attacking. The cards cost resources, and resources are incremented by resource rate each time it's the players turn (every second time). The two cards at the top: the left is your played card and the right is the opponents played card.
 
 ## Major packages: 
   Presentation - MainView 
