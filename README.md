@@ -4,7 +4,7 @@ HackMaster 2.0 is a turn based 2-player card game in which you play cards which 
 
 ## Major packages:
 <br />
-The main code of the project is currently split between four packages: Business, Objects, Persistence, and Presentation. These  packages is located in the directory HackMaster20/app/src/main/java/HackMaster. <br /> <br /> 
+The main code of the project is currently split between four packages: Business, Objects, Persistence, and Presentation. These  packages are in the directory HackMaster20/app/src/main/java/HackMaster. <br /> <br /> 
 
 The business package contains the files: <br />
 DeckManager.java<br />
@@ -26,8 +26,8 @@ The Presentation package contains the files:<br />
 DrawToScreen.java<br /> 
 MainActivity.java<br /> <br /> 
    
-  The project also contains a test package that mirrors the packages listed above. The test packages is located in HackMaster20/app/src/test/java/HackMasterTest/ <br /> <br />
-## Log.txt
+  The project also contains a test package that mirrors the packages listed above. The test packages are located in HackMaster20/app/src/test/java/HackMasterTest/ <br /> <br />
+## Log File
  <br />
 The log file (log.txt) is located in the root directory. <br /> <br />
   
@@ -37,12 +37,12 @@ Single Player - The single player option is functional. The game is limited but 
   In game: Pause works.<br />
     Android Back button - prompts you if you want to leave the game<br />
     Pause - shows you the pause screen and pauses the game<br />
-      Exit game - all promt you if you want to exit the game<br />
+      Exit game - all prompt you if you want to exit the game<br />
       Resume game - Android back button - brings you back in game<br />
       Stats - brings you to the player stats page<br />
-        Back - brnigs you back to pause menu<br />
+        Back - brings you back to pause menu<br />
         Android back button - brings you back in game<br /><br />
-Local Multiplayer - Multiplayer - Options - Has no functionanlity yet<br />
+Local Multiplayer - Multiplayer - Options - Has no functionality yet<br />
 Stats: brings you to the same stats page as in the game<br />
   Android back button - Back - brings you to main menu<br /><br />
 
