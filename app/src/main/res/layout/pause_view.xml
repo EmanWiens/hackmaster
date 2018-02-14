@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pause_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,11 +11,11 @@
         android:id="@+id/pauseExitBtn"
         android:layout_width="126dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="120dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Exit Game"
         android:onClick="pauseExitMessage"
+        android:text="Exit Game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -26,21 +27,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Resume Game"
         android:onClick="pauseResumeMessage"
-        app:layout_constraintBottom_toTopOf="@+id/pauseOptBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/pauseOptBtn"
-        android:layout_width="126dp"
-        android:layout_height="46dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Options"
-        android:onClick="pauseOptionMessage"
+        android:text="Resume Game"
         app:layout_constraintBottom_toTopOf="@+id/pauseStatsBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
