@@ -30,6 +30,11 @@ MainActivity.java<br /> <br />
 ## Log File
  <br />
 The log file (log.txt) is located in the root directory. <br /> <br />
+
+## Repository Link
+ <br />
+(use Iteration-1 branch for marking) <br /> 
+https://github.com/drFruitFace/HackMaster20.git <br /> <br />
   
 ## The button Layout/Hierarchy
  <br />
