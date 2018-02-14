@@ -28,7 +28,7 @@ MainActivity.java<br /> <br />
    
   The project also contains a test package that mirrors the packages listed above. The test packages is located in HackMaster20/app/src/test/java/HackMasterTest/ <br /> <br />
 ## Log.txt
-	The log file (log.txt) is located in the root directory.
+The log file (log.txt) is located in the root directory. <br /> <br />
   
 ## The button Layout/Hierarchy
 Single Player - The single player option is functional. The game is limited but works and is tested. Only known bug is that "Botnet gen." never goes up.<br />
