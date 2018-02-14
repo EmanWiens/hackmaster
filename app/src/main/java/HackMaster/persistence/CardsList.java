@@ -12,14 +12,9 @@ import HackMaster.objects.ResourceClass;
 
 public class
 CardsList {
-
-    //
     public static CardClass[] presetCards() {
-        // make some cards where you set all the specs
         int count = 0;
         ArrayList<CardClass> cards = new ArrayList<CardClass>(20);
-
-        // TO DO make a list of cards
 
         CardClass tempCard = new CardClass(0, "CPU Boost", "Upgrade", "Upgrade your CPU",
                 new CardResource(new ResourceClass(0, -10, 0, 0, 0,1, 0), null));
@@ -57,23 +52,23 @@ CardsList {
         cards.add(tempCard);
         count++;
 
-        tempCard = new CardClass(7, "DDOS", "Attack", "Deals a Decent Amount of Damage to the Enemy",
+        tempCard = new CardClass(7, "Anti-Virus", "Defence", "Gain a Small Amount of Health",
+                new CardResource(new ResourceClass(5, 0, -10, 0, 0, 0, 0), null));
+        cards.add(tempCard);
+        count++;
+
+        tempCard = new CardClass(8, "DDOS", "Attack", "Deals a Decent Amount of Damage to the Enemy",
                 new CardResource(new ResourceClass(0, 0, 0, -500, 0, 0, 0), new ResourceClass(-20, 0, 0, 0, 0, 0, 0)));
         cards.add(tempCard);
         count++;
 
-        tempCard = new CardClass(8, "File Transfer", "Attack", "Steal Enemy Resources",
+        tempCard = new CardClass(9, "File Transfer", "Attack", "Steal Enemy Resources",
                 new CardResource(new ResourceClass(8, 2, 20, -700, 0, 0, 0), new ResourceClass(-8, -2, -20, -300, 0, 0, 0)));
         cards.add(tempCard);
         count++;
 
-        tempCard = new CardClass(9, "Pop-up", "Attack", "Deals a Small Amount of Damage to the Enemy",
+        tempCard = new CardClass(10, "Pop-up", "Attack", "Deals a Small Amount of Damage to the Enemy",
                 new CardResource(new ResourceClass(0, 0, 0, -150, 0, 0, 0), new ResourceClass(-4, 0, 0, 0, 0, 0, 0)));
-        cards.add(tempCard);
-        count++;
-
-        tempCard = new CardClass(10, "Anti-Virus", "Defence", "Gain a Small Amount of Health",
-                new CardResource(new ResourceClass(5, 0, -10, 0, 0, 0, 0), null));
         cards.add(tempCard);
         count++;
 

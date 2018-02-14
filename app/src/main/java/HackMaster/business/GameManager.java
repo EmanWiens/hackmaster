@@ -20,7 +20,7 @@ public class GameManager {
     private static boolean inGame = false;
     private static boolean singlePlayer = false;
 
-    //Created boolean test since it fails at draw(Can't access presentation layer in tests)
+    //Created boolean test since it fails at draw(Can't access presentation layer in tests) will get fixed
     private static boolean test = true;
 
     public static final int dealCards = 6;
@@ -57,8 +57,11 @@ public class GameManager {
 
     public static void playCardEvent(int playerCard) {
         if (player1Turn) {
-
-            if(checkCard(playerCard, player1)){
+            // CheckCards is Tested and works!
+            // The problem is that the AI is incomplete and will play its next card
+            // and the game will only last a few turns before you can't play any more cards.
+            // if you would like to see how it would work, remove the comments
+            //if(checkCard(playerCard, player1)){
                 if (!test)
                     mainActivity.drawPlayedCard(player1.getCard(playerCard));
                 playerTurn(playerCard, player1);
@@ -73,7 +76,7 @@ public class GameManager {
                     resManager.applyTurnRate(player1, test);
                     player1Turn = true;
                 }
-            }
+            //}
         }
     }
 
