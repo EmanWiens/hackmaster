@@ -7,29 +7,31 @@ HackMaster 2.0 is a turn based 2-player card game in which you play cards which 
 The main code of the project is currently split between four packages: Business, Objects, Persistence, and Presentation. These  packages are in the directory HackMaster20/app/src/main/java/HackMaster. <br /> <br /> 
 
 The business package contains the files: <br />
-DeckManager.java<br />
-GameManager.java<br />
-ResourceManager.java<br /><br /> 
+DeckManager.java - Deals the cards and asks the interface to draw to the screen<br />
+GameManager.java - Initilizes and tracks single player game as it progresses. Holds a copy of DeckManager and ResourceManager. 
+Also stores the players of the current game.<br />
+ResourceManager.java - Deals with the card and players' resources (draw to screen)<br /><br /> 
 
 The Objects package contains the files: <br /> 
-CardClass.java<br /> 
-CardResource.java<br /> 
-EnemyAI.java<br /> 
-PlayerClass.java<br /> 
-PlayerStatsSaves.java<br /> 
-ResourceClass.java<br /> <br /> 
+CardClass.java - A card in the game. Costs resources, gives something in return<br /> 
+CardResource.java - The resources that the card holds<br /> 
+EnemyAI.java (extends PlayerClass) - The enemy AI in single player<br /> 
+PlayerClass.java - A player in the game. Deals with resouces and cards<br /> 
+PlayerStatsSaves.java - Holds the players stats (overall app-user stats) does not currently track anything<br /> 
+ResourceClass.java - The resouces that a player has (also holds player health)<br /> <br /> 
 
 The Persistence package contains the files:<br /> 
-CardList.java<br /><br /> 
+CardList.java - The mock interface to our db<br /><br /> 
 
 The Presentation package contains the files:<br /> 
-DrawToScreen.java<br /> 
+INTERFACE DrawToScreen.java - Implemented by MainActivity.java so that Business Class can ask to print to the screen<br /> 
 MainActivity.java<br /> <br /> 
    
-  The project also contains test packages that mirrors the packages listed above. The test packages are located in HackMaster20/app/src/test/java/HackMasterTest/ <br /> <br />
+The project also contains test packages that mirrors the packages listed above. The test packages are located in HackMaster20/app/src/test/java/HackMasterTest/ <br /> <br />
+
 ## Log File
  <br />
-The log file (log.txt) is located in the root directory. <br /> <br />
+The log file (log.txt) is located in the root directory of the repo. <br /> <br />
   
 ## The button Layout/Hierarchy
  <br />
