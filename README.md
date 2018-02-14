@@ -26,7 +26,7 @@ The Presentation package contains the files:<br />
 DrawToScreen.java<br /> 
 MainActivity.java<br /> <br /> 
    
-  The project also contains a test package that mirrors the packages listed above. The test packages are located in HackMaster20/app/src/test/java/HackMasterTest/ <br /> <br />
+  The project also contains test packages that mirrors the packages listed above. The test packages are located in HackMaster20/app/src/test/java/HackMasterTest/ <br /> <br />
 ## Log File
  <br />
 The log file (log.txt) is located in the root directory. <br /> <br />

@@ -1,0 +1,52 @@
+# HackMaster2.0
+
+HackMaster 2.0 is a turn based 2-player card game in which you play cards which expend resources. In return the cards can be used for either upgrading, defending, or attacking. The cards cost resources, and resources are incremented by resource rate each time it's the players turn (every second time). 
+
+## File Structure
+
+The main code of the project is currently split between four packages: Business, Objects, Persistence, and Presentation. These packages are located in the directory HackMaster20/app/src/main/java/HackMaster. 
+
+The business package contains the files: 
+	DeckManager.java
+	GameManager.java
+	ResourceManager.java
+
+The Objects package contains the files: 
+	CardClass.java
+	CardResource.java
+	EnemyAI.java
+	PlayerClass.java
+	PlayerStatsSaves.java
+	ResourceClass.java
+
+The Persistence package contains the files:
+	CardList.java
+
+The Presentation package contains the files:
+	DrawToScreen.java
+	MainActivity.java
+
+The project also contains test packages that mirrors the packages listed above. The test packages are located in HackMaster20/app/src/test/java/HackMasterTest/
+
+## Log.txt
+
+The log file is located in the root directory
+
+## The button Layout/Hierarchy
+
+Single Player - The single player option is functional. The game is limited but works and is tested. Only known bug is that "Botnet gen." never goes up.
+    In game: Pause works.
+    Android Back button - prompts you if you want to leave the game.
+    Pause - shows you the pause screen and pauses the game
+    Exit game - all prompt you if you want to exit the game.
+    Resume game - Android back button - brings you back in game
+    Stats - brings you to the player stats page
+    Back - brings you back to pause menu
+    Android back button - brings you back in game
+    Local Multiplayer - Multiplayer - Options - Has no functionanlity yet
+    Stats: brings you to the same stats page as in the game
+    Android back button - Back - brings you to main menu 
+
+## Andriod studio 
+
+Build once, if build doesn't work go to build->clean build. Then hit play. If you can't run the simulator got on tools->android->sync gradle.
