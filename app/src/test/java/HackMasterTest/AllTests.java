@@ -10,7 +10,7 @@ import HackMasterTest.objectsTest.CardClassUnitTest;
 import HackMasterTest.objectsTest.EnemyAIUnitTest;
 import HackMasterTest.objectsTest.PlayerClassUnitTest;
 import HackMasterTest.objectsTest.ResourceClassUnitTest;
-import HackMasterTest.persistenceTest.PlayerStatsSavesTest;
+import HackMasterTest.objectsTest.PlayerStatsSavesTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

@@ -1,4 +1,4 @@
-package HackMasterTest.persistenceTest;
+package HackMasterTest.objectsTest;
 
 import org.junit.After;
 import org.junit.Before;
