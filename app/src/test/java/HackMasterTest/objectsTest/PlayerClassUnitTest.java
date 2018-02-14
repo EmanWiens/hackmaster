@@ -37,7 +37,6 @@ public class PlayerClassUnitTest {
 
     @Test
     public void testInitPlayerClass() {
-        // TODO write test functions for initializing the playerClass
         assertNotNull(player1);
         assertEquals("id should be 1",1,player1.getId());
         assertEquals("name should be Test_Name","Test_Name",player1.getName());
@@ -45,10 +44,8 @@ public class PlayerClassUnitTest {
         assertSame("resource object should be same", player1_resource, player1.getResources());
     }
 
-    // TODO write tests for the player class functions
     @Test
     public void testSetCards() {
-        // TODO write test cases for setting cards
         player1.setCard(0, generateCard(1,"test first index", "t1","card 1"));
         player1.setCard(1, generateCard(2,"test1", "t2","card 2"));
         player1.setCard(2, generateCard(3,"test3", "t3","card 3"));
@@ -68,7 +65,6 @@ public class PlayerClassUnitTest {
 
     @Test
     public void testFindCard() {
-        // TODO write test for find card in Deck Manager
         String name_first = player1.getCard(0).getName();
         String name2 = player1.getCard(1).getName();
         String name3 = player1.getCard(2).getName();

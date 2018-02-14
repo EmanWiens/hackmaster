@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public void DrawCard(CardClass card, int slot) {
         TextView textView = null;
-
+        String cardText = (slot+1) + ". " +card.toString();
         if (slot == 0)
             textView = findViewById(R.id.card0);
         else if (slot == 1)
@@ -107,10 +107,10 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             textView = findViewById(R.id.card3);
         else if (slot == 4)
             textView = findViewById(R.id.card4);
-        else if (slot == 5)
+        else
             textView = findViewById(R.id.card5);
 
-        textView.setText((slot+1) + ". " +card.toString());
+        textView.setText(cardText);
     }
 
     public void playMessage(View v) {

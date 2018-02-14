@@ -1,4 +1,4 @@
-package HackMaster.business;
+package HackMaster.persistence;
 
 import java.util.ArrayList;
 
@@ -135,7 +135,6 @@ CardsList {
         tempCard = new CardClass(22, "Zero Day", "Attack", "Deal a Large Amount of Damage to the Enemy While Also Taking Away Resources",
                 new CardResource(new ResourceClass(0, -10, 0, 0, 0, 0, 0), new ResourceClass(20, 0, 0, 0, -1, -5, -100)));
         cards.add(tempCard);
-        count++;
 
         return cards.toArray(new CardClass[0]);
     }

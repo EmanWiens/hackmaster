@@ -154,25 +154,4 @@ public class ResourceManagerUnitTest {
         testCardEffectEnemyCardOnly =null;
   }
 
-
-    @Test
-    public void Player_Resources_isNull() {
-    //TODO
-      //  CardResource.getPlayerR();
-      //  assertNull("Player Resources should be null", CardResource.getPlayerR());
-    }
-    @Test
-    public void Enemy_Resources_isNull() {
-    //TODO
-    //    CardResource.getEnemyR();
-        //assertNull("Enemy Resources should be null", CardResource.getEnemyR());
-    }
-    @Test
-    public void toString_isCorrect() {
-//       CardResource.toString();
-//        assertNull("Enemy Resources should be null", CardResource.getEnemyR());
-        //TO DO
-    }
-
-
 }
