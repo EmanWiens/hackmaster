@@ -4,6 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import HackMaster.business.GameManager;
+import HackMaster.objects.CardClass;
+import HackMaster.objects.CardResource;
+import HackMaster.objects.PlayerClass;
+import HackMaster.objects.ResourceClass;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -17,8 +21,6 @@ public class GameManagerUnitTest {
     }
     @Test
     public void testSetUpSingleGame() {
-        // TODO write the test functions for while the game is running
-        // TODO tests for all the in game functions
         assertEquals("The name of player should be HackerMan", "HackerMan", GameManager.getPlayer1().getName());
         assertEquals("The ID of player should be 0", 0, GameManager.getPlayer1().getId());
         assertEquals("The health of player should be 100", 100, GameManager.getPlayer1().getResources().getHealth());
@@ -49,27 +51,69 @@ public class GameManagerUnitTest {
     @Test
     public void testPlayCardEvent()
     {
-        //TODO The PlayCardEvent() is Incomplete
-        //TODO Make test for PlayCard Event
-       GameManager.playCardEvent(4,true);
+       GameManager.playCardEvent(4);
        assertEquals("Should be Player 1 Turn", 0, GameManager.getPlayerNum());
-       //This test doesn't work, I have no idea why
-       //assertEquals("Should be card 12", 12, GameManager.getPlayer1().getCard(4).getID());
     }
 
 
     @Test
     public void testInvalidPlayCardEvent(){
         try {
-            GameManager.playCardEvent(-1,true);
+            GameManager.playCardEvent(-1);
             fail("ArrayIndexOutOfBoundsException Expected");
         } catch ( ArrayIndexOutOfBoundsException exp) {
         }
         try {
-            GameManager.playCardEvent(6,true);
+            GameManager.playCardEvent(6);
             fail("ArrayIndexOutOfBoundsException Expected");
         } catch ( ArrayIndexOutOfBoundsException exp) {
         }
+    }
+
+    @Test
+    public void testCheckCard() {
+        CardClass[] testDeck = new CardClass[10];
+        testDeck[0] = new CardClass(0, "Nothing", "Defense", "Do Nothing",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, 0), null));
+        testDeck[1] = new CardClass(0, "Normal card", "Defense", "Costs a normal amount",
+                new CardResource(new ResourceClass(0, -1, 0, -1, 0,-1, 0), null));
+        testDeck[2] = new CardClass(0, "Expensive Health", "Attack", "Costs a lot of Health",
+                new CardResource(new ResourceClass(-2000, 0, 0, 0, 0,0, 0), null));
+        testDeck[3] = new CardClass(0, "Expensive HCoin", "Attack", "Costs a lot of HCoin",
+                new CardResource(new ResourceClass(0, -2000, 0, 0, 0,0, 0), null));
+        testDeck[4] = new CardClass(0, "Expensive BotNet", "Attack", "Costs a lot of Botnet",
+                new CardResource(new ResourceClass(0, 0, 0, -2000, 0,0, 0), null));
+        testDeck[5] = new CardClass(0, "Expensive GPU", "Attack", "Costs a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,-2000, 0), null));
+        testDeck[6] = new CardClass(0, "Generate Health", "Attack", "Makes a lot of Health",
+                new CardResource(new ResourceClass(2000, 0, 0, 0, 0,0, 0), null));
+        testDeck[7] = new CardClass(0, "Generate HCoin", "Attack", "Makes a lot of HCoin",
+                new CardResource(new ResourceClass(0, 2000, 0, 0, 0,0, 0), null));
+        testDeck[8] = new CardClass(0, "Generate BotNet", "Attack", "Makes a lot of BotNet",
+                new CardResource(new ResourceClass(0, 0, 0, 2000, 0,0, 0), null));
+        testDeck[9] = new CardClass(0, "Generate CPU", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,2000, 0), null));
+        GameManager.getPlayer1().setCard(0, testDeck[0]);
+        GameManager.getPlayer1().setCard(1, testDeck[1]);
+        GameManager.getPlayer1().setCard(2, testDeck[2]);
+        GameManager.getPlayer1().setCard(3, testDeck[3]);
+        GameManager.getPlayer1().setCard(4, testDeck[4]);
+        GameManager.getPlayer2().setCard(0, testDeck[5]);
+        GameManager.getPlayer2().setCard(1, testDeck[6]);
+        GameManager.getPlayer2().setCard(2, testDeck[7]);
+        GameManager.getPlayer2().setCard(3, testDeck[8]);
+        GameManager.getPlayer2().setCard(4, testDeck[9]);
+        assertEquals( true, GameManager.checkCard(0, GameManager.getPlayer1()));
+        assertEquals(true, GameManager.checkCard(1, GameManager.getPlayer1()));
+        assertEquals(false, GameManager.checkCard(2, GameManager.getPlayer1()));
+        assertEquals(false, GameManager.checkCard(3, GameManager.getPlayer1()));
+        assertEquals(false, GameManager.checkCard(4, GameManager.getPlayer1()));
+        assertEquals(false, GameManager.checkCard(0, GameManager.getPlayer2()));
+        assertEquals(true, GameManager.checkCard(1, GameManager.getPlayer2()));
+        assertEquals(true, GameManager.checkCard(2, GameManager.getPlayer2()));
+        assertEquals(true, GameManager.checkCard(3, GameManager.getPlayer2()));
+        assertEquals(true, GameManager.checkCard(4, GameManager.getPlayer2()));
+
     }
 
 }

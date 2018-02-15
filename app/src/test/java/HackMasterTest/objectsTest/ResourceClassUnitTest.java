@@ -24,7 +24,6 @@ public class ResourceClassUnitTest {
 
     @Test
     public void testInitResourceClass() {
-        // TODO test the resource class
         assertNotNull(resource);
         assertEquals("Health should be 1000",1000,resource.getHealth());
         assertEquals("hCoin should be 50",50,resource.gethCoin());
@@ -35,7 +34,6 @@ public class ResourceClassUnitTest {
         assertEquals("cpuRate should be 1",1,resource.getCpuRate());
     }
 
-    // TODO write the test functions for the ResourceClass
     @Test
     public void testSingleResourceAddition() {
         System.out.println("Testing Single Resource Addition...\n");

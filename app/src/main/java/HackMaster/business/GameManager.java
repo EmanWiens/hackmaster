@@ -7,9 +7,6 @@ import HackMaster.objects.PlayerClass;
 import HackMaster.objects.ResourceClass;
 import HackMaster.objects.PlayerStatsSaves;
 
-/**
- * Created by Owner on 1/29/2018.
- */
 
 public class GameManager {
     private static PlayerStatsSaves pStats;
@@ -23,6 +20,9 @@ public class GameManager {
     private static boolean inGame = false;
     private static boolean singlePlayer = false;
 
+    //Created boolean test since it fails at draw(Can't access presentation layer in tests)
+    private static boolean test = true;
+
     public static final int dealCards = 6;
     public static final int maxCards = 50;
 
@@ -34,10 +34,11 @@ public class GameManager {
         pStats = new PlayerStatsSaves();
         resManager = new ResourceManager(mainAct);
     }
-//Created boolean test since it fails at draw(Can't access presentation layer in tests)
-    public static void setUpSingleGame(boolean test) {
+
+    public static void setUpSingleGame(boolean testing) {
         singlePlayer = true;
         inGame = true;
+        test = testing;
 
         deckM.initDeck(maxCards);
         player1 = new PlayerClass(0,
@@ -54,12 +55,12 @@ public class GameManager {
         }
     }
 
-    public static void playCardEvent(int playerCard, boolean test) {
+    public static void playCardEvent(int playerCard) {
         if (player1Turn) {
             if(checkCard(playerCard, player1)){
                 if (!test)
                     mainActivity.drawPlayedCard(player1.getCard(playerCard));
-                playerTurn(playerCard, player1, test);
+                playerTurn(playerCard, player1);
                 resManager.applyTurnRate(player2, test);
                 player1Turn = false;
 
@@ -67,18 +68,15 @@ public class GameManager {
                     int enemyCard = ((EnemyAI) player2).playNextCard();
                     if (!test)
                         mainActivity.drawPlayedCard(player2.getCard(enemyCard));
-                    playerTurn(enemyCard, player2, test);
+                    playerTurn(enemyCard, player2);
                     resManager.applyTurnRate(player1, test);
                     player1Turn = true;
                 }
             }
         }
-        else {
-            // playerTurn(name, player2);
-        }
     }
 
-    private static void playerTurn(int playerCard, PlayerClass player, boolean test) {
+    private static void playerTurn(int playerCard, PlayerClass player) {
         CardClass nextCard = DeckManager.dealNextCard();
         CardClass playedCard = player.getCard(playerCard);
         ResourceManager.applyCard(player1Turn, player1, player2, playedCard,test);
@@ -88,6 +86,7 @@ public class GameManager {
         if (!test && singlePlayer && player1Turn)
             mainActivity.DrawCard(nextCard, playerCard);
     }
+
 
     // Discards a card from the players hand if he/she cannot play any of them
     private static void discardCard(int playerCard, PlayerClass player) {
@@ -102,7 +101,7 @@ public class GameManager {
 
         ResourceClass cardResource = card.getCardResource().getPlayerR();
         ResourceClass playerResource = player.getResources();
-
+  
         if(playerResource.getHealth() + cardResource.getHealth() < 0)
             canPlay = false;
         if(playerResource.gethCoin() + cardResource.gethCoin() < 0)
