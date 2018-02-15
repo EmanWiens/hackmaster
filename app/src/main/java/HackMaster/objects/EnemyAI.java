@@ -1,5 +1,7 @@
 package HackMaster.objects;
 
+import HackMaster.business.GameManager;
+
 public class EnemyAI extends PlayerClass {
     private int nextCard = 0;
 
@@ -13,6 +15,8 @@ public class EnemyAI extends PlayerClass {
     }
 
     private void updateNextCard() {
-        nextCard = (nextCard + 1) % cardsSize();
+        do {
+            nextCard = (nextCard + 1) % cardsSize();
+        } while(!GameManager.checkCard(nextCard, this));
     }
 }

@@ -57,7 +57,6 @@ public class GameManager {
 
     public static void playCardEvent(int playerCard) {
         if (player1Turn) {
-
             if(checkCard(playerCard, player1)){
                 if (!test)
                     mainActivity.drawPlayedCard(player1.getCard(playerCard));
@@ -88,20 +87,28 @@ public class GameManager {
             mainActivity.DrawCard(nextCard, playerCard);
     }
 
+
+    // Discards a card from the players hand if he/she cannot play any of them
+    private static void discardCard(int playerCard, PlayerClass player) {
+        CardClass nextCard = DeckManager.dealNextCard();
+        player.setCard(playerCard, nextCard);
+    }
+
+    // Checks if the card at int slot is possible to play
     public static boolean checkCard(int playerCard, PlayerClass player) {
         boolean canPlay = true;
         CardClass card = player.getCard(playerCard);
 
         ResourceClass cardResource = card.getCardResource().getPlayerR();
         ResourceClass playerResource = player.getResources();
-
-        if(playerResource.getHealth() < -cardResource.getHealth())
+  
+        if(playerResource.getHealth() + cardResource.getHealth() < 0)
             canPlay = false;
-        if(playerResource.gethCoin() < -cardResource.gethCoin())
+        if(playerResource.gethCoin() + cardResource.gethCoin() < 0)
             canPlay = false;
-        if(playerResource.getBotnet() < -cardResource.getBotnet())
+        if(playerResource.getBotnet() + cardResource.getBotnet() < 0)
             canPlay = false;
-        if(playerResource.getCpu() < -cardResource.getCpu())
+        if(playerResource.getCpu() + cardResource.getCpu() < 0)
             canPlay = false;
 
         return canPlay;
