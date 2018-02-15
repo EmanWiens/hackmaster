@@ -20,7 +20,6 @@ public class PlayerStatsSavesTest {
     }
 
 
-    // TODO test the other playerStats functions
     @Test
     public void testLevelUp() {
         playerStats.addLevel();
@@ -39,7 +38,6 @@ public class PlayerStatsSavesTest {
 
     @Test
     public void testInitPlayerStats() {
-        // TODO test initializing the player stats class
         assertNotNull(playerStats);
         assertEquals("The total wins 0.0", 0.0, playerStats.getWin(), 0.01);
         assertEquals("The Level should be 0", 0, playerStats.getLevel());

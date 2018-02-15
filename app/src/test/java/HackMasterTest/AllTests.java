@@ -3,7 +3,6 @@ package HackMasterTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import HackMaster.objects.CardClass;
 import HackMasterTest.businessTest.DeckManagerUnitTest;
 import HackMasterTest.businessTest.GameManagerUnitTest;
 import HackMasterTest.businessTest.ResourceManagerUnitTest;
@@ -11,7 +10,6 @@ import HackMasterTest.objectsTest.CardClassUnitTest;
 import HackMasterTest.objectsTest.EnemyAIUnitTest;
 import HackMasterTest.objectsTest.PlayerClassUnitTest;
 import HackMasterTest.objectsTest.ResourceClassUnitTest;
-import HackMasterTest.persistenceTest.CardsListTest;
 import HackMasterTest.persistenceTest.PlayerStatsSavesTest;
 
 @RunWith(Suite.class)
@@ -23,7 +21,6 @@ import HackMasterTest.persistenceTest.PlayerStatsSavesTest;
         EnemyAIUnitTest.class,
         PlayerClassUnitTest.class,
         ResourceClassUnitTest.class,
-        CardsListTest.class,
         PlayerStatsSavesTest.class
 })
 public class AllTests {

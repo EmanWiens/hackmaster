@@ -31,10 +31,6 @@ public class DeckManagerUnitTest {
         DeckManager.setDeck(testDeck);
     }
 
-    @Test
-    public void testInitDeckManager() {
-        //TODO Cover cases when the deck is null and with different sizes
-   }
 
     @Test
     public void testDealOneCard() {

@@ -21,8 +21,6 @@ public class GameManagerUnitTest {
     }
     @Test
     public void testSetUpSingleGame() {
-        // TODO write the test functions for while the game is running
-        // TODO tests for all the in game functions
         assertEquals("The name of player should be HackerMan", "HackerMan", GameManager.getPlayer1().getName());
         assertEquals("The ID of player should be 0", 0, GameManager.getPlayer1().getId());
         assertEquals("The health of player should be 100", 100, GameManager.getPlayer1().getResources().getHealth());

@@ -25,7 +25,6 @@ public class CardClassUnitTest {
 
     @Test
     public void testInitCardClass() {
-        // TODO write tests for initializing cards and test that it works
         assertNotNull(cardObj);
         assertEquals("The id should be 1",1, cardObj.getID());
         assertEquals("The name of this card should be TestCard_1","TestCard_1", cardObj.getName());
@@ -33,7 +32,6 @@ public class CardClassUnitTest {
         assertEquals("The description should be desc","desc", cardObj.getDescription());
     }
 
-    // TODO test the functions in the CardClass functions
     @Test
     public void testToString(){
         String expectedOutput = String.format("TestCard_1\nType:Upgrade\n%s", resManager.toString());

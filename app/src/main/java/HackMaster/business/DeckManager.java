@@ -1,5 +1,6 @@
 package HackMaster.business;
 
+import HackMaster.persistence.CardsList;
 import HackMaster.presentation.DrawToScreen;
 import HackMaster.objects.CardClass;
 
