@@ -74,5 +74,10 @@ public class ResourceClass {
     public int getCpuRate() { return cpuRate; }
     public int getCpu() { return cpu; }
 
-
+    public void setBotnetRate(int i) { botnetRate = i;}
+    public void sethCoinRate(int i) { hCoinRate = i;}
+    public void setCpuRate(int i) { cpuRate = i;}
+    public void setBotnet(int i) { botnet = i;}
+    public void sethCoin(int i) { hCoin = i;}
+    public void setCpu(int i) { cpu = i;}
 }

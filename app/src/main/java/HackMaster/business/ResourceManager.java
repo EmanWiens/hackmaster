@@ -15,7 +15,7 @@ public class ResourceManager {
         mainAct.drawPlayerResource(player);
     }
 
-    public static void applyTurnRate(PlayerClass p,boolean test) {
+    public static void applyTurnRate(PlayerClass p, boolean test) {
         p.increaseHcoinByRate();
         p.increaseCSpeedByRate();
         p.increaseBotnetByRate();
@@ -24,7 +24,7 @@ public class ResourceManager {
         }
     }
 
-    public static void applyCard(boolean player1Turn, PlayerClass p1, PlayerClass p2, CardClass card,boolean test) {
+    public static void applyCard(boolean player1Turn, PlayerClass p1, PlayerClass p2, CardClass card, boolean test) {
         if (player1Turn)
             ApplyCardToPlayer(p1, p2, card, test);
         else
