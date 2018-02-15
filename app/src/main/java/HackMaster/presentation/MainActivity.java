@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.example.owner.hackmaster20.R;
 
-
 import HackMaster.business.GameManager;
 import HackMaster.objects.CardClass;
 import HackMaster.objects.PlayerClass;
@@ -128,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         }
     }
 
-    public void drawPlayedCard(CardClass card) {
+    synchronized public void drawPlayedCard(CardClass card) {
         if (gameManager.getPlayer1Turn()) {
             TextView playedCard = findViewById(R.id.playedCard0);
             playedCard.setText(card.toString());
