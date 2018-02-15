@@ -4,6 +4,7 @@ package HackMaster.presentation;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.owner.hackmaster20.R;
+
 
 import HackMaster.business.GameManager;
 import HackMaster.objects.CardClass;
