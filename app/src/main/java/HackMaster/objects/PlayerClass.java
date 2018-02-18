@@ -30,18 +30,15 @@ public class PlayerClass {
     }
 
     public String minerToString() {
-        return "\nHackCoin Rate: " + resources.gethCoinRate() +
-                "\n----\nHackCoin: " + resources.gethCoin();
+        return resources.minerToString();
     }
 
     public String cSpeedToString() {
-        return "\nCPU Rate: " + resources.getCpuRate() +
-                "\n----\nCPU: " + resources.getCpu();
+        return resources.cSpeedToString();
     }
 
     public String botnetToString() {
-        return "\nBotnet gen.: " + resources.getBotnetRate() +
-                "\n----\nBotnet: " + resources.getBotnet();
+        return resources.botnetToString();
     }
 
     public void increaseHcoinByRate() {resources.increaseHcoinByRate();}
