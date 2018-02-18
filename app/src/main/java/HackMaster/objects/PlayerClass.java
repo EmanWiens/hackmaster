@@ -48,6 +48,12 @@ public class PlayerClass {
     }
     public void addResources(ResourceClass addRes) {
         resources.addResources(addRes);
+        if(resources.getBotnetRate() < 1) resources.setBotnetRate(1);
+        if(resources.gethCoinRate() < 1) resources.sethCoinRate(1);
+        if(resources.getCpuRate() < 1) resources.setCpuRate(1);
+        if(resources.getBotnet() < 0) resources.setBotnet(0);
+        if(resources.gethCoin() < 0) resources.sethCoin(0);
+        if(resources.getCpu() < 0) resources.setCpu(0);
     }
 
     public void setCard(int index, CardClass card) {

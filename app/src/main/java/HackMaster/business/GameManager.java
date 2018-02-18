@@ -6,7 +6,7 @@ import HackMaster.presentation.DrawToScreen;
 import HackMaster.objects.PlayerClass;
 import HackMaster.objects.ResourceClass;
 import HackMaster.objects.PlayerStatsSaves;
-
+import android.os.Handler; // DELAY
 
 public class GameManager {
     private static PlayerStatsSaves pStats;
@@ -56,6 +56,7 @@ public class GameManager {
     }
 
     public static void playCardEvent(int playerCard) {
+        Handler handler = new Handler(); // DELAY
         if (player1Turn) {
             if(checkCard(playerCard, player1)){
                 if (!test)
@@ -66,14 +67,27 @@ public class GameManager {
 
                 if (singlePlayer) {
                     int enemyCard = ((EnemyAI) player2).playNextCard();
-                    if (!test)
-                        mainActivity.drawPlayedCard(player2.getCard(enemyCard));
+                    if (!test) {
+                        handler.postDelayed(delayDraw(enemyCard), 1000); // DELAY
+                    }
                     playerTurn(enemyCard, player2);
                     resManager.applyTurnRate(player1, test);
-                    player1Turn = true;
+
                 }
             }
         }
+    }
+
+    // DELAY
+    public static Runnable delayDraw(final int enemyCard) {
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                mainActivity.drawPlayedCard(player2.getCard(enemyCard));
+                player1Turn = true;
+            }
+        };
+        return r;
     }
 
     private static void playerTurn(int playerCard, PlayerClass player) {
@@ -101,7 +115,7 @@ public class GameManager {
 
         ResourceClass cardResource = card.getCardResource().getPlayerR();
         ResourceClass playerResource = player.getResources();
-  
+
         if(playerResource.getHealth() + cardResource.getHealth() < 0)
             canPlay = false;
         if(playerResource.gethCoin() + cardResource.gethCoin() < 0)
