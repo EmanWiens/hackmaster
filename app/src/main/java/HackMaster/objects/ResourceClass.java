@@ -38,6 +38,21 @@ public class ResourceClass {
         return strung;
     }
 
+    public String minerToString() {
+        return "\nHackCoin Rate: " + hCoinRate +
+                "\n----\nHackCoin: " + hCoin;
+    }
+
+    public String cSpeedToString() {
+        return "\nCPU Rate: " + cpuRate +
+                "\n----\nCPU: " + cpu;
+    }
+
+    public String botnetToString() {
+        return "\nBotnet gen.: " + botnetRate +
+                "\n----\nBotnet: " + botnet;
+    }
+
     public void addResources(ResourceClass add) {
         hCoin += add.hCoin;
         hCoinRate += add.hCoinRate;

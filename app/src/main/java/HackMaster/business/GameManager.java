@@ -101,6 +101,14 @@ public class GameManager {
             mainActivity.DrawCard(nextCard, playerCard);
     }
 
+
+    // Discards a card from the players hand if he/she cannot play any of them
+    private static void discardCard(int playerCard, PlayerClass player) {
+        CardClass nextCard = DeckManager.dealNextCard();
+        player.setCard(playerCard, nextCard);
+    }
+
+    // Checks if the card at int slot is possible to play
     public static boolean checkCard(int playerCard, PlayerClass player) {
         boolean canPlay = true;
         CardClass card = player.getCard(playerCard);
