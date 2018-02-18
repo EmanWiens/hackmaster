@@ -128,14 +128,14 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     synchronized public void drawPlayedCard(CardClass card) {
-        if (gameManager.getPlayer1Turn()) {
-            TextView playedCard = findViewById(R.id.playedCard0);
+        // if (gameManager.getPlayer1Turn()) {
+            TextView playedCard = findViewById(R.id.playedCard1);
             playedCard.setText(card.toString());
-        }
+        /*}
         else {
             TextView playedCard = findViewById(R.id.playedCard1);
             playedCard.setText(card.toString());
-        }
+        }*/
     }
 
     public void pauseMessage(View v) {

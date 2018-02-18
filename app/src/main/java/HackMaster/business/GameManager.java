@@ -68,7 +68,7 @@ public class GameManager {
                 if (singlePlayer) {
                     int enemyCard = ((EnemyAI) player2).playNextCard();
                     if (!test) {
-                        handler.postDelayed(delayDraw(enemyCard), 1000); // DELAY
+                        handler.postDelayed(delayDraw(enemyCard), 2000); // DELAY
                     }
                     playerTurn(enemyCard, player2);
                     resManager.applyTurnRate(player1, test);
@@ -101,14 +101,11 @@ public class GameManager {
             mainActivity.DrawCard(nextCard, playerCard);
     }
 
-
-    // Discards a card from the players hand if he/she cannot play any of them
     private static void discardCard(int playerCard, PlayerClass player) {
         CardClass nextCard = DeckManager.dealNextCard();
         player.setCard(playerCard, nextCard);
     }
 
-    // Checks if the card at int slot is possible to play
     public static boolean checkCard(int playerCard, PlayerClass player) {
         boolean canPlay = true;
         CardClass card = player.getCard(playerCard);
@@ -156,4 +153,6 @@ public class GameManager {
     public static PlayerClass getPlayer1(){ return player1; }
     public static PlayerClass getPlayer2(){ return player2; }
     public boolean getPlayer1Turn() { return player1Turn; }
+    public static void setDeck(CardClass[] set) { deckM.setDeck(set); }
+    public static CardClass getDeckCardAt(int i) { return deckM.getCardAt(i); }
 }
