@@ -31,4 +31,12 @@ public class CardClass {
     public String getType() { return type; }
     public int getID() { return id; }
     public String getDescription() { return description; }
+
+    public boolean equals() {
+        boolean sameCard = false;
+
+        // TODO write the function that compares if two cards are equal
+
+        return sameCard;
+    }
 }

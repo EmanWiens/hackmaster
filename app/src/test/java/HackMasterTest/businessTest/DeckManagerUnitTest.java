@@ -2,6 +2,9 @@ package HackMasterTest.businessTest;
 
 import org.junit.Before;
 import org.junit.Test;
+
+// import javax.smartcardio.Card;
+
 import HackMaster.business.DeckManager;
 import HackMaster.objects.CardClass;
 import HackMaster.objects.CardResource;
@@ -89,7 +92,26 @@ public class DeckManagerUnitTest {
         assertEquals("The name  of first Card should be More Cores", "More Cores",Card2.getName());
         assertEquals("The type  of first Card should be Defense", "Defense", Card2.getType());
         assertEquals("The description  of first Card should be Defend your CPU", "Defend your CPU", Card2.getDescription());
+    }
 
+    @Test
+    public void testDealNextCardBounds() {
+        DeckManager.resetIndex();
+        CardClass card = DeckManager.dealNextCard();
+
+        assertEquals("The name of the card should be CPU Boost", "CPU Boost", card.getName());
+        card = DeckManager.dealNextCard();
+
+        assertEquals("The name of the card should be More Cores", "More Cores", card.getName());
+        card = DeckManager.dealNextCard();
+
+        assertEquals("The name of the card should be bot.net", "bot.net", card.getName());
+        card = DeckManager.dealNextCard();
+
+        assertEquals("The name of the card should be ^^&&^%$$^$(%$$#", "^^&&^%$$^$(%$$#", card.getName());
+        card = DeckManager.dealNextCard();
+
+        assertEquals("The name of the card should be CPU Boost", "CPU Boost", card.getName());
     }
 
    @Test

@@ -101,7 +101,7 @@ public class GameManager {
             mainActivity.DrawCard(nextCard, playerCard);
     }
 
-    private static void discardCard(int playerCard, PlayerClass player) {
+    public static void discardCard(int playerCard, PlayerClass player) {
         CardClass nextCard = DeckManager.dealNextCard();
         player.setCard(playerCard, nextCard);
     }
@@ -155,4 +155,5 @@ public class GameManager {
     public boolean getPlayer1Turn() { return player1Turn; }
     public static void setDeck(CardClass[] set) { deckM.setDeck(set); }
     public static CardClass getDeckCardAt(int i) { return deckM.getCardAt(i); }
+    public static int getDeckMangerDealNextCard() { return deckM.getNextIndex(); }
 }

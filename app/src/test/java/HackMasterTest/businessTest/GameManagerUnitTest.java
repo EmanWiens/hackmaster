@@ -3,6 +3,7 @@ package HackMasterTest.businessTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import HackMaster.business.DeckManager;
 import HackMaster.business.GameManager;
 import HackMaster.objects.CardClass;
 import HackMaster.objects.CardResource;
@@ -18,8 +19,6 @@ public class GameManagerUnitTest {
     @Before
     public void setUp(){
         GameManager.setUpSingleGame(true);
-
-        resetDeck();
     }
 
     private void resetDeck() {
@@ -46,6 +45,19 @@ public class GameManagerUnitTest {
                 new CardResource(new ResourceClass(0, 0, 0, 0, 0,2000, 0), null));
 
         GameManager.setDeck(testDeck);
+    }
+
+    private void setPlayerHands() {
+        GameManager.getPlayer1().setCard(0, GameManager.getDeckCardAt(0));
+        GameManager.getPlayer1().setCard(1, GameManager.getDeckCardAt(1));
+        GameManager.getPlayer1().setCard(2, GameManager.getDeckCardAt(2));
+        GameManager.getPlayer1().setCard(3, GameManager.getDeckCardAt(3));
+        GameManager.getPlayer1().setCard(4, GameManager.getDeckCardAt(4));
+        GameManager.getPlayer2().setCard(0, GameManager.getDeckCardAt(5));
+        GameManager.getPlayer2().setCard(1, GameManager.getDeckCardAt(6));
+        GameManager.getPlayer2().setCard(2, GameManager.getDeckCardAt(7));
+        GameManager.getPlayer2().setCard(3, GameManager.getDeckCardAt(8));
+        GameManager.getPlayer2().setCard(4, GameManager.getDeckCardAt(9));
     }
 
     @Test
@@ -81,6 +93,7 @@ public class GameManagerUnitTest {
     public void testPlayCardEvent()
     {
        GameManager.playCardEvent(4);
+       // is this failing because of the delay?
        assertEquals("Should be Player 1 Turn", 0, GameManager.getPlayerNum());
     }
 
@@ -89,30 +102,23 @@ public class GameManagerUnitTest {
     public void testInvalidPlayCardEvent(){
         try {
             GameManager.playCardEvent(-1);
-            fail("ArrayIndexOutOfBoundsException Expected");
+            fail("ArrayIndexOutOfBoundsException Expected or RuntimeException Expected");
         } catch ( ArrayIndexOutOfBoundsException exp) {
+        } catch ( RuntimeException exp) {
         }
         try {
             GameManager.playCardEvent(6);
-            fail("ArrayIndexOutOfBoundsException Expected");
+            fail("ArrayIndexOutOfBoundsException Expected or RuntimeException Expected");
         } catch ( ArrayIndexOutOfBoundsException exp) {
+        } catch ( RuntimeException exp) {
         }
     }
 
     @Test
     public void testCheckCard() {
         resetDeck();
+        setPlayerHands();
 
-        GameManager.getPlayer1().setCard(0, GameManager.getDeckCardAt(0));
-        GameManager.getPlayer1().setCard(1, GameManager.getDeckCardAt(1));
-        GameManager.getPlayer1().setCard(2, GameManager.getDeckCardAt(2));
-        GameManager.getPlayer1().setCard(3, GameManager.getDeckCardAt(3));
-        GameManager.getPlayer1().setCard(4, GameManager.getDeckCardAt(4));
-        GameManager.getPlayer2().setCard(0, GameManager.getDeckCardAt(5));
-        GameManager.getPlayer2().setCard(1, GameManager.getDeckCardAt(6));
-        GameManager.getPlayer2().setCard(2, GameManager.getDeckCardAt(7));
-        GameManager.getPlayer2().setCard(3, GameManager.getDeckCardAt(8));
-        GameManager.getPlayer2().setCard(4, GameManager.getDeckCardAt(9));
         assertEquals( true, GameManager.checkCard(0, GameManager.getPlayer1()));
         assertEquals(true, GameManager.checkCard(1, GameManager.getPlayer1()));
         assertEquals(false, GameManager.checkCard(2, GameManager.getPlayer1()));
@@ -126,9 +132,29 @@ public class GameManagerUnitTest {
     }
 
     @Test
-    public void testDiscard(){
+    public void testDiscardCardPlayer1(){
         resetDeck();
+        setPlayerHands();
+        DeckManager.resetIndex();
 
-        // TODO write the game manager discard tests
+        assertEquals("The player card at index 0 should be Nothing ", "Nothing", GameManager.getPlayer1().getCard(0).getName());
+        assertEquals("The player card at index 1 should be Normal Card", "Normal card", GameManager.getPlayer1().getCard(1).getName());
+        assertEquals("The player card at index 2 should be Expensive Health", "Expensive Health", GameManager.getPlayer1().getCard(2).getName());
+
+        GameManager.discardCard(5, GameManager.getPlayer1());
+        assertEquals("The card should be at index 0 if the deck",true, GameManager.getPlayer1().getCard(5).equals(GameManager.getDeckCardAt(0)));
+        assertEquals("The player card at index 0 should be Nohting", "Nothing", GameManager.getPlayer1().getCard(5).getName());
+
+        GameManager.discardCard(4, GameManager.getPlayer1());
+        assertEquals("The card should be at index 1 if the deck",true, GameManager.getPlayer1().getCard(4).equals(GameManager.getDeckCardAt(1)));
+        assertEquals("The player card at index4 should have the name Normal card", "Normal card", GameManager.getPlayer1().getCard(4).getName());
+
+        GameManager.discardCard(2, GameManager.getPlayer1());
+        assertEquals("The card should be at index 2 of the deck", true, GameManager.getPlayer1().getCard(2).equals(GameManager.getDeckCardAt(2)));
+        assertEquals("The player card at index 2 should be Expensive Health", "Expensive Health", GameManager.getPlayer1().getCard(2).getName());
+
+        GameManager.discardCard(1, GameManager.getPlayer1());
+        assertEquals("The card should be at index 3 of the deck", true, GameManager.getPlayer1().getCard(1).equals(GameManager.getDeckCardAt(3)));
+        assertEquals("The player card at index 1 should be Expensive HCoin", "Expensive HCoin", GameManager.getPlayer1().getCard(1).getName());
     }
 }
