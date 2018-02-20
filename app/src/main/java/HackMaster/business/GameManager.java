@@ -75,7 +75,19 @@ public class GameManager {
 
                 }
             }
+            else {
+                if (cantPlayCard(player1)) {
+                    // TODO put the player in a discard mode
+                }
+            }
         }
+    }
+
+    public static boolean cantPlayCard(PlayerClass player) {
+        for (int i = 0; i < player.cardsSize(); i++)
+            if (checkCard(i, player))
+                return false;
+        return true;
     }
 
     // DELAY

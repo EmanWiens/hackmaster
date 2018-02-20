@@ -49,9 +49,6 @@ public class DeckManager {
     }
 
     public static CardClass dealNextCard() {
-        // if (nextIndex > deck.length)
-           // updateIndex();
-
         CardClass nextCard = deck[nextIndex];
         updateIndex();
 
