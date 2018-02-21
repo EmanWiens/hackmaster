@@ -100,6 +100,7 @@ public class GameManagerUnitTest {
 
     @Test
     public void testInvalidPlayCardEvent(){
+        // TODO fix these functions (Fail should be in catch)
         try {
             GameManager.playCardEvent(-1);
             fail("ArrayIndexOutOfBoundsException Expected or RuntimeException Expected");
