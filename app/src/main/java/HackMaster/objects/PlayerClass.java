@@ -64,6 +64,7 @@ public class PlayerClass {
         }
     }
     public ResourceClass getResources() { return resources; }
+    public void setResources(ResourceClass res) { resources = res; }
     public int getId() { return playerId; }
     public CardClass[] getCards() { return hand; }
     public int cardsSize() { return hand.length; }

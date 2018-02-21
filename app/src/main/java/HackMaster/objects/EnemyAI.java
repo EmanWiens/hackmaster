@@ -1,22 +1,45 @@
 package HackMaster.objects;
 
+import java.util.ArrayList;
+
 import HackMaster.business.GameManager;
 
 public class EnemyAI extends PlayerClass {
-    private int nextCard = 0;
+    private int nextCard;
 
     public EnemyAI(int id, String n, ResourceClass r, CardClass[] c) {
         super(id, n, r, c);
     }
 
     public int playNextCard() {
-        updateNextCard();
+        nextCard = -1;
+
+        ArrayList<CardClass> playable = playableCards();
+
+        if (playable.isEmpty())
+            GameManager.discardCard(worstCard(), GameManager.getPlayer2());
+        else
+            nextCard = bestCard(playable);
+
         return nextCard;
     }
 
-    private void updateNextCard() {
-        do {
-            nextCard = (nextCard + 1) % cardsSize();
-        } while(!GameManager.checkCard(nextCard, this));
+    private int worstCard() {
+        return 0; // TODO function that finds the worst card
+    }
+
+    private int bestCard(ArrayList<CardClass> playable) {
+        return 0; // TODO choose the best card
+    }
+
+    public ArrayList<CardClass> playableCards() {
+        ArrayList<CardClass> playable = new ArrayList<CardClass>();
+
+        for (int i = 0; i < GameManager.sizeOfHand; i++) {
+            if (GameManager.checkCard(i, this))
+                playable.add(GameManager.getPlayer1().getCard(i));
+        }
+
+        return playable;
     }
 }

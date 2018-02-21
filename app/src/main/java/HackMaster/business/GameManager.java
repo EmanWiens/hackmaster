@@ -23,7 +23,7 @@ public class GameManager {
     //Created boolean test since it fails at draw(Can't access presentation layer in tests)
     private static boolean test = true;
 
-    public static final int dealCards = 6;
+    public static final int sizeOfHand = 6;
     public static final int maxCards = 50;
 
     private static DrawToScreen mainActivity;
@@ -43,11 +43,11 @@ public class GameManager {
         deckM.initDeck(maxCards);
         player1 = new PlayerClass(0,
                 "HackerMan",
-                new ResourceClass(100, 2, 2, 2, 2, 2, 2), deckM.dealCards(dealCards));
+                new ResourceClass(100, 2, 2, 2, 2, 2, 2), deckM.dealCards(sizeOfHand));
 
         player2 = new EnemyAI(1,
                 "Enemy Bot",
-                new ResourceClass(100, 2, 2, 2, 2, 2, 2), deckM.dealCards(dealCards));
+                new ResourceClass(100, 2, 2, 2, 2, 2, 2), deckM.dealCards(sizeOfHand));
         if (!test) {
             deckM.paintCard(player1.getCards());
             resManager.drawPlayerResource(player1);
@@ -67,12 +67,14 @@ public class GameManager {
 
                 if (singlePlayer) {
                     int enemyCard = ((EnemyAI) player2).playNextCard();
-                    if (!test) {
+                    if (!test)
                         handler.postDelayed(delayDraw(enemyCard), 2000); // DELAY
-                    }
-                    playerTurn(enemyCard, player2);
+
+                    if (enemyCard != -1)
+                        playerTurn(enemyCard, player2);
                     resManager.applyTurnRate(player1, test);
 
+                    player1Turn = true;
                 }
             }
             else {
@@ -159,7 +161,7 @@ public class GameManager {
     public static void unpauseGame() { paused = false; }
     public static boolean gamePaused() { return paused; }
     public static void setSinglePlayer(boolean set) { singlePlayer = set; }
-    public static int handSize() { return dealCards; }
+    public static int handSize() { return sizeOfHand; }
     public static DrawToScreen getMainAct() { return mainActivity; }
     public static boolean inGame() { return inGame; }
     public static PlayerClass getPlayer1(){ return player1; }
