@@ -51,6 +51,7 @@ public class DeckManager {
     public static CardClass dealNextCard() {
         CardClass nextCard = deck[nextIndex];
         updateIndex();
+
         return nextCard;
     }
 
@@ -59,4 +60,5 @@ public class DeckManager {
     public static CardClass  [] getADeck() { return deck; }
     public static void setDeck(CardClass[] set) { deck = set; }
     public static void resetIndex() { nextIndex = 0; }
+    public static int getNextIndex() { return nextIndex; }
 }
