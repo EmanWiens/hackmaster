@@ -30,18 +30,15 @@ public class PlayerClass {
     }
 
     public String minerToString() {
-        return "\nHackCoin Rate: " + resources.gethCoinRate() +
-                "\n----\nHackCoin: " + resources.gethCoin();
+        return resources.minerToString();
     }
 
     public String cSpeedToString() {
-        return "\nCPU Rate: " + resources.getCpuRate() +
-                "\n----\nCPU: " + resources.getCpu();
+        return resources.cSpeedToString();
     }
 
     public String botnetToString() {
-        return "\nBotnet gen.: " + resources.getBotnetRate() +
-                "\n----\nBotnet: " + resources.getBotnet();
+        return resources.botnetToString();
     }
 
     public void increaseHcoinByRate() {resources.increaseHcoinByRate();}
@@ -51,6 +48,12 @@ public class PlayerClass {
     }
     public void addResources(ResourceClass addRes) {
         resources.addResources(addRes);
+        if(resources.getBotnetRate() < 1) resources.setBotnetRate(1);
+        if(resources.gethCoinRate() < 1) resources.sethCoinRate(1);
+        if(resources.getCpuRate() < 1) resources.setCpuRate(1);
+        if(resources.getBotnet() < 0) resources.setBotnet(0);
+        if(resources.gethCoin() < 0) resources.sethCoin(0);
+        if(resources.getCpu() < 0) resources.setCpu(0);
     }
 
     public void setCard(int index, CardClass card) {
@@ -61,6 +64,7 @@ public class PlayerClass {
         }
     }
     public ResourceClass getResources() { return resources; }
+    public void setResources(ResourceClass res) { resources = res; }
     public int getId() { return playerId; }
     public CardClass[] getCards() { return hand; }
     public int cardsSize() { return hand.length; }

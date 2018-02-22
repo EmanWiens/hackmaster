@@ -38,6 +38,21 @@ public class ResourceClass {
         return strung;
     }
 
+    public String minerToString() {
+        return "\nHackCoin Rate: " + hCoinRate +
+                "\n----\nHackCoin: " + hCoin;
+    }
+
+    public String cSpeedToString() {
+        return "\nCPU Rate: " + cpuRate +
+                "\n----\nCPU: " + cpu;
+    }
+
+    public String botnetToString() {
+        return "\nBotnet gen.: " + botnetRate +
+                "\n----\nBotnet: " + botnet;
+    }
+
     public void addResources(ResourceClass add) {
         hCoin += add.hCoin;
         hCoinRate += add.hCoinRate;
@@ -74,5 +89,10 @@ public class ResourceClass {
     public int getCpuRate() { return cpuRate; }
     public int getCpu() { return cpu; }
 
-
+    public void setBotnetRate(int i) { botnetRate = i;}
+    public void sethCoinRate(int i) { hCoinRate = i;}
+    public void setCpuRate(int i) { cpuRate = i;}
+    public void setBotnet(int i) { botnet = i;}
+    public void sethCoin(int i) { hCoin = i;}
+    public void setCpu(int i) { cpu = i;}
 }

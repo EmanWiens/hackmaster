@@ -77,6 +77,26 @@ public class PlayerClassUnitTest {
         assertEquals("Test non-existing card", -1, player1.findPlayerCardIndex("Test_null"));
     }
 
+    @Test
+    public void testNegativeRates() {
+        ResourceClass neg_rates = new ResourceClass(0, 0, -1000, 0, -1000,1, -1000);
+        player1.addResources(neg_rates);
+
+        assertEquals("hCoinRate should be 1", 1, player1.getResources().gethCoinRate());
+        assertEquals("botnetRate should be 1", 1, player1.getResources().getBotnetRate());
+        assertEquals("cpuRate should be 1", 1, player1.getResources().getCpuRate());
+    }
+
+    @Test
+    public void testNegativeResources() {
+        ResourceClass neg_res = new ResourceClass(0, -10000, 0, -10000, 0,-10000, 0);
+        player1.addResources(neg_res);
+
+        assertEquals("hCoin should be 0", 0, player1.getResources().gethCoin());
+        assertEquals("botnet should be 0", 0, player1.getResources().getBotnet());
+        assertEquals("cpu should be 0", 0, player1.getResources().getCpu());
+    }
+
     @After
     public void tearDown(){
         player1_resource = null;

@@ -4,6 +4,7 @@ package HackMaster.presentation;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -126,15 +127,15 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         }
     }
 
-    public void drawPlayedCard(CardClass card) {
-        if (gameManager.getPlayer1Turn()) {
-            TextView playedCard = findViewById(R.id.playedCard0);
+    synchronized public void drawPlayedCard(CardClass card) {
+        // if (gameManager.getPlayer1Turn()) {
+            TextView playedCard = findViewById(R.id.playedCard1);
             playedCard.setText(card.toString());
-        }
+        /*}
         else {
             TextView playedCard = findViewById(R.id.playedCard1);
             playedCard.setText(card.toString());
-        }
+        }*/
     }
 
     public void pauseMessage(View v) {
