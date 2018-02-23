@@ -138,6 +138,10 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         }*/
     }
 
+    public void DiscardMessage(View v) {
+        // TODO write the discard mode function in game manager an call it here.
+    }
+
     public void pauseMessage(View v) {
         gameManager.pauseGame();
         setContentView(R.layout.pause_view);

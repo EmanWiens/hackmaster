@@ -58,6 +58,9 @@ public class EnemyAIUnitTest {
     }
 
     private void resetDeck() {
+        // player negative is cost and positive is gain
+        // enemy negative is loss and positive is gain
+
         CardClass[] testDeck = new CardClass[10];
         testDeck[0] = new CardClass(0, "Nothing", "Defense", "Do Nothing",
                 new CardResource(new ResourceClass(-101, 0, 0, 0, 0,0, 0), null));
@@ -68,9 +71,9 @@ public class EnemyAIUnitTest {
         testDeck[3] = new CardClass(0, "Expensive HCoin", "Attack", "Costs a lot of HCoin",
                 new CardResource(new ResourceClass(0, 1, 0, 0, 0,0, 0), null));
         testDeck[4] = new CardClass(0, "Expensive BotNet", "Attack", "Costs a lot of Botnet",
-                new CardResource(new ResourceClass(0, 0, 0, -2000, 0,0, 0), null));
+                new CardResource(new ResourceClass(0, 3, 0, 0, 0,0, 0), null));
         testDeck[5] = new CardClass(0, "Expensive GPU", "Attack", "Costs a lot of CPU",
-                new CardResource(new ResourceClass(0, 0, 0, 0, 0,-2000, 0), null));
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, 0), null));
         testDeck[6] = new CardClass(0, "Generate Health", "Attack", "Makes a lot of Health",
                 new CardResource(new ResourceClass(2000, 0, 0, 0, 0,0, 0), null));
         testDeck[7] = new CardClass(0, "Generate HCoin", "Attack", "Makes a lot of HCoin",
