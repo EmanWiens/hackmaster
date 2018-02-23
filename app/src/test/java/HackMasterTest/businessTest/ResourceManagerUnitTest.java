@@ -91,14 +91,38 @@ public class ResourceManagerUnitTest {
     }
 
     @Test
-    public void testApplyCardBounds() {
+    public void testApplySingleCardBounds() {
         // TODO write a test that tests the extreme bounds (test player health 100, can play -100 and -99 but not -101)
         CardClass[] deck = setDeck();
         EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), deck);
 
-        ai.setResources(new ResourceClass(100,2,2,2,2,2,2));
-        for(int i = 0; i < GameManager.sizeOfHand; i++)
-            ai.setCard(i, deck[i]);
+        assertEquals(false, GameManager.checkCard(0, ai));
+        assertEquals(true, GameManager.checkCard(1, ai));
+        assertEquals(true, GameManager.checkCard(2, ai));
+
+        assertEquals(true, GameManager.checkCard(3, ai));
+        assertEquals(true, GameManager.checkCard(4, ai));
+        assertEquals(false, GameManager.checkCard(5, ai));
+
+        assertEquals(true, GameManager.checkCard(6, ai));
+        assertEquals(true, GameManager.checkCard(7, ai));
+        assertEquals(false, GameManager.checkCard(8, ai));
+
+        assertEquals(true, GameManager.checkCard(9, ai));
+        assertEquals(true, GameManager.checkCard(10, ai));
+        assertEquals(false, GameManager.checkCard(11, ai));
+
+        assertEquals(true, GameManager.checkCard(12, ai));
+        assertEquals(true, GameManager.checkCard(13, ai));
+        assertEquals(false, GameManager.checkCard(14, ai));
+
+        assertEquals(true, GameManager.checkCard(15, ai));
+        assertEquals(true, GameManager.checkCard(16, ai));
+        assertEquals(false, GameManager.checkCard(17, ai));
+
+        assertEquals(true, GameManager.checkCard(18, ai));
+        assertEquals(true, GameManager.checkCard(19, ai));
+        assertEquals(false, GameManager.checkCard(20, ai));
     }
 
     private CardClass[] setDeck() {
@@ -106,30 +130,55 @@ public class ResourceManagerUnitTest {
         // enemy negative is loss and positive is gain
 
         ArrayList<CardClass> testDeck = new ArrayList<CardClass>();
-        testDeck.add(new CardClass(0, "Nothing", "Defense", "Do Nothing",
+        testDeck.add(new CardClass(0, "-101 health", "Defense", "Do Nothing",
                 new CardResource(new ResourceClass(-101, 0, 0, 0, 0,0, 0), null)));
-        testDeck.add(new CardClass(0, "hundred", "Defense", "Costs a normal amount",
+        testDeck.add(new CardClass(0, "-100 health", "Defense", "Costs a normal amount",
                 new CardResource(new ResourceClass(-100, 0, 0,0, 0,0, 0), null)));
-        testDeck.add(new CardClass(0, "Normal card", "Defense", "Costs a normal amount",
+        testDeck.add(new CardClass(0, "-99 health", "Defense", "Costs a normal amount",
                 new CardResource(new ResourceClass(-99, 0, 0,0, 0,0, 0), null)));
-        testDeck.add(new CardClass(0, "Expensive Health", "Attack", "Costs a lot of Health",
+
+        testDeck.add(new CardClass(0, "-1 hCoin", "Attack", "Costs a lot of Health",
                 new CardResource(new ResourceClass(0, -1, 0, 0, 0,0, 0), null)));
-        testDeck.add(new CardClass(0, "Expensive HCoin", "Attack", "Costs a lot of HCoin",
+        testDeck.add(new CardClass(0, "-2 hCoin", "Attack", "Costs a lot of HCoin",
                 new CardResource(new ResourceClass(0, -2, 0, 0, 0,0, 0), null)));
-        testDeck.add(new CardClass(0, "Expensive BotNet", "Attack", "Costs a lot of Botnet",
+        testDeck.add(new CardClass(0, "-3 hCoin", "Attack", "Costs a lot of Botnet",
                 new CardResource(new ResourceClass(0, -3, 0, 0, 0,0, 0), null)));
-        testDeck.add(new CardClass(0, "Expensive GPU", "Attack", "Costs a lot of CPU",
+
+        testDeck.add(new CardClass(0, "-1 hCoinRate", "Attack", "Costs a lot of CPU",
                 new CardResource(new ResourceClass(0, 0, -1, 0, 0,0, 0), null))); //6
-        testDeck.add(new CardClass(0, "Generate Health", "Attack", "Makes a lot of Health",
+        testDeck.add(new CardClass(0, "-2 hCoinRate", "Attack", "Makes a lot of Health",
                 new CardResource(new ResourceClass(0, 0, -2, 0, 0,0, 0), null)));
-        testDeck.add(new CardClass(0, "Generate HCoin", "Attack", "Makes a lot of HCoin",
+        testDeck.add(new CardClass(0, "-3 hCoinRate", "Attack", "Makes a lot of HCoin",
                 new CardResource(new ResourceClass(0, 0, -3, 0, 0,0, 0), null)));
-        testDeck.add(new CardClass(0, "Generate BotNet", "Attack", "Makes a lot of BotNet",
+
+        testDeck.add(new CardClass(0, "-1 botnet", "Attack", "Makes a lot of BotNet",
                 new CardResource(new ResourceClass(0, 0, 0, -1, 0,0, 0), null)));
-        testDeck.add(new CardClass(0, "Generate CPU", "Attack", "Makes a lot of CPU",
+        testDeck.add(new CardClass(0, "-2 botnet", "Attack", "Makes a lot of CPU",
                 new CardResource(new ResourceClass(0, 0, 0, -2, 0,0, 0), null)));
-        testDeck.add(new CardClass(0, "Generate CPU", "Attack", "Makes a lot of CPU",
+        testDeck.add(new CardClass(0, "-3 botnet", "Attack", "Makes a lot of CPU",
                 new CardResource(new ResourceClass(0, 0, 0, -3, 0,0, 0), null)));
+
+        testDeck.add(new CardClass(0, "-1 botnetRate", "Attack", "Makes a lot of BotNet",
+                new CardResource(new ResourceClass(0, 0, 0, 0, -1,0, 0), null)));
+        testDeck.add(new CardClass(0, "-2 botnetRate", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, -2,0, 0), null)));
+        testDeck.add(new CardClass(0, "-3 botnetRate", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, -3,0, 0), null)));
+
+        testDeck.add(new CardClass(0, "-1 cpu", "Attack", "Makes a lot of BotNet",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,-1, 0), null)));
+        testDeck.add(new CardClass(0, "-2 cpu", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,-2, 0), null)));
+        testDeck.add(new CardClass(0, "-3 cpu", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,-3, 0), null)));
+
+        testDeck.add(new CardClass(0, "-1 cpuRate", "Attack", "Makes a lot of BotNet",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, -1), null)));
+        testDeck.add(new CardClass(0, "-2 cpuRate", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, -2), null)));
+        testDeck.add(new CardClass(0, "-3 cpuRate", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, -3), null)));
+
 
         return testDeck.toArray(new CardClass[0]);
     }
