@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minHeight="69dp"
-    tools:context="HackMaster.presentation.MainActivity">
+    tools:context="hackmaster.presentation.MainActivity">
 
     <TextView
         android:id="@+id/player2"
@@ -149,6 +149,14 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/card2"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="111dp"
+            android:layout_height="226dp"
+            app:srcCompat="@drawable/effectglowcard"
+            tools:layout_editor_absoluteX="4dp"
+            tools:layout_editor_absoluteY="0dp" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -305,14 +313,14 @@
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="timer: "
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:text="Timer"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/settingsBtn" />
+        app:layout_constraintEnd_toStartOf="@+id/pauseBtn"
+        app:layout_constraintStart_toEndOf="@+id/discardBtn"
+        app:layout_constraintTop_toBottomOf="@+id/gameTimer" />
 
     <Button
         android:id="@+id/pauseBtn"
@@ -333,6 +341,7 @@
         android:layout_height="17dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:scrollbarSize="50dip"
         android:text="Health: 100%"
         app:layout_constraintBottom_toTopOf="@+id/healthPBarP"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
@@ -414,4 +423,18 @@
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Chronometer
+        android:id="@+id/gameTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/timer"
+        app:layout_constraintEnd_toStartOf="@+id/pauseBtn"
+        app:layout_constraintStart_toEndOf="@+id/discardBtn"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 </android.support.constraint.ConstraintLayout>

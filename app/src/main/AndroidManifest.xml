@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="HackMaster.presentation.MainActivity"
-            android:screenOrientation="landscape">
+        <activity android:name="hackmaster.presentation.MainActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/DarkDesignedByVlad">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
