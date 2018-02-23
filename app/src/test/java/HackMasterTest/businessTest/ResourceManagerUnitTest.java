@@ -92,7 +92,6 @@ public class ResourceManagerUnitTest {
 
     @Test
     public void testApplySingleCardBounds() {
-        // TODO write a test that tests the extreme bounds (test player health 100, can play -100 and -99 but not -101)
         CardClass[] deck = setDeck();
         EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), deck);
 
@@ -145,7 +144,7 @@ public class ResourceManagerUnitTest {
                 new CardResource(new ResourceClass(0, -3, 0, 0, 0,0, 0), null)));
 
         testDeck.add(new CardClass(0, "-1 hCoinRate", "Attack", "Costs a lot of CPU",
-                new CardResource(new ResourceClass(0, 0, -1, 0, 0,0, 0), null))); //6
+                new CardResource(new ResourceClass(0, 0, -1, 0, 0,0, 0), null)));
         testDeck.add(new CardClass(0, "-2 hCoinRate", "Attack", "Makes a lot of Health",
                 new CardResource(new ResourceClass(0, 0, -2, 0, 0,0, 0), null)));
         testDeck.add(new CardClass(0, "-3 hCoinRate", "Attack", "Makes a lot of HCoin",

@@ -25,6 +25,8 @@ public class EnemyAI extends PlayerClass {
     }
 
     private int worstCard() {
+        // Find the best card in the hand based on resources and other cards
+
         return 0; // TODO function that finds the worst card
     }
 
