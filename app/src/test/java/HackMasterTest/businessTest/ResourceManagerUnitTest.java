@@ -4,6 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
+import HackMaster.business.DeckManager;
+import HackMaster.business.GameManager;
 import HackMaster.business.ResourceManager;
 import HackMaster.objects.CardClass;
 import HackMaster.objects.CardResource;
@@ -57,6 +61,7 @@ public class ResourceManagerUnitTest {
     @Test
     public void testApplyCard()
     {
+        // TODO this test should be in gameManager (game manager has this function)
         int [] Player1Res= new int[]{-10, -10, 0, 0, 0, 0, 0};
         int [] Player2Res= new int[]{-50, 0, 0, 0, 0, 0, 0};
 
@@ -80,7 +85,103 @@ public class ResourceManagerUnitTest {
 
         ResourceManager.applyCard(false,player1,player2, testCardEffectPlayerAndEnemy, true);
         testEveryoneResources(Player1Res,Player2Res);
+
+        ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerAndEnemy, true);
+        testEveryoneResources(Player1Res,Player2Res);
     }
+
+    @Test
+    public void testApplySingleCardBounds() {
+        CardClass[] deck = setDeck();
+        EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), deck);
+
+        assertEquals(false, GameManager.checkCard(0, ai));
+        assertEquals(true, GameManager.checkCard(1, ai));
+        assertEquals(true, GameManager.checkCard(2, ai));
+
+        assertEquals(true, GameManager.checkCard(3, ai));
+        assertEquals(true, GameManager.checkCard(4, ai));
+        assertEquals(false, GameManager.checkCard(5, ai));
+
+        assertEquals(true, GameManager.checkCard(6, ai));
+        assertEquals(true, GameManager.checkCard(7, ai));
+        assertEquals(false, GameManager.checkCard(8, ai));
+
+        assertEquals(true, GameManager.checkCard(9, ai));
+        assertEquals(true, GameManager.checkCard(10, ai));
+        assertEquals(false, GameManager.checkCard(11, ai));
+
+        assertEquals(true, GameManager.checkCard(12, ai));
+        assertEquals(true, GameManager.checkCard(13, ai));
+        assertEquals(false, GameManager.checkCard(14, ai));
+
+        assertEquals(true, GameManager.checkCard(15, ai));
+        assertEquals(true, GameManager.checkCard(16, ai));
+        assertEquals(false, GameManager.checkCard(17, ai));
+
+        assertEquals(true, GameManager.checkCard(18, ai));
+        assertEquals(true, GameManager.checkCard(19, ai));
+        assertEquals(false, GameManager.checkCard(20, ai));
+    }
+
+    private CardClass[] setDeck() {
+        // player negative is cost and positive is gain
+        // enemy negative is loss and positive is gain
+
+        ArrayList<CardClass> testDeck = new ArrayList<CardClass>();
+        testDeck.add(new CardClass(0, "-101 health", "Defense", "Do Nothing",
+                new CardResource(new ResourceClass(-101, 0, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "-100 health", "Defense", "Costs a normal amount",
+                new CardResource(new ResourceClass(-100, 0, 0,0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "-99 health", "Defense", "Costs a normal amount",
+                new CardResource(new ResourceClass(-99, 0, 0,0, 0,0, 0), null)));
+
+        testDeck.add(new CardClass(0, "-1 hCoin", "Attack", "Costs a lot of Health",
+                new CardResource(new ResourceClass(0, -1, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "-2 hCoin", "Attack", "Costs a lot of HCoin",
+                new CardResource(new ResourceClass(0, -2, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "-3 hCoin", "Attack", "Costs a lot of Botnet",
+                new CardResource(new ResourceClass(0, -3, 0, 0, 0,0, 0), null)));
+
+        testDeck.add(new CardClass(0, "-1 hCoinRate", "Attack", "Costs a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, -1, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "-2 hCoinRate", "Attack", "Makes a lot of Health",
+                new CardResource(new ResourceClass(0, 0, -2, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "-3 hCoinRate", "Attack", "Makes a lot of HCoin",
+                new CardResource(new ResourceClass(0, 0, -3, 0, 0,0, 0), null)));
+
+        testDeck.add(new CardClass(0, "-1 botnet", "Attack", "Makes a lot of BotNet",
+                new CardResource(new ResourceClass(0, 0, 0, -1, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "-2 botnet", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, -2, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "-3 botnet", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, -3, 0,0, 0), null)));
+
+        testDeck.add(new CardClass(0, "-1 botnetRate", "Attack", "Makes a lot of BotNet",
+                new CardResource(new ResourceClass(0, 0, 0, 0, -1,0, 0), null)));
+        testDeck.add(new CardClass(0, "-2 botnetRate", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, -2,0, 0), null)));
+        testDeck.add(new CardClass(0, "-3 botnetRate", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, -3,0, 0), null)));
+
+        testDeck.add(new CardClass(0, "-1 cpu", "Attack", "Makes a lot of BotNet",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,-1, 0), null)));
+        testDeck.add(new CardClass(0, "-2 cpu", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,-2, 0), null)));
+        testDeck.add(new CardClass(0, "-3 cpu", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,-3, 0), null)));
+
+        testDeck.add(new CardClass(0, "-1 cpuRate", "Attack", "Makes a lot of BotNet",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, -1), null)));
+        testDeck.add(new CardClass(0, "-2 cpuRate", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, -2), null)));
+        testDeck.add(new CardClass(0, "-3 cpuRate", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, -3), null)));
+
+
+        return testDeck.toArray(new CardClass[0]);
+    }
+
     private void testIndividualResources(int health, int hCoin, int hCoinRate, int botnet, int botnetRate , int CPURate , int terraFlops, boolean player1ToCheck ) {
     if (player1ToCheck) {
         assertEquals("The health of player1 should be " + health, health, player1.getResources().getHealth());

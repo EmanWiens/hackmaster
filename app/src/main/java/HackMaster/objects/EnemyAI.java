@@ -14,9 +14,9 @@ public class EnemyAI extends PlayerClass {
     public int playNextCard() {
         nextCard = -1;
 
-        ArrayList<CardClass> playable = playableCards();
+        CardClass[] playable = playableCards();
 
-        if (playable.isEmpty())
+        if (playable.length == 0)
             GameManager.discardCard(worstCard(), GameManager.getPlayer2());
         else
             nextCard = bestCard(playable);
@@ -25,21 +25,23 @@ public class EnemyAI extends PlayerClass {
     }
 
     private int worstCard() {
+        // Find the best card in the hand based on resources and other cards
+
         return 0; // TODO function that finds the worst card
     }
 
-    private int bestCard(ArrayList<CardClass> playable) {
+    private int bestCard(CardClass[] playable) {
         return 0; // TODO choose the best card
     }
 
-    public ArrayList<CardClass> playableCards() {
+    public CardClass[] playableCards() {
         ArrayList<CardClass> playable = new ArrayList<CardClass>();
 
-        for (int i = 0; i < GameManager.sizeOfHand; i++) {
+        for (int i = 0; i < cardsSize(); i++) {
             if (GameManager.checkCard(i, this))
-                playable.add(GameManager.getPlayer1().getCard(i));
+                playable.add(getCard(i));
         }
 
-        return playable;
+        return playable.toArray(new CardClass[0]);
     }
 }
