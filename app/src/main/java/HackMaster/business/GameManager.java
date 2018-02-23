@@ -127,13 +127,13 @@ public class GameManager {
         ResourceClass cardResource = card.getCardResource().getPlayerR();
         ResourceClass playerResource = player.getResources();
 
-        if(playerResource.getHealth() + cardResource.getHealth() < 0)
+        if(playerResource.getHealth() + cardResource.getHealth() <= 0)
             canPlay = false;
-        if(playerResource.gethCoin() + cardResource.gethCoin() < 0)
+        if(playerResource.gethCoin() + cardResource.gethCoin() <= 0)
             canPlay = false;
-        if(playerResource.getBotnet() + cardResource.getBotnet() < 0)
+        if(playerResource.getBotnet() + cardResource.getBotnet() <= 0)
             canPlay = false;
-        if(playerResource.getCpu() + cardResource.getCpu() < 0)
+        if(playerResource.getCpu() + cardResource.getCpu() <= 0)
             canPlay = false;
 
         return canPlay;

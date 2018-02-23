@@ -45,6 +45,7 @@ public class EnemyAIUnitTest {
 
     @Test
     public void testNextCard () {
+        // TODO fix tests for the new deck
         card = player.playNextCard();
         assertEquals("The int card should be 1", 1,  card);
         card = player.playNextCard();
@@ -61,37 +62,58 @@ public class EnemyAIUnitTest {
         // player negative is cost and positive is gain
         // enemy negative is loss and positive is gain
 
-        CardClass[] testDeck = new CardClass[10];
-        testDeck[0] = new CardClass(0, "Nothing", "Defense", "Do Nothing",
-                new CardResource(new ResourceClass(-101, 0, 0, 0, 0,0, 0), null));
-        testDeck[1] = new CardClass(0, "Normal card", "Defense", "Costs a normal amount",
-                new CardResource(new ResourceClass(-100, 0, 0,0, 0,0, 0), null));
-        testDeck[2] = new CardClass(0, "Expensive Health", "Attack", "Costs a lot of Health",
-                new CardResource(new ResourceClass(0, 2, 0, 0, 0,0, 0), null));
-        testDeck[3] = new CardClass(0, "Expensive HCoin", "Attack", "Costs a lot of HCoin",
-                new CardResource(new ResourceClass(0, 1, 0, 0, 0,0, 0), null));
-        testDeck[4] = new CardClass(0, "Expensive BotNet", "Attack", "Costs a lot of Botnet",
-                new CardResource(new ResourceClass(0, 3, 0, 0, 0,0, 0), null));
-        testDeck[5] = new CardClass(0, "Expensive GPU", "Attack", "Costs a lot of CPU",
-                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, 0), null));
-        testDeck[6] = new CardClass(0, "Generate Health", "Attack", "Makes a lot of Health",
-                new CardResource(new ResourceClass(2000, 0, 0, 0, 0,0, 0), null));
-        testDeck[7] = new CardClass(0, "Generate HCoin", "Attack", "Makes a lot of HCoin",
-                new CardResource(new ResourceClass(0, 2000, 0, 0, 0,0, 0), null));
-        testDeck[8] = new CardClass(0, "Generate BotNet", "Attack", "Makes a lot of BotNet",
-                new CardResource(new ResourceClass(0, 0, 0, 2000, 0,0, 0), null));
-        testDeck[9] = new CardClass(0, "Generate CPU", "Attack", "Makes a lot of CPU",
-                new CardResource(new ResourceClass(0, 0, 0, 0, 0,2000, 0), null));
+        ArrayList<CardClass> testDeck = new ArrayList<CardClass>();
+        testDeck.add(new CardClass(0, "Nothing", "Defense", "Do Nothing",
+                new CardResource(new ResourceClass(-101, 0, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "hundred", "Defense", "Costs a normal amount",
+                new CardResource(new ResourceClass(-100, 0, 0,0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Normal card", "Defense", "Costs a normal amount",
+                new CardResource(new ResourceClass(-99, 0, 0,0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Expensive Health", "Attack", "Costs a lot of Health",
+                new CardResource(new ResourceClass(0, -1, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Expensive HCoin", "Attack", "Costs a lot of HCoin",
+                new CardResource(new ResourceClass(0, -2, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Expensive BotNet", "Attack", "Costs a lot of Botnet",
+                new CardResource(new ResourceClass(0, -3, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Expensive GPU", "Attack", "Costs a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, -1, 0, 0,0, 0), null))); //6
+        testDeck.add(new CardClass(0, "Generate Health", "Attack", "Makes a lot of Health",
+                new CardResource(new ResourceClass(0, 0, -2, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Generate HCoin", "Attack", "Makes a lot of HCoin",
+                new CardResource(new ResourceClass(0, 0, -3, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Generate BotNet", "Attack", "Makes a lot of BotNet",
+                new CardResource(new ResourceClass(0, 0, 0, -1, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Generate CPU", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, -2, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Generate CPU", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, -3, 0,0, 0), null)));
 
-        GameManager.setDeck(testDeck);
+        deckM.setDeck(testDeck.toArray(new CardClass[0]));
     }
 
     @Test
     public void testPlayableCards() {
         EnemyAI ai = (EnemyAI)GameManager.getPlayer2();
+        DeckManager.resetIndex();
+        resetDeck();
 
         ai.setResources(new ResourceClass(100,2,2,2,2,2,2));
-        ArrayList<CardClass> playable = ai.playableCards();
+        for(int i = 0; i < GameManager.sizeOfHand; i++)
+            ai.setCard(i, deckM.getCardAt(i));
+
+        CardClass[] playable = ai.playableCards(ai);
+        assertEquals("Nothing", deckM.getCardAt(0).getName());
+        assertEquals("hundred", deckM.getCardAt(1).getName());
+
+        assertEquals("Nothing", ai.getCard(0).getName());
+        assertEquals("hundred", ai.getCard(1).getName());
+
+        assertEquals("hundred", playable[0].getName());
+        assertEquals("Normal card", playable[1].getName());
+        assertEquals("Expensive Health", playable[2].getName());
+        assertEquals("Expensive HCoin", playable[3].getName());
+        assertEquals("Expensive BotNet", playable[4].getName());
+        assertEquals("Expensive GPU", playable[4].getName());
     }
 
     @After

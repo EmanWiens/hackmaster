@@ -4,6 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
+import HackMaster.business.DeckManager;
+import HackMaster.business.GameManager;
 import HackMaster.business.ResourceManager;
 import HackMaster.objects.CardClass;
 import HackMaster.objects.CardResource;
@@ -57,6 +61,7 @@ public class ResourceManagerUnitTest {
     @Test
     public void testApplyCard()
     {
+        // TODO this test should be in gameManager (game manager has this function)
         int [] Player1Res= new int[]{-10, -10, 0, 0, 0, 0, 0};
         int [] Player2Res= new int[]{-50, 0, 0, 0, 0, 0, 0};
 
@@ -80,7 +85,55 @@ public class ResourceManagerUnitTest {
 
         ResourceManager.applyCard(false,player1,player2, testCardEffectPlayerAndEnemy, true);
         testEveryoneResources(Player1Res,Player2Res);
+
+        ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerAndEnemy, true);
+        testEveryoneResources(Player1Res,Player2Res);
     }
+
+    @Test
+    public void testApplyCardBounds() {
+        // TODO write a test that tests the extreme bounds (test player health 100, can play -100 and -99 but not -101)
+        CardClass[] deck = setDeck();
+        EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), deck);
+
+        ai.setResources(new ResourceClass(100,2,2,2,2,2,2));
+        for(int i = 0; i < GameManager.sizeOfHand; i++)
+            ai.setCard(i, deck[i]);
+    }
+
+    private CardClass[] setDeck() {
+        // player negative is cost and positive is gain
+        // enemy negative is loss and positive is gain
+
+        ArrayList<CardClass> testDeck = new ArrayList<CardClass>();
+        testDeck.add(new CardClass(0, "Nothing", "Defense", "Do Nothing",
+                new CardResource(new ResourceClass(-101, 0, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "hundred", "Defense", "Costs a normal amount",
+                new CardResource(new ResourceClass(-100, 0, 0,0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Normal card", "Defense", "Costs a normal amount",
+                new CardResource(new ResourceClass(-99, 0, 0,0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Expensive Health", "Attack", "Costs a lot of Health",
+                new CardResource(new ResourceClass(0, -1, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Expensive HCoin", "Attack", "Costs a lot of HCoin",
+                new CardResource(new ResourceClass(0, -2, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Expensive BotNet", "Attack", "Costs a lot of Botnet",
+                new CardResource(new ResourceClass(0, -3, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Expensive GPU", "Attack", "Costs a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, -1, 0, 0,0, 0), null))); //6
+        testDeck.add(new CardClass(0, "Generate Health", "Attack", "Makes a lot of Health",
+                new CardResource(new ResourceClass(0, 0, -2, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Generate HCoin", "Attack", "Makes a lot of HCoin",
+                new CardResource(new ResourceClass(0, 0, -3, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Generate BotNet", "Attack", "Makes a lot of BotNet",
+                new CardResource(new ResourceClass(0, 0, 0, -1, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Generate CPU", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, -2, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Generate CPU", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, -3, 0,0, 0), null)));
+
+        return testDeck.toArray(new CardClass[0]);
+    }
+
     private void testIndividualResources(int health, int hCoin, int hCoinRate, int botnet, int botnetRate , int CPURate , int terraFlops, boolean player1ToCheck ) {
     if (player1ToCheck) {
         assertEquals("The health of player1 should be " + health, health, player1.getResources().getHealth());
