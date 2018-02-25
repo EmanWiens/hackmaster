@@ -118,7 +118,6 @@ public class EnemyAIUnitTest {
         assertEquals("-101 health", ai.getCard(0).getName());
         assertEquals("-100 health", ai.getCard(1).getName());
 
-
         assertEquals(14, playable.length);
         assertEquals("-100 health", playable[0].getName());
         assertEquals("-99 health", playable[1].getName());
@@ -140,6 +139,20 @@ public class EnemyAIUnitTest {
 
         assertEquals("-1 cpuRate", playable[12].getName());
         assertEquals("-2 cpuRate", playable[13].getName());
+    }
+
+    @Test
+    public void testDiscard() {
+        resetDeck();
+        deckM.resetIndex();
+        EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(98,0,0,0,0,0,0), DeckManager.dealCards(5));
+
+        assertEquals(-1, ai.playNextCard());
+    }
+
+    @Test
+    public void testGetRidOfWorstCard() {
+
     }
 
     @After

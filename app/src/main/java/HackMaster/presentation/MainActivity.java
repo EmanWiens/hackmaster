@@ -66,6 +66,10 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         }
     }
 
+    public void localMultiplayerMessage(View v) {
+        // TODO write the code that sets up a multiplayer game
+    }
+
     public void drawPlayerResource(PlayerClass player) {
         if (player.getId() == 0) {
             fillText((TextView)findViewById(R.id.minerP), player.minerToString());

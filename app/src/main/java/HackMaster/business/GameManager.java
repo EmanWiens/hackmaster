@@ -1,6 +1,7 @@
 package HackMaster.business;
 
 import HackMaster.objects.CardClass;
+import HackMaster.objects.CardResource;
 import HackMaster.objects.EnemyAI;
 import HackMaster.presentation.DrawToScreen;
 import HackMaster.objects.PlayerClass;
@@ -19,12 +20,14 @@ public class GameManager {
     private static boolean paused = false;
     private static boolean inGame = false;
     private static boolean singlePlayer = false;
+    private static CardClass playedCard = null;
 
     //Created boolean test since it fails at draw(Can't access presentation layer in tests)
     private static boolean test = true;
 
     public static final int sizeOfHand = 6;
     public static final int maxCards = 50;
+    public static final int maxHealth = 100;
 
     private static DrawToScreen mainActivity;
 
@@ -61,6 +64,7 @@ public class GameManager {
             if(checkCard(playerCard, player1)){
                 if (!test)
                     mainActivity.drawPlayedCard(player1.getCard(playerCard));
+                playedCard = player1.getCard(playerCard);
                 playerTurn(playerCard, player1);
                 resManager.applyTurnRate(player2, test);
                 player1Turn = false;
@@ -73,7 +77,6 @@ public class GameManager {
                     if (enemyCard != -1)
                         playerTurn(enemyCard, player2);
                     resManager.applyTurnRate(player1, test);
-
                     player1Turn = true;
                 }
             }
@@ -153,9 +156,13 @@ public class GameManager {
             return 1;
     }
 
+    // TODO make this the function that everyone calls to update the screen
     public static void drawCurrentGame() {
         mainActivity.drawPlayerResource(player1);
         mainActivity.drawPlayerResource(player2);
+
+        if (playedCard != null)
+            mainActivity.drawPlayedCard(playedCard);
 
         if (player1Turn)
             deckM.paintCard(player1.getCards());
@@ -163,6 +170,7 @@ public class GameManager {
             deckM.paintCard(player2.getCards());
     }
 
+    public static CardClass getPlayedCard() { return playedCard; }
     public static void setInGame(boolean value) { inGame = value; }
     public static void pauseGame() { paused = true; }
     public static void unpauseGame() { paused = false; }
