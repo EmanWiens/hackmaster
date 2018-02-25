@@ -170,6 +170,17 @@ public class GameManager {
             deckM.paintCard(player2.getCards());
     }
 
+    public static int getPlayer1Health() {
+        if (inGame)
+            return player1.getHealth();
+        return -1;
+    }
+    public static int getPlayer2Health() {
+        if (inGame)
+            return player2.getHealth();
+        return -1;
+    }
+
     public static CardClass getPlayedCard() { return playedCard; }
     public static void setInGame(boolean value) { inGame = value; }
     public static void pauseGame() { paused = true; }
