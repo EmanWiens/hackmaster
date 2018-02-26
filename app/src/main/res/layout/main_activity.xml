@@ -3,34 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_activity"
+    android:background="@drawable/backgroundhacker"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="hackmaster.presentation.MainActivity">
 
     <Button
         android:id="@+id/playBtn"
-        android:layout_width="201dp"
-        android:layout_height="79dp"
+        android:layout_width="240dp"
+        android:layout_height="84dp"
         android:layout_marginBottom="88dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:background="@android:color/holo_green_light"
         android:onClick="playMessage"
         android:text="Single Player"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/stats"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/stats"
-        android:layout_width="153dp"
-        android:layout_height="64dp"
+        android:layout_width="207dp"
+        android:layout_height="80dp"
         android:layout_marginBottom="156dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:background="@android:color/holo_orange_dark"
         android:onClick="statsPress"
         android:text="Stats"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -43,8 +46,8 @@
         android:background="@drawable/volumeunmute"
         android:onClick="muteSoundBackground"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="444dp" />
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="458dp" />
 
     <TextView
         android:id="@+id/textView2"

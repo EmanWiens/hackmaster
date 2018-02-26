@@ -49,7 +49,6 @@
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:onClick="cardPress"
@@ -75,7 +74,7 @@
             android:text="card0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card1"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -150,13 +149,72 @@
             app:layout_constraintStart_toEndOf="@+id/card2"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
+        <ImageView
+            android:id="@+id/imageBorderCard0"
+            android:layout_width="107dp"
+            android:layout_height="224dp"
+            android:layout_marginStart="-2dp"
+            android:adjustViewBounds="false"
+            android:padding="7dp"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toStartOf="@+id/card0"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageBorderCard1"
+            android:layout_width="116dp"
+            android:layout_height="224dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginStart="1dp"
+            android:padding="7dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/card1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/imageBorderCard2"
+            android:layout_width="120dp"
+            android:layout_height="224dp"
+            android:layout_marginStart="2dp"
+            android:padding="7dp"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toStartOf="@+id/card2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageBorderCard3"
+            android:layout_width="118dp"
+            android:layout_height="224dp"
+            android:padding="7dp"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toStartOf="@+id/card3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageBorderCard4"
+            android:layout_width="118dp"
+            android:layout_height="224dp"
+            android:layout_marginStart="1dp"
+            android:padding="7dp"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toStartOf="@+id/card4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageBorderCard5"
             android:layout_width="111dp"
-            android:layout_height="226dp"
-            app:srcCompat="@drawable/effectglowcard"
-            tools:layout_editor_absoluteX="4dp"
-            tools:layout_editor_absoluteY="0dp" />
+            android:layout_height="223dp"
+            android:layout_marginStart="1dp"
+            android:padding="7dp"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toStartOf="@+id/card5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout

@@ -9,13 +9,18 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.net.Uri;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.example.owner.hackmaster20.R;
 
@@ -33,8 +38,8 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     private boolean resumeMusic;
     private MediaPlayer mediaPlayer;
     private SoundPool soundPool;
-    private int soundIdBackground;
-    private int soundIdBackground2;
+    private int soundIdCardSelected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,19 +80,16 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             }
         });
 
-        // Load the sound background.mp3 into SoundPool
-       // this.soundIdBackground= this.soundPool.load(this, R.raw.javarapsongv2,1);
-        this.soundIdBackground2= this.soundPool.load(this, R.raw.javarapsong,2);
-     //    Load the sound explosion.wav into SoundPool
-//    this.soundIdExplosion = this.soundPool.load(this.getContext(), R.raw.explosion,1);
-
+        // Load the sound SelectedCard.mp3 into SoundPool
+        this.soundIdCardSelected = this.soundPool.load(this, R.raw.select,1);
     }
 
-    public void playSoundBackground()  {
+    public void playCardSelected()  {
         if(this.soundPoolLoaded) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.javarapsong);
-            mediaPlayer.start(); // no need to call prepare(); create() does that for you
-
+            float leftVolumn = 0.8f;
+            float rightVolumn =  0.8f;
+            // Play sound CardSelected.wav
+            int streamId = this.soundPool.play(this.soundIdCardSelected,leftVolumn, rightVolumn, 1, 0, 1f);
         }
     }
     public void backGroundMusicStart() {
@@ -208,9 +210,12 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public void DrawCard(CardClass card, int slot) {
         TextView textView = null;
+
         String cardText = (slot+1) + ". " +card.toString();
-        if (slot == 0)
+        if (slot == 0) {
             textView = findViewById(R.id.card0);
+
+        }
         else if (slot == 1)
             textView = findViewById(R.id.card1);
         else if (slot == 2)
@@ -231,10 +236,27 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void cardPress(View v) {
+        ImageView[]  imageCardBorder = new ImageView[6] ;
+        imageCardBorder[0]= findViewById(R.id.imageBorderCard0);
+        imageCardBorder[1]= findViewById(R.id.imageBorderCard1);
+        imageCardBorder[2]= findViewById(R.id.imageBorderCard2);
+        imageCardBorder[3] = findViewById(R.id.imageBorderCard3);
+        imageCardBorder[4] = findViewById(R.id.imageBorderCard4);
+        imageCardBorder[5] = findViewById(R.id.imageBorderCard5);
         String name[] = ((TextView) v).getText().toString().split("\n");
-
+        playCardSelected();
+        int chosenCard= Character.getNumericValue(name[0].charAt(0)) - 1;
+            for (int i=0; i<=5;i++)
+            {
+                if (i==chosenCard) {
+                    imageCardBorder[i].setBackgroundResource(R.drawable.image_border);
+                }
+                else{
+                    imageCardBorder[i].setBackgroundResource(android.R.color.transparent);
+                }
+            }
         if (gameManager.getPlayer1Turn()) {
-            gameManager.playCardEvent(Character.getNumericValue(name[0].charAt(0)) - 1);
+            gameManager.playCardEvent(chosenCard);
         }
     }
 
