@@ -1,16 +1,16 @@
-package hackmastertest;
+package HackMasterTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import hackmastertest.businessTest.DeckManagerUnitTest;
-import hackmastertest.businessTest.GameManagerUnitTest;
-import hackmastertest.businessTest.ResourceManagerUnitTest;
-import hackmastertest.objectsTest.CardClassUnitTest;
-import hackmastertest.objectsTest.EnemyAIUnitTest;
-import hackmastertest.objectsTest.PlayerClassUnitTest;
-import hackmastertest.objectsTest.ResourceClassUnitTest;
-import hackmastertest.persistenceTest.PlayerStatsSavesTest;
+import HackMasterTest.businessTest.DeckManagerUnitTest;
+import HackMasterTest.businessTest.GameManagerUnitTest;
+import HackMasterTest.businessTest.ResourceManagerUnitTest;
+import HackMasterTest.objectsTest.CardClassUnitTest;
+import HackMasterTest.objectsTest.EnemyAIUnitTest;
+import HackMasterTest.objectsTest.PlayerClassUnitTest;
+import HackMasterTest.objectsTest.ResourceClassUnitTest;
+import HackMasterTest.persistenceTest.PlayerStatsSavesTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

@@ -1,148 +1,32 @@
-package hackmaster.presentation;
+package HackMaster.presentation;
 
 
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
-<<<<<<< HEAD:app/src/main/java/HackMaster/presentation/MainActivity.java
 import android.os.Handler;
-=======
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
-import android.net.Uri;
-import android.os.Build;
->>>>>>> working-code:app/src/main/java/hackmaster/presentation/MainActivity.java
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.example.owner.hackmaster20.R;
 
-import java.util.Random;
-
-import hackmaster.business.GameManager;
-import hackmaster.objects.CardClass;
-import hackmaster.objects.PlayerClass;
+import HackMaster.business.GameManager;
+import HackMaster.objects.CardClass;
+import HackMaster.objects.PlayerClass;
 
 public class MainActivity extends AppCompatActivity implements DrawToScreen {
     // give a "copy" of the interface to the gameManager
     private GameManager gameManager;
-    private static final int MAX_STREAMS=100;
-    private boolean soundPoolLoaded;
-    private boolean resumeMusic;
-    private MediaPlayer mediaPlayer;
-    private SoundPool soundPool;
-    private int soundIdCardSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         gameManager = new GameManager(this);
         setContentView(R.layout.main_activity);
-        backGroundMusicStart();
-        this.initSoundPool();
-    }
-
-    //Credit: https://o7planning.org/en/10521/android-2d-game-tutorial-for-beginners
-    private void initSoundPool()  {
-        // With Android API >= 21.
-        if (Build.VERSION.SDK_INT >= 21 ) {
-
-            AudioAttributes audioAttrib = new AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_GAME)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .build();
-
-            SoundPool.Builder builder= new SoundPool.Builder();
-            builder.setAudioAttributes(audioAttrib).setMaxStreams(MAX_STREAMS);
-
-            this.soundPool = builder.build();
-        }
-        // With Android API < 21
-        else {
-            // SoundPool(int maxStreams, int streamType, int srcQuality)
-          this.soundPool = new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0);
-        }
-
-        // When SoundPool load complete.
-        this.soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
-            @Override
-            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                soundPoolLoaded = true;
-                // Playing background sound.
-           //     playSoundBackground();
-            }
-        });
-
-        // Load the sound SelectedCard.mp3 into SoundPool
-        this.soundIdCardSelected = this.soundPool.load(this, R.raw.select,1);
-    }
-
-    public void playCardSelected()  {
-        if(this.soundPoolLoaded) {
-            float leftVolumn = 0.8f;
-            float rightVolumn =  0.8f;
-            // Play sound CardSelected.wav
-            int streamId = this.soundPool.play(this.soundIdCardSelected,leftVolumn, rightVolumn, 1, 0, 1f);
-        }
-    }
-    public void backGroundMusicStart() {
-        resumeMusic=true;
-        Random rand = new Random();
-        int  n = rand.nextInt(6) + 1;
-        if (n==1) {
-            //https://www.youtube.com/watch?v=b-Cr0EWwaTk
-            mediaPlayer = MediaPlayer.create(this, R.raw.javarapsong);
-        }
-        else if (n==2)
-        {
-            mediaPlayer = MediaPlayer.create(this, R.raw.background);
-        }
-        else if (n==3)
-        {
-            //credit: https://www.youtube.com/watch?v=FoUWHfh733Y&index=21&list=RDiN1uaITfA1c
-            mediaPlayer = MediaPlayer.create(this, R.raw.dualcore);
-        }
-        else if (n==4)
-        {
-            //credit: https://www.youtube.com/watch?v=iN1uaITfA1c&index=1&list=RDiN1uaITfA1c
-            mediaPlayer = MediaPlayer.create(this, R.raw.hackersong);
-        }
-        else if (n==5)
-        {
-            //credit: https://www.youtube.com/watch?v=rLsJCCNXUto&list=RDiN1uaITfA1c&index=3
-            mediaPlayer = MediaPlayer.create(this, R.raw.welcometoourworld);
-        }
-        else if (n==6)
-        {
-            //credit: https://www.youtube.com/watch?v=Gc74aRe7OLM
-            mediaPlayer = MediaPlayer.create(this, R.raw.piratemusic);
-        }
-        mediaPlayer.start(); // no need to call prepare(); create() does that for you
-        mediaPlayer.setLooping(true);
-    }
-    public void muteSoundBackground(View v){
-        ImageButton muteBtn = findViewById(R.id.muteBtn);
-        if (resumeMusic) {
-            muteBtn.setBackgroundResource(R.drawable.volumemute);
-            mediaPlayer.pause();
-            resumeMusic=false;
-        }
-        else {
-            muteBtn.setBackgroundResource(R.drawable.volumeunmute);
-            mediaPlayer.start();
-            resumeMusic = true;
-        }
     }
 
     @Override
@@ -217,17 +101,10 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void DrawCard(CardClass card, int slot) {
-<<<<<<< HEAD:app/src/main/java/HackMaster/presentation/MainActivity.java
         TextView textView;
-=======
-        TextView textView = null;
-
->>>>>>> working-code:app/src/main/java/hackmaster/presentation/MainActivity.java
         String cardText = (slot+1) + ". " +card.toString();
-        if (slot == 0) {
+        if (slot == 0)
             textView = findViewById(R.id.card0);
-
-        }
         else if (slot == 1)
             textView = findViewById(R.id.card1);
         else if (slot == 2)
@@ -274,33 +151,10 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void cardPress(View v) {
-        ImageView[]  imageCardBorder = new ImageView[6] ;
-        imageCardBorder[0]= findViewById(R.id.imageBorderCard0);
-        imageCardBorder[1]= findViewById(R.id.imageBorderCard1);
-        imageCardBorder[2]= findViewById(R.id.imageBorderCard2);
-        imageCardBorder[3] = findViewById(R.id.imageBorderCard3);
-        imageCardBorder[4] = findViewById(R.id.imageBorderCard4);
-        imageCardBorder[5] = findViewById(R.id.imageBorderCard5);
         String name[] = ((TextView) v).getText().toString().split("\n");
-<<<<<<< HEAD:app/src/main/java/HackMaster/presentation/MainActivity.java
 
         if (gameManager.getPlayer1Turn() && !GameManager.getDelayAi()) {
             gameManager.playCardEvent(Character.getNumericValue(name[0].charAt(0)) - 1);
-=======
-        playCardSelected();
-        int chosenCard= Character.getNumericValue(name[0].charAt(0)) - 1;
-            for (int i=0; i<=5;i++)
-            {
-                if (i==chosenCard) {
-                    imageCardBorder[i].setBackgroundResource(R.drawable.image_border);
-                }
-                else{
-                    imageCardBorder[i].setBackgroundResource(android.R.color.transparent);
-                }
-            }
-        if (gameManager.getPlayer1Turn()) {
-            gameManager.playCardEvent(chosenCard);
->>>>>>> working-code:app/src/main/java/hackmaster/presentation/MainActivity.java
         }
     }
 

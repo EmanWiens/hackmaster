@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minHeight="69dp"
-    tools:context="hackmaster.presentation.MainActivity">
+    tools:context="HackMaster.presentation.MainActivity">
 
     <TextView
         android:id="@+id/player2"
@@ -49,6 +49,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
             android:onClick="cardPress"
@@ -74,7 +75,7 @@
             android:text="card0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card1"
-            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -148,73 +149,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/card2"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageBorderCard0"
-            android:layout_width="107dp"
-            android:layout_height="224dp"
-            android:layout_marginStart="-2dp"
-            android:adjustViewBounds="false"
-            android:padding="7dp"
-            android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card0"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageBorderCard1"
-            android:layout_width="116dp"
-            android:layout_height="224dp"
-            android:layout_marginBottom="3dp"
-            android:layout_marginStart="1dp"
-            android:padding="7dp"
-            android:scaleType="centerInside"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/card1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <ImageView
-            android:id="@+id/imageBorderCard2"
-            android:layout_width="120dp"
-            android:layout_height="224dp"
-            android:layout_marginStart="2dp"
-            android:padding="7dp"
-            android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageBorderCard3"
-            android:layout_width="118dp"
-            android:layout_height="224dp"
-            android:padding="7dp"
-            android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card3"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageBorderCard4"
-            android:layout_width="118dp"
-            android:layout_height="224dp"
-            android:layout_marginStart="1dp"
-            android:padding="7dp"
-            android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card4"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageBorderCard5"
-            android:layout_width="111dp"
-            android:layout_height="223dp"
-            android:layout_marginStart="1dp"
-            android:padding="7dp"
-            android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card5"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-
-
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -371,14 +305,14 @@
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="11dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
-        android:text="Timer"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="timer: "
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/pauseBtn"
-        app:layout_constraintStart_toEndOf="@+id/discardBtn"
-        app:layout_constraintTop_toBottomOf="@+id/gameTimer" />
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/settingsBtn" />
 
     <Button
         android:id="@+id/pauseBtn"
@@ -399,7 +333,6 @@
         android:layout_height="17dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:scrollbarSize="50dip"
         android:text="Health: 100%"
         app:layout_constraintBottom_toTopOf="@+id/healthPBarP"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
@@ -482,18 +415,4 @@
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
         app:layout_constraintVertical_bias="0.0" />
-
-    <Chronometer
-        android:id="@+id/gameTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="21dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/timer"
-        app:layout_constraintEnd_toStartOf="@+id/pauseBtn"
-        app:layout_constraintStart_toEndOf="@+id/discardBtn"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 </android.support.constraint.ConstraintLayout>
