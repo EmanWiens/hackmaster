@@ -40,10 +40,9 @@ public class GameManager {
         resManager = new ResourceManager(mainAct);
     }
 
-    public static void setUpSingleGame(boolean testing) {
+    public static void setUpSingleGame() {
         singlePlayer = true;
         inGame = true;
-        test = testing;
 
         deckM.initDeck(maxCards);
         player1 = new PlayerClass(0,
@@ -153,18 +152,20 @@ public class GameManager {
 
     // TODO make this the function that everyone calls to update the screen
     public static void drawCurrentGame() {
-        mainActivity.drawPlayerResource(player1);
-        mainActivity.drawPlayerResource(player2);
+        if (!test) {
+            mainActivity.drawPlayerResource(player1);
+            mainActivity.drawPlayerResource(player2);
 
-        if (playedCard != null)
-            mainActivity.drawPlayedCard(playedCard, false);
-        if (playedCardAi != null)
-            mainActivity.drawPlayedCard(playedCardAi, true);
+            if (playedCard != null)
+                mainActivity.drawPlayedCard(playedCard, false);
+            if (playedCardAi != null)
+                mainActivity.drawPlayedCard(playedCardAi, true);
 
-        if (player1Turn)
-            deckM.paintCard(player1.getCards());
-        else
-            deckM.paintCard(player2.getCards());
+            if (player1Turn)
+                deckM.paintCard(player1.getCards());
+            else
+                deckM.paintCard(player2.getCards());
+        }
     }
 
     public static int getPlayer1Health() {

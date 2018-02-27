@@ -21,7 +21,7 @@ import static junit.framework.Assert.fail;
 public class GameManagerUnitTest {
     @Before
     public void setUp(){
-        GameManager.setUpSingleGame(true);
+        GameManager.setUpSingleGame();
     }
 
     private void resetDeck() {
