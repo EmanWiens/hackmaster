@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             fillText((TextView)findViewById(R.id.cSpeedP), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetP), player.botnetToString());
 
-            fillText((TextView)findViewById(R.id.healthP), "Health: " + player.getHealth() + "%");
+            fillText((TextView)findViewById(R.id.healthP), player.toStringHealth());
             ProgressBar health = findViewById(R.id.healthPBarP);
             health.setProgress(player.getHealth());
         }
