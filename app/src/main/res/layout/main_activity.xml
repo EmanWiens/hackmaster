@@ -3,12 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_activity"
+    android:background="@drawable/backgroundhacker"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="HackMaster.presentation.MainActivity">
+    tools:context="hackmaster.presentation.MainActivity">
 
     <Button
         android:id="@+id/playBtn"
+<<<<<<< HEAD
         android:layout_width="126dp"
         android:layout_height="46dp"
         android:layout_marginBottom="8dp"
@@ -18,34 +20,68 @@
         android:onClick="playMessage"
         android:text="Single Player"
         app:layout_constraintBottom_toTopOf="@+id/multiplayerBtn"
+=======
+        android:layout_width="240dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="88dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/holo_green_light"
+        android:onClick="playMessage"
+        android:text="Single Player"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/stats"
+>>>>>>> working-code
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/stats"
+<<<<<<< HEAD
         android:layout_width="126dp"
         android:layout_height="46dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+=======
+        android:layout_width="207dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="156dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/holo_orange_dark"
+>>>>>>> working-code
         android:onClick="statsPress"
         android:text="Stats"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/multiplayerBtn" />
 
+    <ImageButton
+        android:id="@+id/muteBtn"
+        android:layout_width="45dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/volumeunmute"
+        android:onClick="muteSoundBackground"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="458dp" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
-        android:layout_height="19dp"
+        android:layout_height="75dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Hack Master"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/playBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
