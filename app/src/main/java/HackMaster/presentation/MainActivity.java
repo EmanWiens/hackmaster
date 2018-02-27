@@ -5,6 +5,7 @@ package HackMaster.presentation;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             fillText((TextView)findViewById(R.id.cSpeedE), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetE), player.botnetToString());
 
-            fillText((TextView)findViewById(R.id.healthE), "Health: " + player.getHealth() + "%");
+            fillText((TextView)findViewById(R.id.healthE), player.toStringHealth());
             ProgressBar health = findViewById(R.id.healthPBarE);
             health.setProgress(player.getHealth());
         }
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void DrawCard(CardClass card, int slot) {
-        TextView textView = null;
+        TextView textView;
         String cardText = (slot+1) + ". " +card.toString();
         if (slot == 0)
             textView = findViewById(R.id.card0);
@@ -118,6 +119,32 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         textView.setText(cardText);
     }
 
+    synchronized public void drawPlayedCard(CardClass card, boolean delay) {
+        // DELAY
+        Handler handler = new Handler();
+        if (delay) {
+            handler.postDelayed(delayDraw(), 2000); // DELAY
+            GameManager.setDelayAi(true);
+        }
+        else {
+            GameManager.setDelayAi(false);
+            TextView playedCard = findViewById(R.id.playedCard1);
+            playedCard.setText(card.toString());
+        }
+    }
+
+    // DELAY
+    public Runnable delayDraw() {
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                drawPlayedCard(GameManager.getPlayedCardAi(), false);
+                GameManager.setPlayer1Turn(true);
+            }
+        };
+        return r;
+    }
+
     public void playMessage(View v) {
         setContentView(R.layout.battle_view);
         gameManager.setUpSingleGame(false);
@@ -126,20 +153,9 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     public void cardPress(View v) {
         String name[] = ((TextView) v).getText().toString().split("\n");
 
-        if (gameManager.getPlayer1Turn()) {
+        if (gameManager.getPlayer1Turn() && !GameManager.getDelayAi()) {
             gameManager.playCardEvent(Character.getNumericValue(name[0].charAt(0)) - 1);
         }
-    }
-
-    synchronized public void drawPlayedCard(CardClass card) {
-        // if (gameManager.getPlayer1Turn()) {
-            TextView playedCard = findViewById(R.id.playedCard1);
-            playedCard.setText(card.toString());
-        /*}
-        else {
-            TextView playedCard = findViewById(R.id.playedCard1);
-            playedCard.setText(card.toString());
-        }*/
     }
 
     public void DiscardMessage(View v) {

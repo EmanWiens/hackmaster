@@ -70,5 +70,6 @@ public class PlayerClass {
     public int cardsSize() { return hand.length; }
     public CardClass getCard(int i) { return hand[i]; }
     public String getName() { return name; }
+    public String toStringHealth() { return "Health: " + resources.getHealth() + "%";}
     public int getHealth() { return resources.getHealth(); }
 }
