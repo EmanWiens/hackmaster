@@ -136,6 +136,13 @@ public class GameManager {
         if(playerResource.getCpu() + cardResource.getCpu() < 0)
             canPlay = false;
 
+        if(playerResource.gethCoin() + cardResource.gethCoinRate() < 0)
+            canPlay = false;
+        if(playerResource.getBotnet() + cardResource.getBotnetRate() < 0)
+            canPlay = false;
+        if(playerResource.getCpu() + cardResource.getCpuRate() < 0)
+            canPlay = false;
+
         return canPlay;
     }
 

@@ -3,11 +3,13 @@ package hackmastertest.businessTest;
 import org.junit.Before;
 import org.junit.Test;
 
+
 import hackmaster.business.DeckManager;
 import hackmaster.business.GameManager;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.CardResource;
 import hackmaster.objects.ResourceClass;
+
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -82,6 +84,118 @@ public class GameManagerUnitTest {
         assertEquals("The CPURate of player should be 2", 2, GameManager.getPlayer2().getResources().getCpuRate());
         assertEquals("The terraFlops of player should be 2", 2, GameManager.getPlayer2().getResources().getCpu());
     }
+
+    /*@Test
+    public void testApplyCard()
+    {
+        // TODO this test should be in gameManager (game manager has this function)
+        int [] Player1Res= new int[]{-10, -10, 0, 0, 0, 0, 0};
+        int [] Player2Res= new int[]{-50, 0, 0, 0, 0, 0, 0};
+
+        ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerOnly, true);
+        testIndividualResources(200,2,2, 2,2,2, 2, true);
+
+        ResourceManager.applyCard(false,player1,player2, testCardEffectPlayerOnly, true);
+        testIndividualResources(200,2,2, 2,2,2, 2, false);
+
+        ResourceManager.applyCard(true,player1,player2, testCardEffectEnemyCardOnly, true);
+        testIndividualResources(0,0,0, 0,0,0, 0, false);
+
+        ResourceManager.applyCard(false,player1,player2, testCardEffectEnemyCardOnly, true);
+        testIndividualResources(0,0,0, 0,0,0, 0, true);
+
+        ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerAndEnemy, true);
+        testEveryoneResources(Player1Res,Player2Res);
+
+        Player1Res= new int[]{-60, -10, 0, 0, 0, 0, 0};
+        Player2Res= new int[]{-60, -10, 0, 0, 0, 0, 0};
+
+        ResourceManager.applyCard(false,player1,player2, testCardEffectPlayerAndEnemy, true);
+        testEveryoneResources(Player1Res,Player2Res);
+
+        ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerAndEnemy, true);
+        testEveryoneResources(Player1Res,Player2Res);
+    }
+
+    @Test
+    public void testApplyCardBounds() {
+        // TODO write a test that tests the extreme bounds (test player health 100, can play -100 and -99 but not -101)
+        setDeck();
+
+
+    }
+
+    private void setDeck() {
+        // player negative is cost and positive is gain
+        // enemy negative is loss and positive is gain
+
+        ArrayList<CardClass> testDeck = new ArrayList<CardClass>();
+        testDeck.add(new CardClass(0, "Nothing", "Defense", "Do Nothing",
+                new CardResource(new ResourceClass(-101, 0, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "hundred", "Defense", "Costs a normal amount",
+                new CardResource(new ResourceClass(-100, 0, 0,0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Normal card", "Defense", "Costs a normal amount",
+                new CardResource(new ResourceClass(-99, 0, 0,0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Expensive Health", "Attack", "Costs a lot of Health",
+                new CardResource(new ResourceClass(0, -1, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Expensive HCoin", "Attack", "Costs a lot of HCoin",
+                new CardResource(new ResourceClass(0, -2, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Expensive BotNet", "Attack", "Costs a lot of Botnet",
+                new CardResource(new ResourceClass(0, -3, 0, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Expensive GPU", "Attack", "Costs a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, -1, 0, 0,0, 0), null))); //6
+        testDeck.add(new CardClass(0, "Generate Health", "Attack", "Makes a lot of Health",
+                new CardResource(new ResourceClass(0, 0, -2, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Generate HCoin", "Attack", "Makes a lot of HCoin",
+                new CardResource(new ResourceClass(0, 0, -3, 0, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Generate BotNet", "Attack", "Makes a lot of BotNet",
+                new CardResource(new ResourceClass(0, 0, 0, -1, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Generate CPU", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, -2, 0,0, 0), null)));
+        testDeck.add(new CardClass(0, "Generate CPU", "Attack", "Makes a lot of CPU",
+                new CardResource(new ResourceClass(0, 0, 0, -3, 0,0, 0), null)));
+
+        deckM.setDeck(testDeck.toArray(new CardClass[0]));
+    }
+
+    private void testIndividualResources(int health, int hCoin, int hCoinRate, int botnet, int botnetRate , int CPURate , int terraFlops, boolean player1ToCheck ) {
+        if (player1ToCheck) {
+            assertEquals("The health of player1 should be " + health, health, GameManager.getPlayer1().getResources().getHealth());
+            assertEquals("The hCoin of player1 should be " + hCoin, hCoin, GameManager.getPlayer1().getResources().gethCoin());
+            assertEquals("The hCoinRate of player1 should be " + hCoinRate, hCoinRate, GameManager.getPlayer1().getResources().gethCoinRate());
+            assertEquals("The botnet of player1 should be " + botnet, botnet, GameManager.getPlayer1().getResources().getBotnet());
+            assertEquals("The botnetRate of player1 should be " + botnetRate, botnetRate, GameManager.getPlayer1().getResources().getBotnetRate());
+            assertEquals("The CPURate of player1 should be " + CPURate, CPURate, GameManager.getPlayer1().getResources().getCpuRate());
+            assertEquals("The terraFlops of player1 should be " + terraFlops, terraFlops, GameManager.getPlayer1().getResources().getCpu());
+        }
+        else {
+            assertEquals("The health of player2 should be " + health, health, GameManager.getPlayer2().getResources().getHealth());
+            assertEquals("The hCoin of player2 should be " + hCoin, hCoin, GameManager.getPlayer2().getResources().gethCoin());
+            assertEquals("The hCoinRate of player2 should be " + hCoinRate, hCoinRate, GameManager.getPlayer2().getResources().gethCoinRate());
+            assertEquals("The botnet of player2 should be " + botnet, botnet, GameManager.getPlayer2().getResources().getBotnet());
+            assertEquals("The botnetRate of player2 should be " + botnetRate, botnetRate, GameManager.getPlayer2().getResources().getBotnetRate());
+            assertEquals("The CPURate of player2 should be " + CPURate, CPURate, GameManager.getPlayer2().getResources().getCpuRate());
+            assertEquals("The terraFlops of player2 should be " + terraFlops, terraFlops, GameManager.getPlayer2().getResources().getCpu());
+        }
+    }
+    private void testEveryoneResources(int [] Player1Res ,int [] Player2Res ) {
+        assertEquals("The health of player1 should be " + Player1Res[0], Player1Res[0], GameManager.getPlayer1().getResources().getHealth());
+        assertEquals("The hCoin of player1 should be " + Player1Res[1], Player1Res[1], GameManager.getPlayer1().getResources().gethCoin());
+        assertEquals("The hCoinRate of player1 should be " + Player1Res[2], Player1Res[2], GameManager.getPlayer1().getResources().gethCoinRate());
+        assertEquals("The botnet of player1 should be " + Player1Res[3], Player1Res[3], GameManager.getPlayer1().getResources().getBotnet());
+        assertEquals("The botnetRate of player1 should be " + Player1Res[4], Player1Res[4], GameManager.getPlayer1().getResources().getBotnetRate());
+        assertEquals("The CPURate of player1 should be " + Player1Res[5], Player1Res[5], GameManager.getPlayer1().getResources().getCpuRate());
+        assertEquals("The terraFlops of player1 should be " + Player1Res[6], Player1Res[6], GameManager.getPlayer1().getResources().getCpu());
+
+        assertEquals("The health of player2 should be " + Player2Res[0], Player2Res[0], GameManager.getPlayer2().getResources().getHealth());
+        assertEquals("The hCoin of player2 should be " + Player2Res[1], Player2Res[1], GameManager.getPlayer2().getResources().gethCoin());
+        assertEquals("The hCoinRate of player2 should be " + Player2Res[2], Player2Res[2], GameManager.getPlayer2().getResources().gethCoinRate());
+        assertEquals("The botnet of player2 should be " + Player2Res[3], Player2Res[3], GameManager.getPlayer2().getResources().getBotnet());
+        assertEquals("The botnetRate of player2 should be " + Player2Res[4], Player2Res[4], GameManager.getPlayer2().getResources().getBotnetRate());
+        assertEquals("The CPURate of player2 should be " + Player2Res[5], Player2Res[5], GameManager.getPlayer2().getResources().getCpuRate());
+        assertEquals("The terraFlops of player2 should be " + Player2Res[6], Player2Res[6], GameManager.getPlayer2().getResources().getCpu());
+
+    }*/
 
     @Test
     public void testPlayerTestNotNull()

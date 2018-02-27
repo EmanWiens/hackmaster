@@ -475,6 +475,7 @@
         android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="128dp"
+        android:onClick="DiscardMessage"
         android:text="Discard Mode"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toStartOf="@+id/pauseBtn"
