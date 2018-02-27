@@ -25,7 +25,7 @@ public class GameManager {
     private static CardClass playedCardAi = null;
 
     //Created boolean test since it fails at draw(Can't access presentation layer in tests)
-    private static boolean test = true;
+    private static boolean test;
 
     public static final int sizeOfHand = 6;
     public static final int maxCards = 50;
@@ -38,6 +38,7 @@ public class GameManager {
         deckM = new DeckManager(mainAct);
         pStats = new PlayerStatsSaves();
         resManager = new ResourceManager(mainAct);
+        test = false;
     }
 
     public static void setUpSingleGame() {
@@ -179,6 +180,7 @@ public class GameManager {
         return -1;
     }
 
+    public static void runAsTest() { test = true; }
     public static void setDelayAi(boolean b) { delayAi = b; }
     public static boolean getDelayAi() { return delayAi; }
     public static CardClass getPlayedCard() { return playedCard; }

@@ -21,6 +21,7 @@ import static junit.framework.Assert.fail;
 public class GameManagerUnitTest {
     @Before
     public void setUp(){
+        GameManager.runAsTest();
         GameManager.setUpSingleGame();
     }
 
@@ -65,6 +66,8 @@ public class GameManagerUnitTest {
 
     @Test
     public void testSetUpSingleGame() {
+        GameManager.runAsTest();
+
         assertEquals("The name of player should be HackerMan", "HackerMan", GameManager.getPlayer1().getName());
         assertEquals("The ID of player should be 0", 0, GameManager.getPlayer1().getId());
         assertEquals("The health of player should be 100", 100, GameManager.getPlayer1().getResources().getHealth());
@@ -202,11 +205,13 @@ public class GameManagerUnitTest {
     @Test
     public void testPlayerTestNotNull()
     {
+        GameManager.runAsTest();
         assertNotNull(GameManager.getPlayerNum());
     }
     @Test
     public void testPlayCardEvent()
     {
+        GameManager.runAsTest();
        GameManager.playCardEvent(4);
        // is this failing because of the delay?
        assertEquals("Should be Player 1 Turn", 0, GameManager.getPlayerNum());
@@ -216,6 +221,8 @@ public class GameManagerUnitTest {
     @Test
     public void testInvalidPlayCardEvent(){
         // TODO fix these functions (Fail should be in catch)
+        GameManager.runAsTest();
+
         try {
             GameManager.playCardEvent(-1);
             fail("ArrayIndexOutOfBoundsException Expected or RuntimeException Expected");
@@ -232,6 +239,7 @@ public class GameManagerUnitTest {
 
     @Test
     public void testCheckCard() {
+        GameManager.runAsTest();
         resetDeck();
         setPlayerHands();
 
@@ -249,6 +257,8 @@ public class GameManagerUnitTest {
 
     @Test
     public void testDiscardCardPlayer1(){
+        GameManager.runAsTest();
+
         resetDeck();
         setPlayerHands();
         DeckManager.resetIndex();
