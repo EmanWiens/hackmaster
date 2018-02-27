@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HackMaster20.iml" filepath="$PROJECT_DIR$/HackMaster20.iml" />
+      <module fileurl="file://C:\Soft_Eng_Project\HackMaster20\HackMaster20.iml" filepath="C:\Soft_Eng_Project\HackMaster20\HackMaster20.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Soft_Eng_Project\HackMaster20\app\app.iml" filepath="C:\Soft_Eng_Project\HackMaster20\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hackmaster.iml" filepath="$PROJECT_DIR$/hackmaster.iml" />
     </modules>
   </component>
 </project>
