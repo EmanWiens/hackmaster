@@ -62,8 +62,6 @@ public class ResourceManagerUnitTest {
     public void testApplyCard()
     {
         // TODO this test should be in gameManager (game manager has this function)
-        int [] Player1Res= new int[]{-10, -10, 0, 0, 0, 0, 0};
-        int [] Player2Res= new int[]{-50, 0, 0, 0, 0, 0, 0};
 
         ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerOnly, true);
         testIndividualResources(200,2,2, 2,2,2, 2, true);
@@ -72,22 +70,17 @@ public class ResourceManagerUnitTest {
         testIndividualResources(200,2,2, 2,2,2, 2, false);
 
         ResourceManager.applyCard(true,player1,player2, testCardEffectEnemyCardOnly, true);
-        testIndividualResources(0,0,0, 0,0,0, 0, false);
+        testIndividualResources(0,0,1, 0,1,1, 0, false);
 
         ResourceManager.applyCard(false,player1,player2, testCardEffectEnemyCardOnly, true);
-        testIndividualResources(0,0,0, 0,0,0, 0, true);
+        testIndividualResources(0,0,1, 0,1,1, 0, true);
 
         ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerAndEnemy, true);
-        testEveryoneResources(Player1Res,Player2Res);
-
-        Player1Res= new int[]{-60, -10, 0, 0, 0, 0, 0};
-        Player2Res= new int[]{-60, -10, 0, 0, 0, 0, 0};
+        testEveryoneResources(new int[]{-10, 0, 1, 0, 1, 1, 0},new int[]{-50, 0, 1, 0, 1, 1, 0});
 
         ResourceManager.applyCard(false,player1,player2, testCardEffectPlayerAndEnemy, true);
-        testEveryoneResources(Player1Res,Player2Res);
-
-        ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerAndEnemy, true);
-        testEveryoneResources(Player1Res,Player2Res);
+        testEveryoneResources(new int[]{-60, 0, 1, 0, 1, 1, 0},new int[]{-60, 0, 1, 0, 1, 1, 0});
+        
     }
 
     @Test
