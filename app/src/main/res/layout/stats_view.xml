@@ -4,54 +4,52 @@
     android:id="@+id/stats_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hackmaster.presentation.MainActivity">
+    tools:context="HackMaster.presentation.MainActivity">
 
     <Button
         android:id="@+id/backBtn"
-        android:layout_width="132dp"
-        android:layout_height="56dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="statsExitMessage"
         android:text="Back"
-        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintVertical_bias="0.87" />
 
     <TextView
-        android:id="@+id/color"
-        android:layout_width="154dp"
-        android:layout_height="27dp"
+        android:id="@+id/nicknameTitleTxtVw"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:text="Nickname: "
-        android:textColor="@android:color/holo_green_light"
-        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nicknameTxtView"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298" />
+        app:layout_constraintVertical_bias="0.317" />
 
     <TextView
         android:id="@+id/nicknameTxtView"
-        android:layout_width="190dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="32dp"
-        android:text="HackMaster"
-        android:textSize="24sp"
+        android:text="Pwn0gr4ph1c"
+        app:layout_constraintBottom_toBottomOf="@+id/nicknameTitleTxtVw"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.42"
-        app:layout_constraintStart_toEndOf="@+id/color"
-        app:layout_constraintTop_toTopOf="@+id/color" />
+        app:layout_constraintStart_toEndOf="@+id/nicknameTitleTxtVw"
+        app:layout_constraintTop_toTopOf="@+id/nicknameTitleTxtVw"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/rankTitleTextView"
@@ -59,35 +57,26 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="Rank: "
-        android:textColor="@android:color/holo_red_light"
-        android:textColorLink="@android:color/holo_red_light"
-        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/color" />
+        app:layout_constraintTop_toBottomOf="@+id/nicknameTitleTxtVw" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TheLegend27"
-        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/rankTitleTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/rankTitleTextView"
-        app:layout_constraintTop_toTopOf="@+id/rankTitleTextView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/rankTitleTextView" />
 
     <TextView
         android:id="@+id/winLoseTitleTxtVw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:shadowColor="@android:color/holo_green_light"
         android:text="Win/Lose"
-        android:textColor="@android:color/holo_purple"
-        android:textColorLink="@android:color/holo_red_dark"
-        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/winLoseTxtView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,29 +84,26 @@
 
     <TextView
         android:id="@+id/winLoseTxtView"
-        android:layout_width="65dp"
-        android:layout_height="45dp"
+        android:layout_width="34dp"
+        android:layout_height="wrap_content"
         android:text="0.00"
-        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/winLoseTitleTxtVw"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/winLoseTitleTxtVw"
-        app:layout_constraintTop_toTopOf="@+id/winLoseTitleTxtVw"
-        app:layout_constraintVertical_bias="0.375" />
+        app:layout_constraintTop_toTopOf="@+id/winLoseTitleTxtVw" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="207dp"
-        android:layout_height="145dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/hackmaster"
+        android:src="@mipmap/ic_launcher_round"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.137" />
 </android.support.constraint.ConstraintLayout>
