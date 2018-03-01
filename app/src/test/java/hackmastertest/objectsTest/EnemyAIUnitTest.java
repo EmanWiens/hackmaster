@@ -12,16 +12,14 @@ import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
-import hackmaster.presentation.DrawToScreen;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
 public class EnemyAIUnitTest {
 
-    private static DrawToScreen mainAct;
     hackmaster.objects.EnemyAI player;
-    hackmaster.business.DeckManager deckM = new DeckManager(mainAct);
+    hackmaster.business.DeckManager deckM = new DeckManager();
     int card;
 
 
@@ -156,7 +154,6 @@ public class EnemyAIUnitTest {
 
     @After
     public void tearDown(){
-        mainAct = null;
         player = null;
         deckM = null;
     }

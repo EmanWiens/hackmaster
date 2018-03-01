@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             else if (gameManager.gamePaused()) {
                 setContentView(R.layout.battle_view);
                 GameManager.unpauseGame();
-                GameManager.drawCurrentGame();
+                GameManager.render();
             }
         }
         else {
@@ -121,14 +121,14 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     synchronized public void drawPlayedCard(CardClass card, boolean delay) {
         // DELAY
-        Handler handler = new Handler();
+        // Handler handler = new Handler();
         if (delay) {
-            handler.postDelayed(delayDraw(), 2000); // DELAY
-            GameManager.setDelayAi(true);
+            //handler.postDelayed(delayDraw(), 2000); // DELAY
+            TextView playedCard = findViewById(R.id.playedCard1);
+            playedCard.setText(card.toString());
         }
         else {
-            GameManager.setDelayAi(false);
-            TextView playedCard = findViewById(R.id.playedCard1);
+            TextView playedCard = findViewById(R.id.playedCard0);
             playedCard.setText(card.toString());
         }
     }
@@ -139,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             @Override
             public void run() {
                 drawPlayedCard(GameManager.getPlayedCardAi(), false);
-                GameManager.setPlayer1Turn(true);
             }
         };
         return r;
@@ -170,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     public void pauseResumeMessage(View v) {
         setContentView(R.layout.battle_view);
         gameManager.unpauseGame();
-        GameManager.drawCurrentGame();
+        GameManager.render();
     }
 
     public void pauseExitMessage(View v) {

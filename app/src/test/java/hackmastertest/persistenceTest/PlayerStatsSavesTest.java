@@ -7,9 +7,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Owner on 2/3/2018.
- */
 
 public class PlayerStatsSavesTest {
     private hackmaster.objects.PlayerStatsSaves playerStats;

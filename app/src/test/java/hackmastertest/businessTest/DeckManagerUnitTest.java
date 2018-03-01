@@ -63,15 +63,6 @@ public class DeckManagerUnitTest {
     }
 
     @Test
-    public void testNullPaintCard() {
-        try {
-            DeckManager.paintCard(null);
-            fail("Null Pointer Expected");
-        } catch ( NullPointerException exp) {
-        }
-    }
-
-    @Test
     public void testGetCardIndex() {
         assertEquals("The Index should be 1",1,DeckManager.getCardIndex("More Cores",DeckManager.getADeck()));
         assertEquals("The Index should be 0",-1,DeckManager.getCardIndex("&#%%#&^&)@",DeckManager.getADeck()));
