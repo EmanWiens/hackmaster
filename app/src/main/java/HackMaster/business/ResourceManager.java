@@ -1,8 +1,8 @@
-package HackMaster.business;
+package hackmaster.business;
 
-import HackMaster.objects.CardClass;
-import HackMaster.objects.PlayerClass;
-import HackMaster.presentation.DrawToScreen;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.PlayerClass;
+import hackmaster.presentation.DrawToScreen;
 
 
 public class ResourceManager {

@@ -1,10 +1,10 @@
-package HackMaster.persistence;
+package hackmaster.persistence;
 
 import java.util.ArrayList;
 
-import HackMaster.objects.CardClass;
-import HackMaster.objects.CardResource;
-import HackMaster.objects.ResourceClass;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.CardResource;
+import hackmaster.objects.ResourceClass;
 
 /**
  * Created by Owner on 1/29/2018.

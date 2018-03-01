@@ -1,4 +1,4 @@
-package HackMaster.presentation;
+package hackmaster.presentation;
 
 
 
@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 import com.example.owner.hackmaster20.R;
 
-import HackMaster.business.GameManager;
-import HackMaster.objects.CardClass;
-import HackMaster.objects.PlayerClass;
+import hackmaster.business.GameManager;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.PlayerClass;
 
 public class MainActivity extends AppCompatActivity implements DrawToScreen {
     // give a "copy" of the interface to the gameManager

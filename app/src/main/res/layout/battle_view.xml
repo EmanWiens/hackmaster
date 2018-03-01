@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minHeight="69dp"
-    tools:context="HackMaster.presentation.MainActivity">
+    tools:context="hackmaster.presentation.MainActivity">
 
     <TextView
         android:id="@+id/player2"

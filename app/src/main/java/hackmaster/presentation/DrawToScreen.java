@@ -1,7 +1,7 @@
-package HackMaster.presentation;
+package hackmaster.presentation;
 
-import HackMaster.objects.CardClass;
-import HackMaster.objects.PlayerClass;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.PlayerClass;
 
 public interface DrawToScreen {
     void DrawCard(CardClass card, int slot);

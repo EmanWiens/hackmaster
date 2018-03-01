@@ -1,13 +1,14 @@
-package HackMasterTest.objectsTest;
+package hackmastertest.objectsTest;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import hackmaster.objects.CardClass;
+import hackmaster.objects.CardResource;
+import hackmaster.objects.ResourceClass;
+
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertEquals;
-import HackMaster.objects.CardClass;
-import HackMaster.objects.CardResource;
-import HackMaster.objects.ResourceClass;
 
 public class CardClassUnitTest {
     private CardClass cardObj;

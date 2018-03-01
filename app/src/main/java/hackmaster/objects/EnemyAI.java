@@ -1,9 +1,9 @@
-package HackMaster.objects;
+package hackmaster.objects;
 
 import java.util.ArrayList;
 
-import HackMaster.business.DeckManager;
-import HackMaster.business.GameManager;
+import hackmaster.business.DeckManager;
+import hackmaster.business.GameManager;
 
 public class EnemyAI extends PlayerClass {
     private int nextCard;

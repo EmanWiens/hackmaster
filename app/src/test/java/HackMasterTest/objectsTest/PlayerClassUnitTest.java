@@ -1,15 +1,15 @@
-package HackMasterTest.objectsTest;
+package hackmasterTest.objectsTest;
 
 
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
 
-import HackMaster.objects.CardResource;
-import HackMaster.objects.PlayerClass;
-import HackMaster.objects.ResourceClass;
-import HackMaster.objects.CardClass;
-import HackMaster.business.DeckManager;
+import hackmaster.objects.CardResource;
+import hackmaster.objects.PlayerClass;
+import hackmaster.objects.ResourceClass;
+import hackmaster.objects.CardClass;
+import hackmaster.business.DeckManager;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

@@ -1,4 +1,4 @@
-package HackMaster.objects;
+package hackmaster.objects;
 
 /**
  * Created by Owner on 1/29/2018.

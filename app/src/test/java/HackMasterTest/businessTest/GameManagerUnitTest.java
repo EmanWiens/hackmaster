@@ -1,17 +1,17 @@
-package HackMasterTest.businessTest;
+package hackmastertest.businessTest;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import HackMaster.business.DeckManager;
-import HackMaster.business.GameManager;
-import HackMaster.business.ResourceManager;
-import HackMaster.objects.CardClass;
-import HackMaster.objects.CardResource;
-import HackMaster.objects.PlayerClass;
-import HackMaster.objects.ResourceClass;
+import hackmaster.business.DeckManager;
+import hackmaster.business.GameManager;
+import hackmaster.business.ResourceManager;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.CardResource;
+import hackmaster.objects.PlayerClass;
+import hackmaster.objects.ResourceClass;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;

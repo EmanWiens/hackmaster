@@ -1,14 +1,14 @@
-package HackMasterTest.businessTest;
+package hackmastertest.businessTest;
 
 import org.junit.Before;
 import org.junit.Test;
 
 // import javax.smartcardio.Card;
 
-import HackMaster.business.DeckManager;
-import HackMaster.objects.CardClass;
-import HackMaster.objects.CardResource;
-import HackMaster.objects.ResourceClass;
+import hackmaster.business.DeckManager;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.CardResource;
+import hackmaster.objects.ResourceClass;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;

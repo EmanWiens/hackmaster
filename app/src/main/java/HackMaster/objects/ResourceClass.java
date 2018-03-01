@@ -1,4 +1,4 @@
-package HackMaster.objects;
+package hackmaster.objects;
 
 public class ResourceClass {
     private int health = 0; // 0 if not used

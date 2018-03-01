@@ -1,4 +1,4 @@
-package HackMaster.objects;
+package hackmaster.objects;
 
 public class CardResource {
     private ResourceClass player;

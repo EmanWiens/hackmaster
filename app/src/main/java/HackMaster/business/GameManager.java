@@ -1,11 +1,11 @@
-package HackMaster.business;
+package hackmaster.business;
 
-import HackMaster.objects.CardClass;
-import HackMaster.objects.EnemyAI;
-import HackMaster.presentation.DrawToScreen;
-import HackMaster.objects.PlayerClass;
-import HackMaster.objects.ResourceClass;
-import HackMaster.objects.PlayerStatsSaves;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.EnemyAI;
+import hackmaster.presentation.DrawToScreen;
+import hackmaster.objects.PlayerClass;
+import hackmaster.objects.ResourceClass;
+import hackmaster.objects.PlayerStatsSaves;
 import android.os.Handler; // DELAY
 
 public class GameManager {

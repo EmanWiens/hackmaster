@@ -1,8 +1,8 @@
-package HackMaster.business;
+package hackmaster.business;
 
-import HackMaster.persistence.CardsList;
-import HackMaster.presentation.DrawToScreen;
-import HackMaster.objects.CardClass;
+import hackmaster.persistence.CardsList;
+import hackmaster.presentation.DrawToScreen;
+import hackmaster.objects.CardClass;
 
 
 public class DeckManager {

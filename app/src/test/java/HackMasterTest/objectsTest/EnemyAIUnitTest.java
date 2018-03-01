@@ -1,4 +1,4 @@
-package HackMasterTest.objectsTest;
+package hackmastertest.objectsTest;
 
 import org.junit.After;
 import org.junit.Before;
@@ -6,14 +6,14 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import HackMaster.business.DeckManager;
-import HackMaster.business.GameManager;
-import HackMaster.objects.CardClass;
-import HackMaster.objects.CardResource;
-import HackMaster.objects.EnemyAI;
-import HackMaster.objects.PlayerClass;
-import HackMaster.objects.ResourceClass;
-import HackMaster.presentation.DrawToScreen;
+import hackmaster.business.DeckManager;
+import hackmaster.business.GameManager;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.CardResource;
+import hackmaster.objects.EnemyAI;
+import hackmaster.objects.PlayerClass;
+import hackmaster.objects.ResourceClass;
+import hackmaster.presentation.DrawToScreen;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
