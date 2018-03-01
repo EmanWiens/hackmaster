@@ -41,13 +41,22 @@ public class PlayerClass {
         return resources.botnetToString();
     }
 
-    public void increaseHcoinByRate() {resources.increaseHcoinByRate();}
-    public void increaseCSpeedByRate() {resources.increaseCpuByRate();}
+    public void increaseHcoinByRate() {
+        resources.increaseHcoinByRate();
+    }
+    public void increaseCSpeedByRate() {
+        resources.increaseCpuByRate();
+    }
     public void increaseBotnetByRate() {
         resources.increaseBotnetByRate();
     }
+
     public void addResources(ResourceClass addRes) {
         resources.addResources(addRes);
+        resourceLimit();
+    }
+
+    private void resourceLimit () {
         if(resources.getBotnetRate() < 1) resources.setBotnetRate(1);
         if(resources.gethCoinRate() < 1) resources.sethCoinRate(1);
         if(resources.getCpuRate() < 1) resources.setCpuRate(1);
@@ -64,7 +73,10 @@ public class PlayerClass {
         }
     }
     public ResourceClass getResources() { return resources; }
-    public void setResources(ResourceClass res) { resources = res; }
+    public void setResources(ResourceClass res) {
+        resources = res;
+        resourceLimit();
+    }
     public int getId() { return playerId; }
     public CardClass[] getCards() { return hand; }
     public int cardsSize() { return hand.length; }

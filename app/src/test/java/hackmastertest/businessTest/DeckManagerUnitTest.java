@@ -3,7 +3,6 @@ package hackmastertest.businessTest;
 import org.junit.Before;
 import org.junit.Test;
 
-// import javax.smartcardio.Card;
 
 import hackmaster.business.DeckManager;
 import hackmaster.objects.CardClass;
