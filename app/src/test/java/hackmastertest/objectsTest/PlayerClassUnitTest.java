@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
 
-import hackmaster.objects.CardResource;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmaster.objects.CardClass;
@@ -22,7 +21,6 @@ public class PlayerClassUnitTest {
     private ResourceClass player1_resource;
 
     //GenerateCard
-    private CardResource resManager;
     private ResourceClass player2;
 
     @Before
@@ -32,7 +30,6 @@ public class PlayerClassUnitTest {
         player1_cards = DeckManager.dealCards(7);
         player1 = new PlayerClass(1, "Test_Name", player1_resource, player1_cards);
         player2 = new ResourceClass(1000,56,8, 54, 1, 99, 10);
-        resManager = new CardResource(player1_resource, player2);
     }
 
     @Test
@@ -106,7 +103,7 @@ public class PlayerClassUnitTest {
 
     // HELPER METHOD
     private CardClass generateCard(int id, String name, String type, String desc) {
-        CardClass new_card = new CardClass(id, name, type, desc, resManager);
+        CardClass new_card = new CardClass(id, name, type, desc, player1_resource, player2);
         return new_card;
     }
 }

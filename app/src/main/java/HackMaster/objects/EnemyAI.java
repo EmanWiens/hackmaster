@@ -1,7 +1,6 @@
 package hackmaster.objects;
 
 import java.util.ArrayList;
-
 import hackmaster.business.DeckManager;
 import hackmaster.business.GameManager;
 
@@ -18,11 +17,9 @@ public class EnemyAI extends PlayerClass {
         CardClass[] playable = playableCards();
 
         if (playable.length == 0) {
-            int temp = worstCard(playable);
+            int temp = worstCard(getCards());
 
-            if (temp == -1)
-                temp = 0;
-            temp = DeckManager.getCardIndex(playable[temp].getName(), getCards());
+            temp = DeckManager.getCardIndex(getCards()[temp].getName(), getCards());
             GameManager.discardCard(temp, GameManager.getPlayer2());
         }
         else {
@@ -38,12 +35,14 @@ public class EnemyAI extends PlayerClass {
     }
 
     private int worstCard(CardClass[] playable) {
-        int worstCard = -1;
-        double worstCost = 0;
+        int worstCard = 0;
+        int worstCost = 0;
 
         for (int i = 0; i < playable.length; i++) {
-            if (1 - worthHeuristic(playable[i]) <= worstCost) {
-                worstCost = 1 - worthHeuristic(playable[i]);
+            ResourceClass cardR = playable[i].getPlayerR();
+            int testCost = cardR.getBotnet() + cardR.gethCoin() + cardR.getCpu();
+            if (testCost <= worstCost) {
+                worstCost = testCost;
                 worstCard = i;
             }
         }
@@ -52,12 +51,14 @@ public class EnemyAI extends PlayerClass {
     }
 
     private int bestCard(CardClass[] playable) {
-        int bestCard = -1;
-        double bestCost = 0;
+        int bestCard = 0;
+        int bestCost = 0;
 
         for (int i = 0; i < playable.length; i++) {
-            if (worthHeuristic(playable[i]) >= bestCost) {
-                bestCost = worthHeuristic(playable[i]);
+            ResourceClass cardR = playable[i].getPlayerR();
+            int testCost = cardR.getBotnet() + cardR.gethCoin() + cardR.getCpu();
+            if (testCost <= bestCost) {
+                bestCost = testCost;
                 bestCard = i;
             }
         }
@@ -65,7 +66,10 @@ public class EnemyAI extends PlayerClass {
         return bestCard;
     }
 
-    public double worthHeuristic(CardClass assess) {
+    //worthHeuristic just doesn't work
+    //worth and total are always 0 so worth/total gives NaN
+    //Right now i changed it to decide to discard/play the card with the largest total cost
+    /*public double worthHeuristic(CardClass assess) {
         double worth = 0;
         double total = 0;
 
@@ -160,7 +164,7 @@ public class EnemyAI extends PlayerClass {
         double[] ret = { worth, total };
 
         return ret;
-    }
+    }*/
 
     public CardClass[] playableCards() {
         ArrayList<CardClass> playable = new ArrayList<CardClass>();

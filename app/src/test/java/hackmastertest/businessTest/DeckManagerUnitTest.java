@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import hackmaster.business.DeckManager;
 import hackmaster.objects.CardClass;
-import hackmaster.objects.CardResource;
 import hackmaster.objects.ResourceClass;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.fail;
@@ -20,17 +19,17 @@ public class DeckManagerUnitTest {
         int count=0;
         CardClass[] testDeck = new CardClass[4];
         testDeck[count] = new CardClass(0, "CPU Boost", "Upgrade", "Upgrade your CPU",
-                new CardResource(new ResourceClass(0, -10, 0, 0, 0,1, 0), null));
+                new ResourceClass(0, -10, 0, 0, 0,1, 0), null);
         count++;
 
         testDeck[count] =  new CardClass(1, "More Cores", "Defense", "Defend your CPU",
-                new CardResource(new ResourceClass(0, -5, 10, 0, 0,0, 0), null));
+                new ResourceClass(0, -5, 10, 0, 0,0, 0), null);
         count++;
         testDeck[count] =  new CardClass(2, "bot.net", "Attack", "Attack with your CPU",
-                new CardResource(new ResourceClass(0, -5, 10, -3, 0,0, 2), null));
+                new ResourceClass(0, -5, 10, -3, 0,0, 2), null);
         count ++;
         testDeck[count] = new CardClass(3, "^^&&^%$$^$(%$$#", "%$$%$%((^%$", "$$%(^)%%^%^",
-                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, 0), null));
+                new ResourceClass(0, 0, 0, 0, 0,0, 0), null);
         DeckManager.setDeck(testDeck);
     }
 

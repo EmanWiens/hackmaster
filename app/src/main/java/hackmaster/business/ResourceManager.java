@@ -32,11 +32,11 @@ public class ResourceManager {
     }
 
     private static void ApplyCardToPlayer(PlayerClass p1, PlayerClass p2, CardClass card, boolean test) {
-        if(card.getCardResource().getPlayerR() != null) {
-            p1.addResources(card.getCardResource().getPlayerR());
+        if(card.getPlayerR() != null) {
+            p1.addResources(card.getPlayerR());
         }
-        if(card.getCardResource().getEnemyR() != null) {
-            p2.addResources(card.getCardResource().getEnemyR());
+        if(card.getEnemyR() != null) {
+            p2.addResources(card.getEnemyR());
         }
         if (!test) {
             drawPlayerResource(p1);

@@ -122,7 +122,7 @@ public class GameManager {
         boolean canPlay = true;
         CardClass card = player.getCard(playerCard);
 
-        ResourceClass cardResource = card.getCardResource().getPlayerR();
+        ResourceClass cardResource = card.getPlayerR();
         ResourceClass playerResource = player.getResources();
 
         if(playerResource.getHealth() + cardResource.getHealth() < 0)

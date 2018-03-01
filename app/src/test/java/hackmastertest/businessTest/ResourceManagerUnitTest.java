@@ -10,7 +10,6 @@ import hackmaster.business.DeckManager;
 import hackmaster.business.GameManager;
 import hackmaster.business.ResourceManager;
 import hackmaster.objects.CardClass;
-import hackmaster.objects.CardResource;
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
@@ -29,15 +28,15 @@ public class ResourceManagerUnitTest {
     public void setUp(){
         int count = 0;
         testDeck[count] = new CardClass(0, "CPU Boost", "Upgrade", "Upgrade your CPU",
-                new CardResource(new ResourceClass(0, -10, 0, 0, 0,1, 0), null));
+                new ResourceClass(0, -10, 0, 0, 0,1, 0), null);
         count++;
 
         testDeck[count] =  new CardClass(1, "More Cores", "Defense", "Upgrade your CPU",
-                new CardResource(new ResourceClass(0, -5, 10, 0, 0,0, 0), null));
+                new ResourceClass(0, -5, 10, 0, 0,0, 0), null);
         count++;
 
         testDeck[count] = new CardClass(3, "^^&&^%$$^$(%$$#", "%$$%$%((^%$", "$$%(^)%%^%^",
-                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, 0), null));
+                new ResourceClass(0, 0, 0, 0, 0,0, 0), null);
         player1 = new PlayerClass(0,
                 "HackerMan",
                 new ResourceClass(100, 1, 1, 1, 1, 1, 1), testDeck);
@@ -51,11 +50,11 @@ public class ResourceManagerUnitTest {
                 new ResourceClass(100,1, 1, 1, 1, 1, 1), testDeck);
 
         testCardEffectPlayerOnly =  new CardClass(2, "bot.net", "Attack", "Upgrade your CPU",
-                new CardResource(new ResourceClass(100, 1, 1, 1, 1, 1, 1), null));
+                new ResourceClass(100, 1, 1, 1, 1, 1, 1), null);
         testCardEffectEnemyCardOnly =  new CardClass(2, "bot.net", "Attack", "Upgrade your CPU",
-                new CardResource(new ResourceClass(0, 0, 0, 0, 0, 0, 0), new ResourceClass(-200, -2, -2, -2, -2, -2, -2)));
+                new ResourceClass(0, 0, 0, 0, 0, 0, 0), new ResourceClass(-200, -2, -2, -2, -2, -2, -2));
         testCardEffectPlayerAndEnemy =  new CardClass(2, "bot.net", "Attack", "Upgrade your CPU",
-                new CardResource(new ResourceClass(-10, -10, 0, 0, 0, 0, 0), new ResourceClass(-50, 0, 0, 0, 0, 0, 0)));
+                new ResourceClass(-10, -10, 0, 0, 0, 0, 0), new ResourceClass(-50, 0, 0, 0, 0, 0, 0));
     }
 
     @Test
@@ -80,7 +79,7 @@ public class ResourceManagerUnitTest {
 
         ResourceManager.applyCard(false,player1,player2, testCardEffectPlayerAndEnemy, true);
         testEveryoneResources(new int[]{-60, 0, 1, 0, 1, 1, 0},new int[]{-60, 0, 1, 0, 1, 1, 0});
-        
+
     }
 
     @Test
@@ -123,53 +122,53 @@ public class ResourceManagerUnitTest {
 
         ArrayList<CardClass> testDeck = new ArrayList<CardClass>();
         testDeck.add(new CardClass(0, "-101 health", "Defense", "Do Nothing",
-                new CardResource(new ResourceClass(-101, 0, 0, 0, 0,0, 0), null)));
+                new ResourceClass(-101, 0, 0, 0, 0,0, 0), null));
         testDeck.add(new CardClass(0, "-100 health", "Defense", "Costs a normal amount",
-                new CardResource(new ResourceClass(-100, 0, 0,0, 0,0, 0), null)));
+                new ResourceClass(-100, 0, 0,0, 0,0, 0), null));
         testDeck.add(new CardClass(0, "-99 health", "Defense", "Costs a normal amount",
-                new CardResource(new ResourceClass(-99, 0, 0,0, 0,0, 0), null)));
+                new ResourceClass(-99, 0, 0,0, 0,0, 0), null));
 
         testDeck.add(new CardClass(0, "-1 hCoin", "Attack", "Costs a lot of Health",
-                new CardResource(new ResourceClass(0, -1, 0, 0, 0,0, 0), null)));
+                new ResourceClass(0, -1, 0, 0, 0,0, 0), null));
         testDeck.add(new CardClass(0, "-2 hCoin", "Attack", "Costs a lot of HCoin",
-                new CardResource(new ResourceClass(0, -2, 0, 0, 0,0, 0), null)));
+                new ResourceClass(0, -2, 0, 0, 0,0, 0), null));
         testDeck.add(new CardClass(0, "-3 hCoin", "Attack", "Costs a lot of Botnet",
-                new CardResource(new ResourceClass(0, -3, 0, 0, 0,0, 0), null)));
+                new ResourceClass(0, -3, 0, 0, 0,0, 0), null));
 
         testDeck.add(new CardClass(0, "-1 hCoinRate", "Attack", "Costs a lot of CPU",
-                new CardResource(new ResourceClass(0, 0, -1, 0, 0,0, 0), null)));
+                new ResourceClass(0, 0, -1, 0, 0,0, 0), null));
         testDeck.add(new CardClass(0, "-2 hCoinRate", "Attack", "Makes a lot of Health",
-                new CardResource(new ResourceClass(0, 0, -2, 0, 0,0, 0), null)));
+                new ResourceClass(0, 0, -2, 0, 0,0, 0), null));
         testDeck.add(new CardClass(0, "-3 hCoinRate", "Attack", "Makes a lot of HCoin",
-                new CardResource(new ResourceClass(0, 0, -3, 0, 0,0, 0), null)));
+                new ResourceClass(0, 0, -3, 0, 0,0, 0), null));
 
         testDeck.add(new CardClass(0, "-1 botnet", "Attack", "Makes a lot of BotNet",
-                new CardResource(new ResourceClass(0, 0, 0, -1, 0,0, 0), null)));
+                new ResourceClass(0, 0, 0, -1, 0,0, 0), null));
         testDeck.add(new CardClass(0, "-2 botnet", "Attack", "Makes a lot of CPU",
-                new CardResource(new ResourceClass(0, 0, 0, -2, 0,0, 0), null)));
+                new ResourceClass(0, 0, 0, -2, 0,0, 0), null));
         testDeck.add(new CardClass(0, "-3 botnet", "Attack", "Makes a lot of CPU",
-                new CardResource(new ResourceClass(0, 0, 0, -3, 0,0, 0), null)));
+                new ResourceClass(0, 0, 0, -3, 0,0, 0), null));
 
         testDeck.add(new CardClass(0, "-1 botnetRate", "Attack", "Makes a lot of BotNet",
-                new CardResource(new ResourceClass(0, 0, 0, 0, -1,0, 0), null)));
+                new ResourceClass(0, 0, 0, 0, -1,0, 0), null));
         testDeck.add(new CardClass(0, "-2 botnetRate", "Attack", "Makes a lot of CPU",
-                new CardResource(new ResourceClass(0, 0, 0, 0, -2,0, 0), null)));
+                new ResourceClass(0, 0, 0, 0, -2,0, 0), null));
         testDeck.add(new CardClass(0, "-3 botnetRate", "Attack", "Makes a lot of CPU",
-                new CardResource(new ResourceClass(0, 0, 0, 0, -3,0, 0), null)));
+                new ResourceClass(0, 0, 0, 0, -3,0, 0), null));
 
         testDeck.add(new CardClass(0, "-1 cpu", "Attack", "Makes a lot of BotNet",
-                new CardResource(new ResourceClass(0, 0, 0, 0, 0,-1, 0), null)));
+                new ResourceClass(0, 0, 0, 0, 0,-1, 0), null));
         testDeck.add(new CardClass(0, "-2 cpu", "Attack", "Makes a lot of CPU",
-                new CardResource(new ResourceClass(0, 0, 0, 0, 0,-2, 0), null)));
+                new ResourceClass(0, 0, 0, 0, 0,-2, 0), null));
         testDeck.add(new CardClass(0, "-3 cpu", "Attack", "Makes a lot of CPU",
-                new CardResource(new ResourceClass(0, 0, 0, 0, 0,-3, 0), null)));
+                new ResourceClass(0, 0, 0, 0, 0,-3, 0), null));
 
         testDeck.add(new CardClass(0, "-1 cpuRate", "Attack", "Makes a lot of BotNet",
-                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, -1), null)));
+                new ResourceClass(0, 0, 0, 0, 0,0, -1), null));
         testDeck.add(new CardClass(0, "-2 cpuRate", "Attack", "Makes a lot of CPU",
-                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, -2), null)));
+                new ResourceClass(0, 0, 0, 0, 0,0, -2), null));
         testDeck.add(new CardClass(0, "-3 cpuRate", "Attack", "Makes a lot of CPU",
-                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, -3), null)));
+                new ResourceClass(0, 0, 0, 0, 0,0, -3), null));
 
 
         return testDeck.toArray(new CardClass[0]);
