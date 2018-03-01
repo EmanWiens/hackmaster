@@ -1,4 +1,4 @@
-package hackmasterTest.objectsTest;
+package hackmastertest.objectsTest;
 
 
 import org.junit.Test;

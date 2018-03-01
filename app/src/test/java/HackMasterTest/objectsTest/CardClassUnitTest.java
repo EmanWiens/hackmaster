@@ -8,6 +8,7 @@ import hackmaster.objects.CardClass;
 import hackmaster.objects.CardResource;
 import hackmaster.objects.ResourceClass;
 
+import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class CardClassUnitTest {

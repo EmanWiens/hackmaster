@@ -1,4 +1,4 @@
-package HackMasterTest.persistenceTest;
+package hackmastertest.persistenceTest;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,11 +12,11 @@ import static org.junit.Assert.assertEquals;
  */
 
 public class PlayerStatsSavesTest {
-    private HackMaster.objects.PlayerStatsSaves playerStats;
+    private hackmaster.objects.PlayerStatsSaves playerStats;
 
     @Before
     public void Setup() {
-        playerStats = new  HackMaster.objects.PlayerStatsSaves();
+        playerStats = new  hackmaster.objects.PlayerStatsSaves();
     }
 
 

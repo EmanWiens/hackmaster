@@ -21,8 +21,8 @@ import static junit.framework.Assert.assertNotNull;
 public class EnemyAIUnitTest {
 
     private static DrawToScreen mainAct;
-    HackMaster.objects.EnemyAI player;
-    HackMaster.business.DeckManager deckM = new DeckManager(mainAct);
+    hackmaster.objects.EnemyAI player;
+    hackmaster.business.DeckManager deckM = new DeckManager(mainAct);
     int card;
 
 
@@ -33,7 +33,7 @@ public class EnemyAIUnitTest {
 
         GameManager.setSinglePlayer(true);
 
-        HackMaster.objects.ResourceClass r = new ResourceClass(100, 2, 2, 2, 2, 2, 2);
+        hackmaster.objects.ResourceClass r = new ResourceClass(100, 2, 2, 2, 2, 2, 2);
         player = new EnemyAI(1, "Enemy Bot", r, deckM.dealCards(6));
 
     }
