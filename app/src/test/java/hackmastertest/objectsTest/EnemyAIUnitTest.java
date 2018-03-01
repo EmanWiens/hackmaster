@@ -109,13 +109,12 @@ public class EnemyAIUnitTest {
         EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), DeckManager.getADeck());
 
         CardClass[] playable = ai.playableCards();
-        assertEquals("-101 health", deckM.getCardAt(0).getName());
-        assertEquals("-100 health", deckM.getCardAt(1).getName());
+        assertEquals(11, playable.length);
 
         assertEquals("-101 health", ai.getCard(0).getName());
         assertEquals("-100 health", ai.getCard(1).getName());
 
-        assertEquals(14, playable.length);
+
         assertEquals("-100 health", playable[0].getName());
         assertEquals("-99 health", playable[1].getName());
 
@@ -123,33 +122,16 @@ public class EnemyAIUnitTest {
         assertEquals("-2 hCoin", playable[3].getName());
 
         assertEquals("-1 hCoinRate", playable[4].getName());
-        assertEquals("-2 hCoinRate", playable[5].getName());
 
-        assertEquals("-1 botnet", playable[6].getName());
-        assertEquals("-2 botnet", playable[7].getName());
+        assertEquals("-1 botnet", playable[5].getName());
+        assertEquals("-2 botnet", playable[6].getName());
 
-        assertEquals("-1 botnetRate", playable[8].getName());
-        assertEquals("-2 botnetRate", playable[9].getName());
+        assertEquals("-1 botnetRate", playable[7].getName());
 
-        assertEquals("-1 cpu", playable[10].getName());
-        assertEquals("-2 cpu", playable[11].getName());
+        assertEquals("-1 cpu", playable[8].getName());
+        assertEquals("-2 cpu", playable[9].getName());
 
-        assertEquals("-1 cpuRate", playable[12].getName());
-        assertEquals("-2 cpuRate", playable[13].getName());
-    }
-
-    @Test
-    public void testDiscard() {
-        resetDeck();
-        deckM.resetIndex();
-        EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(98,0,0,0,0,0,0), DeckManager.dealCards(5));
-
-        assertEquals(-1, ai.playNextCard());
-    }
-
-    @Test
-    public void testGetRidOfWorstCard() {
-
+        assertEquals("-1 cpuRate", playable[10].getName());
     }
 
     @After

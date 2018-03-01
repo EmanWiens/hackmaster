@@ -61,25 +61,21 @@ public class GameManager {
             if(checkCard(playerCard, player1)){
                 playedCard = player1.getCard(playerCard);
                 playerTurn(playerCard, player1);
-                resManager.applyTurnRate(player2, test);
+                resManager.applyTurnRate(player2);
                 player1Turn = false;
 
                 if (singlePlayer) {
                     int enemyCard = ((EnemyAI) player2).playNextCard();
                     playedCardAi = player2.getCard(enemyCard);
-                    if (enemyCard != -1)
+                    if (checkCard(enemyCard, player1))
                         playerTurn(enemyCard, player2);
-                    resManager.applyTurnRate(player1, test);
+                    else
+                        discardCard(enemyCard, player2);
+                    resManager.applyTurnRate(player1);
                     player1Turn = true;
                 }
             }
-            else {
-                if (cantPlayCard(player1)) {
-                    // TODO put the player in a discard mode
-                }
-            }
         }
-
         GameManager.render();
     }
 
@@ -93,7 +89,7 @@ public class GameManager {
     private static void playerTurn(int playerCard, PlayerClass player) {
         CardClass nextCard = DeckManager.dealNextCard();
         CardClass playedCard = player.getCard(playerCard);
-        ResourceManager.applyCard(player1Turn, player1, player2, playedCard,test);
+        ResourceManager.applyCard(player1Turn, player1, player2, playedCard);
         player.setCard(playerCard, nextCard);
     }
 
@@ -118,11 +114,11 @@ public class GameManager {
         if(playerResource.getCpu() + cardResource.getCpu() < 0)
             canPlay = false;
 
-        if(playerResource.gethCoin() + cardResource.gethCoinRate() < 0)
+        if(playerResource.gethCoin() + cardResource.gethCoinRate() < 1)
             canPlay = false;
-        if(playerResource.getBotnet() + cardResource.getBotnetRate() < 0)
+        if(playerResource.getBotnet() + cardResource.getBotnetRate() < 1)
             canPlay = false;
-        if(playerResource.getCpu() + cardResource.getCpuRate() < 0)
+        if(playerResource.getCpu() + cardResource.getCpuRate() < 1)
             canPlay = false;
 
         return canPlay;

@@ -61,58 +61,24 @@ public class ResourceManagerUnitTest {
     {
         // TODO this test should be in gameManager (game manager has this function)
 
-        ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerOnly, true);
+        ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerOnly);
         testIndividualResources(200,2,2, 2,2,2, 2, true);
 
-        ResourceManager.applyCard(false,player1,player2, testCardEffectPlayerOnly, true);
+        ResourceManager.applyCard(false,player1,player2, testCardEffectPlayerOnly);
         testIndividualResources(200,2,2, 2,2,2, 2, false);
 
-        ResourceManager.applyCard(true,player1,player2, testCardEffectEnemyCardOnly, true);
+        ResourceManager.applyCard(true,player1,player2, testCardEffectEnemyCardOnly);
         testIndividualResources(0,0,1, 0,1,1, 0, false);
 
-        ResourceManager.applyCard(false,player1,player2, testCardEffectEnemyCardOnly, true);
+        ResourceManager.applyCard(false,player1,player2, testCardEffectEnemyCardOnly);
         testIndividualResources(0,0,1, 0,1,1, 0, true);
 
-        ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerAndEnemy, true);
+        ResourceManager.applyCard(true,player1,player2, testCardEffectPlayerAndEnemy);
         testEveryoneResources(new int[]{-10, 0, 1, 0, 1, 1, 0},new int[]{-50, 0, 1, 0, 1, 1, 0});
 
-        ResourceManager.applyCard(false,player1,player2, testCardEffectPlayerAndEnemy, true);
+        ResourceManager.applyCard(false,player1,player2, testCardEffectPlayerAndEnemy);
         testEveryoneResources(new int[]{-60, 0, 1, 0, 1, 1, 0},new int[]{-60, 0, 1, 0, 1, 1, 0});
 
-    }
-
-    @Test
-    public void testApplySingleCardBounds() {
-        CardClass[] deck = setDeck();
-        EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), deck);
-
-        assertEquals(false, GameManager.checkCard(0, ai));
-        assertEquals(true, GameManager.checkCard(1, ai));
-        assertEquals(true, GameManager.checkCard(2, ai));
-
-        assertEquals(true, GameManager.checkCard(3, ai));
-        assertEquals(true, GameManager.checkCard(4, ai));
-        assertEquals(false, GameManager.checkCard(5, ai));
-
-        assertEquals(true, GameManager.checkCard(6, ai));
-        assertEquals(true, GameManager.checkCard(7, ai));
-        assertEquals(false, GameManager.checkCard(8, ai));
-
-        assertEquals(true, GameManager.checkCard(9, ai));
-        assertEquals(true, GameManager.checkCard(10, ai));
-        assertEquals(false, GameManager.checkCard(11, ai));
-
-        assertEquals(true, GameManager.checkCard(12, ai));
-        assertEquals(true, GameManager.checkCard(13, ai));
-        assertEquals(false, GameManager.checkCard(14, ai));
-
-        assertEquals(true, GameManager.checkCard(15, ai));
-        assertEquals(true, GameManager.checkCard(16, ai));
-        assertEquals(false, GameManager.checkCard(17, ai));
-
-        assertEquals(true, GameManager.checkCard(18, ai));
-        assertEquals(true, GameManager.checkCard(19, ai));
-        assertEquals(false, GameManager.checkCard(20, ai));
     }
 
     private CardClass[] setDeck() {
@@ -214,7 +180,7 @@ public class ResourceManagerUnitTest {
 
     @Test
     public void testApplyTurnRate(){
-        ResourceManager.applyTurnRate(player3,true);
+        ResourceManager.applyTurnRate(player3);
         assertEquals("The hCoinRate of player3 should be 2", 2,player3.getResources().gethCoin());
         assertEquals("The terraFlops of player3 should be 2", 2,player3.getResources().getCpu());
         assertEquals("The botnetRate of player3 should be 2", 2,player3.getResources().getBotnet());
@@ -223,7 +189,7 @@ public class ResourceManagerUnitTest {
     @Test
     public void testNullApplyTurnRate(){
         try {
-            ResourceManager.applyTurnRate(null,true);
+            ResourceManager.applyTurnRate(null);
             fail("Null Pointer Expected");
         } catch ( NullPointerException exp) {
         }
@@ -233,7 +199,7 @@ public class ResourceManagerUnitTest {
     public void testNullApplyCard()
     {
         try {
-            ResourceManager.applyCard(true, null,null,null, true);
+            ResourceManager.applyCard(true, null,null,null);
             fail("Null Pointer Expected");
         } catch ( NullPointerException exp) {
         }

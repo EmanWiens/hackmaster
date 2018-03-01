@@ -13,21 +13,6 @@ public class PlayerClass {
         playerId = id;
     }
 
-    public int findPlayerCardIndex(String name) {
-        int index = 0;
-        boolean found = false;
-        while(!found && index < hand.length) {
-            if(name.equals(hand[index].getName())){
-                found = true;
-            } else {
-                index++;
-            }
-        }
-        if(!found){
-            index = -1;
-        }
-        return index;
-    }
 
     public String minerToString() {
         return resources.minerToString();
@@ -76,6 +61,13 @@ public class PlayerClass {
     public void setResources(ResourceClass res) {
         resources = res;
         resourceLimit();
+    }
+    public static int getCardIndex(int id, CardClass[] hand) {
+        int j=-1;
+        for (int i = 0; i < hand.length; i++)
+            if (id == hand[i].getID())
+                j=i;
+        return j;
     }
     public int getId() { return playerId; }
     public CardClass[] getCards() { return hand; }

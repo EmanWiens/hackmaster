@@ -63,13 +63,6 @@ public class DeckManagerUnitTest {
     }
 
     @Test
-    public void testGetCardIndex() {
-        assertEquals("The Index should be 1",1,DeckManager.getCardIndex("More Cores",DeckManager.getADeck()));
-        assertEquals("The Index should be 0",-1,DeckManager.getCardIndex("&#%%#&^&)@",DeckManager.getADeck()));
-        assertEquals("The Index should be 2",2,DeckManager.getCardIndex("bot.net",DeckManager.getADeck()));
-    }
-
-    @Test
     public void testDealNextCard() {
         CardClass Card1 = DeckManager.dealNextCard();
         assertEquals("The name  of first Card should be CPU Boost", "CPU Boost", Card1.getName());
@@ -124,16 +117,6 @@ public class DeckManagerUnitTest {
             DeckManager.getCardAt(-1);
             fail("ArrayIndexOutOfBounds Expected");
         } catch ( ArrayIndexOutOfBoundsException exp) {
-        }
-    }
-
-
-    @Test
-    public void testNullGetCardIndex() {
-        try {
-            DeckManager.getCardIndex(null,null);
-            fail("Null Pointer Expected");
-        } catch ( NullPointerException exp) {
         }
     }
 

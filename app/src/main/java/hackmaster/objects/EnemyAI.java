@@ -1,7 +1,6 @@
 package hackmaster.objects;
 
 import java.util.ArrayList;
-import hackmaster.business.DeckManager;
 import hackmaster.business.GameManager;
 
 public class EnemyAI extends PlayerClass {
@@ -17,25 +16,18 @@ public class EnemyAI extends PlayerClass {
         CardClass[] playable = playableCards();
 
         if (playable.length == 0) {
-            int temp = worstCard(getCards());
-
-            temp = DeckManager.getCardIndex(getCards()[temp].getName(), getCards());
-            GameManager.discardCard(temp, GameManager.getPlayer2());
+            nextCard = worstCard(getCards());
         }
         else {
             nextCard = bestCard(playable);
-
-            if (nextCard == -1)
-                nextCard = 0;
-
-            nextCard = DeckManager.getCardIndex(playable[nextCard].getName(), getCards());
+            nextCard = getCardIndex(playable[nextCard].getID(), getCards());
         }
 
         return nextCard;
     }
 
     private int worstCard(CardClass[] playable) {
-        int worstCard = 0;
+        int worstCard = -1;
         int worstCost = 0;
 
         for (int i = 0; i < playable.length; i++) {
@@ -51,8 +43,8 @@ public class EnemyAI extends PlayerClass {
     }
 
     private int bestCard(CardClass[] playable) {
-        int bestCard = 0;
-        int bestCost = 0;
+        int bestCard = -1;
+        int bestCost = 10000;
 
         for (int i = 0; i < playable.length; i++) {
             ResourceClass cardR = playable[i].getPlayerR();
