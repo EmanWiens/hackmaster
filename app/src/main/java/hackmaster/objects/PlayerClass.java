@@ -1,5 +1,9 @@
 package hackmaster.objects;
 
+import java.util.ArrayList;
+
+import hackmaster.business.GameManager;
+
 public class PlayerClass {
     private String name;
     private ResourceClass resources = null;
@@ -11,6 +15,17 @@ public class PlayerClass {
         hand = cards;
         this.resources = resources;
         playerId = id;
+    }
+
+    public CardClass[] playableCards() {
+        ArrayList<CardClass> playable = new ArrayList<CardClass>();
+
+        for (int i = 0; i < cardsSize(); i++) {
+            if (GameManager.checkCard(i, this))
+                playable.add(getCard(i));
+        }
+
+        return playable.toArray(new CardClass[0]);
     }
 
 

@@ -157,15 +157,4 @@ public class EnemyAI extends PlayerClass {
 
         return ret;
     }*/
-
-    public CardClass[] playableCards() {
-        ArrayList<CardClass> playable = new ArrayList<CardClass>();
-
-        for (int i = 0; i < cardsSize(); i++) {
-            if (GameManager.checkCard(i, this))
-                playable.add(getCard(i));
-        }
-
-        return playable.toArray(new CardClass[0]);
-    }
 }
