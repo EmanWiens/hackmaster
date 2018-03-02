@@ -121,14 +121,13 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     synchronized public void drawPlayedCard(CardClass card, boolean delay) {
         // DELAY
-        // Handler handler = new Handler();
+        Handler handler = new Handler();
         if (delay) {
-            //handler.postDelayed(delayDraw(), 2000); // DELAY
-            TextView playedCard = findViewById(R.id.playedCard1);
-            playedCard.setText(card.toString());
+            handler.postDelayed(delayDraw(), 2000); // DELAY
+            // GameManager.setDelayAi(true);
         }
-        else {
-            TextView playedCard = findViewById(R.id.playedCard0);
+        else if (!GameManager.gamePaused()) {
+            TextView playedCard = findViewById(R.id.playedCard1);
             playedCard.setText(card.toString());
         }
     }

@@ -57,7 +57,7 @@ public class GameManager {
     }
 
     public static void playCardEvent(int playerCard) {
-        if (player1Turn) {
+        if (player1Turn && !paused && !delayAi) {
             if(checkCard(playerCard, player1)){
                 playedCard = player1.getCard(playerCard);
                 playerTurn(playerCard, player1);
@@ -131,9 +131,8 @@ public class GameManager {
             return 1;
     }
 
-    // TODO make this the function that everyone calls to update the screen
     public static void render() {
-        if (!test) {
+        if (!test && !paused) {
             mainActivity.drawPlayerResource(player1);
             mainActivity.drawPlayerResource(player2);
 
