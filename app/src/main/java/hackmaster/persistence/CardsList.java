@@ -3,12 +3,8 @@ package hackmaster.persistence;
 import java.util.ArrayList;
 
 import hackmaster.objects.CardClass;
-import hackmaster.objects.CardResource;
 import hackmaster.objects.ResourceClass;
 
-/**
- * Created by Owner on 1/29/2018.
- */
 
 public class
 CardsList {
@@ -37,7 +33,7 @@ CardsList {
         count++;
 
         tempCard = new CardClass(3, "cut some wires", "Defense", "Upgrade your CPU",
-                new CardResource(new ResourceClass(0, 0, 0, -1, 0,0, 0), new ResourceClass(-1, 0, 0, 0, 0,0, 0)));
+        new CardResource(new ResourceClass(0, 0, 0, -1, 0,0, 0), new ResourceClass(-1, 0, 0, 0, 0,0, 0)));
         cards.add(tempCard);
         count++;
 
@@ -47,12 +43,12 @@ CardsList {
         count++;
 
         tempCard = new CardClass(5, "Upgrade CPU", "Upgrade", "Increase CPU Calculations",
-                new CardResource(new ResourceClass(0, -2, 0, 0, 0, 2, 0), null));
+        new CardResource(new ResourceClass(0, -2, 0, 0, 0, 2, 0), null));
         cards.add(tempCard);
         count++;
 
         tempCard = new CardClass(6, "Upgrade Hash Rate", "Upgrade", "Increase Cryptocurrency Mining Rate",
-                new CardResource(new ResourceClass(0, -2, 0, +1, 0, 0, 0), null));
+                new ResourceClass(0, -2, 0, +1, 0, 0, 0), null);
         cards.add(tempCard);
         count++;
 

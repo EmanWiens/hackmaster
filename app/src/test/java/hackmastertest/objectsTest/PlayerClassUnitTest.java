@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
 
-import hackmaster.objects.CardResource;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmaster.objects.CardClass;
@@ -22,7 +21,6 @@ public class PlayerClassUnitTest {
     private ResourceClass player1_resource;
 
     //GenerateCard
-    private CardResource resManager;
     private ResourceClass player2;
 
     @Before
@@ -32,7 +30,6 @@ public class PlayerClassUnitTest {
         player1_cards = DeckManager.dealCards(7);
         player1 = new PlayerClass(1, "Test_Name", player1_resource, player1_cards);
         player2 = new ResourceClass(1000,56,8, 54, 1, 99, 10);
-        resManager = new CardResource(player1_resource, player2);
     }
 
     @Test
@@ -42,6 +39,13 @@ public class PlayerClassUnitTest {
         assertEquals("name should be Test_Name","Test_Name",player1.getName());
         assertEquals("Test if card exists and has the correct amount of cards", 7, player1.getCards().length);
         assertSame("resource object should be same", player1_resource, player1.getResources());
+    }
+
+    @Test
+    public void testGetCardIndex() {
+        assertEquals("The Index should be 1",1, player1.getCardIndex(1,player1.getCards()));
+        assertEquals("The Index should be 0",0, player1.getCardIndex(0,player1.getCards()));
+        assertEquals("The Index should be 2",2, player1.getCardIndex(2,player1.getCards()));
     }
 
     @Test
@@ -57,24 +61,10 @@ public class PlayerClassUnitTest {
         assertEquals("Test set edge", 10, player1.getCard(6).getID());
 
         try {
-            player1.setCard(8, generateCard(5,"test out of bounce", "t5","card 5"));
+            player1.setCard(8, generateCard(5,"test out of bounds", "t5","card 5"));
         } catch ( ArrayIndexOutOfBoundsException exp) {
-            fail("setCard Out of bounce not handled");
+            fail("setCard Out of bounds not handled");
         }
-    }
-
-    @Test
-    public void testFindCard() {
-        String name_first = player1.getCard(0).getName();
-        String name2 = player1.getCard(1).getName();
-        String name3 = player1.getCard(2).getName();
-        String name_edge = player1.getCard(6).getName();
-
-        assertEquals("Test find first card", 0, player1.findPlayerCardIndex(name_first));
-        assertEquals("Test find card 2", 1, player1.findPlayerCardIndex(name2  ));
-        assertEquals("Test find card 3", 2, player1.findPlayerCardIndex(name3));
-        assertEquals("Test find edge card", 6, player1.findPlayerCardIndex(name_edge));
-        assertEquals("Test non-existing card", -1, player1.findPlayerCardIndex("Test_null"));
     }
 
     @Test
@@ -106,7 +96,7 @@ public class PlayerClassUnitTest {
 
     // HELPER METHOD
     private CardClass generateCard(int id, String name, String type, String desc) {
-        CardClass new_card = new CardClass(id, name, type, desc, resManager);
+        CardClass new_card = new CardClass(id, name, type, desc, player1_resource, player2);
         return new_card;
     }
 }

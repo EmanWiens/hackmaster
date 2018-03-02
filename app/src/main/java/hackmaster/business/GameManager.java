@@ -6,7 +6,6 @@ import hackmaster.presentation.DrawToScreen;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmaster.objects.PlayerStatsSaves;
-import android.os.Handler; // DELAY
 
 public class GameManager {
     private static PlayerStatsSaves pStats;
@@ -19,26 +18,31 @@ public class GameManager {
     private static boolean paused = false;
     private static boolean inGame = false;
     private static boolean singlePlayer = false;
+    private static boolean delayAi = false;
+
+    private static CardClass playedCard = null;
+    private static CardClass playedCardAi = null;
 
     //Created boolean test since it fails at draw(Can't access presentation layer in tests)
-    private static boolean test = true;
+    private static boolean test;
 
     public static final int sizeOfHand = 6;
     public static final int maxCards = 50;
+    public static final int maxHealth = 100;
 
     private static DrawToScreen mainActivity;
 
     public GameManager(DrawToScreen mainAct) {
         mainActivity = mainAct;
-        deckM = new DeckManager(mainAct);
+        deckM = new DeckManager();
         pStats = new PlayerStatsSaves();
-        resManager = new ResourceManager(mainAct);
+        resManager = new ResourceManager();
+        test = false;
     }
 
-    public static void setUpSingleGame(boolean testing) {
+    public static void setUpSingleGame() {
         singlePlayer = true;
         inGame = true;
-        test = testing;
 
         deckM.initDeck(maxCards);
         player1 = new PlayerClass(0,
@@ -48,41 +52,31 @@ public class GameManager {
         player2 = new EnemyAI(1,
                 "Enemy Bot",
                 new ResourceClass(100, 2, 2, 2, 2, 2, 2), deckM.dealCards(sizeOfHand));
-        if (!test) {
-            deckM.paintCard(player1.getCards());
-            resManager.drawPlayerResource(player1);
-            resManager.drawPlayerResource(player2);
-        }
+
+        GameManager.render();
     }
 
     public static void playCardEvent(int playerCard) {
-        Handler handler = new Handler(); // DELAY
         if (player1Turn) {
             if(checkCard(playerCard, player1)){
-                if (!test)
-                    mainActivity.drawPlayedCard(player1.getCard(playerCard));
+                playedCard = player1.getCard(playerCard);
                 playerTurn(playerCard, player1);
-                resManager.applyTurnRate(player2, test);
+                resManager.applyTurnRate(player2);
                 player1Turn = false;
 
                 if (singlePlayer) {
                     int enemyCard = ((EnemyAI) player2).playNextCard();
-                    if (!test)
-                        handler.postDelayed(delayDraw(enemyCard), 2000); // DELAY
-
-                    if (enemyCard != -1)
+                    playedCardAi = player2.getCard(enemyCard);
+                    if (checkCard(enemyCard, player1))
                         playerTurn(enemyCard, player2);
-                    resManager.applyTurnRate(player1, test);
-
+                    else
+                        discardCard(enemyCard, player2);
+                    resManager.applyTurnRate(player1);
                     player1Turn = true;
                 }
             }
-            else {
-                if (cantPlayCard(player1)) {
-                    // TODO put the player in a discard mode
-                }
-            }
         }
+        GameManager.render();
     }
 
     public static boolean cantPlayCard(PlayerClass player) {
@@ -92,27 +86,11 @@ public class GameManager {
         return true;
     }
 
-    // DELAY
-    public static Runnable delayDraw(final int enemyCard) {
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                mainActivity.drawPlayedCard(player2.getCard(enemyCard));
-                player1Turn = true;
-            }
-        };
-        return r;
-    }
-
     private static void playerTurn(int playerCard, PlayerClass player) {
         CardClass nextCard = DeckManager.dealNextCard();
         CardClass playedCard = player.getCard(playerCard);
-        ResourceManager.applyCard(player1Turn, player1, player2, playedCard,test);
-
+        ResourceManager.applyCard(player1Turn, player1, player2, playedCard);
         player.setCard(playerCard, nextCard);
-
-        if (!test && singlePlayer && player1Turn)
-            mainActivity.DrawCard(nextCard, playerCard);
     }
 
     public static void discardCard(int playerCard, PlayerClass player) {
@@ -124,7 +102,7 @@ public class GameManager {
         boolean canPlay = true;
         CardClass card = player.getCard(playerCard);
 
-        ResourceClass cardResource = card.getCardResource().getPlayerR();
+        ResourceClass cardResource = card.getPlayerR();
         ResourceClass playerResource = player.getResources();
 
         if(playerResource.getHealth() + cardResource.getHealth() < 0)
@@ -136,11 +114,11 @@ public class GameManager {
         if(playerResource.getCpu() + cardResource.getCpu() < 0)
             canPlay = false;
 
-        if(playerResource.gethCoin() + cardResource.gethCoinRate() < 0)
+        if(playerResource.gethCoin() + cardResource.gethCoinRate() < 1)
             canPlay = false;
-        if(playerResource.getBotnet() + cardResource.getBotnetRate() < 0)
+        if(playerResource.getBotnet() + cardResource.getBotnetRate() < 1)
             canPlay = false;
-        if(playerResource.getCpu() + cardResource.getCpuRate() < 0)
+        if(playerResource.getCpu() + cardResource.getCpuRate() < 1)
             canPlay = false;
 
         return canPlay;
@@ -153,14 +131,39 @@ public class GameManager {
             return 1;
     }
 
-    public static void drawCurrentGame() {
-        mainActivity.drawPlayerResource(player1);
-        mainActivity.drawPlayerResource(player2);
+    // TODO make this the function that everyone calls to update the screen
+    public static void render() {
+        if (!test) {
+            mainActivity.drawPlayerResource(player1);
+            mainActivity.drawPlayerResource(player2);
 
-        if (player1Turn)
-            deckM.paintCard(player1.getCards());
-        else
-            deckM.paintCard(player2.getCards());
+            if (playedCard != null)
+                mainActivity.drawPlayedCard(playedCard, false);
+            if (playedCardAi != null)
+                mainActivity.drawPlayedCard(playedCardAi, true);
+
+            if (player1Turn)
+                for (int i = 0; i < player1.getCards().length; i++) {
+                    if (player1.getCards()[i] != null)
+                        mainActivity.DrawCard(player1.getCards()[i], i);
+                }
+            else
+                for (int i = 0; i < player2.getCards().length; i++) {
+                    if (player2.getCards()[i] != null)
+                        mainActivity.DrawCard(player2.getCards()[i], i);
+                }
+        }
+    }
+
+    public static int getPlayer1Health() {
+        if (inGame)
+            return player1.getHealth();
+        return -1;
+    }
+    public static int getPlayer2Health() {
+        if (inGame)
+            return player2.getHealth();
+        return -1;
     }
 
     //test this (marc)
@@ -182,6 +185,11 @@ public class GameManager {
         return pStats.getWin();
     }
 
+    public static void runAsTest() { test = true; }
+    public static void setDelayAi(boolean b) { delayAi = b; }
+    public static boolean getDelayAi() { return delayAi; }
+    public static CardClass getPlayedCard() { return playedCard; }
+    public static CardClass getPlayedCardAi() { return playedCardAi; }
     public static void setInGame(boolean value) { inGame = value; }
     public static void pauseGame() { paused = true; }
     public static void unpauseGame() { paused = false; }
@@ -193,6 +201,7 @@ public class GameManager {
     public static PlayerClass getPlayer1(){ return player1; }
     public static PlayerClass getPlayer2(){ return player2; }
     public boolean getPlayer1Turn() { return player1Turn; }
+    public static void setPlayer1Turn(boolean turn) { player1Turn = turn; }
     public static void setDeck(CardClass[] set) { deckM.setDeck(set); }
     public static CardClass getDeckCardAt(int i) { return deckM.getCardAt(i); }
     public static int getDeckMangerDealNextCard() { return deckM.getNextIndex(); }

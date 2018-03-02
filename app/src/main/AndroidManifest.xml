@@ -10,8 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="hackmaster.presentation.MainActivity"
-            android:screenOrientation="landscape"
-            android:theme="@style/DarkDesignedByVlad">
+            android:screenOrientation="landscape">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

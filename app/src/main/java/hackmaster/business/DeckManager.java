@@ -1,7 +1,6 @@
 package hackmaster.business;
 
 import hackmaster.persistence.CardsList;
-import hackmaster.presentation.DrawToScreen;
 import hackmaster.objects.CardClass;
 
 
@@ -9,14 +8,14 @@ public class DeckManager {
     private static CardClass[] deck = null;
     private static int nextIndex = 0;
 
-    private static DrawToScreen mainActivity;
 
-    public DeckManager(DrawToScreen mainAct) {
-        mainActivity = mainAct;
+    public DeckManager() {
+
     }
 
     public static void initDeck(int size) {
         deck = CardsList.presetCards();
+        resetIndex();
     }
 
     public static CardClass[] dealCards(int deal) {
@@ -27,21 +26,6 @@ public class DeckManager {
             updateIndex();
         }
         return cards;
-    }
-
-    public static void paintCard(CardClass[] list) {
-        for (int i = 0; i < list.length; i++) {
-            if (list[i] != null)
-                mainActivity.DrawCard(list[i], i);
-        }
-    }
-
-    public static int getCardIndex(String name, CardClass[] hand) {
-        int j=-1;
-        for (int i = 0; i < hand.length; i++)
-            if (name.equals(hand[i].getName()))
-                j=i;
-        return j;
     }
 
     private static void updateIndex() {

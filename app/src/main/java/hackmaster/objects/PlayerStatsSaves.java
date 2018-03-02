@@ -1,8 +1,6 @@
 package hackmaster.objects;
 
-/**
- * Created by Owner on 1/29/2018.
- */
+
 public class PlayerStatsSaves {
     private static String playerName = "Player 1";
     private static int totalWins = 0;
