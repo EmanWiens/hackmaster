@@ -163,6 +163,25 @@ public class GameManager {
             deckM.paintCard(player2.getCards());
     }
 
+    //test this (marc)
+    public static void initStats() {
+        pStats = new PlayerStatsSaves();
+        pStats.setPlayerName("Pwn0gr4ph1c"); // change name later
+        pStats.addWin(); // remove this
+        pStats.addWin(); // remove this
+    }
+
+
+    //test this (marc)
+    public static String getPlayerName() {
+        return pStats.getName();
+    }
+
+    //test this (marc)
+    public static int getWin() {
+        return pStats.getWin();
+    }
+
     public static void setInGame(boolean value) { inGame = value; }
     public static void pauseGame() { paused = true; }
     public static void unpauseGame() { paused = false; }
