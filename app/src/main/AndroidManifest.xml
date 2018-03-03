@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="HackMaster.presentation.MainActivity"
+        <activity android:name="hackmaster.presentation.MainActivity"
             android:screenOrientation="landscape">
 
             <intent-filter>

@@ -1,6 +1,6 @@
-package HackMaster.persistence;
+package hackmaster.persistence;
 
-import HackMaster.objects.CardClass;
+import hackmaster.objects.CardClass;
 
 /**
  * Created by Owner on 2/18/2018.

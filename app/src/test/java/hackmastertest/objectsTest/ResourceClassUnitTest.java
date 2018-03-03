@@ -1,9 +1,9 @@
-package HackMasterTest.objectsTest;
+package hackmastertest.objectsTest;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import HackMaster.objects.ResourceClass;
+import hackmaster.objects.ResourceClass;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 

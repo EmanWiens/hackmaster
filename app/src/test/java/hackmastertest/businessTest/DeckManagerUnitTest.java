@@ -1,14 +1,12 @@
-package HackMasterTest.businessTest;
+package hackmastertest.businessTest;
 
 import org.junit.Before;
 import org.junit.Test;
 
-// import javax.smartcardio.Card;
 
-import HackMaster.business.DeckManager;
-import HackMaster.objects.CardClass;
-import HackMaster.objects.CardResource;
-import HackMaster.objects.ResourceClass;
+import hackmaster.business.DeckManager;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.ResourceClass;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
@@ -20,17 +18,17 @@ public class DeckManagerUnitTest {
         int count=0;
         CardClass[] testDeck = new CardClass[4];
         testDeck[count] = new CardClass(0, "CPU Boost", "Upgrade", "Upgrade your CPU",
-                new CardResource(new ResourceClass(0, -10, 0, 0, 0,1, 0), null));
+                new ResourceClass(0, -10, 0, 0, 0,1, 0), null);
         count++;
 
         testDeck[count] =  new CardClass(1, "More Cores", "Defense", "Defend your CPU",
-                new CardResource(new ResourceClass(0, -5, 10, 0, 0,0, 0), null));
+                new ResourceClass(0, -5, 10, 0, 0,0, 0), null);
         count++;
         testDeck[count] =  new CardClass(2, "bot.net", "Attack", "Attack with your CPU",
-                new CardResource(new ResourceClass(0, -5, 10, -3, 0,0, 2), null));
+                new ResourceClass(0, -5, 10, -3, 0,0, 2), null);
         count ++;
         testDeck[count] = new CardClass(3, "^^&&^%$$^$(%$$#", "%$$%$%((^%$", "$$%(^)%%^%^",
-                new CardResource(new ResourceClass(0, 0, 0, 0, 0,0, 0), null));
+                new ResourceClass(0, 0, 0, 0, 0,0, 0), null);
         DeckManager.setDeck(testDeck);
     }
 
@@ -62,22 +60,6 @@ public class DeckManagerUnitTest {
             fail("NegativeArraySize Expected");
         } catch ( NegativeArraySizeException exp) {
         }
-    }
-
-    @Test
-    public void testNullPaintCard() {
-        try {
-            DeckManager.paintCard(null);
-            fail("Null Pointer Expected");
-        } catch ( NullPointerException exp) {
-        }
-    }
-
-    @Test
-    public void testGetCardIndex() {
-        assertEquals("The Index should be 1",1,DeckManager.getCardIndex("More Cores",DeckManager.getADeck()));
-        assertEquals("The Index should be 0",-1,DeckManager.getCardIndex("&#%%#&^&)@",DeckManager.getADeck()));
-        assertEquals("The Index should be 2",2,DeckManager.getCardIndex("bot.net",DeckManager.getADeck()));
     }
 
     @Test
@@ -135,16 +117,6 @@ public class DeckManagerUnitTest {
             DeckManager.getCardAt(-1);
             fail("ArrayIndexOutOfBounds Expected");
         } catch ( ArrayIndexOutOfBoundsException exp) {
-        }
-    }
-
-
-    @Test
-    public void testNullGetCardIndex() {
-        try {
-            DeckManager.getCardIndex(null,null);
-            fail("Null Pointer Expected");
-        } catch ( NullPointerException exp) {
         }
     }
 
