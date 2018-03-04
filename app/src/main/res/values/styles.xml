@@ -12,6 +12,11 @@
         <item name="windowActionBarOverlay">false</item>
         <item name="windowActionModeOverlay">false</item>
         <item name="actionBarPopupTheme">@null</item>
+        <item name="colorAccent">@android:color/holo_green_light</item>
+    </style>
+
+    <style name="DarkDesignedByVlad" parent="Theme.AppCompat.NoActionBar" >
+        <item name="colorAccent">@android:color/holo_green_light</item>
     </style>
 
 </resources>

@@ -7,7 +7,9 @@ import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmaster.objects.PlayerStatsSaves;
 
-public class GameManager {
+// Will manage the overall game that is in progress
+// will hold the functions that are common to single and multiplayer game
+public class GameManager implements GameInterface {
     private static PlayerStatsSaves pStats;
     private static PlayerClass player1;
     private static PlayerClass player2;
@@ -163,6 +165,25 @@ public class GameManager {
         if (inGame)
             return player2.getHealth();
         return -1;
+    }
+
+    //test this (marc)
+    public static void initStats() {
+        pStats = new PlayerStatsSaves();
+        pStats.setPlayerName("Pwn0gr4ph1c"); // change name later
+        pStats.addWin(); // remove this
+        pStats.addWin(); // remove this
+    }
+
+
+    //test this (marc)
+    public static String getPlayerName() {
+        return pStats.getName();
+    }
+
+    //test this (marc)
+    public static int getWin() {
+        return pStats.getWin();
     }
 
     public static void runAsTest() { test = true; }

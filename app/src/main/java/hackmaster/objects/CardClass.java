@@ -1,6 +1,7 @@
 package hackmaster.objects;
 
 
+
 public class CardClass {
     private String name;
     private String description;

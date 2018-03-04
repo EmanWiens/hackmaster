@@ -1,14 +1,19 @@
 package hackmaster.business;
-
-import hackmaster.business.GameManager;
-import hackmaster.presentation.DrawToScreen;
+import hackmaster.objects.PlayerClass;
 
 /**
- * Created by Owner on 3/2/2018.
+ * Created by Owner on 3/3/2018.
  */
 
-public class SinglePlayerGameManager extends GameManager {
-    public SinglePlayerGameManager(DrawToScreen mainActivity){
-        super(mainActivity);
+public class SinglePlayerGameManager {
+    private PlayerClass player1;
+    private PlayerClass player2;
+    private DeckManager deckM;
+    private ResourceManager resManager;
+
+    public SinglePlayerGameManager() {
+
     }
+
+    // TODO move all the funtions in here
 }
