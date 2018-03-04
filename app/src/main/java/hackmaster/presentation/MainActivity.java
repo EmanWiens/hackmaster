@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.example.owner.hackmaster20.R;
 
 import java.util.Random;
 
+import hackmaster.business.GameInterface;
 import hackmaster.business.GameManager;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
@@ -47,31 +49,6 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         setContentView(R.layout.main_activity);
         backGroundMusicStart();
         this.initSoundPool();
-    }
-
-    synchronized public void drawPlayedCard(CardClass card, boolean delay) {
-        // DELAY
-        // Handler handler = new Handler();
-        if (delay) {
-            //handler.postDelayed(delayDraw(), 2000); // DELAY
-            TextView playedCard = findViewById(R.id.playedCard1);
-            playedCard.setText(card.toString());
-        }
-        else {
-            TextView playedCard = findViewById(R.id.playedCard0);
-            playedCard.setText(card.toString());
-        }
-    }
-
-    // DELAY
-    public Runnable delayDraw() {
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                drawPlayedCard(GameManager.getPlayedCardAi(), false);
-            }
-        };
-        return r;
     }
 
     //Credit: https://o7planning.org/en/10521/android-2d-game-tutorial-for-beginners
@@ -255,6 +232,30 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         textView.setText(cardText);
     }
 
+    synchronized public void drawPlayedCard(CardClass card, boolean delay) {
+        // DELAY
+        Handler handler = new Handler();
+        if (delay) {
+            handler.postDelayed(delayDraw(), 2000); // DELAY
+            // GameManager.setDelayAi(true);
+        }
+        else if (!GameManager.gamePaused()) {
+            TextView playedCard = findViewById(R.id.playedCard1);
+            playedCard.setText(card.toString());
+        }
+    }
+
+    // DELAY
+    public Runnable delayDraw() {
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                drawPlayedCard(GameManager.getPlayedCardAi(), false);
+            }
+        };
+        return r;
+    }
+
     public void playMessage(View v) {
         setContentView(R.layout.battle_view);
         gameManager.setUpSingleGame();
@@ -283,17 +284,6 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         if (gameManager.getPlayer1Turn()) {
             gameManager.playCardEvent(chosenCard);
         }
-    }
-
-    synchronized public void drawPlayedCard(CardClass card) {
-        // if (gameManager.getPlayer1Turn()) {
-        TextView playedCard = findViewById(R.id.playedCard1);
-        playedCard.setText(card.toString());
-        /*}
-        else {
-            TextView playedCard = findViewById(R.id.playedCard1);
-            playedCard.setText(card.toString());
-        }*/
     }
 
     public void pauseMessage(View v) {
