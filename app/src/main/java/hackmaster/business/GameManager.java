@@ -7,7 +7,9 @@ import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmaster.objects.PlayerStatsSaves;
 
-public class GameManager {
+// Will manage the overall game that is in progress
+// will hold the functions that are common to single and multiplayer game
+public class GameManager implements GameInterface {
     private static PlayerStatsSaves pStats;
     private static PlayerClass player1;
     private static PlayerClass player2;
