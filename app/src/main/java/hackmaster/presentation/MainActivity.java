@@ -49,6 +49,31 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         this.initSoundPool();
     }
 
+    synchronized public void drawPlayedCard(CardClass card, boolean delay) {
+        // DELAY
+        // Handler handler = new Handler();
+        if (delay) {
+            //handler.postDelayed(delayDraw(), 2000); // DELAY
+            TextView playedCard = findViewById(R.id.playedCard1);
+            playedCard.setText(card.toString());
+        }
+        else {
+            TextView playedCard = findViewById(R.id.playedCard0);
+            playedCard.setText(card.toString());
+        }
+    }
+
+    // DELAY
+    public Runnable delayDraw() {
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                drawPlayedCard(GameManager.getPlayedCardAi(), false);
+            }
+        };
+        return r;
+    }
+
     //Credit: https://o7planning.org/en/10521/android-2d-game-tutorial-for-beginners
     private void initSoundPool()  {
         // With Android API >= 21.
@@ -169,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             else if (gameManager.gamePaused()) {
                 setContentView(R.layout.battle_view);
                 GameManager.unpauseGame();
-                GameManager.drawCurrentGame();
+                GameManager.render();
             }
         }
         else {
@@ -232,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public void playMessage(View v) {
         setContentView(R.layout.battle_view);
-        gameManager.setUpSingleGame(false);
+        gameManager.setUpSingleGame();
     }
 
     public void cardPress(View v) {
@@ -279,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     public void pauseResumeMessage(View v) {
         setContentView(R.layout.battle_view);
         gameManager.unpauseGame();
-        GameManager.drawCurrentGame();
+        GameManager.render();
     }
 
     public void pauseExitMessage(View v) {

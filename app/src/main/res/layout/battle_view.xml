@@ -151,9 +151,8 @@
 
         <ImageView
             android:id="@+id/imageBorderCard0"
-            android:layout_width="107dp"
+            android:layout_width="116dp"
             android:layout_height="224dp"
-            android:layout_marginStart="-2dp"
             android:adjustViewBounds="false"
             android:padding="7dp"
             android:scaleType="centerInside"
