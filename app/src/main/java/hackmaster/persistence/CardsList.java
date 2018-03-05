@@ -18,7 +18,7 @@ CardsList {
         // TO DO make a list of cards
 
         CardClass tempCard = new CardClass(0, "CPU Boost", "Upgrade", "Upgrade your CPU",
-                new ResourceClass(0, -5, 1, 0, 0,0, 0), null);
+                new ResourceClass(0, -5, 1, 0, 0,0, 0),  new ResourceClass(-10, 0, 0, 0, 0,0, 0));
         cards.add(tempCard);
         count++;
 
