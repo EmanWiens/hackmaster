@@ -1,5 +1,4 @@
 package hackmaster.business;
-
 import hackmaster.objects.PlayerClass;
 
 /**

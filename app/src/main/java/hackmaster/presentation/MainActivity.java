@@ -12,6 +12,7 @@ import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.example.owner.hackmaster20.R;
 
 import java.util.Random;
 
+import hackmaster.business.GameInterface;
 import hackmaster.business.GameManager;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
@@ -268,6 +270,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
        // imageButton.setBackgroundResource(realID);
 
     }
+
     public void playMessage(View v) {
         setContentView(R.layout.battle_view);
         gameManager.setUpSingleGame();
