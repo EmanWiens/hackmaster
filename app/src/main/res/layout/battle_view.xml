@@ -8,6 +8,7 @@
     android:minHeight="69dp"
     tools:context="hackmaster.presentation.MainActivity">
 
+
     <TextView
         android:id="@+id/player2"
         android:layout_width="100dp"
@@ -34,153 +35,48 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="695dp"
+        android:layout_width="800dp"
         android:layout_height="227dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/card2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:onClick="cardPress"
-            android:paddingLeft="3dp"
-            android:text="card2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/card3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/card1"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/card0"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:onClick="cardPress"
-            android:paddingLeft="3dp"
-            android:text="card0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/card1"
-            app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/card1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:onClick="cardPress"
-            android:paddingLeft="3dp"
-            android:text="card1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/card2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/card0"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/card4"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:onClick="cardPress"
-            android:paddingLeft="3dp"
-            android:text="card4"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/card5"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/card3"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/card5"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:onClick="cardPress"
-            android:paddingLeft="3dp"
-            android:text="card5"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/card4"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/card3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:onClick="cardPress"
-            android:paddingLeft="3dp"
-            android:text="card3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/card4"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/card2"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageBorderCard0"
             android:layout_width="116dp"
             android:layout_height="224dp"
             android:adjustViewBounds="false"
-            android:padding="7dp"
             android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card0"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="8dp" />
 
         <ImageView
             android:id="@+id/imageBorderCard1"
             android:layout_width="116dp"
             android:layout_height="224dp"
             android:layout_marginBottom="3dp"
-            android:layout_marginStart="1dp"
             android:padding="7dp"
             android:scaleType="centerInside"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/card1"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="1.0"
+            tools:layout_editor_absoluteX="120dp" />
 
         <ImageView
             android:id="@+id/imageBorderCard2"
             android:layout_width="120dp"
             android:layout_height="224dp"
-            android:layout_marginStart="2dp"
             android:padding="7dp"
             android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card2"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="234dp" />
 
         <ImageView
             android:id="@+id/imageBorderCard3"
@@ -188,30 +84,84 @@
             android:layout_height="224dp"
             android:padding="7dp"
             android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card3"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="352dp" />
 
         <ImageView
             android:id="@+id/imageBorderCard4"
             android:layout_width="118dp"
             android:layout_height="224dp"
-            android:layout_marginStart="1dp"
             android:padding="7dp"
             android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card4"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="467dp" />
 
         <ImageView
             android:id="@+id/imageBorderCard5"
-            android:layout_width="111dp"
-            android:layout_height="223dp"
-            android:layout_marginStart="1dp"
+            android:layout_width="127dp"
+            android:layout_height="221dp"
             android:padding="7dp"
             android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card5"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="584dp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonCard0"
+            android:layout_width="140dp"
+            android:layout_height="224dp"
+            android:onClick="firstcardPress"
+            android:background="@drawable/attackplus"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="1dp" />
 
 
+        <ImageButton
+            android:id="@+id/imageButtonCard1"
+            android:layout_width="140dp"
+            android:layout_height="224dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/attackplus"
+            android:onClick="secondcardPress"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/imageButtonCard0"
+            tools:layout_editor_absoluteY="1dp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonCard2"
+            android:layout_width="140dp"
+            android:layout_height="224dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/attackphash"
+            android:onClick="thirdcardPress"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/imageButtonCard1"
+            tools:layout_editor_absoluteY="1dp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonCard3"
+            android:layout_width="140dp"
+            android:layout_height="224dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/attackphash"
+            android:onClick="fourthcardPress"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/imageButtonCard2"
+            tools:layout_editor_absoluteY="1dp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonCard4"
+            android:layout_width="144dp"
+            android:layout_height="224dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/attackphash"
+            android:onClick="fifthcardPress"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/imageButtonCard3"
+            tools:layout_editor_absoluteY="1dp" />
 
 
     </android.support.constraint.ConstraintLayout>
@@ -261,7 +211,6 @@
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="botnetP"
@@ -324,7 +273,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout4"
-        android:layout_width="243dp"
+        android:layout_width="300dp"
         android:layout_height="218dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -333,37 +282,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/playedCard1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:paddingLeft="3dp"
-            android:text="playedCard1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/playedCard0"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/playedCard0"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:paddingLeft="3dp"
-            android:text="playedCard0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/playedCard1"
+        <ImageView
+            android:id="@+id/imageViewPlayedCard0"
+            android:layout_width="140dp"
+            android:layout_height="224dp"
+            android:background="@drawable/attackplus"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteY="0dp" />
+
+        <ImageView
+            android:id="@+id/imageViewPlayedCard1"
+            android:layout_width="140dp"
+            android:layout_height="224dp"
+            android:layout_marginStart="150dp"
+            android:background="@drawable/attackplus"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@id/imageViewPlayedCard0"
+            tools:layout_editor_absoluteY="0dp" />
+
     </android.support.constraint.ConstraintLayout>
 
     <TextView

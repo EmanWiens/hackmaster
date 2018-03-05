@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     private SoundPool soundPool;
     private int soundIdCardSelected;
 
+    @RequiresApi(api = Build.VERSION_CODES.FROYO)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,12 +56,12 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         // Handler handler = new Handler();
         if (delay) {
             //handler.postDelayed(delayDraw(), 2000); // DELAY
-            TextView playedCard = findViewById(R.id.playedCard1);
-            playedCard.setText(card.toString());
+            ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
+            imageView.setBackgroundResource(returnImageCardID(card.getID()));
         }
         else {
-            TextView playedCard = findViewById(R.id.playedCard0);
-            playedCard.setText(card.toString());
+            ImageView imageView = findViewById(R.id.imageViewPlayedCard0);
+            imageView.setBackgroundResource(returnImageCardID(card.getID()));
         }
     }
 
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     //Credit: https://o7planning.org/en/10521/android-2d-game-tutorial-for-beginners
+    @RequiresApi(api = Build.VERSION_CODES.FROYO)
     private void initSoundPool()  {
         // With Android API >= 21.
         if (Build.VERSION.SDK_INT >= 21 ) {
@@ -234,32 +237,61 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void DrawCard(CardClass card, int slot) {
-        TextView textView = null;
-
-        String cardText = (slot+1) + ". " +card.toString();
-        if (slot == 0) {
-            textView = findViewById(R.id.card0);
-
+        ImageButton imageButton =  null;
+        int newslot=slot;
+       if (slot == 0) {
+           imageButton = findViewById(R.id.imageButtonCard0);
+      }
+        if (slot == 1) {
+            imageButton = findViewById(R.id.imageButtonCard1);
         }
-        else if (slot == 1)
-            textView = findViewById(R.id.card1);
-        else if (slot == 2)
-            textView = findViewById(R.id.card2);
-        else if (slot == 3)
-            textView = findViewById(R.id.card3);
-        else if (slot == 4)
-            textView = findViewById(R.id.card4);
-        else
-            textView = findViewById(R.id.card5);
+        if (slot == 2) {
+            imageButton = findViewById(R.id.imageButtonCard2);
+        }
+         if (slot == 3) {
+            imageButton = findViewById(R.id.imageButtonCard3);
+        }
+         if (slot == 4) {
+            imageButton = findViewById(R.id.imageButtonCard4);
+        }
+            imageButton.setBackgroundResource(returnImageCardID(card.getID()));
+        }
 
-        textView.setText(cardText);
+    public void displayCardImage(int imageID, int imageBtnID)
+    {
+        int realID=0;
+        if (imageID==25)
+        {
+            realID=R.drawable.debug;
+        }
+        //ImageButton imageButton = findViewById(R.id.imageButton);
+       // imageButton.setBackgroundResource(realID);
+
     }
-
     public void playMessage(View v) {
         setContentView(R.layout.battle_view);
         gameManager.setUpSingleGame();
     }
-
+    public void firstcardPress(View v)
+    {
+        gameManager.playCardEvent(0);
+    }
+    public void secondcardPress(View v)
+    {
+        gameManager.playCardEvent(1);
+    }
+    public void thirdcardPress(View v)
+    {
+        gameManager.playCardEvent(2);
+    }
+    public void fourthcardPress(View v)
+    {
+        gameManager.playCardEvent(3);
+    }
+    public void fifthcardPress(View v)
+    {
+        gameManager.playCardEvent(4);
+    }
     public void cardPress(View v) {
         ImageView[]  imageCardBorder = new ImageView[6] ;
         imageCardBorder[0]= findViewById(R.id.imageBorderCard0);
@@ -268,12 +300,13 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         imageCardBorder[3] = findViewById(R.id.imageBorderCard3);
         imageCardBorder[4] = findViewById(R.id.imageBorderCard4);
         imageCardBorder[5] = findViewById(R.id.imageBorderCard5);
-        String name[] = ((TextView) v).getText().toString().split("\n");
-        playCardSelected();
-        int chosenCard= Character.getNumericValue(name[0].charAt(0)) - 1;
+        //String name[] = ((TextView) v).getText().toString().split("\n");
+        //int chosenCard= Character.getNumericValue(name[0].charAt(0)) - 1;
+        int chosenCard =0;
         for (int i=0; i<=5;i++)
         {
             if (i==chosenCard) {
+
                 imageCardBorder[i].setBackgroundResource(R.drawable.image_border);
             }
             else{
@@ -287,8 +320,10 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     synchronized public void drawPlayedCard(CardClass card) {
         // if (gameManager.getPlayer1Turn()) {
-        TextView playedCard = findViewById(R.id.playedCard1);
-        playedCard.setText(card.toString());
+//        TextView playedCard = findViewById(R.id.playedCard1);
+//        playedCard.setText(card.toString());
+        ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
+         imageView.setBackgroundResource(returnImageCardID(card.getID()));
         /*}
         else {
             TextView playedCard = findViewById(R.id.playedCard1);
@@ -335,5 +370,116 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         } else {
             setContentView(R.layout.main_activity);
         }
+    }
+    //TODO Move the returnImageCardID function to Presistence level (OR maybe to domain object)
+    public int returnImageCardID(int cardID)
+    {
+        int ImageCardID= R.drawable.debug;
+        if (cardID==25)
+        {
+            ImageCardID= R.drawable.attackphash;
+        }
+        if (cardID==24)
+        {
+            ImageCardID= R.drawable.attackplusplus;
+        }
+        if (cardID==23)
+        {
+            ImageCardID= R.drawable.attackplus;
+        }
+        if (cardID==22)
+        {
+            ImageCardID= R.drawable.zeroday;
+        }
+        if (cardID==21)
+        {
+            ImageCardID= R.drawable.exploit;
+        }
+        if (cardID==20)
+        {
+            ImageCardID= R.drawable.debug;
+        }
+        if (cardID==19)
+        {
+            ImageCardID= R.drawable.hack;
+        }
+        if (cardID==18)
+        {
+            ImageCardID= R.drawable.throttle;
+        }
+        if (cardID==17)
+        {
+            ImageCardID= R.drawable.networkoutage;
+        }
+        if (cardID==16)
+        {
+            ImageCardID= R.drawable.marketcrash;
+        }
+        if (cardID==15)
+        {
+            ImageCardID= R.drawable.expand;
+        }
+        if (cardID==14)
+        {
+            ImageCardID= R.drawable.serverfarm;
+        }
+        if (cardID==13)
+        {
+            ImageCardID= R.drawable.overclock;
+        }
+        if (cardID==12)
+        {
+            ImageCardID= R.drawable.playthemarket;
+        }
+        if (cardID==11)
+        {
+            ImageCardID= R.drawable.firewall;
+        }
+        if (cardID==10)
+        {
+            ImageCardID= R.drawable.antivirus;
+        }
+        if (cardID==9)
+        {
+            ImageCardID= R.drawable.popup;
+        }
+        if (cardID==8)
+        {
+            ImageCardID= R.drawable.filetransfer;
+        }
+        if (cardID==7)
+        {
+            ImageCardID= R.drawable.ddos;
+        }
+        if (cardID==6)
+        {
+            ImageCardID= R.drawable.upgradehashrate;
+        }
+        if (cardID==5)
+        {
+            ImageCardID= R.drawable.upgradecpu;
+        }
+        if (cardID==4)
+        {
+            ImageCardID= R.drawable.upgradebotnet;
+        }
+        if (cardID==3)
+        {
+            ImageCardID= R.drawable.cutsomewires;
+        }
+        if (cardID==2)
+        {
+            ImageCardID= R.drawable.botnet;
+        }
+        if (cardID==1)
+        {
+            ImageCardID= R.drawable.morecores;
+        }
+        if (cardID==0)
+        {
+            ImageCardID= R.drawable.morecores;
+        }
+
+        return ImageCardID;
     }
 }

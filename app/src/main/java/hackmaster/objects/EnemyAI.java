@@ -11,8 +11,9 @@ public class EnemyAI extends PlayerClass {
     }
 
     public int playNextCard() {
-        nextCard = -1;
-
+        if (nextCard!=0) {
+            nextCard = -1;
+        }
         CardClass[] playable = playableCards();
 
         if (playable.length == 0) {
