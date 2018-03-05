@@ -278,35 +278,39 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     public void firstcardPress(View v)
     {
         gameManager.playCardEvent(0);
+        cardPress(0);
     }
     public void secondcardPress(View v)
     {
         gameManager.playCardEvent(1);
+        cardPress(1);
     }
     public void thirdcardPress(View v)
     {
         gameManager.playCardEvent(2);
+        cardPress(2);
     }
     public void fourthcardPress(View v)
     {
         gameManager.playCardEvent(3);
+        cardPress(3);
     }
     public void fifthcardPress(View v)
     {
         gameManager.playCardEvent(4);
+        cardPress(4);
     }
-    public void cardPress(View v) {
+    private void cardPress(int chosenCard) {
         ImageView[]  imageCardBorder = new ImageView[6] ;
         imageCardBorder[0]= findViewById(R.id.imageBorderCard0);
         imageCardBorder[1]= findViewById(R.id.imageBorderCard1);
         imageCardBorder[2]= findViewById(R.id.imageBorderCard2);
         imageCardBorder[3] = findViewById(R.id.imageBorderCard3);
         imageCardBorder[4] = findViewById(R.id.imageBorderCard4);
-        imageCardBorder[5] = findViewById(R.id.imageBorderCard5);
+        playCardSelected();
         //String name[] = ((TextView) v).getText().toString().split("\n");
         //int chosenCard= Character.getNumericValue(name[0].charAt(0)) - 1;
-        int chosenCard =0;
-        for (int i=0; i<=5;i++)
+        for (int i=0; i<=4;i++)
         {
             if (i==chosenCard) {
 
@@ -315,9 +319,6 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             else{
                 imageCardBorder[i].setBackgroundResource(android.R.color.transparent);
             }
-        }
-        if (gameManager.getPlayer1Turn()) {
-            gameManager.playCardEvent(chosenCard);
         }
     }
 
