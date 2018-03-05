@@ -379,6 +379,18 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     public int returnImageCardID(int cardID)
     {
         int ImageCardID= R.drawable.debug;
+        if (cardID==28)
+        {
+            ImageCardID= R.drawable.masshack;
+        }
+        if (cardID==27)
+        {
+            ImageCardID= R.drawable.epichack;
+        }
+        if (cardID==26)
+        {
+            ImageCardID= R.drawable.extremehack;
+        }
         if (cardID==25)
         {
             ImageCardID= R.drawable.attackphash;

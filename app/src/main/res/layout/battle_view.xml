@@ -336,7 +336,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:scrollbarSize="50dip"
-        android:text="Health: 100%"
+        android:text="100%"
         app:layout_constraintBottom_toTopOf="@+id/healthPBarP"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/player1" />
@@ -346,7 +346,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Health: 100%"
+        android:text="100%"
         app:layout_constraintBottom_toTopOf="@+id/healthPBarE"
         app:layout_constraintStart_toStartOf="@+id/player2"
         app:layout_constraintTop_toBottomOf="@+id/player2" />
@@ -431,4 +431,5 @@
         app:layout_constraintEnd_toStartOf="@+id/pauseBtn"
         app:layout_constraintStart_toEndOf="@+id/discardBtn"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+
 </android.support.constraint.ConstraintLayout>

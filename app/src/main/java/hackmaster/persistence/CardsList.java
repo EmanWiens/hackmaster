@@ -142,6 +142,15 @@ CardsList {
         tempCard = new CardClass(25, "Attack#", "Attack", "Deal a Decent Amount of Damage to the Enemy",
                 new ResourceClass(0, 4, 0, -5, 0, 0, 0), new ResourceClass(-5, 0, 0, 0, 0, 0, 0));
         cards.add(tempCard);
+        tempCard = new CardClass(26, "Extreme Hack", "Attack", "Extreme Use of CPU",
+                new ResourceClass(10, 0, 0, 0, 0, -50, 0), new ResourceClass(-30, 0, 0, 0, 0, 0, 0));
+        cards.add(tempCard);
+        tempCard = new CardClass(27, "Epic Hack", "Attack", "Extreme Use of CPU",
+                new ResourceClass(0, 0, 0, 0, 0, -30, 0), new ResourceClass(-30, 0, 0, 0, 0, 0, 0));
+        cards.add(tempCard);
+        tempCard = new CardClass(28, "Mass Hack", "Attack", "Extreme Use of CPU",
+                new ResourceClass(20, 0, 0, 0, 0, -50, 0), new ResourceClass(-25, 0, 0, 0, 0, 0, 0));
+        cards.add(tempCard);
 
         return cards.toArray(new CardClass[0]);
     }
