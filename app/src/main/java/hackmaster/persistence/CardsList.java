@@ -23,7 +23,7 @@ CardsList {
         count++;
 
         tempCard = new CardClass(1, "More Cores", "Defense", "Upgrade your CPU",
-                new ResourceClass(0, -5, 1, 0, 0,0, 0), null);
+                new ResourceClass(0, -5, 1, 0, 0,0, 0), new ResourceClass(-10, 0, 0, 0, 0,0, 0));
         cards.add(tempCard);
         count++;
 
