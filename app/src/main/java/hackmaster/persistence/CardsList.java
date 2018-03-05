@@ -118,7 +118,7 @@ CardsList {
         count++;
 
         tempCard = new CardClass(20, "Debug", "Attack", "Gain a Small Amount of Health",
-                new ResourceClass(10, 5, 0, -10, 0, 0, 0), null);
+                new ResourceClass(0, 5, 0, -10, 0, 0, 0), new ResourceClass(-20, 0, 0, 0, 0, 0, 0));
         cards.add(tempCard);
         count++;
 
