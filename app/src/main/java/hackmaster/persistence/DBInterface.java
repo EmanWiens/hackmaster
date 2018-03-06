@@ -1,12 +1,23 @@
 package hackmaster.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import hackmaster.objects.CardClass;
 
-/**
- * Created by Owner on 2/18/2018.
- */
-
 public interface DBInterface {
-    CardClass[] getCards();
-    // TODO write the database interface and make the functions CardsList and real DB
+    void open(String string);
+
+    void close();
+
+    String getCardSequential(List<CardClass> cardDeck);
+
+    ArrayList<CardClass> getCardRandom(CardClass card);
+
+    String insertCard(CardClass card);
+
+    String updateCard(CardClass card);
+
+    String removeCard(CardClass card);
+
 }

@@ -10,6 +10,10 @@ public class CardClass {
     private String type;
     private int id = 0;
 
+    public CardClass(int id) {
+        this.id = id;
+    }
+
     public CardClass(int id, String name, String type, String d, ResourceClass p, ResourceClass e) {
         this.id = id;
         this.name = name;
