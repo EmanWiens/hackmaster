@@ -5,8 +5,8 @@ import hackmaster.objects.CardClass;
 
 
 public class DeckManager {
-    private static CardClass[] deck = null;
     private static int nextIndex = 0;
+    private static CardClass[] deck = null;
 
 
     public DeckManager() {
@@ -15,7 +15,22 @@ public class DeckManager {
 
     public static void initDeck(int size) {
         deck = CardsList.presetCards();
+        shuffleDeck();
         resetIndex();
+    }
+
+    // Knuth shuffle
+    // TODO RUN TEST WITH SEED -JANSEN
+    public static void shuffleDeck(){
+        CardClass temp;
+        int pick;
+        int n = deck.length;
+        for(int i = n - 1; i>=0; i--){
+            pick = (int) Math.floor((i+1)*Math.random());
+            temp = deck[i];
+            deck[i] = deck[pick];
+            deck[pick] = temp;
+        }
     }
 
     public static CardClass[] dealCards(int deal) {
