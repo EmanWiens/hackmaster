@@ -38,7 +38,7 @@ public class DataAccessObject implements DBInterface {
         try
         {
             // Setup for HSQL
-            dbType = "HSQL";
+            dbType = "HSQLDB";
             Class.forName("org.hsqldb.jdbcDriver").newInstance();
             url = "jdbc:hsqldb:file:" + dbPath; // stored on disk mode
             c1 = DriverManager.getConnection(url, "SA", "");
