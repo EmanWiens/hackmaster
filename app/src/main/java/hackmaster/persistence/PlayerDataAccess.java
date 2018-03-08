@@ -12,7 +12,7 @@ import hackmaster.objects.PlayerStatsSaves;
  * Created by Jansen Lazaro on 2018-03-07.
  */
 
-public class PlayerStatDataAccess implements PlayerStatDataAccessInterface {
+public class PlayerDataAccess implements PlayerDataAccessInterface {
     private Statement statement;
     private ResultSet resultSet;
 

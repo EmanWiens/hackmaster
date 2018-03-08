@@ -8,7 +8,7 @@ import hackmaster.objects.PlayerStatsSaves;
  * Created by Jansen Lazaro on 2018-03-07.
  */
 
-public interface PlayerStatDataAccessInterface {
+public interface PlayerDataAccessInterface {
 
     /**
      * Gets a list of all players in the database
