@@ -7,12 +7,23 @@ public class PlayerStatsSaves {
     private static int totalLoses = 0;
     private static int totalGames = 0;
     private static int level = 0;
+    private int playerID;
 
     public PlayerStatsSaves() {
         totalWins = 0;
         totalLoses = 0;
         totalGames = 0;
         level = 0;
+        playerID = 0;
+    }
+
+    public PlayerStatsSaves(int playerID, String playerName, int totalWins, int totalLoses, int totalGames, int level) {
+        this.playerID = playerID;
+        this.playerName = playerName;
+        this.totalWins = totalWins;
+        this.totalLoses = totalLoses;
+        this.totalGames = totalGames;
+        this.level = level;
     }
 
     public static void addWin() {

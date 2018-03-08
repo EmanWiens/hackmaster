@@ -45,6 +45,33 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
     @Override
     public List<PlayerStatsSaves> getPlayersList(){
         ArrayList<PlayerStatsSaves> playerList = new ArrayList<>();
+        PlayerStatsSaves player;
+
+        String playerName;
+        int id, win, loss, games, level;
+
+        try {
+            // get the list of players from the db
+            resultSet = statement.executeQuery("SELECT * FROM PLAYERS");
+        } catch(Exception e) {
+            processSQLError(e);
+        }
+        try {
+            while (resultSet.next()) {
+                id = resultSet.getInt("PLAYERID");
+                playerName = resultSet.getString("NAME");
+                win = resultSet.getInt("WINS");
+                loss = resultSet.getInt("LOSSES");
+                games = resultSet.getInt("GAMESPLAYED");
+                level = resultSet.getInt("LEVEL");
+                player = new PlayerStatsSaves(id,playerName,win,loss,games,level);
+                playerList.add(player);
+            }
+            resultSet.close();
+        }
+        catch (Exception e) {
+            processSQLError(e);
+        }
         return playerList;
     }
 
