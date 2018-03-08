@@ -303,6 +303,20 @@ public class DataAccessObject implements DBInterface {
         }
         return result;
     }
+    
+    /**
+     * Get a new statement from the database connection
+     * @return a new statement
+     */
+    public Statement getNewStatement() {
+        Statement statement = null;
+        try {
+            statement = c1.createStatement();
+        } catch(Exception e) {
+            processSQLError(e);
+        }
+        return statement;
+    }
 
     public String processSQLError(Exception e)
     {
