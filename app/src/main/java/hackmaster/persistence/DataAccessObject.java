@@ -303,7 +303,7 @@ public class DataAccessObject implements DBInterface {
         }
         return result;
     }
-    
+
     /**
      * Get a new statement from the database connection
      * @return a new statement
