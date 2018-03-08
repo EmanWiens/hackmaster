@@ -43,9 +43,9 @@ public class PlayerClassUnitTest {
 
     @Test
     public void testGetCardIndex() {
-        assertEquals("The Index should be 1",1, player1.getCardIndex(1,player1.getCards()));
-        assertEquals("The Index should be 0",0, player1.getCardIndex(0,player1.getCards()));
-        assertEquals("The Index should be 2",2, player1.getCardIndex(2,player1.getCards()));
+        assertEquals("The Index should be 1", 1, player1.getCardIndex(player1.getCard(1).getID(),player1.getCards()));
+        assertEquals("The Index should be 0",0, player1.getCardIndex(player1.getCard(0).getID(),player1.getCards()));
+        assertEquals("The Index should be 2",2, player1.getCardIndex(player1.getCard(2).getID(),player1.getCards()));
     }
 
     @Test

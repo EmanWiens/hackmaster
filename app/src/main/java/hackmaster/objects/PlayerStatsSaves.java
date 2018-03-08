@@ -2,11 +2,11 @@ package hackmaster.objects;
 
 
 public class PlayerStatsSaves {
-    private static String playerName = "Player 1";
-    private static int totalWins = 0;
-    private static int totalLoses = 0;
-    private static int totalGames = 0;
-    private static int level = 0;
+    private String playerName = "Player 1";
+    private int totalWins = 0;
+    private int totalLoses = 0;
+    private int totalGames = 0;
+    private int level = 0;
     private int playerID;
 
     public PlayerStatsSaves() {
@@ -26,25 +26,25 @@ public class PlayerStatsSaves {
         this.level = level;
     }
 
-    public static void addWin() {
+    public void addWin() {
         totalWins++;
         totalGames++;
     }
 
-    public static void addLoss() {
+    public void addLoss() {
         totalLoses++;
         totalGames++;
     }
 
-    public static void addLevel() {
+    public void addLevel() {
         level++;
     }
 
-    public static void setPlayerName(String name) {
+    public void setPlayerName(String name) {
         playerName = name;
     } //test this (marc)
 
-    public static double getWinLossRatio() {
+    public double getWinLossRatio() {
         double result = totalWins;
         if (totalLoses != 0) {
             result /= totalLoses;
@@ -52,15 +52,15 @@ public class PlayerStatsSaves {
         return result;
     }
 
-    public static int getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    public static int getWin() {
+    public int getWin() {
         return totalWins;
     }
 
-    public static String getName() {
+    public String getName() {
         return playerName;
     } //test this (marc)
 }

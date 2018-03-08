@@ -6,14 +6,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
-
+import hackmaster.objects.PlayerStatsSaves;
 
 public class PlayerStatsSavesTest {
-    private hackmaster.objects.PlayerStatsSaves playerStats;
+    private PlayerStatsSaves playerStats;
 
     @Before
     public void Setup() {
-        playerStats = new  hackmaster.objects.PlayerStatsSaves();
+        playerStats = new PlayerStatsSaves();
     }
 
 
@@ -24,7 +24,6 @@ public class PlayerStatsSavesTest {
     }
     @Test
     public void testWinandLose() {
-
         assertEquals("The value of win/lose ratio should be 0" ,0.00,playerStats.getLevel(), 0.0001);
         playerStats.addWin();
         assertEquals("The value of win/lose ratio should be 1", 1.00, playerStats.getWinLossRatio(), 0.0001);
