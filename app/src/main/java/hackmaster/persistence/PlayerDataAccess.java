@@ -41,11 +41,10 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
      *
      * @return a list of all players in the database
      */
-    // TODO Access DB
     @Override
     public List<PlayerStatsSaves> getPlayersList(){
         ArrayList<PlayerStatsSaves> playerList = new ArrayList<>();
-        PlayerStatsSaves player;
+        PlayerStatsSaves player = null;
 
         String playerName;
         int id, win, loss, games, level;
@@ -80,10 +79,21 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
      *
      * @return a list of names of all players in the database
      */
-    // TODO Access DB
     @Override
     public List<String> getPlayersNamesList(){
+        String playerName;
         ArrayList<String> playerList = new ArrayList<>();
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM PLAYERS");
+            while (resultSet.next()) {
+                playerName = resultSet.getString("NAME");
+                playerList.add(playerName);
+            }
+            resultSet.close();
+        }
+        catch (Exception e) {
+            processSQLError(e);
+        }
         return playerList;
     }
 
@@ -96,7 +106,24 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
     // TODO Access DB
     @Override
     public PlayerStatsSaves getPlayer(int playerID){
+        String playerName;
+        int id, win, loss, games, level;
         PlayerStatsSaves player = null;
+
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM PLAYERS WHERE PLAYERID =" + playerID);
+            id = resultSet.getInt("PLAYERID");
+            playerName = resultSet.getString("NAME");
+            win = resultSet.getInt("WINS");
+            loss = resultSet.getInt("LOSSES");
+            games = resultSet.getInt("GAMESPLAYED");
+            level = resultSet.getInt("LEVEL");
+            player = new PlayerStatsSaves(id,playerName,win,loss,games,level);
+            resultSet.close();
+        }
+        catch (Exception e) {
+            processSQLError(e);
+        }
         return player;
     }
 
