@@ -171,8 +171,6 @@ public class GameManager implements GameInterface {
     public static void initStats() {
         pStats = new PlayerStatsSaves();
         pStats.setPlayerName("Pwn0gr4ph1c"); // change name later
-        pStats.addWin(); // remove this
-        pStats.addWin(); // remove this
     }
 
 

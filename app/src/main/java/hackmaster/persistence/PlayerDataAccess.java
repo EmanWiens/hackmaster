@@ -12,7 +12,7 @@ import hackmaster.objects.PlayerStatsSaves;
  * Created by Jansen Lazaro on 2018-03-07.
  */
 
-public class PlayerStatDataAccess implements PlayerStatDataAccessInterface {
+public class PlayerDataAccess implements PlayerDataAccessInterface {
     private Statement statement;
     private ResultSet resultSet;
 
@@ -41,10 +41,36 @@ public class PlayerStatDataAccess implements PlayerStatDataAccessInterface {
      *
      * @return a list of all players in the database
      */
-    // TODO Access DB
     @Override
     public List<PlayerStatsSaves> getPlayersList(){
         ArrayList<PlayerStatsSaves> playerList = new ArrayList<>();
+        PlayerStatsSaves player = null;
+
+        String playerName;
+        int id, win, loss, games, level;
+
+        try {
+            // get the list of players from the db
+            resultSet = statement.executeQuery("SELECT * FROM PLAYERS");
+        } catch(Exception e) {
+            processSQLError(e);
+        }
+        try {
+            while (resultSet.next()) {
+                id = resultSet.getInt("PLAYERID");
+                playerName = resultSet.getString("NAME");
+                win = resultSet.getInt("WINS");
+                loss = resultSet.getInt("LOSSES");
+                games = resultSet.getInt("GAMESPLAYED");
+                level = resultSet.getInt("LEVEL");
+                player = new PlayerStatsSaves(id,playerName,win,loss,games,level);
+                playerList.add(player);
+            }
+            resultSet.close();
+        }
+        catch (Exception e) {
+            processSQLError(e);
+        }
         return playerList;
     }
 
@@ -53,10 +79,21 @@ public class PlayerStatDataAccess implements PlayerStatDataAccessInterface {
      *
      * @return a list of names of all players in the database
      */
-    // TODO Access DB
     @Override
     public List<String> getPlayersNamesList(){
+        String playerName;
         ArrayList<String> playerList = new ArrayList<>();
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM PLAYERS");
+            while (resultSet.next()) {
+                playerName = resultSet.getString("NAME");
+                playerList.add(playerName);
+            }
+            resultSet.close();
+        }
+        catch (Exception e) {
+            processSQLError(e);
+        }
         return playerList;
     }
 
@@ -69,7 +106,24 @@ public class PlayerStatDataAccess implements PlayerStatDataAccessInterface {
     // TODO Access DB
     @Override
     public PlayerStatsSaves getPlayer(int playerID){
+        String playerName;
+        int id, win, loss, games, level;
         PlayerStatsSaves player = null;
+
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM PLAYERS WHERE PLAYERID =" + playerID);
+            id = resultSet.getInt("PLAYERID");
+            playerName = resultSet.getString("NAME");
+            win = resultSet.getInt("WINS");
+            loss = resultSet.getInt("LOSSES");
+            games = resultSet.getInt("GAMESPLAYED");
+            level = resultSet.getInt("LEVEL");
+            player = new PlayerStatsSaves(id,playerName,win,loss,games,level);
+            resultSet.close();
+        }
+        catch (Exception e) {
+            processSQLError(e);
+        }
         return player;
     }
 
