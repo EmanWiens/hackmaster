@@ -234,8 +234,17 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         view.setText(string);
     }
 
+    //change this (marc)
     public void statsPress(View v) {
+        gameManager.initStats();
+
         setContentView(R.layout.stats_view);
+
+        TextView text=(TextView)findViewById(R.id.nicknameTxtView);
+        text.setText(gameManager.getPlayerName());
+
+        text=(TextView)findViewById(R.id.winLoseTxtView);
+        text.setText(Integer.toString(gameManager.getWin()));
     }
 
     public void DrawCard(CardClass card, int slot) {
@@ -364,8 +373,17 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         builder.show();
     }
 
+    // change this (marc)
     public void pauseStatsMessage(View v) {
+        gameManager.initStats();
+
         setContentView(R.layout.stats_view);
+
+        TextView text=(TextView)findViewById(R.id.nicknameTxtView);
+        text.setText(gameManager.getPlayerName());
+
+        text=(TextView)findViewById(R.id.winLoseTxtView);
+        text.setText(Integer.toString(gameManager.getWin()));
     }
 
     public void statsExitMessage(View v) {

@@ -10,7 +10,7 @@ import hackmaster.objects.PlayerStatsSaves;
 // Will manage the overall game that is in progress
 // will hold the functions that are common to single and multiplayer game
 public class GameManager implements GameInterface {
-    private static PlayerStatsSaves pStats;
+    private static PlayerStatsSaves pStats = null;
     private static PlayerClass player1;
     private static PlayerClass player2;
     private static DeckManager deckM;
@@ -169,7 +169,9 @@ public class GameManager implements GameInterface {
 
     //test this (marc)
     public static void initStats() {
-        pStats = new PlayerStatsSaves();
+        if(pStats == null)
+            pStats = new PlayerStatsSaves();
+
         pStats.setPlayerName("Pwn0gr4ph1c"); // change name later
     }
 
