@@ -1,8 +1,5 @@
 package hackmaster.objects;
 
-import java.util.ArrayList;
-import hackmaster.business.GameManager;
-
 public class EnemyAI extends PlayerClass {
     private int nextCard;
 
