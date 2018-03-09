@@ -5,10 +5,6 @@ package hackmaster.presentation;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -20,9 +16,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.owner.hackmaster20.R;
-
-import java.util.Random;
-
 import hackmaster.business.GameManager;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
@@ -70,12 +63,6 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         return r;
     }
 
-    public void playCardSelected()  {
-        if(musicManager.getSoundPoolLoaded()) {
-            // Play sound CardSelected.wav
-            musicManager.PlayCardSelected(0.8f, 0.8f);
-        }
-    }
 
     public void muteSoundBackground(View v){
         ImageButton muteBtn = findViewById(R.id.muteBtn);
@@ -245,9 +232,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         imageCardBorder[2]= findViewById(R.id.imageBorderCard2);
         imageCardBorder[3] = findViewById(R.id.imageBorderCard3);
         imageCardBorder[4] = findViewById(R.id.imageBorderCard4);
-        playCardSelected();
-        //String name[] = ((TextView) v).getText().toString().split("\n");
-        //int chosenCard= Character.getNumericValue(name[0].charAt(0)) - 1;
+        musicManager.playCardSelected(0.8f,0.8f);
         for (int i=0; i<=4;i++)
         {
             if (i==chosenCard) {
