@@ -4,14 +4,11 @@ import hackmaster.persistence.CardsList;
 import hackmaster.objects.CardClass;
 
 
-public class DeckManager {
+public abstract class DeckManager {
     private static int nextIndex = 0;
     private static CardClass[] deck = null;
 
-
-    public DeckManager() {
-
-    }
+    abstract void methodToOverride(); // TODO example of a method to be overriden by subclass
 
     public static void initDeck(int size) {
         deck = CardsList.presetCards();

@@ -1,6 +1,6 @@
 package hackmaster.business;
 
-public class MultiplayerGame extends Game {
+public class MultiplayerGame implements GameInterface {
     public MultiplayerGame() {
 
     }
