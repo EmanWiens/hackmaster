@@ -3,14 +3,9 @@ package hackmaster.persistence;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import hackmaster.objects.PlayerStatsSaves;
-
-/**
- * Created by Jansen Lazaro on 2018-03-07.
- */
 
 public class PlayerDataAccess implements PlayerDataAccessInterface {
     private Statement statement;
@@ -41,7 +36,6 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
      *
      * @return a list of all players in the database
      */
-    @Override
     public List<PlayerStatsSaves> getPlayersList(){
         ArrayList<PlayerStatsSaves> playerList = new ArrayList<>();
         PlayerStatsSaves player = null;
@@ -79,7 +73,6 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
      *
      * @return a list of names of all players in the database
      */
-    @Override
     public List<String> getPlayersNamesList(){
         String playerName;
         ArrayList<String> playerList = new ArrayList<>();
@@ -104,7 +97,6 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
      * @return The player with id playerID, or null if no player exists with that id
      */
     // TODO Access DB
-    @Override
     public PlayerStatsSaves getPlayer(int playerID){
         String playerName;
         int id, win, loss, games, level;

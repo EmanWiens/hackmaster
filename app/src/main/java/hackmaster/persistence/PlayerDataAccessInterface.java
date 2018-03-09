@@ -4,10 +4,6 @@ import java.util.List;
 
 import hackmaster.objects.PlayerStatsSaves;
 
-/**
- * Created by Jansen Lazaro on 2018-03-07.
- */
-
 public interface PlayerDataAccessInterface {
 
     /**
