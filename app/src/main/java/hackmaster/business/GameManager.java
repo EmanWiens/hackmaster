@@ -1,9 +1,5 @@
 package hackmaster.business;
 
-import android.widget.TextView; // added my marc double check
-
-import com.example.owner.hackmaster20.R; // added my marc double check
-
 import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.presentation.DrawToScreen;
@@ -184,27 +180,21 @@ public class GameManager implements GameInterface {
         return result;
     }
 
-    //test this (marc)
     public static void initStats() {
         if(pStats == null)
             pStats = new PlayerStatsSaves();
 
-        pStats.setPlayerName("Pwn0gr4ph1c"); // change name later
+        pStats.setPlayerName("Pwn0gr4ph1c");
     }
 
 
-    //test this (marc)
     public static String getPlayerName() {
         return pStats.getName();
     }
-
-    //test this (marc)
     public static int getWin() {
         return pStats.getWin();
     }
-    //test this (marc)
     public static void addWin() { pStats.addWin();}
-    //test this (marc)
     public static void addLoss() { pStats.addLoss();}
 
     public static void runAsTest() { test = true; }

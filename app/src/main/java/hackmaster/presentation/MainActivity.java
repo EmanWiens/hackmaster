@@ -289,35 +289,35 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     {
         gameManager.playCardEvent(0);
         cardPress(0);
-        if (gameManager.gameDone())
+        if (gameDone())
             getWinner();
     }
     public void secondcardPress(View v)
     {
         gameManager.playCardEvent(1);
         cardPress(1);
-        if (gameManager.gameDone())
+        if (gameDone())
             getWinner();
     }
     public void thirdcardPress(View v)
     {
         gameManager.playCardEvent(2);
         cardPress(2);
-        if (gameManager.gameDone())
+        if (gameDone())
             getWinner();
     }
     public void fourthcardPress(View v)
     {
         gameManager.playCardEvent(3);
         cardPress(3);
-        if (gameManager.gameDone())
+        if (gameDone())
             getWinner();
     }
     public void fifthcardPress(View v)
     {
         gameManager.playCardEvent(4);
         cardPress(4);
-        if (gameManager.gameDone())
+        if (gameDone())
             getWinner();
     }
     private void cardPress(int chosenCard) {
@@ -536,7 +536,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         }
     }
 
-    // check this marc
+
     public void goToVictory(boolean winner) {
         setContentView(R.layout.results_view);
         GameManager.setInGame(false);
@@ -550,5 +550,17 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             text.setText("Defeat");
             gameManager.addLoss();
         }
+    }
+
+
+    public static boolean gameDone() {
+        boolean result = false;
+        if (GameManager.getPlayer2Health() < 1) {
+            result = true;
+        }
+        if (GameManager.getPlayer1Health() < 1) {
+            result = true;
+        }
+        return result;
     }
 }
