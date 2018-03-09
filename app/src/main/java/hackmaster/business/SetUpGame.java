@@ -1,6 +1,6 @@
 package hackmaster.business;
 
-public abstract class GameSetup {
+public abstract class SetUpGame {
     public SinglePlayerGame setUpSinglePlayerGame() {
         return null; // TODO write the setup function that returns a GameInterface
     }
