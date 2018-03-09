@@ -1,5 +1,9 @@
 package hackmaster.business;
 
+import android.widget.TextView; // added my marc double check
+
+import com.example.owner.hackmaster20.R; // added my marc double check
+
 import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.presentation.DrawToScreen;
@@ -79,6 +83,7 @@ public class GameManager implements GameInterface {
             }
         }
         GameManager.render();
+
     }
 
     public static boolean cantPlayCard(PlayerClass player) {
@@ -168,6 +173,18 @@ public class GameManager implements GameInterface {
     }
 
     //test this (marc)
+    public static boolean gameDone() {
+        boolean result = false;
+        if ((player2.getHealth() < 1) ||  (player1.getHealth() < 1)) {
+            result = true;
+        }
+        return result;
+    }
+
+
+
+
+    //test this (marc)
     public static void initStats() {
         if(pStats == null)
             pStats = new PlayerStatsSaves();
@@ -185,6 +202,10 @@ public class GameManager implements GameInterface {
     public static int getWin() {
         return pStats.getWin();
     }
+    //test this (marc)
+    public static void addWin() { pStats.addWin();}
+    //test this (marc)
+    public static void addLoss() { pStats.addLoss();}
 
     public static void runAsTest() { test = true; }
     public static void setDelayAi(boolean b) { delayAi = b; }

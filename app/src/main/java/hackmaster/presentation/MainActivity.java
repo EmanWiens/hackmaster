@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         setContentView(R.layout.main_activity);
         backGroundMusicStart();
         this.initSoundPool();
+        gameManager.initStats();
     }
 
     synchronized public void drawPlayedCard(CardClass card, boolean delay) {
@@ -238,8 +239,8 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     public void statsPress(View v) {
         gameManager.initStats();
 
-        setContentView(R.layout.stats_view);
 
+        setContentView(R.layout.stats_view); //change
         TextView text=(TextView)findViewById(R.id.nicknameTxtView);
         text.setText(gameManager.getPlayerName());
 
@@ -288,26 +289,36 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     {
         gameManager.playCardEvent(0);
         cardPress(0);
+        if (gameManager.gameDone())
+            getWinner();
     }
     public void secondcardPress(View v)
     {
         gameManager.playCardEvent(1);
         cardPress(1);
+        if (gameManager.gameDone())
+            getWinner();
     }
     public void thirdcardPress(View v)
     {
         gameManager.playCardEvent(2);
         cardPress(2);
+        if (gameManager.gameDone())
+            getWinner();
     }
     public void fourthcardPress(View v)
     {
         gameManager.playCardEvent(3);
         cardPress(3);
+        if (gameManager.gameDone())
+            getWinner();
     }
     public void fifthcardPress(View v)
     {
         gameManager.playCardEvent(4);
         cardPress(4);
+        if (gameManager.gameDone())
+            getWinner();
     }
     private void cardPress(int chosenCard) {
         ImageView[]  imageCardBorder = new ImageView[6] ;
@@ -515,5 +526,29 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         }
 
         return ImageCardID;
+    }
+    
+    public  void getWinner() {
+        if (GameManager.getPlayer2Health() < 1) {
+            goToVictory(true);
+        } else if (GameManager.getPlayer2Health() < 1) {
+            goToVictory(false);
+        }
+    }
+
+    // check this marc
+    public void goToVictory(boolean winner) {
+        setContentView(R.layout.results_view);
+        GameManager.setInGame(false);
+
+        TextView text = (TextView)findViewById(R.id.resultsTextView);
+
+        if (winner) {
+            text.setText("Victory");
+            gameManager.addWin();
+        } else {
+            text.setText("Defeat");
+            gameManager.addLoss();
+        }
     }
 }
