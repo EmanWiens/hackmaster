@@ -3,13 +3,9 @@ package hackmastertest.businessTest;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import hackmaster.business.DeckManager;
 import hackmaster.business.GameManager;
-import hackmaster.business.ResourceManager;
 import hackmaster.objects.CardClass;
-import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 
 import static junit.framework.Assert.assertEquals;

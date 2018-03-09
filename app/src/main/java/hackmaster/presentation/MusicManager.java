@@ -13,18 +13,10 @@ import com.example.owner.hackmaster20.R;
 
 import java.util.Random;
 
-import hackmaster.business.DeckManager;
-import hackmaster.business.GameManager;
-import hackmaster.business.ResourceManager;
-import hackmaster.objects.PlayerStatsSaves;
-import hackmaster.objects.ResourceClass;
-
-
 
 public class MusicManager {
     private static final int MAX_STREAMS=100;
     private static DrawToScreen mainActivity;
-    private GameManager gameManager;
     private boolean soundPoolLoaded;
     private boolean resumeMusic;
     private MediaPlayer mediaPlayer;
@@ -104,19 +96,13 @@ public class MusicManager {
         mediaPlayer.start(); // no need to call prepare(); create() does that for you
         mediaPlayer.setLooping(true);
     }
-
-    public void PlayCardSelected(float leftVolumn, float rightVolumn) {
-        this.soundPool.play(this.soundIdCardSelected,leftVolumn, rightVolumn, 1, 0, 1f);
-       // int streamId
+    public void playCardSelected(float leftVolumn, float rightVolumn) {
+        if(getSoundPoolLoaded()) {
+            // Play sound CardSelected.wav
+            this.soundPool.play(this.soundIdCardSelected,leftVolumn, rightVolumn, 1, 0, 1f);
+        }
     }
-
-    public boolean getSoundPoolLoaded() {return soundPoolLoaded;}
-
-
-    public  void pauseBacgroundMusic() {
-        mediaPlayer.pause();
-    }
-    public  void resumeBacgroundMusic() {
-        mediaPlayer.pause();
-    }
+    private boolean getSoundPoolLoaded() {return soundPoolLoaded;}
+    public  void pauseBacgroundMusic() {mediaPlayer.pause();}
+    public  void resumeBacgroundMusic() {mediaPlayer.pause();}
 }
