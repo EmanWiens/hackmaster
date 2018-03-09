@@ -8,10 +8,6 @@ import java.util.List;
 
 import hackmaster.objects.PlayerStatsSaves;
 
-/**
- * Created by Jansen Lazaro on 2018-03-07.
- */
-
 public class PlayerDataAccess implements PlayerDataAccessInterface {
     private Statement statement;
     private ResultSet resultSet;
@@ -38,7 +34,6 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
 
     /**
      * Gets a list of all players in the database
-     *
      * @return a list of all players in the database
      */
     @Override
@@ -76,7 +71,6 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
 
     /**
      * Gets a list of names of all players in the database
-     *
      * @return a list of names of all players in the database
      */
     @Override
@@ -99,7 +93,6 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
 
     /**
      * Retrieves a player from the database with the id given as parameter
-     *
      * @param playerID the id of the player to retrieve from the database
      * @return The player with id playerID, or null if no player exists with that id
      */
