@@ -531,7 +531,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     public  void getWinner() {
         if (GameManager.getPlayer2Health() < 1) {
             goToVictory(true);
-        } else if (GameManager.getPlayer2Health() < 1) {
+        } else {//  (GameManager.getPlayer2Health() < 1) {
             goToVictory(false);
         }
     }

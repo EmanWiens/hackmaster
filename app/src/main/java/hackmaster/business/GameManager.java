@@ -175,14 +175,14 @@ public class GameManager implements GameInterface {
     //test this (marc)
     public static boolean gameDone() {
         boolean result = false;
-        if ((player2.getHealth() < 1) ||  (player1.getHealth() < 1)) {
+        if (player2.getHealth() < 1) {
+            result = true;
+        }
+        if (player1.getHealth() < 1) {
             result = true;
         }
         return result;
     }
-
-
-
 
     //test this (marc)
     public static void initStats() {
