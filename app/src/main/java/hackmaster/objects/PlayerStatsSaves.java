@@ -51,6 +51,7 @@ public class PlayerStatsSaves {
         return result;
     }
 
+    public int getPlayerID() { return playerID; }
     public int getLevel() {
         return level;
     }
