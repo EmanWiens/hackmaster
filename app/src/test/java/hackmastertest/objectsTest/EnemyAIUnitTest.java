@@ -19,7 +19,7 @@ import static junit.framework.Assert.assertNotNull;
 public class EnemyAIUnitTest {
 
     hackmaster.objects.EnemyAI player;
-    hackmaster.business.DeckManager deckM = new DeckManager();
+    hackmaster.business.DeckManager deckM;
     int card;
 
 

@@ -36,7 +36,7 @@ public class GameManager {
 
     public GameManager(DrawToScreen mainAct) {
         mainActivity = mainAct;
-        deckM = new DeckManager();
+        // deckM = new DeckManager();
         pStats = new PlayerStatsSaves();
         resManager = new ResourceManager();
         test = false;
