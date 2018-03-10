@@ -184,7 +184,7 @@ public class GameManager {
         if(pStats == null)
             pStats = new PlayerStatsSaves();
 
-        pStats.setPlayerName("Pwn0gr4ph1c");
+        pStats.setPlayerName("Player_1");
     }
 
 

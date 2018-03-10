@@ -4,6 +4,7 @@
     android:id="@+id/stats_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/stats"
     tools:context="hackmaster.presentation.MainActivity">
 
     <Button
@@ -39,7 +40,7 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298" />
+        app:layout_constraintVertical_bias="0.297" />
 
     <TextView
         android:id="@+id/nicknameTxtView"
