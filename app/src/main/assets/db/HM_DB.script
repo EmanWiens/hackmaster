@@ -5,7 +5,7 @@ CREATE USER SA PASSWORD ""
 GRANT DBA TO SA
 SET WRITE_DELAY 20
 SET SCHEMA PUBLIC
-INSERT INTO CARDS VALUES(0,'CPU Boost','Upgrade,'Upgrade your CPU',0,-5,1,0,0,0,0,-10,0,0,0,0,0,0)
+INSERT INTO CARDS VALUES(0,'CPU Boost','Upgrade','Upgrade your CPU',0,-5,1,0,0,0,0,-10,0,0,0,0,0,0)
 INSERT INTO CARDS VALUES(1,'More Cores','Defense','Upgrade your CPU',0,-5,1,0,0,0,0,-10,0,0,0,0,0,0)
 INSERT INTO CARDS VALUES(2,'bot.net','Upgrade','Upgrade your CPU',0,0,0,-5,0,0,1,0,0,0,0,0,0,0)
 INSERT INTO CARDS VALUES(3,'Cut some wires','Defense','Upgrade your CPU',0,0,0,-5,0,0,0,-10,0,0,0,0,0,0)

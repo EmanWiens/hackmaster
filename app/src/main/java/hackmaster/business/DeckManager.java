@@ -1,17 +1,27 @@
 package hackmaster.business;
 
+import java.util.ArrayList;
+
+import hackmaster.application.DBController;
+import hackmaster.application.Services;
 import hackmaster.persistence.CardsList;
 import hackmaster.objects.CardClass;
+import hackmaster.persistence.DBInterface;
+import hackmaster.persistence.DataAccessObject;
 
 
 public abstract class DeckManager {
     private static int nextIndex = 0;
     private static CardClass[] deck = null;
+    private static DBInterface dataAccess;
 
     abstract void methodToOverride(); // TODO example of a method to be overriden by subclass
 
     public static void initDeck(int size) {
-        deck = CardsList.presetCards();
+        dataAccess = Services.getDataAccess(DBController.dbName);
+        ArrayList<CardClass>listDeck = new ArrayList<>(size);
+        String emsg = dataAccess.getCardSequential(listDeck);
+        deck = listDeck.toArray(new CardClass[0]);
         shuffleDeck();
         resetIndex();
     }
