@@ -307,127 +307,29 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             setContentView(R.layout.main_activity);
         }
     }
-    //TODO Move the returnImageCardID function to Presistence level (OR maybe to domain object)
+
     public int returnImageCardID(int cardID)
     {
-        int ImageCardID= R.drawable.debug;
-        if (cardID==28)
+        int ImageCardID=0;
+        int[] imageCardList = new int[]{
+                R.drawable.morecores,R.drawable.morecores, R.drawable.botnet,
+                R.drawable.cutsomewires, R.drawable.upgradebotnet,R.drawable.upgradecpu,
+                R.drawable.upgradehashrate,R.drawable.ddos,R.drawable.filetransfer,
+                R.drawable.popup,R.drawable.antivirus,R.drawable.firewall,
+                R.drawable.playthemarket,R.drawable.overclock,R.drawable.serverfarm,
+                R.drawable.expand,R.drawable.marketcrash, R.drawable.networkoutage,
+                R.drawable.throttle, R.drawable.hack,R.drawable.debug, R.drawable.exploit,
+                R.drawable.zeroday, R.drawable.attackplus, R.drawable.attackplusplus,
+                R.drawable.attackphash, R.drawable.extremehack,R.drawable.epichack,
+                R.drawable.masshack
+        };
+        for (int i=0; i<imageCardList.length;i++)
         {
-            ImageCardID= R.drawable.masshack;
+            if (cardID==imageCardList[i])
+            {
+                ImageCardID=imageCardList[i];
+            }
         }
-        if (cardID==27)
-        {
-            ImageCardID= R.drawable.epichack;
-        }
-        if (cardID==26)
-        {
-            ImageCardID= R.drawable.extremehack;
-        }
-        if (cardID==25)
-        {
-            ImageCardID= R.drawable.attackphash;
-        }
-        if (cardID==24)
-        {
-            ImageCardID= R.drawable.attackplusplus;
-        }
-        if (cardID==23)
-        {
-            ImageCardID= R.drawable.attackplus;
-        }
-        if (cardID==22)
-        {
-            ImageCardID= R.drawable.zeroday;
-        }
-        if (cardID==21)
-        {
-            ImageCardID= R.drawable.exploit;
-        }
-        if (cardID==20)
-        {
-            ImageCardID= R.drawable.debug;
-        }
-        if (cardID==19)
-        {
-            ImageCardID= R.drawable.hack;
-        }
-        if (cardID==18)
-        {
-            ImageCardID= R.drawable.throttle;
-        }
-        if (cardID==17)
-        {
-            ImageCardID= R.drawable.networkoutage;
-        }
-        if (cardID==16)
-        {
-            ImageCardID= R.drawable.marketcrash;
-        }
-        if (cardID==15)
-        {
-            ImageCardID= R.drawable.expand;
-        }
-        if (cardID==14)
-        {
-            ImageCardID= R.drawable.serverfarm;
-        }
-        if (cardID==13)
-        {
-            ImageCardID= R.drawable.overclock;
-        }
-        if (cardID==12)
-        {
-            ImageCardID= R.drawable.playthemarket;
-        }
-        if (cardID==11)
-        {
-            ImageCardID= R.drawable.firewall;
-        }
-        if (cardID==10)
-        {
-            ImageCardID= R.drawable.antivirus;
-        }
-        if (cardID==9)
-        {
-            ImageCardID= R.drawable.popup;
-        }
-        if (cardID==8)
-        {
-            ImageCardID= R.drawable.filetransfer;
-        }
-        if (cardID==7)
-        {
-            ImageCardID= R.drawable.ddos;
-        }
-        if (cardID==6)
-        {
-            ImageCardID= R.drawable.upgradehashrate;
-        }
-        if (cardID==5)
-        {
-            ImageCardID= R.drawable.upgradecpu;
-        }
-        if (cardID==4)
-        {
-            ImageCardID= R.drawable.upgradebotnet;
-        }
-        if (cardID==3)
-        {
-            ImageCardID= R.drawable.cutsomewires;
-        }
-        if (cardID==2)
-        {
-            ImageCardID= R.drawable.botnet;
-        }
-        if (cardID==1)
-        {
-            ImageCardID= R.drawable.morecores;
-        }
-        if (cardID==0)
-        {
-            ImageCardID= R.drawable.morecores;
-        }
-
         return ImageCardID;
     }
     
