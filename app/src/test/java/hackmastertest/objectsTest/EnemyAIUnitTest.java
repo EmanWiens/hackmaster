@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import hackmaster.business.DeckManager;
-import hackmaster.business.GameManager;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.ResourceClass;

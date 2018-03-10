@@ -9,15 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/DarkDesignedByVlad">
-        <activity android:name="hackmaster.presentation.MainActivity"
-            android:screenOrientation="landscape">
 
+
+        <activity
+            android:name="hackmaster.presentation.SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="hackmaster.presentation.MainActivity" />
     </application>
 
 </manifest>

@@ -8,16 +8,21 @@ public class MultiplayerGame extends Game {
     }
 
     public void playCardEvent(int playerCard) {
-        /*if (player1Turn && !paused) {
-            if(checkCard(playerCard, player1)){
-                playedCard = player1.getCard(playerCard);
-                playerTurn(playerCard, player1);
-                resManager.applyTurnRate(player2);
-                player1Turn = false;
+        if (getPlayer1Turn() && !gamePaused()) {
+            if(checkCard(playerCard, getPlayer1())){
+                setPlayedCardOne(getPlayer1().getCard(playerCard));
+                playerTurn(playerCard, getPlayer1());
+                ResourceManager.applyTurnRate(getPlayer2());
+                setPlayer1Turn(false);
             }
         }
-        else if (!paused) {
-
-        }*/
+        else if (!gamePaused()) {
+            if(checkCard(playerCard, getPlayer2())){
+                setPlayedCardTwo(getPlayer2().getCard(playerCard));
+                playerTurn(playerCard, getPlayer2());
+                ResourceManager.applyTurnRate(getPlayer1());
+                setPlayer1Turn(true);
+            }
+        }
     }
 }
