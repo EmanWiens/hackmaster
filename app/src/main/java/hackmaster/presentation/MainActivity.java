@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
                 }
         }
     }
-    public void playMessage(View v) {
+    public void singlePlayPress(View v) {
         setContentView(R.layout.battle_view);
         SetUpGame.setUpSinglePlayerGame();
 
