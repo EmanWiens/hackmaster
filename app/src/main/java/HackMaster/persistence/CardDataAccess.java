@@ -1,4 +1,5 @@
-package HackMaster.persistence;
+
+package hackmaster.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
