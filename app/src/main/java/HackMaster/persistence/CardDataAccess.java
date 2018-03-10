@@ -1,8 +1,4 @@
-package HackMaster.persistence;
-
-/**
- * Created by jansl on 2018-03-09.
- */
+package hackmaster.persistence;
 
 public class CardDataAccess {
 }
