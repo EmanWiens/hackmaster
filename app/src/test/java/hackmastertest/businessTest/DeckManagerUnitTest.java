@@ -120,10 +120,5 @@ public class DeckManagerUnitTest {
         }
     }
 
-    @Test
-    public void testCardIsNotNull() {
-           assertNotNull("Shouldn't be a Null",DeckManager.getCardAt(0));
-    }
-
-
+    
 }
