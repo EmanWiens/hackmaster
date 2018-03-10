@@ -205,7 +205,6 @@ public class GameManagerUnitTest {
        assertEquals("Should be Player 1 Turn", 0, GameManager.getPlayerNum());
     }
 
-
     @Test
     public void testInvalidPlayCardEvent(){
         // TODO fix these functions (Fail should be in catch)

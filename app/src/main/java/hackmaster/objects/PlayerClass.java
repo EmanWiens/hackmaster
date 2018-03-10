@@ -83,6 +83,11 @@ public class PlayerClass {
                 j=i;
         return j;
     }
+
+    public String playerHealthToString() {
+        return "Health: " + getHealth() + "%";
+    }
+
     public int getId() { return playerId; }
     public CardClass[] getCards() { return hand; }
     public int cardsSize() { return hand.length; }

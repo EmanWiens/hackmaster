@@ -1,9 +1,7 @@
 package hackmaster.business;
 
-import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
-import hackmaster.objects.ResourceClass;
 
 public class SinglePlayerGame extends Game {
     public SinglePlayerGame(PlayerClass p1, PlayerClass ai) {
@@ -11,24 +9,23 @@ public class SinglePlayerGame extends Game {
     }
 
     public void playCardEvent(int playerCard) {
-        /*if (player1Turn && !paused && !delayAi) {
-            if(checkCard(playerCard, player1)){
-                playedCard = player1.getCard(playerCard);
-                playerTurn(playerCard, player1);
-                resManager.applyTurnRate(player2);
-                player1Turn = false;
+        if (getPlayer1Turn() && !gamePaused() && !getDelayAi()) {
+            if(checkCard(playerCard, getPlayer1())) {
+                setPlayerPlayedCard(getPlayer1().getCard(playerCard));
+                playerTurn(playerCard, getPlayer1());
+                ResourceManager.applyTurnRate(getPlayer2());
+                setPlayer1Turn(false);
 
-                if (singlePlayer) {
-                    int enemyCard = ((EnemyAI) player2).playNextCard();
-                    playedCardAi = player2.getCard(enemyCard);
-                    if (checkCard(enemyCard, player1))
-                        playerTurn(enemyCard, player2);
-                    else
-                        discardCard(enemyCard, player2);
-                    resManager.applyTurnRate(player1);
-                    player1Turn = true;
-                }
+                // AI turn
+                int enemyCard = ((EnemyAI) getPlayer2()).playNextCard();
+                setAiPlayedCard(getPlayer2().getCard(enemyCard));
+                if (checkCard(enemyCard, getPlayer1()))
+                    playerTurn(enemyCard, getPlayer2());
+                else
+                    discardCard(enemyCard, getPlayer2());
+                ResourceManager.applyTurnRate(getPlayer1());
+                setPlayer1Turn(true);
             }
-        }*/
+        }
     }
 }
