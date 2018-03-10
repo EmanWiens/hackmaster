@@ -198,7 +198,8 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
        // imageButton.setBackgroundResource(realID);
 
     }
-    public  void renderBattleView() {
+
+    public void renderBattleView() {
         CardClass playedCardAi = gameManager.getPlayedCardAi();
         CardClass playedCard = gameManager.getPlayedCard();
         PlayerClass player1 = gameManager.getPlayer1();
@@ -226,13 +227,20 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
                 }
         }
     }
-    public void playMessage(View v) {
+    public void singlePlayPress(View v) {
         setContentView(R.layout.battle_view);
         SetUpGame.setUpSinglePlayerGame();
 
         gameManager.setUpSingleGame();
         renderBattleView();
     }
+
+    public void multiPlayPress(View v) {
+        setContentView(R.layout.battle_view);
+        SetUpGame.setUpMultiplayerGame();
+        renderBattleView();
+    }
+
     public void firstcardPress(View v)
     {
         gameManager.playCardEvent(0);
