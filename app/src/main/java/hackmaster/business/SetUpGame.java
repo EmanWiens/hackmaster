@@ -8,14 +8,14 @@ public abstract class SetUpGame {
         GameInterface game = new SinglePlayerGame();
 
         // TODO call deck manager for deck setup
-         /*   deckM.initDeck(maxCards);
+         /*   DeckManager.initDeck(maxCards);
             player1 = new PlayerClass(0,
                     "HackerMan",
-                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), deckM.dealCards(sizeOfHand));
+                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame(sizeOfHand));
 
             player2 = new EnemyAI(1,
                     "Enemy Bot",
-                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), deckM.dealCards(sizeOfHand));
+                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame(sizeOfHand));
     */
         return game;
     }
