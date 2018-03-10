@@ -203,7 +203,8 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
        // imageButton.setBackgroundResource(realID);
 
     }
-    public  void renderBattleView() {
+
+    public void renderBattleView() {
         CardClass playedCardAi = gameManager.getPlayedCardAi();
         CardClass playedCard = gameManager.getPlayedCard();
         PlayerClass player1 = gameManager.getPlayer1();
@@ -233,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
     public void playMessage(View v) {
         setContentView(R.layout.battle_view);
-        SetUpGame.setUpSinglePlayerGame(10);
+        SetUpGame.setUpSinglePlayerGame();
 
         gameManager.setUpSingleGame();
         renderBattleView();

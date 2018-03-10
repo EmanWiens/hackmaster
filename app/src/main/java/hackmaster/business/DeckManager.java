@@ -14,9 +14,9 @@ public abstract class DeckManager {
 
     abstract void methodToOverride(); // TODO example of a method to be overriden by subclass
 
-    public static void initDeck(int size) {
+    public static void initDeck() {
         cardDataAccess = Services.getCardDataAccess();
-        ArrayList<CardClass>listDeck = new ArrayList<>(size);
+        ArrayList<CardClass>listDeck = new ArrayList<>();
         String emsg = cardDataAccess.getCardSequential(listDeck);
         deck = listDeck.toArray(new CardClass[0]);
         shuffleDeck();

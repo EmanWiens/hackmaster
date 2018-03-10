@@ -5,11 +5,11 @@ import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 
 public abstract class SetUpGame {
-    public static GameInterface setUpSinglePlayerGame(int deck) {
-        GameInterface game;
+    public static Game setUpSinglePlayerGame() {
+        Game game;
 
         // TODO call deck manager for deck setup
-            DeckManager.initDeck(deck);
+            DeckManager.initDeck();
             PlayerClass player1 = new PlayerClass(0,
                     "HackerMan",
                     new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
@@ -21,11 +21,11 @@ public abstract class SetUpGame {
         return new SinglePlayerGame(player1, player2);
     }
 
-    public static GameInterface setUpMultiplayerGame(int deck) {
-        GameInterface game;
+    public static Game setUpMultiplayerGame() {
+        Game game;
 
         // TODO call deck manager for deck setup
-        DeckManager.initDeck(deck);
+        DeckManager.initDeck();
         PlayerClass player1 = new PlayerClass(0,
                 "HackerMan",
                 new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
