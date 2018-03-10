@@ -33,7 +33,6 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
 
     /**
      * Gets a list of all players in the database
-     *
      * @return a list of all players in the database
      */
     public List<PlayerStatsSaves> getPlayersList(){
@@ -70,7 +69,6 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
 
     /**
      * Gets a list of names of all players in the database
-     *
      * @return a list of names of all players in the database
      */
     public List<String> getPlayersNamesList(){
@@ -92,7 +90,6 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
 
     /**
      * Retrieves a player from the database with the id given as parameter
-     *
      * @param playerID the id of the player to retrieve from the database
      * @return The player with id playerID, or null if no player exists with that id
      */

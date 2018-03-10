@@ -3,17 +3,14 @@ package hackmastertest.businessTest;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import hackmaster.business.DeckManager;
 import hackmaster.business.GameManager;
-import hackmaster.business.ResourceManager;
 import hackmaster.objects.CardClass;
-import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.fail;
 
 
@@ -281,5 +278,19 @@ public class GameManagerUnitTest {
         GameManager.discardCard(1, GameManager.getPlayer1());
         //assertEquals("The card should be at index 3 of the deck", true, GameManager.getPlayer1().getCard(1).equals(GameManager.getDeckCardAt(3)));
         assertEquals("The player card at index 1 should be Expensive HCoin", "Expensive HCoin", GameManager.getPlayer1().getCard(1).getName());
+    }
+
+    @Test
+    public void testCheckStats() {
+        GameManager.runAsTest();
+
+        GameManager.initStats();
+        assertNotNull(GameManager.getPlayerName());
+        assertEquals("The player name should be Pwn0gr4h1c ", "Pwn0gr4ph1c", GameManager.getPlayerName());
+        assertEquals("The Players wins should be 0", 0, GameManager.getWin());
+        GameManager.addWin();
+        assertEquals("The Players wins should be 1", 1, GameManager.getWin());
+        GameManager.addLoss();
+        assertEquals("The Players wins should be 1", 1, GameManager.getWin());
     }
 }
