@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 
 import android.content.res.AssetManager;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import java.io.InputStreamReader;
 import hackmaster.application.DBController;
 import hackmaster.business.Game;
 import hackmaster.business.SetUpGame;
+import hackmaster.business.SinglePlayerGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.PlayerStatsSaves;
@@ -54,15 +56,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     synchronized public void drawPlayedCard(CardClass card, boolean delay) {
-        // DELAY
-        // Handler handler = new Handler();
+        Handler handler = new Handler();
         if (delay) {
-            //handler.postDelayed(delayDraw(), 2000); // DELAY
+            handler.postDelayed(delayDraw(), 2000); // DELAY
             ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
             imageView.setBackgroundResource(returnImageCardID(card.getID()));
         }
         else {
-            ImageView imageView = findViewById(R.id.imageViewPlayedCard0);
+            ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
             imageView.setBackgroundResource(returnImageCardID(card.getID()));
         }
     }
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                drawPlayedCard(gameInSession.getPlayedCardAi(), false);
+                drawPlayedCard(gameInSession.getPlayedCardTwo(), false);
             }
         };
         return r;
@@ -189,11 +190,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void renderBattleView() {
-        CardClass playedCardAi = gameInSession.getPlayedCardAi();
-        CardClass playedCard = gameInSession.getPlayedCard();
+        CardClass playedCardAi = gameInSession.getPlayedCardTwo();
+        CardClass playedCard = gameInSession.getPlayedCardOne();
         PlayerClass player1 = gameInSession.getPlayer1();
         PlayerClass player2 = gameInSession.getPlayer2();
-        boolean player1Turn = gameInSession.getPlayer1Turn();
 
         if (!gameInSession.gamePaused()) {
             drawPlayerResource(player1);
@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (playedCard != null)
                drawPlayedCard(playedCard, false);
-            if (playedCardAi != null)
+            if (playedCardAi != null && gameInSession instanceof SinglePlayerGame)
                 drawPlayedCard(playedCardAi, true);
 
             if (gameInSession.getPlayer1Turn())
@@ -286,11 +286,6 @@ public class MainActivity extends AppCompatActivity {
                 imageCardBorder[i].setBackgroundResource(android.R.color.transparent);
             }
         }
-    }
-
-    synchronized public void drawPlayedCard(CardClass card) {
-        ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
-         imageView.setBackgroundResource(returnImageCardID(card.getID()));
     }
 
     public void pauseMessage(View v) {

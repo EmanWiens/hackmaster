@@ -95,7 +95,7 @@ public class EnemyAI extends PlayerClass {
         double worth = 0;
         double total = 0;
         ResourceClass playerR = assess.getCardResource().getPlayerR();
-        CardClass playedCard = GameManager.getPlayedCard();
+        CardClass playedCard = GameManager.getPlayedCardOne();
 
         if (playedCard != null) {
             if (assess.getType().equals("Attack")) {
@@ -132,7 +132,7 @@ public class EnemyAI extends PlayerClass {
         ResourceClass playerR = assess.getCardResource().getPlayerR();
 
         if (getHealth() < .20 * GameManager.maxHealth ||
-                (GameManager.getPlayedCard() != null && GameManager.getPlayedCard().getType().equals("Attack"))) {
+                (GameManager.getPlayedCardOne() != null && GameManager.getPlayedCardOne().getType().equals("Attack"))) {
             if (playerR.getHealth() > 0) {
                 worth += 1.0;
                 total++;

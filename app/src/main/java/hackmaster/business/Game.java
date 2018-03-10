@@ -121,8 +121,8 @@ public abstract class Game {
     public void addLoss() { pStats.addLoss();}
     public void setDelayAi(boolean b) { delayAi = b; }
     public boolean getDelayAi() { return delayAi; }
-    public CardClass getPlayedCard() { return playedCardOne; }
-    public CardClass getPlayedCardAi() { return playedCardTwo; }
+    public CardClass getPlayedCardOne() { return playedCardOne; }
+    public CardClass getPlayedCardTwo() { return playedCardTwo; }
     public void pauseGame() { paused = true; }
     public void unpauseGame() { paused = false; }
     public boolean gamePaused() { return paused; }
