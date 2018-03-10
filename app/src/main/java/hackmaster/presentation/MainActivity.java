@@ -1,7 +1,6 @@
 package hackmaster.presentation;
 
 
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     // give a "copy" of the interface to the gameManager
     private GameManager gameManager;
     private MusicManager musicManager;
-    private boolean resumeMusic;
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
     @Override
@@ -51,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         DBController.shutDown();
     }
 
@@ -80,18 +77,25 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         return r;
     }
 
-
+    public void checkStateSound()
+    {
+        ImageButton muteBtn = findViewById(R.id.muteBtn);
+        if (musicManager.getStateMusic()) {
+            muteBtn.setBackgroundResource(R.drawable.volumeunmute);
+        }
+        else {
+            muteBtn.setBackgroundResource(R.drawable.volumemute);
+        }
+    }
     public void muteSoundBackground(View v){
         ImageButton muteBtn = findViewById(R.id.muteBtn);
-        if (resumeMusic) {
+        if (musicManager.getStateMusic()) {
             muteBtn.setBackgroundResource(R.drawable.volumemute);
             musicManager.pauseBacgroundMusic();
-            resumeMusic=false;
         }
         else {
             muteBtn.setBackgroundResource(R.drawable.volumeunmute);
             musicManager.resumeBacgroundMusic();
-            resumeMusic = true;
         }
     }
 
@@ -110,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
                             public void onClick(DialogInterface dialog, int id) {
                                 setContentView(R.layout.main_activity);
                                 GameManager.setInGame(false);
+                                checkStateSound();
                             }
                         })
                         .setNegativeButton("Stay in game", new DialogInterface.OnClickListener() {
@@ -129,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         else {
             if (!gameManager.inGame()) {
                 setContentView(R.layout.main_activity);
+                checkStateSound();
             }
         }
     }
@@ -172,31 +178,15 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public void DrawCard(CardClass card, int slot) {
         ImageButton imageButton = null;
-        int newslot = slot;
-//        int[] imageButtonCardList = new int[]{
-//                R.id.imageButtonCard0, R.id.imageButtonCard1,R.id.imageButtonCard2,
-//                R.id.imageButtonCard3,R.id.imageButtonCard4};
-//        for (int i=0; i<slot;i++)
-//        {
-//            if (slot==i)
-//            {
-//                imageButton = findViewById(imageButtonCardList[i]);
-//            }
-//        }
-        if (slot == 0) {
-            imageButton = findViewById(R.id.imageButtonCard0);
-        }
-        if (slot == 1) {
-            imageButton = findViewById(R.id.imageButtonCard1);
-        }
-        if (slot == 2) {
-            imageButton = findViewById(R.id.imageButtonCard2);
-        }
-        if (slot == 3) {
-            imageButton = findViewById(R.id.imageButtonCard3);
-        }
-        if (slot == 4) {
-            imageButton = findViewById(R.id.imageButtonCard4);
+        int[] imageButtonCardList = new int[]{
+                R.id.imageButtonCard0, R.id.imageButtonCard1,R.id.imageButtonCard2,
+                R.id.imageButtonCard3,R.id.imageButtonCard4};
+        for (int i=0; i<imageButtonCardList.length;i++)
+        {
+            if (slot==i)
+            {
+                imageButton = findViewById(imageButtonCardList[i]);
+            }
         }
         imageButton.setBackgroundResource(returnImageCardID(card.getID()));
     }
@@ -272,16 +262,8 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     synchronized public void drawPlayedCard(CardClass card) {
-        // if (gameManager.getPlayer1Turn()) {
-//        TextView playedCard = findViewById(R.id.playedCard1);
-//        playedCard.setText(card.toString());
         ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
          imageView.setBackgroundResource(returnImageCardID(card.getID()));
-        /*}
-        else {
-            TextView playedCard = findViewById(R.id.playedCard1);
-            playedCard.setText(card.toString());
-        }*/
     }
 
     public void pauseMessage(View v) {
@@ -302,6 +284,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
                     public void onClick(DialogInterface dialog, int id) {
                         setContentView(R.layout.main_activity);
                         GameManager.setInGame(false);
+                        checkStateSound();
                     }
                 })
                 .setNegativeButton("Stay in game", new DialogInterface.OnClickListener() {
@@ -331,6 +314,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             setContentView(R.layout.pause_view);
         } else {
             setContentView(R.layout.main_activity);
+            checkStateSound();
         }
     }
 

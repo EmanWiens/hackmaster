@@ -18,7 +18,7 @@ public class MusicManager {
     private static final int MAX_STREAMS=100;
     private static Context contextVariable;
     private boolean soundPoolLoaded;
-    private boolean resumeMusic;
+    private boolean musicOn;
 
     private MediaPlayer mediaPlayer;
     private SoundPool soundPool;
@@ -30,7 +30,6 @@ public class MusicManager {
     //Credit: https://o7planning.org/en/10521/android-2d-game-tutorial-for-beginners
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
     public void initSoundPool()  {
-        // With Android API >= 21.
         if (Build.VERSION.SDK_INT >= 21 ) {
 
             AudioAttributes audioAttrib = new AudioAttributes.Builder()
@@ -43,31 +42,23 @@ public class MusicManager {
 
             this.soundPool = builder.build();
         }
-        // With Android API < 21
         else {
-            // SoundPool(int maxStreams, int streamType, int srcQuality)
             this.soundPool = new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0);
         }
-
-        // When SoundPool load complete.
         this.soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
                 soundPoolLoaded = true;
-                // Playing background sound.
-                //     playSoundBackground();
             }
         });
-
-        // Load the sound SelectedCard.mp3 into SoundPool
         this.soundIdCardSelected = this.soundPool.load(contextVariable, R.raw.select,1);
     }
     public void backGroundMusicStart() {
-        resumeMusic=true;
+        musicOn =true;
         Random rand = new Random();
         int  n = rand.nextInt(6) + 1;
         if (n==1) {
-            //https://www.youtube.com/watch?v=b-Cr0EWwaTk
+            //credit: https://www.youtube.com/watch?v=b-Cr0EWwaTk
             mediaPlayer = MediaPlayer.create(contextVariable, R.raw.javarapsong);
         }
         else if (n==2)
@@ -103,7 +94,14 @@ public class MusicManager {
             this.soundPool.play(this.soundIdCardSelected,leftVolumn, rightVolumn, 1, 0, 1f);
         }
     }
+    public  void pauseBacgroundMusic() {
+        mediaPlayer.pause();
+        musicOn =false;
+    }
+    public  void resumeBacgroundMusic() {
+        mediaPlayer.start();
+        musicOn =true;
+    }
     private boolean getSoundPoolLoaded() {return soundPoolLoaded;}
-    public  void pauseBacgroundMusic() {mediaPlayer.pause();}
-    public  void resumeBacgroundMusic() {mediaPlayer.pause();}
+    public  boolean getStateMusic() {return musicOn;}
 }
