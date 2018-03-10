@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hackmaster.objects.PlayerStatsSaves;
+import hackmaster.persistence.DataAccessObject;
 
 public class PlayerDataAccess implements PlayerDataAccessInterface {
     private Statement statement;
@@ -35,7 +36,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
     /**
      * Gets a list of all players in the database
      * @return a list of all players in the database
-     */
+
     @Override
     public List<PlayerStatsSaves> getPlayersList(){
         ArrayList<PlayerStatsSaves> playerList = new ArrayList<>();
@@ -68,6 +69,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
         }
         return playerList;
     }
+    */
 
     /**
      * Gets a list of names of all players in the database
@@ -95,7 +97,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
      * Retrieves a player from the database with the id given as parameter
      * @param playerID the id of the player to retrieve from the database
      * @return The player with id playerID, or null if no player exists with that id
-     */
+
     @Override
     public PlayerStatsSaves getPlayer(int playerID){
         String playerName;
@@ -118,6 +120,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
         }
         return player;
     }
+     */
 
     // DATABASE creates a Unique ID for the newly created player
     @Override
@@ -157,5 +160,135 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
             DataAccessObject.processSQLError(e);
         }
         return result;
+    }
+
+    @Override
+    public void addWin(int playerID) {
+        String result = null;
+        try {
+            updateCount = statement.executeUpdate("UPDATE PLAYERS SET WINS = WINS + " + 1 +
+                    "WHERE PLAYERID = " + playerID);
+            result = DataAccessObject.checkWarning(statement, updateCount);
+        }
+        catch(Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+    }
+
+    @Override
+    public void addLoss(int playerID) {
+        String result = null;
+        try {
+            updateCount = statement.executeUpdate("UPDATE PLAYERS SET LOSSES = LOSSES +" + 1 +
+                    "WHERE PLAYERID = " + playerID);
+            result = DataAccessObject.checkWarning(statement, updateCount);
+        }
+        catch(Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+    }
+
+    @Override
+    public void addLevel(int playerID) {
+        String result = null;
+        try {
+            updateCount = statement.executeUpdate("UPDATE PLAYERS SET LEVEL = LEVEL +" + 1 +
+                    "WHERE PLAYERID = " + playerID);
+            result = DataAccessObject.checkWarning(statement, updateCount);
+        }
+        catch(Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+    }
+
+    @Override
+    public void setPlayerName(String playerName, int playerID) {
+        String result = null;
+        try {
+            updateCount = statement.executeUpdate("UPDATE PLAYERS SET NAME ="+ playerName +
+                    "WHERE PLAYERID = " + playerID);
+            result = DataAccessObject.checkWarning(statement, updateCount);
+        }
+        catch(Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+    }
+
+    @Override
+    public int getPlayerID(String playerName) {
+        int playerID = -1;
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM PLAYERS WHERE NAME =" + playerName);
+            playerID = resultSet.getInt("PLAYERID");
+        }
+        catch(Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+        return playerID;
+    }
+
+    @Override
+    public int getLevel(int playerID) {
+        int playerLevel = -1;
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM PLAYERS WHERE PLAYERID =" + playerID);
+            playerLevel = resultSet.getInt("LEVEL");
+        }
+        catch(Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+        return playerLevel;
+    }
+
+    @Override
+    public int getWin(int playerID) {
+        int playerWin = -1;
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM PLAYERS WHERE PLAYERID =" + playerID);
+            playerWin = resultSet.getInt("WINS");
+        }
+        catch(Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+        return playerWin;
+    }
+
+    @Override
+    public int getLoss(int playerID) {
+        int playerLoss = -1;
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM PLAYERS WHERE PLAYERID =" + playerID);
+            playerLoss = resultSet.getInt("LOSSES");
+        }
+        catch(Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+        return playerLoss;
+    }
+
+    @Override
+    public int getTotalGames(int playerID) {
+        int totalGames = -1;
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM PLAYERS WHERE PLAYERID =" + playerID);
+            totalGames = resultSet.getInt("GAMESPLAYED");
+        }
+        catch(Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+        return totalGames;
+    }
+
+    @Override
+    public String getName(int playerID) {
+        String playerName = null;
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM PLAYER FROM PLAYERS WHERE PLAYERID =" + playerID);
+            playerName = resultSet.getString("NAME");
+        }
+        catch(Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+        return playerName;
     }
 }
