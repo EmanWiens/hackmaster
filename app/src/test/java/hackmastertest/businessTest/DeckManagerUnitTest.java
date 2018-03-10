@@ -35,7 +35,7 @@ public class DeckManagerUnitTest {
 
     @Test
     public void testDealOneCard() {
-        CardClass[] Deck =DeckManager.dealCards(1);
+        CardClass[] Deck =DeckManager.dealFirstHandOfGame();
         assertEquals("The name  of first Card should be CPU Boost", "CPU Boost", Deck[0].getName());
         assertEquals("The type  of first Card should be Upgrade", "Upgrade", Deck[0].getType());
         assertEquals("The description  of first Card should be Upgrade", "Upgrade your CPU", Deck[0].getDescription());
@@ -43,7 +43,7 @@ public class DeckManagerUnitTest {
 
     @Test
     public void testDealTwoCards() {
-        CardClass[] Deck =DeckManager.dealCards(2);
+        CardClass[] Deck =DeckManager.dealFirstHandOfGame();
         assertEquals("The name  of first Card should be CPU Boost", "CPU Boost", Deck[0].getName());
         assertEquals("The type  of first Card should be Upgrade", "Upgrade", Deck[0].getType());
         assertEquals("The description  of first Card should be Upgrade your CPU", "Upgrade your CPU", Deck[0].getDescription());
@@ -56,7 +56,7 @@ public class DeckManagerUnitTest {
     @Test
     public void testInvalidDealCards(){
         try {
-            DeckManager.dealCards(-1);
+            DeckManager.dealFirstHandOfGame();
             fail("NegativeArraySize Expected");
         } catch ( NegativeArraySizeException exp) {
         }

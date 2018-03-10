@@ -10,7 +10,6 @@ import hackmaster.business.DeckManager;
 import hackmaster.business.GameManager;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
-import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 
 import static junit.framework.Assert.assertEquals;
@@ -25,13 +24,13 @@ public class EnemyAIUnitTest {
 
     @Before
     public void setup() {
-        deckM.initDeck(6);
+        deckM.initDeck();
         card = 0;
 
         GameManager.setSinglePlayer(true);
 
         hackmaster.objects.ResourceClass r = new ResourceClass(100, 2, 2, 2, 2, 2, 2);
-        player = new EnemyAI(1, "Enemy Bot", r, deckM.dealCards(6));
+        player = new EnemyAI(1, "Enemy Bot", r, deckM.dealFirstHandOfGame());
 
     }
 
