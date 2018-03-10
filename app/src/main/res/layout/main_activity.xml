@@ -9,7 +9,7 @@
     tools:context="hackmaster.presentation.MainActivity">
 
     <Button
-        android:id="@+id/playBtn"
+        android:id="@+id/singlePlayerBtn"
         android:layout_width="240dp"
         android:layout_height="84dp"
         android:layout_marginBottom="22dp"
@@ -17,7 +17,7 @@
         android:layout_marginStart="360dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/holo_green_light"
-        android:onClick="playMessage"
+        android:onClick="singlePlayerPress"
         android:text="Single Player"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/stats"
@@ -67,7 +67,7 @@
         android:textColor="@android:color/black"
         android:textSize="40sp"
         android:textStyle="normal|bold"
-        app:layout_constraintBottom_toTopOf="@+id/playBtn"
+        app:layout_constraintBottom_toTopOf="@+id/singlePlayerBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

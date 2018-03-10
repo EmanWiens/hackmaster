@@ -24,7 +24,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import hackmaster.application.DBController;
+import hackmaster.business.GameInterface;
 import hackmaster.business.GameManager;
+import hackmaster.business.SetUpGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
 
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     // give a "copy" of the interface to the gameManager
     private GameManager gameManager;
     private MusicManager musicManager;
+
+    private GameInterface game;
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
     @Override
@@ -202,10 +206,11 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     }
 
-    public void playMessage(View v) {
+    public void singlePlayerPress(View v) {
         setContentView(R.layout.battle_view);
         gameManager.setUpSingleGame();
     }
+
     public void firstcardPress(View v)
     {
         gameManager.playCardEvent(0);
