@@ -17,7 +17,6 @@ import static junit.framework.Assert.fail;
 public class GameManagerUnitTest {
     @Before
     public void setUp(){
-        GameManager.runAsTest();
         GameManager.setUpSingleGame();
     }
 
@@ -62,28 +61,27 @@ public class GameManagerUnitTest {
 
     @Test
     public void testSetUpSingleGame() {
-        GameManager.runAsTest();
 
-        assertEquals("The name of player should be HackerMan", "HackerMan", GameManager.getPlayer1().getName());
-        assertEquals("The ID of player should be 0", 0, GameManager.getPlayer1().getId());
-        assertEquals("The health of player should be 100", 100, GameManager.getPlayer1().getResources().getHealth());
-        assertEquals("The hCoin of player should be 2",10, GameManager.getPlayer1().getResources().gethCoin());
-        assertEquals("The hCoinRate of player should be 2",2, GameManager.getPlayer1().getResources().gethCoinRate());
-        assertEquals("The botnet of player should be 2", 10, GameManager.getPlayer1().getResources().getBotnet());
-        assertEquals("The botnetRate of player should be 2", 2, GameManager.getPlayer1().getResources().getBotnetRate());
-        assertEquals("The CPURate of player should be 2", 2, GameManager.getPlayer1().getResources().getCpuRate());
-        assertEquals("The terraFlops of player should be 2", 10, GameManager.getPlayer1().getResources().getCpu());
+        assertEquals("HackerMan", GameManager.getPlayer1().getName());
+        assertEquals( 0, GameManager.getPlayer1().getId());
+        assertEquals( 100, GameManager.getPlayer1().getResources().getHealth());
+        assertEquals(10, GameManager.getPlayer1().getResources().gethCoin());
+        assertEquals(2, GameManager.getPlayer1().getResources().gethCoinRate());
+        assertEquals(10, GameManager.getPlayer1().getResources().getBotnet());
+        assertEquals(2, GameManager.getPlayer1().getResources().getBotnetRate());
+        assertEquals(2, GameManager.getPlayer1().getResources().getCpuRate());
+        assertEquals( 10, GameManager.getPlayer1().getResources().getCpu());
 
 
-        assertEquals("The ID of player should be 1", 1, GameManager.getPlayer2().getId());
-        assertEquals("The name of player should be Enemy Bot", "Enemy Bot", GameManager.getPlayer2().getName());
-        assertEquals("The health of player should be 100", 100, GameManager.getPlayer2().getResources().getHealth());
-        assertEquals("The hCoin of player should be 2",10, GameManager.getPlayer2().getResources().gethCoin());
-        assertEquals("The hCoinRate of player should be 2",2, GameManager.getPlayer2().getResources().gethCoinRate());
-        assertEquals("The botnet of player should be 2", 10, GameManager.getPlayer2().getResources().getBotnet());
-        assertEquals("The botnetRate of player should be 2", 2, GameManager.getPlayer2().getResources().getBotnetRate());
-        assertEquals("The CPURate of player should be 2", 2, GameManager.getPlayer2().getResources().getCpuRate());
-        assertEquals("The terraFlops of player should be 2", 10, GameManager.getPlayer2().getResources().getCpu());
+        assertEquals(1, GameManager.getPlayer2().getId());
+        assertEquals("Enemy Bot", GameManager.getPlayer2().getName());
+        assertEquals(100, GameManager.getPlayer2().getResources().getHealth());
+        assertEquals(10, GameManager.getPlayer2().getResources().gethCoin());
+        assertEquals(2, GameManager.getPlayer2().getResources().gethCoinRate());
+        assertEquals( 10, GameManager.getPlayer2().getResources().getBotnet());
+        assertEquals(2, GameManager.getPlayer2().getResources().getBotnetRate());
+        assertEquals( 2, GameManager.getPlayer2().getResources().getCpuRate());
+        assertEquals(10, GameManager.getPlayer2().getResources().getCpu());
     }
 
     /*@Test
@@ -198,16 +196,10 @@ public class GameManagerUnitTest {
 
     }*/
 
-    @Test
-    public void testPlayerTestNotNull()
-    {
-        GameManager.runAsTest();
-        assertNotNull(GameManager.getPlayerNum());
-    }
+
     @Test
     public void testPlayCardEvent()
     {
-        GameManager.runAsTest();
        GameManager.playCardEvent(4);
        // is this failing because of the delay?
        assertEquals("Should be Player 1 Turn", 0, GameManager.getPlayerNum());
@@ -217,8 +209,6 @@ public class GameManagerUnitTest {
     @Test
     public void testInvalidPlayCardEvent(){
         // TODO fix these functions (Fail should be in catch)
-        GameManager.runAsTest();
-
         try {
             GameManager.playCardEvent(-1);
             fail("ArrayIndexOutOfBoundsException Expected or RuntimeException Expected");
@@ -235,7 +225,6 @@ public class GameManagerUnitTest {
 
     @Test
     public void testCheckCard() {
-        GameManager.runAsTest();
         resetDeck();
         setPlayerHands();
 
@@ -253,8 +242,6 @@ public class GameManagerUnitTest {
 
     @Test
     public void testDiscardCardPlayer1(){
-        GameManager.runAsTest();
-
         resetDeck();
         setPlayerHands();
         DeckManager.resetIndex();
@@ -282,7 +269,6 @@ public class GameManagerUnitTest {
 
     @Test
     public void testCheckStats() {
-        GameManager.runAsTest();
 
         GameManager.initStats();
         assertNotNull(GameManager.getPlayerName());
