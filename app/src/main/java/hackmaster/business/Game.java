@@ -31,9 +31,7 @@ public abstract class Game {
         player1Turn = true;
     }
 
-    public void playCardEvent(int playerCard) {
-        System.out.print("Error in game. Please try starting a new game.");
-    }
+    public void playCardEvent(int playerCard) { System.out.print("Error in game. Please try starting a new game."); }
 
     public boolean cantPlayCard(PlayerClass player) {
         for (int i = 0; i < player.cardsSize(); i++)
@@ -122,7 +120,6 @@ public abstract class Game {
     }
     public void addWin() { pStats.addWin();}
     public void addLoss() { pStats.addLoss();}
-
     public void setDelayAi(boolean b) { delayAi = b; }
     public boolean getDelayAi() { return delayAi; }
     public CardClass getPlayedCard() { return playedCard; }

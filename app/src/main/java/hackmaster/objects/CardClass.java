@@ -6,14 +6,14 @@ public class CardClass {
     private ResourceClass player;
     private ResourceClass enemy;
     private String type;
-    private int id = 0;
+    private int cardID;
 
     public CardClass(int id) {
-        this.id = id;
+        this.cardID = id;
     }
 
     public CardClass(int id, String name, String type, String d, ResourceClass p, ResourceClass e) {
-        this.id = id;
+        this.cardID = id;
         this.name = name;
         this.type = type;
         description = d;
@@ -32,7 +32,7 @@ public class CardClass {
     public ResourceClass getEnemyR() { return enemy; }
     public String getName() { return name; }
     public String getType() { return type; }
-    public int getID() { return id; }
+    public int getID() { return cardID; }
     public String getDescription() { return description; }
     public String resString() {
         String strung = "\nResources\n";
@@ -45,11 +45,18 @@ public class CardClass {
 
         return strung;
     }
-    public boolean equals() {
-        boolean sameCard = false;
+    public boolean equals(Object object) {
+        boolean result;
+        CardClass card;
 
-        // TODO write the function that compares if two cards are equal
+        result = false;
+        if (object instanceof CardClass) {
+            card = (CardClass) object;
+            if (card.cardID == cardID) {
+                result = true;
+            }
+        }
 
-        return sameCard;
+        return result;
     }
 }

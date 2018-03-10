@@ -127,13 +127,9 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
                 new ResourceClass(20, 0, 0, 0, 0, -50, 0), new ResourceClass(-25, 0, 0, 0, 0, 0, 0));
         cards.add(tempCard);
 
-        System.out.println("Opened "+ dbType + " database " +dbName);
     }
 
-    public void close()
-    {
-        System.out.println("Closed " +dbType +" database " +dbName);
-    }
+    public void close() { }
 
 
     @Override
@@ -161,9 +157,8 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
     }
 
     public int addNewPlayer(PlayerStatsSaves newPlayer){
-        // don't bother checking for duplicates
         players.add(newPlayer);
-        return 1;
+        return newPlayer.getPlayerID();
     }
 
     public String removePlayer(int playerID) {
@@ -178,24 +173,43 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
     }
 
     public String getCardSequential(List<CardClass> cardResult) {
+        String result = null;
         cardResult.addAll(cards);
-        return null;
+        return result;
     }
 
-    //TODO
     public CardClass getCardRandom(CardClass newCard) {
-        return null;
+        CardClass card = null;
+        int cardID = newCard.getID();
+        for(CardClass cardNode : cards) {
+            if(cardNode.getID()==cardID) card = cardNode;
+        }
+        return card;
     }
 
     public String insertCard(CardClass card) {
-        return null;
+        String result = null;
+        cards.add(card);
+        return result;
     }
 
     public String updateCard(CardClass card) {
-        return null;
+        String result = null;
+        int index = cards.indexOf(card);
+        if (index >= 0)
+        {
+            cards.set(index, card);
+        }
+        return result;
     }
 
     public String removeCard(CardClass card) {
-        return null;
+        String result = null;
+        int index = cards.indexOf(card);
+        if (index >= 0)
+        {
+            cards.remove(index);
+        }
+        return result;
     }
 }
