@@ -10,6 +10,7 @@ import hackmaster.objects.PlayerStatsSaves;
 public class PlayerDataAccess implements PlayerDataAccessInterface {
     private Statement statement;
     private ResultSet resultSet;
+    private int updateCount;
 
     /**
      * Opens the PlayerStatDataAccess
@@ -116,5 +117,45 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
             DataAccessObject.processSQLError(e);
         }
         return player;
+    }
+
+    // DATABASE creates a Unique ID for the newly created player
+    @Override
+    public int addNewPlayer(PlayerStatsSaves newPlayer) {
+        String values;
+        String result = null;
+        int newPlayerID = -1;
+        try {
+            values = newPlayer.getName()
+                    +", '" + newPlayer.getWin()
+                    +"', '" + newPlayer.getLoss()
+                    +"', '" + newPlayer.getTotalGames()
+                    +"', " + newPlayer.getLevel();
+            updateCount = statement.executeUpdate("INSERT INTO PLAYERS ( PLAYERID, NAME, WINS, LOSSES, GAMESPLAYED, LEVEL)" +" VALUES( NULL, " +values +")");
+            result = DataAccessObject.checkWarning(statement, updateCount);
+            if(updateCount == 1) {
+                resultSet = statement.getGeneratedKeys();
+                if(resultSet.next()) {
+                    newPlayerID = resultSet.getInt(1);
+                }
+            } else newPlayerID = -1;
+        }
+        catch (Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+        return newPlayerID;
+    }
+
+    @Override
+    public String removePlayer(int playerID) {
+        String result = null;
+        try {
+            updateCount = statement.executeUpdate("DELETE FROM PLAYERS WHERE CARDID =" + playerID);
+            result = DataAccessObject.checkWarning(statement, updateCount);
+        }
+        catch (Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+        return result;
     }
 }
