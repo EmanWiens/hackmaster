@@ -4,7 +4,7 @@ import java.util.List;
 
 import hackmaster.objects.PlayerStatsSaves;
 
-public interface PlayerDataAccessInterface {
+public interface PlayerDataAccessInterface extends DBComponentInterface{
 
     /**
      * Gets a list of all players in the database
@@ -20,7 +20,7 @@ public interface PlayerDataAccessInterface {
 
     /**
      * Retrieves a player from the database with the name given as parameter
-     * @param playerName the name of the player to retrieve from the database
+     * @param playerID  the id of the player to retrieve from the database
      * @return The workout with name playerName, or null if no player exists with that name
      */
     PlayerStatsSaves getPlayer(int playerID);
