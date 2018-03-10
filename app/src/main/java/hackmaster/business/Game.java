@@ -52,7 +52,7 @@ public abstract class Game {
         player.setCard(playerCard, nextCard);
     }
 
-    public boolean checkCard(int playerCard, PlayerClass player) {
+    public static boolean checkCard(int playerCard, PlayerClass player) {
         boolean canPlay = true;
         CardClass card = player.getCard(playerCard);
 

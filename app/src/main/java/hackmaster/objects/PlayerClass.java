@@ -1,7 +1,8 @@
 package hackmaster.objects;
 
 import java.util.ArrayList;
-import hackmaster.business.GameManager;
+
+import hackmaster.business.Game;
 
 public class PlayerClass {
     private String name;
@@ -20,22 +21,19 @@ public class PlayerClass {
         ArrayList<CardClass> playable = new ArrayList<CardClass>();
 
         for (int i = 0; i < cardsSize(); i++) {
-            if (GameManager.checkCard(i, this))
+            if (Game.checkCard(i, this))
                 playable.add(getCard(i));
         }
 
         return playable.toArray(new CardClass[0]);
     }
 
-
     public String minerToString() {
         return resources.minerToString();
     }
-
     public String cSpeedToString() {
         return resources.cSpeedToString();
     }
-
     public String botnetToString() {
         return resources.botnetToString();
     }

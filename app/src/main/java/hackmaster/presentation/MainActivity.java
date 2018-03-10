@@ -25,9 +25,7 @@ import java.io.InputStreamReader;
 
 import hackmaster.application.DBController;
 import hackmaster.business.Game;
-import hackmaster.business.GameManager;
 import hackmaster.business.SetUpGame;
-import hackmaster.business.SinglePlayerGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.PlayerStatsSaves;
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                drawPlayedCard(GameManager.getPlayedCardAi(), false);
+                drawPlayedCard(gameInSession.getPlayedCardAi(), false);
             }
         };
         return r;
@@ -116,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 setContentView(R.layout.main_activity);
-                                GameManager.setInGame(false);
                                 checkStateSound();
                             }
                         })
@@ -130,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else if (gameInSession.gamePaused()) {
                 setContentView(R.layout.battle_view);
-                GameManager.unpauseGame();
+                gameInSession.unpauseGame();
                 renderBattleView();
             }
         }
@@ -375,14 +372,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToVictory(boolean winner) {
         setContentView(R.layout.results_view);
-        GameManager.setInGame(false);
+        // GameManager.setInGame(false);
+        gameInSession = null;
 
         ImageView img= (ImageView) findViewById(R.id.statsImg);
         if (winner) {
-            gameInSession.addWin();
+            // gameInSession.addWin();
             img.setImageResource(R.drawable.victory);
         } else {
-            gameInSession.addLoss();
+            // gameInSession.addLoss();
             img.setImageResource(R.drawable.defeat);
         }
     }

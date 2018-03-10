@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import hackmaster.business.DeckManager;
-import hackmaster.business.GameManager;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.ResourceClass;
 
