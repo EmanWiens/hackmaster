@@ -10,15 +10,14 @@ import hackmaster.presentation.DrawToScreen;
 public abstract class Game {
     public static final int hand = 5;
 
-    private PlayerStatsSaves pStats = null;
+    private PlayerStatsSaves pStats;
     private PlayerClass player1;
     private PlayerClass player2;
 
-    private boolean player1Turn = true;
-    private boolean paused = false;
-    private boolean inGame = false;
-    private boolean singlePlayer = false;
-    private boolean delayAi = false;
+    private boolean player1Turn;
+    private boolean paused;
+    private boolean singlePlayer;
+    private boolean delayAi;
 
     private static CardClass playedCard = null;
     private static CardClass playedCardAi = null;
@@ -85,14 +84,10 @@ public abstract class Game {
     }
 
     public int getPlayer1Health() {
-        if (inGame)
-            return player1.getHealth();
-        return -1;
+        return player1.getHealth();
     }
     public int getPlayer2Health() {
-        if (inGame)
-            return player2.getHealth();
-        return -1;
+        return player2.getHealth();
     }
 
     //test this (marc)
@@ -128,12 +123,11 @@ public abstract class Game {
     public boolean getDelayAi() { return delayAi; }
     public CardClass getPlayedCard() { return playedCard; }
     public CardClass getPlayedCardAi() { return playedCardAi; }
-    public void setInGame(boolean value) { inGame = value; }
     public void pauseGame() { paused = true; }
     public void unpauseGame() { paused = false; }
     public boolean gamePaused() { return paused; }
     public void setSinglePlayer(boolean set) { singlePlayer = set; }
-    public boolean inGame() { return inGame; }
+    public boolean inGame() { return true; }
     public PlayerClass getPlayer1(){ return player1; }
     public PlayerClass getPlayer2(){ return player2; }
     public boolean getPlayer1Turn() { return player1Turn; }

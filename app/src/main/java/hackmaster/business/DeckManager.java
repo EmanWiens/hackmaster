@@ -60,7 +60,7 @@ public abstract class DeckManager {
 
     public static CardClass getCardAt(int i){return deck[i];}
     public static int getSizeDeck() { return deck.length; }
-    public static CardClass  [] getADeck() { return deck; }
+    public static CardClass[] getADeck() { return deck; }
     public static void setDeck(CardClass[] set) { deck = set; }
     public static void resetIndex() { nextIndex = 0; }
     public static int getNextIndex() { return nextIndex; }
