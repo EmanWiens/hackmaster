@@ -5,7 +5,7 @@ import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 
 public abstract class SetUpGame {
-    public GameInterface setUpSinglePlayerGame(int deck) {
+    public static GameInterface setUpSinglePlayerGame(int deck) {
         GameInterface game;
 
         // TODO call deck manager for deck setup
@@ -21,7 +21,7 @@ public abstract class SetUpGame {
         return new SinglePlayerGame(player1, player2);
     }
 
-    public GameInterface setUpMultiplayerGame(int deck) {
+    public static GameInterface setUpMultiplayerGame(int deck) {
         GameInterface game;
 
         // TODO call deck manager for deck setup
@@ -31,13 +31,13 @@ public abstract class SetUpGame {
                 new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
 
         PlayerClass player2 = new PlayerClass(1,
-                "Enemy Bot",
+                "HackerMan-2nd",
                 new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
 
         return new MultiplayerGame(player1, player2);
     }
 
-    public void destroyGameInSession() {
+    public static void destroyGameInSession() {
         // TODO function that destructs current game
     }
 }
