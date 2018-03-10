@@ -2,9 +2,14 @@ package hackmaster.business;
 
 import java.util.ArrayList;
 
+import hackmaster.application.DBController;
 import hackmaster.application.Services;
 import hackmaster.persistence.CardDataAccessInterface;
+import hackmaster.persistence.CardsList;
 import hackmaster.objects.CardClass;
+import hackmaster.persistence.DBInterface;
+import hackmaster.persistence.DataAccessObject;
+import hackmaster.persistence.PlayerDataAccessInterface;
 
 
 public abstract class DeckManager {
@@ -37,10 +42,10 @@ public abstract class DeckManager {
         }
     }
 
-    public static CardClass[] dealFirstHandOfGame() {
-        CardClass[] cards = new CardClass[Game.hand];
+    public static CardClass[] dealCards(int deal) {
+        CardClass[] cards = new CardClass[deal];
 
-        for (int i = 0; i < Game.hand; i++) {
+        for (int i = 0; i < deal; i++) {
             cards[i] = deck[nextIndex];
             updateIndex();
         }

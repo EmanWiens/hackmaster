@@ -2,30 +2,29 @@ package hackmaster.business;
 
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
-import hackmaster.objects.ResourceClass;
 
 public abstract class SetUpGame {
-    public static GameInterface setUpSinglePlayerGame(int deck) {
+    public GameInterface setUpSinglePlayerGame() {
         GameInterface game = new SinglePlayerGame();
 
         // TODO call deck manager for deck setup
-            DeckManager.initDeck(deck);
-            PlayerClass player1 = new PlayerClass(0,
+         /*   deckM.initDeck(maxCards);
+            player1 = new PlayerClass(0,
                     "HackerMan",
-                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
+                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), deckM.dealCards(sizeOfHand));
 
-            PlayerClass player2 = new EnemyAI(1,
+            player2 = new EnemyAI(1,
                     "Enemy Bot",
-                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
-
+                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), deckM.dealCards(sizeOfHand));
+    */
         return game;
     }
 
-    public static MultiplayerGame setUpMultiplayerGame() {
+    public MultiplayerGame setUpMultiplayerGame() {
         return null; // TODO write the setup function that returnds a GameInterface
     }
 
-    public static void destroyGameInSession() {
+    public void destroyGameInSession() {
         // TODO function that destructs current game
     }
 }
