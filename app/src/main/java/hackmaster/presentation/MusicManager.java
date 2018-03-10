@@ -16,15 +16,16 @@ import java.util.Random;
 
 public class MusicManager {
     private static final int MAX_STREAMS=100;
-    private static DrawToScreen mainActivity;
+    private static Context contextVariable;
     private boolean soundPoolLoaded;
     private boolean resumeMusic;
+
     private MediaPlayer mediaPlayer;
     private SoundPool soundPool;
     private int soundIdCardSelected;
 
-    public MusicManager(DrawToScreen mainActivity) {
-         mainActivity = mainActivity;
+    public MusicManager(Context context) {
+        contextVariable= context;
     }
     //Credit: https://o7planning.org/en/10521/android-2d-game-tutorial-for-beginners
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
@@ -59,7 +60,7 @@ public class MusicManager {
         });
 
         // Load the sound SelectedCard.mp3 into SoundPool
-        this.soundIdCardSelected = this.soundPool.load((Context) mainActivity, R.raw.select,1);
+        this.soundIdCardSelected = this.soundPool.load(contextVariable, R.raw.select,1);
     }
     public void backGroundMusicStart() {
         resumeMusic=true;
@@ -67,31 +68,31 @@ public class MusicManager {
         int  n = rand.nextInt(6) + 1;
         if (n==1) {
             //https://www.youtube.com/watch?v=b-Cr0EWwaTk
-            mediaPlayer = MediaPlayer.create((Context) mainActivity, R.raw.javarapsong);
+            mediaPlayer = MediaPlayer.create(contextVariable, R.raw.javarapsong);
         }
         else if (n==2)
         {
-            mediaPlayer = MediaPlayer.create((Context) mainActivity, R.raw.background);
+            mediaPlayer = MediaPlayer.create(contextVariable, R.raw.background);
         }
         else if (n==3)
         {
             //credit: https://www.youtube.com/watch?v=FoUWHfh733Y&index=21&list=RDiN1uaITfA1c
-            mediaPlayer = MediaPlayer.create((Context) mainActivity, R.raw.dualcore);
+            mediaPlayer = MediaPlayer.create( contextVariable, R.raw.dualcore);
         }
         else if (n==4)
         {
             //credit: https://www.youtube.com/watch?v=iN1uaITfA1c&index=1&list=RDiN1uaITfA1c
-            mediaPlayer = MediaPlayer.create((Context) mainActivity, R.raw.hackersong);
+            mediaPlayer = MediaPlayer.create( contextVariable, R.raw.hackersong);
         }
         else if (n==5)
         {
             //credit: https://www.youtube.com/watch?v=rLsJCCNXUto&list=RDiN1uaITfA1c&index=3
-            mediaPlayer = MediaPlayer.create((Context) mainActivity, R.raw.welcometoourworld);
+            mediaPlayer = MediaPlayer.create( contextVariable, R.raw.welcometoourworld);
         }
         else if (n==6)
         {
             //credit: https://www.youtube.com/watch?v=Gc74aRe7OLM
-            mediaPlayer = MediaPlayer.create((Context) mainActivity, R.raw.piratemusic);
+            mediaPlayer = MediaPlayer.create(contextVariable, R.raw.piratemusic);
         }
         mediaPlayer.start(); // no need to call prepare(); create() does that for you
         mediaPlayer.setLooping(true);
