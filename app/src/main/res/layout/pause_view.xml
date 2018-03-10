@@ -14,13 +14,15 @@
         android:layout_marginBottom="120dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/holo_red_light"
         android:onClick="pauseExitMessage"
         android:text="Exit Game"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pauseStatsBtn" />
 
     <Button
         android:id="@+id/pauseResumeBtn"
@@ -29,28 +31,32 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="205dp"
         android:background="@android:color/holo_green_light"
         android:onClick="pauseResumeMessage"
         android:text="Resume Game"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/pauseStatsBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pauseText" />
 
     <Button
         android:id="@+id/pauseStatsBtn"
         android:layout_width="224dp"
         android:layout_height="91dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/holo_blue_dark"
         android:onClick="pauseStatsMessage"
         android:text="Stats"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/pauseExitBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pauseResumeBtn" />
 
     <TextView
         android:id="@+id/pauseText"
@@ -59,7 +65,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="120dp"
         android:text="Pause Menu"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/pauseResumeBtn"
