@@ -154,21 +154,35 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void DrawCard(CardClass card, int slot) {
-        ImageButton imageButton =  null;
-        int newslot=slot;
-        int[] imageButtonCardList = new int[]{
-                R.id.imageButtonCard0, R.id.imageButtonCard1,R.id.imageButtonCard2,
-                R.id.imageButtonCard3,R.id.imageButtonCard4};
-        for (int i=0; i<slot;i++)
-        {
-            if (slot==i)
-            {
-                imageButton = findViewById(imageButtonCardList[i]);
-            }
+        ImageButton imageButton = null;
+        int newslot = slot;
+//        int[] imageButtonCardList = new int[]{
+//                R.id.imageButtonCard0, R.id.imageButtonCard1,R.id.imageButtonCard2,
+//                R.id.imageButtonCard3,R.id.imageButtonCard4};
+//        for (int i=0; i<slot;i++)
+//        {
+//            if (slot==i)
+//            {
+//                imageButton = findViewById(imageButtonCardList[i]);
+//            }
+//        }
+        if (slot == 0) {
+            imageButton = findViewById(R.id.imageButtonCard0);
         }
-            imageButton.setBackgroundResource(returnImageCardID(card.getID()));
+        if (slot == 1) {
+            imageButton = findViewById(R.id.imageButtonCard1);
         }
-
+        if (slot == 2) {
+            imageButton = findViewById(R.id.imageButtonCard2);
+        }
+        if (slot == 3) {
+            imageButton = findViewById(R.id.imageButtonCard3);
+        }
+        if (slot == 4) {
+            imageButton = findViewById(R.id.imageButtonCard4);
+        }
+        imageButton.setBackgroundResource(returnImageCardID(card.getID()));
+    }
     public void displayCardImage(int imageID, int imageBtnID)
     {
         int realID=0;
