@@ -32,7 +32,7 @@ import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.PlayerStatsSaves;
 
-public class MainActivity extends AppCompatActivity implements DrawToScreen {
+public class MainActivity extends AppCompatActivity {
     // give a "copy" of the interface to the gameManager
     private MusicManager musicManager;
     private Game gameInSession;

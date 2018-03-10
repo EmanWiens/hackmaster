@@ -2,7 +2,6 @@ package hackmaster.business;
 
 import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
-import hackmaster.presentation.DrawToScreen;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmaster.objects.PlayerStatsSaves;
