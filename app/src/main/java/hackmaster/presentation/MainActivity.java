@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             }
         }
         else {
-            if (!gameInSession.inGame()) {
+            if (gameInSession != null) {
                 setContentView(R.layout.main_activity);
                 checkStateSound();
             }
@@ -169,16 +169,16 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         view.setText(string);
     }
 
-    //change this (marc)
+    // TODO change this (marc)
     public void statsPress(View v) {
         // gameInSession.initStats();
 
         setContentView(R.layout.stats_view); //change
         TextView text=(TextView)findViewById(R.id.nicknameTxtView);
-        text.setText(gameInSession.getPlayerName());
+        // text.setText(gameInSession.getPlayerName());
 
         text=(TextView)findViewById(R.id.winLoseTxtView);
-        text.setText(Integer.toString(gameInSession.getWin()));
+        // text.setText(Integer.toString(gameInSession.getWin()));
     }
 
     public void DrawCard(CardClass card, int slot) {
@@ -333,14 +333,14 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         setContentView(R.layout.stats_view);
 
         TextView text=(TextView)findViewById(R.id.nicknameTxtView);
-        text.setText(gameInSession.getPlayerName());
+        // text.setText(gameInSession.getPlayerName());
 
         text=(TextView)findViewById(R.id.winLoseTxtView);
-        text.setText(Integer.toString(gameInSession.getWin()));
+        // text.setText(Integer.toString(gameInSession.getWin()));
     }
 
     public void statsExitMessage(View v) {
-        if (gameInSession.inGame()) {
+        if (gameInSession != null) {
             setContentView(R.layout.pause_view);
         } else {
             setContentView(R.layout.main_activity);
@@ -365,7 +365,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         return imageCardList[cardID];
     }
     
-    public  void getWinner() {
+    public void getWinner() {
         if (gameInSession.getPlayer2Health() < 1) {
             goToVictory(true);
         } else {//  (GameManager.getPlayer2Health() < 1) {
@@ -373,14 +373,11 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         }
     }
 
-
     public void goToVictory(boolean winner) {
         setContentView(R.layout.results_view);
         GameManager.setInGame(false);
 
         ImageView img= (ImageView) findViewById(R.id.statsImg);
-
-
         if (winner) {
             gameInSession.addWin();
             img.setImageResource(R.drawable.victory);
@@ -392,14 +389,13 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public boolean gameDone() {
         boolean result = false;
-        if (gameInSession.getPlayer2Health() < 1) {
+        if (gameInSession.getPlayer2Health() < 1)
             result = true;
-        }
-        if (gameInSession.getPlayer1Health() < 1) {
+        if (gameInSession.getPlayer1Health() < 1)
             result = true;
-        }
         return result;
     }
+
     private void copyDatabaseToDevice() {
         final String DB_PATH = "db";
 
@@ -411,9 +407,8 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         try {
 
             assetNames = assetManager.list(DB_PATH);
-            for (int i = 0; i < assetNames.length; i++) {
+            for (int i = 0; i < assetNames.length; i++)
                 assetNames[i] = DB_PATH + "/" + assetNames[i];
-            }
 
             copyAssetsToDirectory(assetNames, dataDirectory);
 
@@ -423,6 +418,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             //TODO: Do exception handling Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
         }
     }
+
     public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
         AssetManager assetManager = getAssets();
 
@@ -449,5 +445,4 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             }
         }
     }
-
 }

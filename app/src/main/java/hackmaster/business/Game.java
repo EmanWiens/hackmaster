@@ -130,7 +130,6 @@ public abstract class Game {
     public void pauseGame() { paused = true; }
     public void unpauseGame() { paused = false; }
     public boolean gamePaused() { return paused; }
-    public boolean inGame() { return true; }
     public PlayerClass getPlayer1(){ return player1; }
     public PlayerClass getPlayer2(){ return player2; }
     public boolean getPlayer1Turn() { return player1Turn; }
