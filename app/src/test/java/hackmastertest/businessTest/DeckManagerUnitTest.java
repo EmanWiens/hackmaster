@@ -31,7 +31,7 @@ public class DeckManagerUnitTest {
         assertEquals( 3, deck[3].getID());
         assertEquals( 4, deck[4].getID());
     }
-    
+
     @Test
     public void testDealNextCard() {
         CardClass Card1 = DeckManager.dealNextCard();
@@ -43,7 +43,7 @@ public class DeckManagerUnitTest {
     }
 
     @Test
-    public void testDealNextCardBounds() {
+    public void testUpdateNextIndex() {
         DeckManager.setIndex(DeckManager.getSizeDeck() - 1);
 
         CardClass card = DeckManager.dealNextCard();

@@ -37,7 +37,7 @@ public class PlayerClassUnitTest {
         assertNotNull(player1);
         assertEquals("id should be 1",1,player1.getId());
         assertEquals("name should be Test_Name","Test_Name",player1.getName());
-        assertEquals("Test if card exists and has the correct amount of cards", 7, player1.getCards().length);
+        assertEquals("Test if card exists and has the correct amount of cards", 5, player1.getCards().length);
         assertSame("resource object should be same", player1_resource, player1.getResources());
     }
 
@@ -58,7 +58,7 @@ public class PlayerClassUnitTest {
         assertEquals("Test set first index", 1, player1.getCard(0).getID());
         assertEquals("Test set card 2", 2, player1.getCard(1).getID());
         assertEquals("Test set card 3", 3, player1.getCard(2).getID());
-        assertEquals("Test set edge", 10, player1.getCard(6).getID());
+        assertEquals("Test set edge", 4, player1.getCard(4).getID());
 
         try {
             player1.setCard(8, generateCard(5,"test out of bounds", "t5","card 5"));
