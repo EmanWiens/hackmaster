@@ -24,15 +24,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import hackmaster.application.DBController;
+import hackmaster.business.Game;
 import hackmaster.business.GameManager;
 import hackmaster.business.SetUpGame;
+import hackmaster.business.SinglePlayerGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
+import hackmaster.objects.PlayerStatsSaves;
 
 public class MainActivity extends AppCompatActivity implements DrawToScreen {
     // give a "copy" of the interface to the gameManager
-    private GameManager gameManager;
     private MusicManager musicManager;
+    private Game gameInSession;
+    private PlayerStatsSaves playerStats; // TODO move the player stats out of game manager into main for now
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
     @Override
@@ -40,12 +44,10 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         super.onCreate(savedInstanceState);
         copyDatabaseToDevice();
         DBController.startUp();
-        gameManager = new GameManager();
         musicManager = new MusicManager(this);
         setContentView(R.layout.main_activity);
         musicManager.backGroundMusicStart();
         musicManager.initSoundPool();
-        gameManager.initStats();
     }
     @Override
     protected void onDestroy() {
@@ -107,8 +109,8 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
         if (currLayoutId == R.id.main_activity)
             return;
-        else if (gameManager.inGame()) {
-            if (!gameManager.gamePaused()) {
+        else if (gameInSession != null) {
+            if (!gameInSession.gamePaused()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("You are about to exit the game.")
                         .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
@@ -126,15 +128,14 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
                 builder.show();
             }
-            else if (gameManager.gamePaused()) {
+            else if (gameInSession.gamePaused()) {
                 setContentView(R.layout.battle_view);
                 GameManager.unpauseGame();
                 renderBattleView();
-                //GameManager.render();
             }
         }
         else {
-            if (!gameManager.inGame()) {
+            if (!gameInSession.inGame()) {
                 setContentView(R.layout.main_activity);
                 checkStateSound();
             }
@@ -168,14 +169,14 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     //change this (marc)
     public void statsPress(View v) {
-        gameManager.initStats();
+        gameInSession.initStats();
 
         setContentView(R.layout.stats_view); //change
         TextView text=(TextView)findViewById(R.id.nicknameTxtView);
-        text.setText(gameManager.getPlayerName());
+        text.setText(gameInSession.getPlayerName());
 
         text=(TextView)findViewById(R.id.winLoseTxtView);
-        text.setText(Integer.toString(gameManager.getWin()));
+        text.setText(Integer.toString(gameInSession.getWin()));
     }
 
     public void DrawCard(CardClass card, int slot) {
@@ -200,13 +201,13 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void renderBattleView() {
-        CardClass playedCardAi = gameManager.getPlayedCardAi();
-        CardClass playedCard = gameManager.getPlayedCard();
-        PlayerClass player1 = gameManager.getPlayer1();
-        PlayerClass player2 = gameManager.getPlayer2();
-        boolean player1Turn = gameManager.getPlayer1Turn();
-        boolean paused = gameManager.getPausedStatus();
-        if (!paused) {
+        CardClass playedCardAi = gameInSession.getPlayedCardAi();
+        CardClass playedCard = gameInSession.getPlayedCard();
+        PlayerClass player1 = gameInSession.getPlayer1();
+        PlayerClass player2 = gameInSession.getPlayer2();
+        boolean player1Turn = gameInSession.getPlayer1Turn();
+
+        if (!gameInSession.gamePaused()) {
             drawPlayerResource(player1);
             drawPlayerResource(player2);
 
@@ -229,21 +230,19 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
     public void singlePlayPress(View v) {
         setContentView(R.layout.battle_view);
-        SetUpGame.setUpSinglePlayerGame();
-
-        gameManager.setUpSingleGame();
+        gameInSession = SetUpGame.setUpSinglePlayerGame();
         renderBattleView();
     }
 
     public void multiPlayPress(View v) {
         setContentView(R.layout.battle_view);
-        SetUpGame.setUpMultiplayerGame();
+        gameInSession = SetUpGame.setUpMultiplayerGame();
         renderBattleView();
     }
 
     public void firstcardPress(View v)
     {
-        gameManager.playCardEvent(0);
+        gameInSession.playCardEvent(0);
         renderBattleView();
         cardPress(0);
         if (gameDone())
@@ -251,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
     public void secondcardPress(View v)
     {
-        gameManager.playCardEvent(1);
+        gameInSession.playCardEvent(1);
         renderBattleView();
         cardPress(1);
         if (gameDone())
@@ -259,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
     public void thirdcardPress(View v)
     {
-        gameManager.playCardEvent(2);
+        gameInSession.playCardEvent(2);
         renderBattleView();
         cardPress(2);
         if (gameDone())
@@ -267,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
     public void fourthcardPress(View v)
     {
-        gameManager.playCardEvent(3);
+        gameInSession.playCardEvent(3);
         renderBattleView();
         cardPress(3);
         if (gameDone())
@@ -275,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
     public void fifthcardPress(View v)
     {
-        gameManager.playCardEvent(4);
+        gameInSession.playCardEvent(4);
         renderBattleView();
         cardPress(4);
         if (gameDone())
@@ -307,13 +306,13 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
 
     public void pauseMessage(View v) {
-        gameManager.pauseGame();
+        gameInSession.pauseGame();
         setContentView(R.layout.pause_view);
     }
 
     public void pauseResumeMessage(View v) {
         setContentView(R.layout.battle_view);
-        gameManager.unpauseGame();
+        gameInSession.unpauseGame();
         renderBattleView();
     }
 
@@ -323,7 +322,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
                 .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         setContentView(R.layout.main_activity);
-                        GameManager.setInGame(false);
+                        gameInSession = null;
                         checkStateSound();
                     }
                 })
@@ -338,19 +337,19 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     // change this (marc)
     public void pauseStatsMessage(View v) {
-        gameManager.initStats();
+        gameInSession.initStats();
 
         setContentView(R.layout.stats_view);
 
         TextView text=(TextView)findViewById(R.id.nicknameTxtView);
-        text.setText(gameManager.getPlayerName());
+        text.setText(gameInSession.getPlayerName());
 
         text=(TextView)findViewById(R.id.winLoseTxtView);
-        text.setText(Integer.toString(gameManager.getWin()));
+        text.setText(Integer.toString(gameInSession.getWin()));
     }
 
     public void statsExitMessage(View v) {
-        if (gameManager.inGame()) {
+        if (gameInSession.inGame()) {
             setContentView(R.layout.pause_view);
         } else {
             setContentView(R.layout.main_activity);
@@ -376,7 +375,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
     
     public  void getWinner() {
-        if (GameManager.getPlayer2Health() < 1) {
+        if (gameInSession.getPlayer2Health() < 1) {
             goToVictory(true);
         } else {//  (GameManager.getPlayer2Health() < 1) {
             goToVictory(false);
@@ -392,20 +391,20 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
 
         if (winner) {
-            gameManager.addWin();
+            gameInSession.addWin();
             img.setImageResource(R.drawable.victory);
         } else {
-            gameManager.addLoss();
+            gameInSession.addLoss();
             img.setImageResource(R.drawable.defeat);
         }
     }
 
-    public static boolean gameDone() {
+    public boolean gameDone() {
         boolean result = false;
-        if (GameManager.getPlayer2Health() < 1) {
+        if (gameInSession.getPlayer2Health() < 1) {
             result = true;
         }
-        if (GameManager.getPlayer1Health() < 1) {
+        if (gameInSession.getPlayer1Health() < 1) {
             result = true;
         }
         return result;

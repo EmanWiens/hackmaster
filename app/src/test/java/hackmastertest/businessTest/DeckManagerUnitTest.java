@@ -54,15 +54,6 @@ public class DeckManagerUnitTest {
     }
 
     @Test
-    public void testInvalidDealCards(){
-        try {
-            DeckManager.dealFirstHandOfGame();
-            fail("NegativeArraySize Expected");
-        } catch ( NegativeArraySizeException exp) {
-        }
-    }
-
-    @Test
     public void testDealNextCard() {
         CardClass Card1 = DeckManager.dealNextCard();
         assertEquals("The name  of first Card should be CPU Boost", "CPU Boost", Card1.getName());
