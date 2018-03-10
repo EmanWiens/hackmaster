@@ -24,7 +24,7 @@ public class EnemyAIUnitTest {
 
     @Before
     public void setup() {
-        deckM.initDeck(6);
+        deckM.initDeck();
         card = 0;
 
         GameManager.setSinglePlayer(true);
