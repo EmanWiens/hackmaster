@@ -234,6 +234,13 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         gameManager.setUpSingleGame();
         renderBattleView();
     }
+
+    public void multiPlayPress(View v) {
+        setContentView(R.layout.battle_view);
+        SetUpGame.setUpMultiplayerGame();
+        renderBattleView();
+    }
+
     public void firstcardPress(View v)
     {
         gameManager.playCardEvent(0);
