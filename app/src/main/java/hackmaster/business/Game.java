@@ -7,18 +7,18 @@ import hackmaster.objects.PlayerStatsSaves;
 import hackmaster.objects.ResourceClass;
 import hackmaster.presentation.DrawToScreen;
 
-public abstract class Game implements GameInterface {
+public abstract class Game {
     public static final int hand = 5;
 
-    private static PlayerStatsSaves pStats = null;
-    private static PlayerClass player1;
-    private static PlayerClass player2;
+    private PlayerStatsSaves pStats = null;
+    private PlayerClass player1;
+    private PlayerClass player2;
 
-    private static boolean player1Turn = true;
-    private static boolean paused = false;
-    private static boolean inGame = false;
-    private static boolean singlePlayer = false;
-    private static boolean delayAi = false;
+    private boolean player1Turn = true;
+    private boolean paused = false;
+    private boolean inGame = false;
+    private boolean singlePlayer = false;
+    private boolean delayAi = false;
 
     private static CardClass playedCard = null;
     private static CardClass playedCardAi = null;
@@ -32,26 +32,26 @@ public abstract class Game implements GameInterface {
         System.out.print("Error in game. Please try starting a new game.");
     }
 
-    public static boolean cantPlayCard(PlayerClass player) {
+    public boolean cantPlayCard(PlayerClass player) {
         for (int i = 0; i < player.cardsSize(); i++)
             if (checkCard(i, player))
                 return false;
         return true;
     }
 
-    private static void playerTurn(int playerCard, PlayerClass player) {
+    private void playerTurn(int playerCard, PlayerClass player) {
         CardClass nextCard = DeckManager.dealNextCard();
         CardClass playedCard = player.getCard(playerCard);
         ResourceManager.applyCard(player1Turn, player1, player2, playedCard);
         player.setCard(playerCard, nextCard);
     }
 
-    public static void discardCard(int playerCard, PlayerClass player) {
+    public void discardCard(int playerCard, PlayerClass player) {
         CardClass nextCard = DeckManager.dealNextCard();
         player.setCard(playerCard, nextCard);
     }
 
-    public static boolean checkCard(int playerCard, PlayerClass player) {
+    public boolean checkCard(int playerCard, PlayerClass player) {
         boolean canPlay = true;
         CardClass card = player.getCard(playerCard);
 
@@ -77,26 +77,26 @@ public abstract class Game implements GameInterface {
         return canPlay;
     }
 
-    public static int getPlayerNum() {
+    public int getPlayerNum() {
         if(player1Turn)
             return 0;
         else
             return 1;
     }
 
-    public static int getPlayer1Health() {
+    public int getPlayer1Health() {
         if (inGame)
             return player1.getHealth();
         return -1;
     }
-    public static int getPlayer2Health() {
+    public int getPlayer2Health() {
         if (inGame)
             return player2.getHealth();
         return -1;
     }
 
     //test this (marc)
-    public static boolean gameDone() {
+    public boolean gameDone() {
         boolean result = false;
         if (player2.getHealth() < 1) {
             result = true;
@@ -107,7 +107,7 @@ public abstract class Game implements GameInterface {
         return result;
     }
 
-    public static void initStats() {
+    public void initStats() {
         if(pStats == null)
             pStats = new PlayerStatsSaves();
 
@@ -115,30 +115,30 @@ public abstract class Game implements GameInterface {
     }
 
 
-    public static String getPlayerName() {
+    public String getPlayerName() {
         return pStats.getName();
     }
-    public static int getWin() {
+    public int getWin() {
         return pStats.getWin();
     }
-    public static void addWin() { pStats.addWin();}
-    public static void addLoss() { pStats.addLoss();}
+    public void addWin() { pStats.addWin();}
+    public void addLoss() { pStats.addLoss();}
 
-    public static void setDelayAi(boolean b) { delayAi = b; }
-    public static boolean getDelayAi() { return delayAi; }
-    public static CardClass getPlayedCard() { return playedCard; }
-    public static CardClass getPlayedCardAi() { return playedCardAi; }
-    public static void setInGame(boolean value) { inGame = value; }
-    public static void pauseGame() { paused = true; }
-    public static void unpauseGame() { paused = false; }
-    public static boolean gamePaused() { return paused; }
-    public static void setSinglePlayer(boolean set) { singlePlayer = set; }
-    public static boolean inGame() { return inGame; }
-    public static PlayerClass getPlayer1(){ return player1; }
-    public static PlayerClass getPlayer2(){ return player2; }
+    public void setDelayAi(boolean b) { delayAi = b; }
+    public boolean getDelayAi() { return delayAi; }
+    public CardClass getPlayedCard() { return playedCard; }
+    public CardClass getPlayedCardAi() { return playedCardAi; }
+    public void setInGame(boolean value) { inGame = value; }
+    public void pauseGame() { paused = true; }
+    public void unpauseGame() { paused = false; }
+    public boolean gamePaused() { return paused; }
+    public void setSinglePlayer(boolean set) { singlePlayer = set; }
+    public boolean inGame() { return inGame; }
+    public PlayerClass getPlayer1(){ return player1; }
+    public PlayerClass getPlayer2(){ return player2; }
     public boolean getPlayer1Turn() { return player1Turn; }
-    public static void setPlayer1Turn(boolean turn) { player1Turn = turn; }
-    public static void setDeck(CardClass[] set) { DeckManager.setDeck(set); }
-    public static CardClass getDeckCardAt(int i) { return DeckManager.getCardAt(i); }
-    public static int getDeckMangerDealNextCard() { return DeckManager.getNextIndex(); }
+    public void setPlayer1Turn(boolean turn) { player1Turn = turn; }
+    public void setDeck(CardClass[] set) { DeckManager.setDeck(set); }
+    public CardClass getDeckCardAt(int i) { return DeckManager.getCardAt(i); }
+    public int getDeckMangerDealNextCard() { return DeckManager.getNextIndex(); }
 }

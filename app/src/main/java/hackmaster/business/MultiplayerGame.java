@@ -3,11 +3,8 @@ package hackmaster.business;
 import hackmaster.objects.PlayerClass;
 
 public class MultiplayerGame extends Game {
-    PlayerClass player1, player2;
-
     public MultiplayerGame(PlayerClass p1, PlayerClass p2) {
-        player1 = p1;
-        player2 = p2;
+        super(p1,p2);
     }
 
     public void playCardEvent(int playerCard) {
