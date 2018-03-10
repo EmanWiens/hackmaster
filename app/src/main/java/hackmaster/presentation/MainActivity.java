@@ -29,6 +29,7 @@ import hackmaster.business.SetUpGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.PlayerStatsSaves;
+import hackmaster.presentation.MusicManager;
 
 public class MainActivity extends AppCompatActivity {
     // give a "copy" of the interface to the gameManager
