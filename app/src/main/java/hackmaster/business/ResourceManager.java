@@ -3,11 +3,7 @@ package hackmaster.business;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
 
-public class ResourceManager {
-    public ResourceManager() {
-
-    }
-
+public abstract class ResourceManager {
     public static void applyTurnRate(PlayerClass p) {
         p.increaseHcoinByRate();
         p.increaseCSpeedByRate();

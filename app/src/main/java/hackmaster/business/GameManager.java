@@ -32,7 +32,6 @@ public class GameManager {
     public GameManager() {
         // deckM = new DeckManager();
         pStats = new PlayerStatsSaves();
-        resManager = new ResourceManager();
     }
 
     public static void setUpSingleGame() {
@@ -136,7 +135,7 @@ public class GameManager {
         return -1;
     }
 
-    //test this (marc)
+    //TODO test this (marc)
     public static boolean gameDone() {
         boolean result = false;
         if (player2.getHealth() < 1) {
