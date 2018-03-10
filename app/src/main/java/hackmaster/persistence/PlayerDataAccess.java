@@ -27,7 +27,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
             statement.close();
         }
         catch (Exception e) {
-            processSQLError(e);
+            DataAccessObject.processSQLError(e);
         }
     }
 
@@ -35,6 +35,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
      * Gets a list of all players in the database
      * @return a list of all players in the database
      */
+    @Override
     public List<PlayerStatsSaves> getPlayersList(){
         ArrayList<PlayerStatsSaves> playerList = new ArrayList<>();
         PlayerStatsSaves player = null;
@@ -46,7 +47,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
             // get the list of players from the db
             resultSet = statement.executeQuery("SELECT * FROM PLAYERS");
         } catch(Exception e) {
-            processSQLError(e);
+            DataAccessObject.processSQLError(e);
         }
         try {
             while (resultSet.next()) {
@@ -62,7 +63,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
             resultSet.close();
         }
         catch (Exception e) {
-            processSQLError(e);
+            DataAccessObject.processSQLError(e);
         }
         return playerList;
     }
@@ -71,6 +72,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
      * Gets a list of names of all players in the database
      * @return a list of names of all players in the database
      */
+    @Override
     public List<String> getPlayersNamesList(){
         String playerName;
         ArrayList<String> playerList = new ArrayList<>();
@@ -83,7 +85,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
             resultSet.close();
         }
         catch (Exception e) {
-            processSQLError(e);
+            DataAccessObject.processSQLError(e);
         }
         return playerList;
     }
@@ -93,7 +95,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
      * @param playerID the id of the player to retrieve from the database
      * @return The player with id playerID, or null if no player exists with that id
      */
-    // TODO Access DB
+    @Override
     public PlayerStatsSaves getPlayer(int playerID){
         String playerName;
         int id, win, loss, games, level;
@@ -111,18 +113,8 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
             resultSet.close();
         }
         catch (Exception e) {
-            processSQLError(e);
+            DataAccessObject.processSQLError(e);
         }
         return player;
-    }
-
-    /**
-     * Gets the error message message of an SQL exception and prints the stack trace
-     * @param e the exception thrown
-     */
-    private String processSQLError(Exception e) {
-        String result = "*** SQL Error: " + e.getMessage();
-        e.printStackTrace();
-        return result;
     }
 }

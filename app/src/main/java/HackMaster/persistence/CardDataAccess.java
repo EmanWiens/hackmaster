@@ -1,7 +1,5 @@
-
 package hackmaster.persistence;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -12,6 +10,7 @@ import hackmaster.objects.ResourceClass;
 public class CardDataAccess implements CardDataAccessInterface {
     private Statement statement;
     private ResultSet resultSet;
+    private int updateCount;
 
     public void open(Statement statement) { this.statement = statement; }
 
@@ -19,31 +18,27 @@ public class CardDataAccess implements CardDataAccessInterface {
         try {
             statement.close();
         } catch (Exception e) {
-            processSQLError(e);
+            DataAccessObject.processSQLError(e);
         }
     }
 
-    public String getCardSequential(List<CardClass> cardResult)
-    {
+    @Override
+    public String getCardSequential(List<CardClass> cardResult) {
         CardClass card;
         int myID = -1;
         String myName, myType, myDesc;
-        int myPHealth = 0, myPCoin, myPCoinRate, myPBotnet, myPBotnetRate, myPCPU, myPCPURate;
-        int myEHealth = 0, myECoin, myECoinRate, myEBotnet, myEBotnetRate, myECPU, myECPURate;
+        int myPHealth = 0, myPCoin = 0, myPCoinRate = 0, myPBotnet = 0, myPBotnetRate = 0, myPCPU = 0, myPCPURate = 0;
+        int myEHealth = 0, myECoin = 0, myECoinRate = 0, myEBotnet = 0, myEBotnetRate = 0, myECPU = 0, myECPURate = 0;
 
         String result = null;
-        try
-        {
+        try {
             resultSet = statement.executeQuery("SELECT * FROM CARDS");
         }
-        catch (Exception e)
-        {
-            processSQLError(e);
+        catch (Exception e) {
+            DataAccessObject.processSQLError(e);
         }
-        try
-        {
-            while (resultSet.next())
-            {
+        try {
+            while (resultSet.next()) {
                 myID = resultSet.getInt("CardID");
                 myName = resultSet.getString("Name");
                 myType = resultSet.getString("Type");
@@ -69,27 +64,24 @@ public class CardDataAccess implements CardDataAccessInterface {
             }
             resultSet.close();
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             result = e.getMessage();
-            processSQLError(e);
+            DataAccessObject.processSQLError(e);
         }
         return result;
     }
 
-    public CardClass getCardRandom(CardClass newCard)
-    {
+    @Override
+    public CardClass getCardRandom(CardClass newCard) {
         CardClass card = null;
         int myID = -1;
         String myName, myType, myDesc;
-        int myPHealth = 0, myPCoin, myPCoinRate, myPBotnet, myPBotnetRate, myPCPU, myPCPURate, myEHealth;
-        int myECoin = 0, myECoinRate, myEBotnet, myEBotnetRate, myECPU, myECPURate;
+        int myPHealth = 0, myPCoin = 0, myPCoinRate = 0, myPBotnet = 0, myPBotnetRate = 0, myPCPU = 0, myPCPURate = 0, myEHealth = 0;
+        int myECoin = 0, myECoinRate = 0, myEBotnet = 0, myEBotnetRate = 0, myECPU = 0, myECPURate = 0;
 
-        try
-        {
+        try {
             resultSet = statement.executeQuery("Select * from Cards where CardID=" + newCard.getID());
-            while (resultSet.next())
-            {
+            while (resultSet.next()) {
                 myID = resultSet.getInt("CardID");
                 myName = resultSet.getString("Name");
                 myType = resultSet.getString("Type");
@@ -113,19 +105,18 @@ public class CardDataAccess implements CardDataAccessInterface {
                         new ResourceClass(myEHealth, myECoin, myECoinRate, myEBotnet, myEBotnetRate, myECPU, myECPURate));
             }
             resultSet.close();
-        } catch (Exception e)
-        {
-            processSQLError(e);
+        } catch (Exception e) {
+            DataAccessObject.processSQLError(e);
         }
         return card;
     }
 
+    @Override
     public String insertCard(CardClass card) {
         String values;
 
         String result = null;
-        try
-        {
+        try {
             values = card.getID()
                     +", '" +card.getName()
                     +"', '" +card.getType()
@@ -137,19 +128,57 @@ public class CardDataAccess implements CardDataAccessInterface {
                     +", " +card.getPlayerR().getBotnetRate()
                     +", " +card.getPlayerR().getCpu()
                     +", " +card.getPlayerR().getCpuRate();
-            resultSet = statement.executeUpdate("Insert into Cards " +" Values(" +values +")");
-            result = checkWarning(st1, updateCount);
+            updateCount = statement.executeUpdate("Insert into Cards " +" Values(" +values +")");
+            result = DataAccessObject.checkWarning(statement, updateCount);
         }
-        catch (Exception e)
-        {
-            result = processSQLError(e);
+        catch (Exception e) {
+            DataAccessObject.processSQLError(e);
         }
         return result;
     }
 
-    private String processSQLError(Exception e) {
-        String result = "*** SQL Error: " + e.getMessage();
-        e.printStackTrace();
+    @Override
+    public String updateCard(CardClass card) {
+        String values;
+        String where;
+        String cmdString;
+        String result = null;
+        try {
+            // Should check for empty values and not update them
+            values = "Name='" +card.getName()
+                    +"', Type='" +card.getType()
+                    +"', Description='" +card.getDescription()
+                    +"', PHealth=" +card.getPlayerR().getHealth()
+                    +", PCoin=" +card.getPlayerR().gethCoin()
+                    +", PCoinRate=" +card.getPlayerR().gethCoinRate()
+                    +", PBotnet=" +card.getPlayerR().getBotnet()
+                    +", PBotnetRate=" +card.getPlayerR().getBotnetRate()
+                    +", PCPU=" +card.getPlayerR().getCpu()
+                    +", PCPURate=" +card.getPlayerR().getCpuRate();
+            where = "where CardID=" +card.getID();
+            cmdString = "Update Cards " +" Set " +values +" " +where;
+            //System.out.println(cmdString);
+            updateCount = statement.executeUpdate(cmdString);
+            result = DataAccessObject.checkWarning(statement, updateCount);
+        }
+        catch (Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+        return result;
+    }
+
+    @Override
+    public String removeCard(CardClass card) {
+        int values;
+        String result = null;
+        try {
+            values = card.getID();
+            updateCount = statement.executeUpdate("Delete from Cards where CardID=" +values);
+            result = DataAccessObject.checkWarning(statement, updateCount);
+        }
+        catch (Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
         return result;
     }
 }
