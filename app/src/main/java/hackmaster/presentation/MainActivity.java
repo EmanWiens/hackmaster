@@ -148,18 +148,20 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             fillText((TextView)findViewById(R.id.cSpeedP), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetP), player.botnetToString());
 
-            fillText((TextView)findViewById(R.id.healthP), "Health: " + player.getHealth() + "%");
+            fillText((TextView)findViewById(R.id.healthP), player.playerHealthToString());
             ProgressBar health = findViewById(R.id.healthPBarP);
             health.setProgress(player.getHealth());
+            fillText((TextView)findViewById(R.id.player1), player.getName());
         }
         else if (player.getId() == 1){
             fillText((TextView)findViewById(R.id.minerE), player.minerToString());
             fillText((TextView)findViewById(R.id.cSpeedE), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetE), player.botnetToString());
 
-            fillText((TextView)findViewById(R.id.healthE), "Health: " + player.getHealth() + "%");
+            fillText((TextView)findViewById(R.id.healthE), player.playerHealthToString());
             ProgressBar health = findViewById(R.id.healthPBarE);
             health.setProgress(player.getHealth());
+            fillText((TextView)findViewById(R.id.player2), player.getName());
         }
     }
 
@@ -169,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     //change this (marc)
     public void statsPress(View v) {
-        gameInSession.initStats();
+        // gameInSession.initStats();
 
         setContentView(R.layout.stats_view); //change
         TextView text=(TextView)findViewById(R.id.nicknameTxtView);
@@ -187,17 +189,6 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
         imageButton = findViewById(imageButtonCardList[slot]);
         imageButton.setBackgroundResource(returnImageCardID(card.getID()));
-    }
-    public void displayCardImage(int imageID, int imageBtnID)
-    {
-        int realID=0;
-        if (imageID==25)
-        {
-            realID=R.drawable.debug;
-        }
-        //ImageButton imageButton = findViewById(R.id.imageButton);
-       // imageButton.setBackgroundResource(realID);
-
     }
 
     public void renderBattleView() {
@@ -337,7 +328,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     // change this (marc)
     public void pauseStatsMessage(View v) {
-        gameInSession.initStats();
+        // gameInSession.initStats();
 
         setContentView(R.layout.stats_view);
 

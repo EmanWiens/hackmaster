@@ -23,6 +23,7 @@ public abstract class Game {
     public Game(PlayerClass p1, PlayerClass p2) {
         player1 = p1;
         player2 = p2;
+        initStats();
 
         playedCardAi = null;
         playedCard = null;
