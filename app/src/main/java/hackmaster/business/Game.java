@@ -1,7 +1,6 @@
 package hackmaster.business;
 
 import hackmaster.objects.CardClass;
-import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.PlayerStatsSaves;
 import hackmaster.objects.ResourceClass;
@@ -17,16 +16,16 @@ public abstract class Game {
     private boolean paused;
     private boolean delayAi;
 
-    private static CardClass playedCard;
-    private static CardClass playedCardAi;
+    private static CardClass playedCardOne;
+    private static CardClass playedCardTwo;
 
     public Game(PlayerClass p1, PlayerClass p2) {
         player1 = p1;
         player2 = p2;
         initStats();
 
-        playedCardAi = null;
-        playedCard = null;
+        playedCardTwo = null;
+        playedCardOne = null;
 
         player1Turn = true;
     }
@@ -122,16 +121,16 @@ public abstract class Game {
     public void addLoss() { pStats.addLoss();}
     public void setDelayAi(boolean b) { delayAi = b; }
     public boolean getDelayAi() { return delayAi; }
-    public CardClass getPlayedCard() { return playedCard; }
-    public CardClass getPlayedCardAi() { return playedCardAi; }
+    public CardClass getPlayedCard() { return playedCardOne; }
+    public CardClass getPlayedCardAi() { return playedCardTwo; }
     public void pauseGame() { paused = true; }
     public void unpauseGame() { paused = false; }
     public boolean gamePaused() { return paused; }
     public PlayerClass getPlayer1(){ return player1; }
     public PlayerClass getPlayer2(){ return player2; }
     public boolean getPlayer1Turn() { return player1Turn; }
-    public void setPlayerPlayedCard(CardClass card) { playedCard = card; }
-    public void setAiPlayedCard(CardClass card) { playedCardAi = card; }
+    public void setPlayedCardOne(CardClass card) { playedCardOne = card; }
+    public void setPlayedCardTwo(CardClass card) { playedCardTwo = card; }
     public void setPlayer1Turn(boolean turn) { player1Turn = turn; }
     public void setDeck(CardClass[] set) { DeckManager.setDeck(set); }
     public CardClass getDeckCardAt(int i) { return DeckManager.getCardAt(i); }

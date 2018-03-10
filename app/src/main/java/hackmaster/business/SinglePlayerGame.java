@@ -11,14 +11,14 @@ public class SinglePlayerGame extends Game {
     public void playCardEvent(int playerCard) {
         if (getPlayer1Turn() && !gamePaused() && !getDelayAi()) {
             if(checkCard(playerCard, getPlayer1())) {
-                setPlayerPlayedCard(getPlayer1().getCard(playerCard));
+                setPlayedCardOne(getPlayer1().getCard(playerCard));
                 playerTurn(playerCard, getPlayer1());
                 ResourceManager.applyTurnRate(getPlayer2());
                 setPlayer1Turn(false);
 
                 // AI turn
                 int enemyCard = ((EnemyAI) getPlayer2()).playNextCard();
-                setAiPlayedCard(getPlayer2().getCard(enemyCard));
+                setPlayedCardTwo(getPlayer2().getCard(enemyCard));
                 if (checkCard(enemyCard, getPlayer1()))
                     playerTurn(enemyCard, getPlayer2());
                 else

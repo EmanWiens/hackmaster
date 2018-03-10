@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
             if (playedCardAi != null)
                 drawPlayedCard(playedCardAi, true);
 
-            if (player1Turn)
+            if (gameInSession.getPlayer1Turn())
                 for (int i = 0; i < player1.getCards().length; i++) {
                     if (player1.getCards()[i] != null)
                         DrawCard(player1.getCards()[i], i);
@@ -403,7 +403,6 @@ public class MainActivity extends AppCompatActivity {
         AssetManager assetManager = getAssets();
 
         try {
-
             assetNames = assetManager.list(DB_PATH);
             for (int i = 0; i < assetNames.length; i++)
                 assetNames[i] = DB_PATH + "/" + assetNames[i];
