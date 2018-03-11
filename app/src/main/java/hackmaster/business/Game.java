@@ -134,4 +134,5 @@ public abstract class Game {
     public CardClass getDeckCardAt(int i) { return DeckManager.getCardAt(i); }
     public CardClass[] getDeck() { return DeckManager.getDeck(); }
     public int getDeckMangerDealNextCard() { return DeckManager.getNextIndex(); }
+    public static void setPlayerTurn(boolean set) { setPlayerTurn(set); }
 }

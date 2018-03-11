@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void renderPlayerResource(PlayerClass player) {
-        if (player.getId() == 0) {
+        if (player.getId() == 0 && gameInSession.getRenderDelayToggle()) {
             fillText((TextView)findViewById(R.id.minerP), player.minerToString());
             fillText((TextView)findViewById(R.id.cSpeedP), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetP), player.botnetToString());
@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
             health.setProgress(player.getHealth());
             fillText((TextView)findViewById(R.id.player1), player.getName());
         }
-        else if (player.getId() == 1){
+        if (player.getId() == 1) {
             fillText((TextView)findViewById(R.id.minerE), player.minerToString());
             fillText((TextView)findViewById(R.id.cSpeedE), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetE), player.botnetToString());
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         PlayerClass player2 = gameInSession.getPlayer2();
 
         if (!gameInSession.gamePaused()) {
-            if (playedCardOne != null)
+            if (playedCardOne != null && gameInSession.getPlayer1Turn())
                 renderPlayedCard(playedCardOne, false);
 
             if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
