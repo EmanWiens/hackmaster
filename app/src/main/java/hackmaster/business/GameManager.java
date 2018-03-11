@@ -25,21 +25,14 @@ public class GameManager {
     private static CardClass playedCard = null;
     private static CardClass playedCardAi = null;
 
-    //Created boolean test since it fails at draw(Can't access presentation layer in tests)
-    private static boolean test;
-
     public static final int sizeOfHand = 5;
     public static final int maxCards = 50;
     public static final int maxHealth = 100;
 
-    private static DrawToScreen mainActivity;
-
-    public GameManager(DrawToScreen mainAct) {
-        mainActivity = mainAct;
+    public GameManager() {
         // deckM = new DeckManager();
         pStats = new PlayerStatsSaves();
         resManager = new ResourceManager();
-        test = false;
     }
 
     public static void setUpSingleGame() {
@@ -55,7 +48,6 @@ public class GameManager {
                 "Enemy Bot",
                 new ResourceClass(100, 10, 2, 10, 2, 10, 2), deckM.dealCards(sizeOfHand));
 
-        GameManager.render();
     }
 
     public static void playCardEvent(int playerCard) {
@@ -78,8 +70,6 @@ public class GameManager {
                 }
             }
         }
-        GameManager.render();
-
     }
 
     public static boolean cantPlayCard(PlayerClass player) {
@@ -134,28 +124,6 @@ public class GameManager {
             return 1;
     }
 
-    public static void render() {
-        if (!test && !paused) {
-            mainActivity.drawPlayerResource(player1);
-            mainActivity.drawPlayerResource(player2);
-
-            if (playedCard != null)
-                mainActivity.drawPlayedCard(playedCard, false);
-            if (playedCardAi != null)
-                mainActivity.drawPlayedCard(playedCardAi, true);
-
-            if (player1Turn)
-                for (int i = 0; i < player1.getCards().length; i++) {
-                    if (player1.getCards()[i] != null)
-                        mainActivity.DrawCard(player1.getCards()[i], i);
-                }
-            else
-                for (int i = 0; i < player2.getCards().length; i++) {
-                    if (player2.getCards()[i] != null)
-                        mainActivity.DrawCard(player2.getCards()[i], i);
-                }
-        }
-    }
 
     public static int getPlayer1Health() {
         if (inGame)
@@ -196,8 +164,6 @@ public class GameManager {
     }
     public static void addWin() { pStats.addWin();}
     public static void addLoss() { pStats.addLoss();}
-
-    public static void runAsTest() { test = true; }
     public static void setDelayAi(boolean b) { delayAi = b; }
     public static boolean getDelayAi() { return delayAi; }
     public static CardClass getPlayedCard() { return playedCard; }
@@ -208,10 +174,10 @@ public class GameManager {
     public static boolean gamePaused() { return paused; }
     public static void setSinglePlayer(boolean set) { singlePlayer = set; }
     public static int handSize() { return sizeOfHand; }
-    public static DrawToScreen getMainAct() { return mainActivity; }
     public static boolean inGame() { return inGame; }
     public static PlayerClass getPlayer1(){ return player1; }
     public static PlayerClass getPlayer2(){ return player2; }
+    public static boolean getPausedStatus(){ return paused; }
     public boolean getPlayer1Turn() { return player1Turn; }
     public static void setPlayer1Turn(boolean turn) { player1Turn = turn; }
     public static void setDeck(CardClass[] set) { deckM.setDeck(set); }

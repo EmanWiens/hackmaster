@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         super.onCreate(savedInstanceState);
         copyDatabaseToDevice();
         DBController.startUp();
-        gameManager = new GameManager(this);
+        gameManager = new GameManager();
         musicManager = new MusicManager(this);
         setContentView(R.layout.main_activity);
         musicManager.backGroundMusicStart();
@@ -128,7 +128,8 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
             else if (gameManager.gamePaused()) {
                 setContentView(R.layout.battle_view);
                 GameManager.unpauseGame();
-                GameManager.render();
+                renderBattleView();
+                //GameManager.render();
             }
         }
         else {
@@ -201,14 +202,43 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
        // imageButton.setBackgroundResource(realID);
 
     }
+    public  void renderBattleView() {
+        CardClass playedCardAi = gameManager.getPlayedCardAi();
+        CardClass playedCard = gameManager.getPlayedCard();
+        PlayerClass player1 = gameManager.getPlayer1();
+        PlayerClass player2 = gameManager.getPlayer2();
+        boolean player1Turn = gameManager.getPlayer1Turn();
+        boolean paused = gameManager.getPausedStatus();
+        if (!paused) {
+            drawPlayerResource(player1);
+            drawPlayerResource(player2);
 
+            if (playedCard != null)
+               drawPlayedCard(playedCard, false);
+            if (playedCardAi != null)
+                drawPlayedCard(playedCardAi, true);
+
+            if (player1Turn)
+                for (int i = 0; i < player1.getCards().length; i++) {
+                    if (player1.getCards()[i] != null)
+                        DrawCard(player1.getCards()[i], i);
+                }
+            else
+                for (int i = 0; i < player2.getCards().length; i++) {
+                    if (player2.getCards()[i] != null)
+                        DrawCard(player2.getCards()[i], i);
+                }
+        }
+    }
     public void playMessage(View v) {
         setContentView(R.layout.battle_view);
         gameManager.setUpSingleGame();
+        renderBattleView();
     }
     public void firstcardPress(View v)
     {
         gameManager.playCardEvent(0);
+        renderBattleView();
         cardPress(0);
         if (gameDone())
             getWinner();
@@ -216,6 +246,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     public void secondcardPress(View v)
     {
         gameManager.playCardEvent(1);
+        renderBattleView();
         cardPress(1);
         if (gameDone())
             getWinner();
@@ -223,6 +254,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     public void thirdcardPress(View v)
     {
         gameManager.playCardEvent(2);
+        renderBattleView();
         cardPress(2);
         if (gameDone())
             getWinner();
@@ -230,6 +262,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     public void fourthcardPress(View v)
     {
         gameManager.playCardEvent(3);
+        renderBattleView();
         cardPress(3);
         if (gameDone())
             getWinner();
@@ -237,6 +270,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     public void fifthcardPress(View v)
     {
         gameManager.playCardEvent(4);
+        renderBattleView();
         cardPress(4);
         if (gameDone())
             getWinner();
@@ -274,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     public void pauseResumeMessage(View v) {
         setContentView(R.layout.battle_view);
         gameManager.unpauseGame();
-        GameManager.render();
+        renderBattleView();
     }
 
     public void pauseExitMessage(View v) {
