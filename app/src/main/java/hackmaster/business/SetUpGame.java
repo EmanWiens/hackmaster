@@ -6,25 +6,19 @@ import hackmaster.objects.ResourceClass;
 
 public abstract class SetUpGame {
     public static Game setUpSinglePlayerGame() {
-        Game game;
+        DeckManager.initDeck();
+        PlayerClass player1 = new PlayerClass(0,
+                "HackerMan",
+                new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
 
-        // TODO call deck manager for deck setup
-            DeckManager.initDeck();
-            PlayerClass player1 = new PlayerClass(0,
-                    "HackerMan",
-                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
-
-            PlayerClass player2 = new EnemyAI(1,
-                    "Enemy Bot",
-                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
+        PlayerClass player2 = new EnemyAI(1,
+                "Enemy Bot",
+                new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
 
         return new SinglePlayerGame(player1, player2);
     }
 
     public static Game setUpMultiplayerGame() {
-        Game game;
-
-        // TODO call deck manager for deck setup
         DeckManager.initDeck();
         PlayerClass player1 = new PlayerClass(0,
                 "HackerMan",

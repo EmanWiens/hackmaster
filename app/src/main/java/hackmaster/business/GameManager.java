@@ -32,7 +32,6 @@ public class GameManager {
     public GameManager() {
         // deckM = new DeckManager();
         pStats = new PlayerStatsSaves();
-        resManager = new ResourceManager();
     }
 
     public static void setUpSingleGame() {
@@ -136,7 +135,7 @@ public class GameManager {
         return -1;
     }
 
-    //test this (marc)
+    //TODO test this (marc)
     public static boolean gameDone() {
         boolean result = false;
         if (player2.getHealth() < 1) {
@@ -177,7 +176,6 @@ public class GameManager {
     public static boolean inGame() { return inGame; }
     public static PlayerClass getPlayer1(){ return player1; }
     public static PlayerClass getPlayer2(){ return player2; }
-    public static boolean getPausedStatus(){ return paused; }
     public boolean getPlayer1Turn() { return player1Turn; }
     public static void setPlayer1Turn(boolean turn) { player1Turn = turn; }
     public static void setDeck(CardClass[] set) { deckM.setDeck(set); }

@@ -31,9 +31,7 @@ public class DeckManagerUnitTest {
         assertEquals( 3, deck[3].getID());
         assertEquals( 4, deck[4].getID());
     }
-
-
-
+    
     @Test
     public void testDealNextCard() {
         CardClass Card1 = DeckManager.dealNextCard();
