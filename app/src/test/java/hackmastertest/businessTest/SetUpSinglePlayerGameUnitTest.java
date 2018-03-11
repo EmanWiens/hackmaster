@@ -17,7 +17,7 @@ import hackmastertest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 
-public class SetUpSinglePlayerGameTest {
+public class SetUpSinglePlayerGameUnitTest {
     Game game;
     PlayerClass player1;
     PlayerClass player2;
@@ -92,7 +92,7 @@ public class SetUpSinglePlayerGameTest {
         assertEquals("Сut some wires", player1Hand[3].getName());
         assertEquals(deck[3].getName(), player1Hand[3].getName());
 
-        assertEquals("", player1Hand[4].getName());
+        assertEquals("Upgrade Botnet", player1Hand[4].getName());
         assertEquals(deck[4].getName(), player1Hand[4].getName());
     }
 
@@ -108,13 +108,13 @@ public class SetUpSinglePlayerGameTest {
         assertEquals(deck[6].getName(), player2Hand[1].getName());
 
         assertEquals("DDOS", player2Hand[2].getName());
-        assertEquals(deck[0].getName(), player1Hand[2].getName());
+        assertEquals(deck[7].getName(), player2Hand[2].getName());
 
-        assertEquals("", player2Hand[3].getName());
-        assertEquals(deck[1].getName(), player1Hand[3].getName());
+        assertEquals("File Transfer", player2Hand[3].getName());
+        assertEquals(deck[8].getName(), player2Hand[3].getName());
 
-        assertEquals("", player2Hand[4].getName());
-        assertEquals(deck[2].getName(), player2Hand[4].getName());
+        assertEquals("Pop-up", player2Hand[4].getName());
+        assertEquals(deck[9].getName(), player2Hand[4].getName());
     }
 
     @Test
