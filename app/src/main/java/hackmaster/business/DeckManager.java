@@ -65,4 +65,5 @@ public abstract class DeckManager {
     public static void resetIndex() { nextIndex = 0; }
     public static int getNextIndex() { return nextIndex; }
     public static void setIndex(int i) {nextIndex = i;}
+    public static CardClass[] getDeck() { return deck; }
 }

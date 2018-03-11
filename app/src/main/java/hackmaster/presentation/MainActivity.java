@@ -377,7 +377,7 @@ public class MainActivity extends AppCompatActivity {
         };
         return imageCardList[cardID];
     }
-    
+
     public void getWinner() {
         if (gameInSession.getPlayer2Health() < 1) {
             goToVictory(true);

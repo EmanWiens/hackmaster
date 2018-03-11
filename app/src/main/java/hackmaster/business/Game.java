@@ -119,7 +119,6 @@ public abstract class Game {
     public void addLoss() { pStats.addLoss();}
     public boolean getRenderDelayToggle() { return renderDelayToggle; }
     public void setRenderDelayToggle(boolean set) { renderDelayToggle = set; }
-    public boolean toggleRenderDelayToggle() { return renderDelayToggle; }
     public CardClass getPlayedCardOne() { return playedCardOne; }
     public CardClass getPlayedCardTwo() { return playedCardTwo; }
     public void pauseGame() { paused = true; }
@@ -133,5 +132,6 @@ public abstract class Game {
     public void setPlayer1Turn(boolean turn) { player1Turn = turn; }
     public void setDeck(CardClass[] set) { DeckManager.setDeck(set); }
     public CardClass getDeckCardAt(int i) { return DeckManager.getCardAt(i); }
+    public CardClass[] getDeck() { return DeckManager.getDeck(); }
     public int getDeckMangerDealNextCard() { return DeckManager.getNextIndex(); }
 }

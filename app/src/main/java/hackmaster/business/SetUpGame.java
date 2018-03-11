@@ -7,6 +7,7 @@ import hackmaster.objects.ResourceClass;
 public abstract class SetUpGame {
     public static Game setUpSinglePlayerGame() {
         DeckManager.initDeck();
+
         PlayerClass player1 = new PlayerClass(0,
                 "HackerMan",
                 new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
@@ -20,6 +21,7 @@ public abstract class SetUpGame {
 
     public static Game setUpMultiplayerGame() {
         DeckManager.initDeck();
+
         PlayerClass player1 = new PlayerClass(0,
                 "HackerMan",
                 new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
