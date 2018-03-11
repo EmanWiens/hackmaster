@@ -60,14 +60,16 @@ public class MainActivity extends AppCompatActivity {
         Handler handler = new Handler();
         if (delay) {
             gameInSession.setRenderDelayToggle(true);
-            handler.postDelayed(delayRender(), 2000); // DELAY
+            handler.postDelayed(delayRender(), 1850); // DELAY
         }
         else if (gameInSession != null && !gameInSession.gamePaused()) {
             ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
             imageView.setBackgroundResource(returnImageCardID(card.getID()));
 
-            if (gameInSession.getRenderDelayToggle())
+            if (gameInSession.getRenderDelayToggle()) {
                 gameInSession.setRenderDelayToggle(false);
+                gameInSession.setPlayer1Turn(true);
+            }
         }
     }
 
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         else
             muteBtn.setBackgroundResource(R.drawable.volumemute);
     }
+
     public void muteSoundBackground(View v){
         ImageButton muteBtn = findViewById(R.id.muteBtn);
         if (musicManager.getStateMusic()) {
@@ -202,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
             else
                 renderPlayerResource(player2);
 
-            if (playedCardOne != null)
+            if (playedCardOne != null && gameInSession.getPlayer1Turn())
                renderPlayedCard(playedCardOne, false);
 
             if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
