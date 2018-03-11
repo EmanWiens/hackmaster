@@ -1,13 +1,10 @@
 package hackmastertest.businessTest;
 
-import android.support.v4.widget.TextViewCompat;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Set;
-
 import hackmaster.application.Services;
+import hackmaster.business.DeckManager;
 import hackmaster.business.Game;
 import hackmaster.business.SetUpGame;
 import hackmaster.business.SinglePlayerGame;
@@ -18,6 +15,8 @@ import hackmaster.objects.ResourceClass;
 import hackmastertest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.fail;
 
 public class SinglePlayerGameUnitTest {
     Game game;
@@ -120,20 +119,21 @@ public class SinglePlayerGameUnitTest {
     }
 
     @Test
-    public void testPlayCardEventCardStorage()
+    public void testPlayCardEventReplaceCard()
     {
-        deck = game.getDeck();
-
         CardClass beforePlayed = game.getPlayer1().getCard(4);
         game.playCardEvent(4);
         assertEquals(game.getPlayedCardOne().getName(), beforePlayed.getName());
+        assertFalse(beforePlayed.getName().equals(game.getPlayer1().getCard(4).getName()));
 
         beforePlayed = game.getPlayer1().getCard(1);
         game.playCardEvent(1);
         assertEquals(game.getPlayedCardOne().getName(), beforePlayed.getName());
+        assertFalse(beforePlayed.getName().equals(game.getPlayer1().getCard(1).getName()));
 
         beforePlayed = game.getPlayer1().getCard(2);
         game.playCardEvent(2);
         assertEquals(game.getPlayedCardOne().getName(), beforePlayed.getName());
+        assertFalse(beforePlayed.getName().equals(game.getPlayer1().getCard(2).getName()));
     }
 }

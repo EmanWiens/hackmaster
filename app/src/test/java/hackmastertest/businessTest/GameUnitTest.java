@@ -1,5 +1,6 @@
 package hackmastertest.businessTest;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,6 +14,7 @@ import hackmaster.objects.ResourceClass;
 import hackmastertest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.fail;
 
@@ -115,6 +117,7 @@ public class GameUnitTest {
         assertEquals(false, testGame.checkCard(2, testGame.getPlayer1()));
         assertEquals(false, testGame.checkCard(3, testGame.getPlayer1()));
         assertEquals(false, testGame.checkCard(4, testGame.getPlayer1()));
+
         assertEquals(false, testGame.checkCard(0, testGame.getPlayer2()));
         assertEquals(true, testGame.checkCard(1, testGame.getPlayer2()));
         assertEquals(true, testGame.checkCard(2, testGame.getPlayer2()));
@@ -162,12 +165,5 @@ public class GameUnitTest {
         assertEquals("The Players wins should be 1", 1, testGame.getWin());
         testGame.addLoss();
         assertEquals("The Players wins should be 1", 1, testGame.getWin());
-    }
-
-    @Test
-    public void testPlayerTurn() {
-        DeckManager.resetIndex();
-
-        fail();
     }
 }

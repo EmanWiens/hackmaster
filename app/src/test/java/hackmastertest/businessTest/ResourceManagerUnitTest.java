@@ -200,12 +200,4 @@ public class ResourceManagerUnitTest {
         } catch (NullPointerException exp) {
         }
     }
-
-    @After
-    public void tearDown() {
-        player1 = null;
-        player2 = null;
-        testCardEffectPlayerOnly = null;
-        testCardEffectEnemyCardOnly = null;
-    }
 }

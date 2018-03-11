@@ -70,13 +70,6 @@ public abstract class Game {
         return canPlay;
     }
 
-    public int getPlayerNum() {
-        if(player1Turn)
-            return 0;
-        else
-            return 1;
-    }
-
     //test this (marc)
     public boolean gameDone() {
         boolean result = false;
@@ -90,8 +83,9 @@ public abstract class Game {
     }
 
     public void initStats() {
-        if(pStats == null)
+        if(pStats == null) {
             pStats = new PlayerStatsSaves();
+        }
 
         pStats.setPlayerName("Player_1");
     }
