@@ -14,7 +14,7 @@ public abstract class Game {
 
     private boolean player1Turn;
     private boolean paused;
-    private boolean delayAi;
+    private boolean renderDelayToggle;
 
     private static CardClass playedCardOne;
     private static CardClass playedCardTwo;
@@ -84,13 +84,6 @@ public abstract class Game {
             return 1;
     }
 
-    public int getPlayer1Health() {
-        return player1.getHealth();
-    }
-    public int getPlayer2Health() {
-        return player2.getHealth();
-    }
-
     //test this (marc)
     public boolean gameDone() {
         boolean result = false;
@@ -110,7 +103,12 @@ public abstract class Game {
         pStats.setPlayerName("Player_1");
     }
 
-
+    public int getPlayer1Health() {
+        return player1.getHealth();
+    }
+    public int getPlayer2Health() {
+        return player2.getHealth();
+    }
     public String getPlayerName() {
         return pStats.getName();
     }
@@ -119,8 +117,9 @@ public abstract class Game {
     }
     public void addWin() { pStats.addWin();}
     public void addLoss() { pStats.addLoss();}
-    public void setDelayAi(boolean b) { delayAi = b; }
-    public boolean getDelayAi() { return delayAi; }
+    public boolean getRenderDelayToggle() { return renderDelayToggle; }
+    public void setRenderDelayToggle(boolean set) { renderDelayToggle = set; }
+    public boolean toggleRenderDelayToggle() { return renderDelayToggle; }
     public CardClass getPlayedCardOne() { return playedCardOne; }
     public CardClass getPlayedCardTwo() { return playedCardTwo; }
     public void pauseGame() { paused = true; }

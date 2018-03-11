@@ -30,8 +30,4 @@ public abstract class SetUpGame {
 
         return new MultiplayerGame(player1, player2);
     }
-
-    public static void destroyGameInSession() {
-        // TODO function that destructs current game
-    }
 }
