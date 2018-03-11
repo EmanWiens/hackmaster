@@ -1,5 +1,6 @@
 package hackmastertest.businessTest;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -68,5 +69,4 @@ public class DeckManagerUnitTest {
        } catch ( ArrayIndexOutOfBoundsException exp) {
        }
     }
-    
 }

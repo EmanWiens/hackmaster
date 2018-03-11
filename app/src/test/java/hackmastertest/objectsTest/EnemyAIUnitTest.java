@@ -6,10 +6,12 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import hackmaster.application.Services;
 import hackmaster.business.DeckManager;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.ResourceClass;
+import hackmastertest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -23,10 +25,12 @@ public class EnemyAIUnitTest {
 
     @Before
     public void setup() {
+        Services.closeDataAccess();
+        DataAccessStub dbStub = new DataAccessStub("stub");
+        Services.createDataAccess(dbStub,dbStub,dbStub);
+
         deckM.initDeck();
         card = 0;
-
-        // GameManager.setSinglePlayer(true);
 
         hackmaster.objects.ResourceClass r = new ResourceClass(100, 2, 2, 2, 2, 2, 2);
         player = new EnemyAI(1, "Enemy Bot", r, deckM.dealFirstHandOfGame());
