@@ -271,7 +271,7 @@ public class GameManagerUnitTest {
 
         GameManager.initStats();
         assertNotNull(GameManager.getPlayerName());
-        assertEquals("The player name should be Pwn0gr4h1c ", "Pwn0gr4ph1c", GameManager.getPlayerName());
+        assertEquals("The player name should be Player_1", "Player_1", GameManager.getPlayerName());
         assertEquals("The Players wins should be 0", 0, GameManager.getWin());
         GameManager.addWin();
         assertEquals("The Players wins should be 1", 1, GameManager.getWin());
