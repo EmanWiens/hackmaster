@@ -24,7 +24,7 @@ public class SinglePlayerGame extends Game {
                 else
                     discardCard(enemyCard, getPlayer2());
                 ResourceManager.applyTurnRate(getPlayer1());
-                // setPlayer1Turn(true);
+                setPlayer1Turn(true);
             }
         }
     }

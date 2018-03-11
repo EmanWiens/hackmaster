@@ -66,10 +66,8 @@ public class MainActivity extends AppCompatActivity {
             ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
             imageView.setBackgroundResource(returnImageCardID(card.getID()));
 
-            if (gameInSession.getRenderDelayToggle()) {
+            if (gameInSession.getRenderDelayToggle())
                 gameInSession.setRenderDelayToggle(false);
-                gameInSession.setPlayer1Turn(true);
-            }
         }
     }
 
@@ -200,29 +198,30 @@ public class MainActivity extends AppCompatActivity {
         PlayerClass player2 = gameInSession.getPlayer2();
 
         if (!gameInSession.gamePaused()) {
-            if (gameInSession.getPlayer1Turn())
-                renderPlayerResource(player1);
-            else
-                renderPlayerResource(player2);
-
-            if (playedCardOne != null && gameInSession.getPlayer1Turn())
-               renderPlayedCard(playedCardOne, false);
-
+            if (playedCardOne != null)
+                renderPlayedCard(playedCardOne, false);
+            
             if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
                 renderPlayedCard(playedCardTwo, true);
             else if (playedCardTwo != null && gameInSession instanceof MultiplayerGame)
                 renderPlayedCard(playedCardTwo, false);
 
-            if (gameInSession.getPlayer1Turn())
+            if (gameInSession.getPlayer1Turn()) {
+                renderPlayerResource(player1);
+
                 for (int i = 0; i < player1.getCards().length; i++) {
                     if (player1.getCards()[i] != null)
                         renderCard(player1.getCards()[i], i);
                 }
-            else
+            }
+            else {
+                renderPlayerResource(player2);
+
                 for (int i = 0; i < player2.getCards().length; i++) {
                     if (player2.getCards()[i] != null)
                         renderCard(player2.getCards()[i], i);
                 }
+            }
         }
     }
 
