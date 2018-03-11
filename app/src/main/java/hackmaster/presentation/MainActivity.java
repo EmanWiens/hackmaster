@@ -27,7 +27,6 @@ import java.io.InputStreamReader;
 import hackmaster.application.DBController;
 import hackmaster.business.Game;
 import hackmaster.business.MultiPlayerGame;
-import hackmaster.business.ResourceManager;
 import hackmaster.business.SetUpGame;
 import hackmaster.business.SinglePlayerGame;
 import hackmaster.objects.CardClass;

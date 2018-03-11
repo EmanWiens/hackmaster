@@ -1,7 +1,5 @@
 package hackmaster.application;
 
-import hackmaster.presentation.MainActivity;
-
 public abstract class DBController
 {
 	public static final String dbName = "HM_DB";

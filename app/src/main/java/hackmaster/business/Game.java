@@ -133,5 +133,7 @@ public abstract class Game {
     public void setDeck(CardClass[] set) { DeckManager.setDeck(set); }
     public CardClass getDeckCardAt(int i) { return DeckManager.getCardAt(i); }
     public CardClass[] getDeck() { return DeckManager.getDeck(); }
+    public ResourceClass getPlayer1Res() { return player1.getResources(); }
+    public ResourceClass getPlayer2Res() { return player2.getResources(); }
     public int getDeckMangerDealNextCard() { return DeckManager.getNextIndex(); }
 }

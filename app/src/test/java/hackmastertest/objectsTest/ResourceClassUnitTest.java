@@ -9,7 +9,6 @@ import static org.junit.Assert.assertEquals;
 
 public class ResourceClassUnitTest {
     private ResourceClass resource;
-    // testCaseData = { number to add, Expected results... Health, hCoin, hCoinRate, botnet, botnetRate, cpuRate, terraFlops}
     private int[][] testCaseData = {
             {0,1000,50,3,53,2,55,1},
             {1,1001,51,4,54,3,56,2},

@@ -72,7 +72,6 @@ public class GameUnitTest {
 
         testGame.setDeck(resetDeck());
         assertEquals(10, testGame.getDeck().length);
-
     }
 
     private void setPlayerHands() {
@@ -138,7 +137,7 @@ public class GameUnitTest {
 
     @Test
     public void testCheckCard() {
-        resetDeck();
+        testGame.setDeck(resetDeck());
         setPlayerHands();
 
         assertEquals( true, testGame.checkCard(0, testGame.getPlayer1()));
@@ -155,34 +154,36 @@ public class GameUnitTest {
 
     @Test
     public void testDiscardCardPlayer1(){
-        resetDeck();
+        testGame.setDeck(resetDeck());
         setPlayerHands();
         DeckManager.resetIndex();
 
-        assertEquals("The player card at index 0 should be Nothing ", "Nothing", testGame.getPlayer1().getCard(0).getName());
-        assertEquals("The player card at index 1 should be Normal Card", "Normal card", testGame.getPlayer1().getCard(1).getName());
-        assertEquals("The player card at index 2 should be Expensive Health", "Expensive Health", testGame.getPlayer1().getCard(2).getName());
+        assertEquals("Nothing", testGame.getPlayer1().getCard(0).getName());
+        assertEquals("Normal card", testGame.getPlayer1().getCard(1).getName());
+        assertEquals("Expensive Health", testGame.getPlayer1().getCard(2).getName());
 
         testGame.discardCard(4, testGame.getPlayer1());
-        //assertEquals("The card should be at index 0 if the deck",true, testGame.getPlayer1().getCard(4).equals(testGame.getDeckCardAt(0)));
-        assertEquals("The player card at index 0 should be Nothing", "Nothing", testGame.getPlayer1().getCard(4).getName());
+        assert(testGame.getPlayer1().getCard(4).equals(testGame.getDeckCardAt(0)));
+        assertEquals("Nothing", testGame.getPlayer1().getCard(4).getName());
 
         testGame.discardCard(3, testGame.getPlayer1());
-        //assertEquals("The card should be at index 1 if the deck",true, testGame.getPlayer1().getCard(3).equals(testGame.getDeckCardAt(1)));
-        assertEquals("The player card at index4 should have the name Normal card", "Normal card", testGame.getPlayer1().getCard(3).getName());
+        assert(testGame.getPlayer1().getCard(3).equals(testGame.getDeckCardAt(1)));
+        assertEquals("Normal card", testGame.getPlayer1().getCard(3).getName());
 
         testGame.discardCard(2, testGame.getPlayer1());
-        //assertEquals("The card should be at index 2 of the deck", true, testGame.getPlayer1().getCard(2).equals(testGame.getDeckCardAt(2)));
-        assertEquals("The player card at index 2 should be Expensive Health", "Expensive Health", testGame.getPlayer1().getCard(2).getName());
+        assert(testGame.getPlayer1().getCard(2).equals(testGame.getDeckCardAt(2)));
+        assertEquals("Expensive Health", testGame.getPlayer1().getCard(2).getName());
 
-        testGame.discardCard(1, testGame.getPlayer1());
-        //assertEquals("The card should be at index 3 of the deck", true, testGame.getPlayer1().getCard(1).equals(testGame.getDeckCardAt(3)));
-        assertEquals("The player card at index 1 should be Expensive HCoin", "Expensive HCoin", testGame.getPlayer1().getCard(1).getName());
+        testGame.discardCard(4, testGame.getPlayer1());
+        testGame.discardCard(4, testGame.getPlayer1());
+        testGame.discardCard(4, testGame.getPlayer1());
+        testGame.discardCard(4, testGame.getPlayer1());
+        assert(testGame.getPlayer1().getCard(2).equals(testGame.getDeckCardAt(3)));
+        assertEquals("Normal card", testGame.getPlayer1().getCard(1).getName());
     }
 
     @Test
     public void testCheckStats() {
-
         testGame.initStats();
         assertNotNull(testGame.getPlayerName());
         assertEquals("The player name should be Player_1", "Player_1", testGame.getPlayerName());
