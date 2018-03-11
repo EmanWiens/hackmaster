@@ -26,7 +26,7 @@ public class EnemyAIUnitTest {
         deckM.initDeck();
         card = 0;
 
-        GameManager.setSinglePlayer(true);
+        // GameManager.setSinglePlayer(true);
 
         hackmaster.objects.ResourceClass r = new ResourceClass(100, 2, 2, 2, 2, 2, 2);
         player = new EnemyAI(1, "Enemy Bot", r, deckM.dealFirstHandOfGame());

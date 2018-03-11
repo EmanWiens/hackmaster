@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         if (!gameInSession.gamePaused()) {
             if (playedCardOne != null)
                 renderPlayedCard(playedCardOne, false);
-            
+
             if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
                 renderPlayedCard(playedCardTwo, true);
             else if (playedCardTwo != null && gameInSession instanceof MultiplayerGame)
