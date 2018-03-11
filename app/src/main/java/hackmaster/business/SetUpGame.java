@@ -9,7 +9,7 @@ public abstract class SetUpGame {
         GameInterface game;
 
         // TODO call deck manager for deck setup
-            DeckManager.initDeck(deck);
+            DeckManager.initDeck();
             PlayerClass player1 = new PlayerClass(0,
                     "HackerMan",
                     new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
@@ -21,11 +21,11 @@ public abstract class SetUpGame {
         return new SinglePlayerGame(player1, player2);
     }
 
-    public GameInterface setUpMultiplayerGame(int deck) {
+    public GameInterface setUpMultiplayerGame() {
         GameInterface game;
 
         // TODO call deck manager for deck setup
-        DeckManager.initDeck(deck);
+        DeckManager.initDeck();
         PlayerClass player1 = new PlayerClass(0,
                 "HackerMan",
                 new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());

@@ -25,7 +25,7 @@ public class PlayerClassUnitTest {
 
     @Before
     public void setUp(){
-        DeckManager.initDeck( 4);
+        DeckManager.initDeck();
         player1_resource = new ResourceClass(1000,50,3, 53, 2, 55, 1);
         player1_cards = DeckManager.dealFirstHandOfGame();
         player1 = new PlayerClass(1, "Test_Name", player1_resource, player1_cards);

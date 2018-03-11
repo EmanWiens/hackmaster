@@ -182,13 +182,8 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         int[] imageButtonCardList = new int[]{
                 R.id.imageButtonCard0, R.id.imageButtonCard1,R.id.imageButtonCard2,
                 R.id.imageButtonCard3,R.id.imageButtonCard4};
-        for (int i=0; i<imageButtonCardList.length;i++)
-        {
-            if (slot==i)
-            {
-                imageButton = findViewById(imageButtonCardList[i]);
-            }
-        }
+
+        imageButton = findViewById(imageButtonCardList[slot]);
         imageButton.setBackgroundResource(returnImageCardID(card.getID()));
     }
     public void displayCardImage(int imageID, int imageBtnID)
@@ -354,7 +349,6 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
 
     public int returnImageCardID(int cardID)
     {
-        int ImageCardID=0;
         int[] imageCardList = new int[]{
                 R.drawable.morecores,R.drawable.morecores, R.drawable.botnet,
                 R.drawable.cutsomewires, R.drawable.upgradebotnet,R.drawable.upgradecpu,
@@ -367,14 +361,7 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
                 R.drawable.attackphash, R.drawable.extremehack,R.drawable.epichack,
                 R.drawable.masshack
         };
-        for (int i=0; i<imageCardList.length;i++)
-        {
-            if (cardID==i)
-            {
-                ImageCardID=imageCardList[i];
-            }
-        }
-        return ImageCardID;
+        return imageCardList[cardID];
     }
     
     public  void getWinner() {

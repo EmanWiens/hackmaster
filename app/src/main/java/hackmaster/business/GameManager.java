@@ -39,7 +39,7 @@ public class GameManager {
         singlePlayer = true;
         inGame = true;
 
-        deckM.initDeck(maxCards);
+        deckM.initDeck();
         player1 = new PlayerClass(0,
                 "HackerMan",
                 new ResourceClass(100, 10, 2, 10, 2, 10, 2), deckM.dealFirstHandOfGame());
