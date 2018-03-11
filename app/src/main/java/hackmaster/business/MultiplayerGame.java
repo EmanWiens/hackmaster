@@ -2,8 +2,8 @@ package hackmaster.business;
 
 import hackmaster.objects.PlayerClass;
 
-public class MultiplayerGame extends Game {
-    public MultiplayerGame(PlayerClass p1, PlayerClass p2) {
+public class MultiPlayerGame extends Game {
+    public MultiPlayerGame(PlayerClass p1, PlayerClass p2) {
         super(p1,p2);
     }
 

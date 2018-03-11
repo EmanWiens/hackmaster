@@ -26,7 +26,8 @@ import java.io.InputStreamReader;
 
 import hackmaster.application.DBController;
 import hackmaster.business.Game;
-import hackmaster.business.MultiplayerGame;
+import hackmaster.business.MultiPlayerGame;
+import hackmaster.business.ResourceManager;
 import hackmaster.business.SetUpGame;
 import hackmaster.business.SinglePlayerGame;
 import hackmaster.objects.CardClass;
@@ -56,11 +57,11 @@ public class MainActivity extends AppCompatActivity {
         DBController.shutDown();
     }
 
-    synchronized public void renderPlayedCard(CardClass card, boolean delay) {
+    public void renderPlayedCard(CardClass card, boolean aiDelay) {
         Handler handler = new Handler();
-        if (delay) {
-            gameInSession.setRenderDelayToggle(true);
+        if (aiDelay) {
             handler.postDelayed(delayRender(), 1850); // DELAY
+            gameInSession.setRenderDelayToggle(true);
         }
         else if (gameInSession != null && !gameInSession.gamePaused()) {
             ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
@@ -143,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void renderPlayerResource(PlayerClass player) {
-        if (player.getId() == 0 && gameInSession.getRenderDelayToggle()) {
+        if (player.getId() == 0) {
             fillText((TextView)findViewById(R.id.minerP), player.minerToString());
             fillText((TextView)findViewById(R.id.cSpeedP), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetP), player.botnetToString());
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             health.setProgress(player.getHealth());
             fillText((TextView)findViewById(R.id.player1), player.getName());
         }
-        if (player.getId() == 1) {
+        else if (player.getId() == 1) {
             fillText((TextView)findViewById(R.id.minerE), player.minerToString());
             fillText((TextView)findViewById(R.id.cSpeedE), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetE), player.botnetToString());
@@ -198,25 +199,30 @@ public class MainActivity extends AppCompatActivity {
         PlayerClass player2 = gameInSession.getPlayer2();
 
         if (!gameInSession.gamePaused()) {
-            if (playedCardOne != null && gameInSession.getPlayer1Turn())
-                renderPlayedCard(playedCardOne, false);
+            renderPlayerResource(player1);
+            renderPlayerResource(player2);
 
-            if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
-                renderPlayedCard(playedCardTwo, true);
-            else if (playedCardTwo != null && gameInSession instanceof MultiplayerGame)
-                renderPlayedCard(playedCardTwo, false);
+            if (gameInSession instanceof SinglePlayerGame && !gameInSession.getRenderDelayToggle()) {
+                if (playedCardOne != null)
+                    renderPlayedCard(playedCardOne, false);
+
+                if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
+                    renderPlayedCard(playedCardTwo, true);
+            }
+            else if (gameInSession instanceof MultiPlayerGame) {
+                if(!gameInSession.getPlayer1Turn() && playedCardOne != null)
+                    renderPlayedCard(playedCardOne, false);
+                else if (gameInSession.getPlayer1Turn() && playedCardTwo != null)
+                    renderPlayedCard(playedCardTwo, false);
+            }
 
             if (gameInSession.getPlayer1Turn()) {
-                renderPlayerResource(player1);
-
                 for (int i = 0; i < player1.getCards().length; i++) {
                     if (player1.getCards()[i] != null)
                         renderCard(player1.getCards()[i], i);
                 }
             }
             else {
-                renderPlayerResource(player2);
-
                 for (int i = 0; i < player2.getCards().length; i++) {
                     if (player2.getCards()[i] != null)
                         renderCard(player2.getCards()[i], i);
@@ -459,4 +465,23 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    class RenderTimer {
+        int milli;
+        Game game;
+        Handler handler;
+
+        public RenderTimer(int milli, Game game) {
+            this.milli = milli;
+            this.game = game;
+
+            handler = new Handler();
+            handler.postDelayed(delayTimer(), milli);
+        public Runnable delayTimer() {
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    game.setPlayer1Turn(true);
+                    renderBattleView();
+                }
 }

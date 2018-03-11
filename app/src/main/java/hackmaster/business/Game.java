@@ -129,10 +129,9 @@ public abstract class Game {
     public boolean getPlayer1Turn() { return player1Turn; }
     public void setPlayedCardOne(CardClass card) { playedCardOne = card; }
     public void setPlayedCardTwo(CardClass card) { playedCardTwo = card; }
-    public void setPlayer1Turn(boolean turn) { player1Turn = turn; }
+    synchronized public void setPlayer1Turn(boolean turn) { player1Turn = turn; }
     public void setDeck(CardClass[] set) { DeckManager.setDeck(set); }
     public CardClass getDeckCardAt(int i) { return DeckManager.getCardAt(i); }
     public CardClass[] getDeck() { return DeckManager.getDeck(); }
     public int getDeckMangerDealNextCard() { return DeckManager.getNextIndex(); }
-    public static void setPlayerTurn(boolean set) { setPlayerTurn(set); }
 }
