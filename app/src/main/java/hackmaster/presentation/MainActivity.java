@@ -197,8 +197,10 @@ public class MainActivity extends AppCompatActivity {
         PlayerClass player2 = gameInSession.getPlayer2();
 
         if (!gameInSession.gamePaused()) {
-            renderPlayerResource(player1);
-            renderPlayerResource(player2);
+            if (gameInSession.getPlayer1Turn())
+                renderPlayerResource(player1);
+            else
+                renderPlayerResource(player2);
 
             if (playedCardOne != null)
                renderPlayedCard(playedCardOne, false);
