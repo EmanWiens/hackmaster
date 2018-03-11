@@ -116,9 +116,4 @@ public class SetUpSinglePlayerGameUnitTest {
         assertEquals("Pop-up", player2Hand[4].getName());
         assertEquals(deck[9].getName(), player2Hand[4].getName());
     }
-
-    @Test
-    public void testGameVariables() {
-
-    }
 }
