@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
             renderPlayerResource(player2);
 
             if (gameInSession instanceof SinglePlayerGame ) {
-                if (playedCardOne != null && gameInSession.getRenderDelayToggle())
+                if (playedCardOne != null && !gameInSession.getRenderDelayToggle())
                     renderPlayedCard(playedCardOne, false);
 
                 if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
