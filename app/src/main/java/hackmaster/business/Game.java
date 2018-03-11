@@ -1,5 +1,8 @@
 package hackmaster.business;
 
 public abstract class Game implements GameInterface {
-    abstract void PlayCard();
+    public static final int hand = 5;
+    abstract void PlayCardEvent(int playerCard);
+
+
 }

@@ -12,24 +12,23 @@
         android:id="@+id/playBtn"
         android:layout_width="240dp"
         android:layout_height="84dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="361dp"
         android:layout_marginStart="360dp"
-        android:layout_marginTop="8dp"
         android:background="@android:color/holo_green_light"
         android:onClick="playMessage"
         android:text="Single Player"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/stats"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/stats"
         android:layout_width="249dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="224dp"
+        android:layout_marginBottom="144dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@android:color/holo_orange_dark"
@@ -45,32 +44,24 @@
         android:layout_width="45dp"
         android:layout_height="55dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginEnd="293dp"
         android:layout_marginStart="29dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/volumeunmute"
         android:onClick="muteSoundBackground"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textView2"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="129dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Hack Master"
-        android:textColor="@android:color/black"
-        android:textSize="40sp"
-        android:textStyle="normal|bold"
-        app:layout_constraintBottom_toTopOf="@+id/playBtn"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:srcCompat="@drawable/hack_master" />
 
 </android.support.constraint.ConstraintLayout>

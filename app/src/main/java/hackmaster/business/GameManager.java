@@ -42,11 +42,11 @@ public class GameManager {
         deckM.initDeck(maxCards);
         player1 = new PlayerClass(0,
                 "HackerMan",
-                new ResourceClass(100, 10, 2, 10, 2, 10, 2), deckM.dealCards(sizeOfHand));
+                new ResourceClass(100, 10, 2, 10, 2, 10, 2), deckM.dealFirstHandOfGame());
 
         player2 = new EnemyAI(1,
                 "Enemy Bot",
-                new ResourceClass(100, 10, 2, 10, 2, 10, 2), deckM.dealCards(sizeOfHand));
+                new ResourceClass(100, 10, 2, 10, 2, 10, 2), deckM.dealFirstHandOfGame());
 
     }
 
@@ -152,7 +152,7 @@ public class GameManager {
         if(pStats == null)
             pStats = new PlayerStatsSaves();
 
-        pStats.setPlayerName("Pwn0gr4ph1c");
+        pStats.setPlayerName("Player_1");
     }
 
 

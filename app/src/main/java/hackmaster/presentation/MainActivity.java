@@ -390,14 +390,15 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
         setContentView(R.layout.results_view);
         GameManager.setInGame(false);
 
-        TextView text = (TextView)findViewById(R.id.resultsTextView);
+        ImageView img= (ImageView) findViewById(R.id.statsImg);
+
 
         if (winner) {
-            text.setText("Victory");
             gameManager.addWin();
+            img.setImageResource(R.drawable.victory);
         } else {
-            text.setText("Defeat");
             gameManager.addLoss();
+            img.setImageResource(R.drawable.defeat);
         }
     }
 

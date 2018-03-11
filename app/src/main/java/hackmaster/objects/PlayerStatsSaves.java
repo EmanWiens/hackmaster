@@ -51,14 +51,15 @@ public class PlayerStatsSaves {
         return result;
     }
 
+    public int getPlayerID() { return playerID; }
     public int getLevel() {
         return level;
     }
-
     public int getWin() {
         return totalWins;
     }
-
+    public int getLoss() { return totalLoses; }
+    public int getTotalGames() { return totalGames; }
     public String getName() {
         return playerName;
     } //test this (marc)

@@ -2,26 +2,39 @@ package hackmaster.business;
 
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
+import hackmaster.objects.ResourceClass;
 
 public abstract class SetUpGame {
-    public GameInterface setUpSinglePlayerGame() {
-        GameInterface game = new SinglePlayerGame();
+    public GameInterface setUpSinglePlayerGame(int deck) {
+        GameInterface game;
 
         // TODO call deck manager for deck setup
-         /*   deckM.initDeck(maxCards);
-            player1 = new PlayerClass(0,
+            DeckManager.initDeck(deck);
+            PlayerClass player1 = new PlayerClass(0,
                     "HackerMan",
-                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), deckM.dealCards(sizeOfHand));
+                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
 
-            player2 = new EnemyAI(1,
+            PlayerClass player2 = new EnemyAI(1,
                     "Enemy Bot",
-                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), deckM.dealCards(sizeOfHand));
-    */
-        return game;
+                    new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
+
+        return new SinglePlayerGame(player1, player2);
     }
 
-    public MultiplayerGame setUpMultiplayerGame() {
-        return null; // TODO write the setup function that returnds a GameInterface
+    public GameInterface setUpMultiplayerGame(int deck) {
+        GameInterface game;
+
+        // TODO call deck manager for deck setup
+        DeckManager.initDeck(deck);
+        PlayerClass player1 = new PlayerClass(0,
+                "HackerMan",
+                new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
+
+        PlayerClass player2 = new PlayerClass(1,
+                "Enemy Bot",
+                new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
+
+        return new MultiplayerGame(player1, player2);
     }
 
     public void destroyGameInSession() {

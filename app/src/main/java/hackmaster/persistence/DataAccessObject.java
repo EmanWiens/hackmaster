@@ -69,7 +69,7 @@ public class DataAccessObject implements DBInterface {
         catch (Exception e) {
             processSQLError(e);
         }
-        if (updateCount == 1) {
+        if (updateCount == 0) {
             result = "No rows are affected by the operation";
         }
         return result;
