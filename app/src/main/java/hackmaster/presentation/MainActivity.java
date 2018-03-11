@@ -25,6 +25,7 @@ import java.io.InputStreamReader;
 
 import hackmaster.application.DBController;
 import hackmaster.business.GameManager;
+import hackmaster.business.SetUpGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
 
@@ -227,6 +228,8 @@ public class MainActivity extends AppCompatActivity implements DrawToScreen {
     }
     public void playMessage(View v) {
         setContentView(R.layout.battle_view);
+        SetUpGame.setUpSinglePlayerGame(10);
+
         gameManager.setUpSingleGame();
         renderBattleView();
     }

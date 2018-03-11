@@ -5,13 +5,9 @@ import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 
-public class SinglePlayerGame implements GameInterface {
-    private PlayerClass player1;
-    private PlayerClass playerAI;
-
+public class SinglePlayerGame extends Game {
     public SinglePlayerGame(PlayerClass p1, PlayerClass ai) {
-        player1 = p1;
-        playerAI = ai;
+        super(p1,ai);
     }
 
     public void playCardEvent(int playerCard) {
@@ -34,9 +30,5 @@ public class SinglePlayerGame implements GameInterface {
                 }
             }
         }*/
-    }
-
-    public static boolean checkCard(int playerCard, PlayerClass player) {
-        return false; // TODO call the game interface function that lets the player do this task
     }
 }
