@@ -4,6 +4,7 @@ import android.test.SingleLaunchActivityTestCase;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import hackmaster.application.Services;
 import hackmaster.business.DeckManager;
@@ -24,6 +25,7 @@ public class SetUpGameTest {
         Services.createDataAccess(dbStub,dbStub,dbStub);
     }
 
+    @Test
     public void setUpSinglePlayerGameTest() {
         Game game = SetUpGame.setUpSinglePlayerGame();
         PlayerClass player1 = game.getPlayer1();
@@ -35,6 +37,6 @@ public class SetUpGameTest {
         assert(game instanceof SinglePlayerGame);
         assertEquals(Game.hand, player1Hand.length);
         assertEquals(Game.hand, player2Hand.length);
-
+        //TODO test that the stub database works
     }
 }

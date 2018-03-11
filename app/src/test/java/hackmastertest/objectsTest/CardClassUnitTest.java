@@ -1,6 +1,5 @@
 package hackmastertest.objectsTest;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,12 +41,5 @@ public class CardClassUnitTest {
         String expectedOutput = String.format("TestCard_1\nType:Upgrade\n%s", cardObj.resString());
         System.out.println(cardObj);
         assertEquals(expectedOutput,cardObj.toString());
-    }
-
-    @After
-    public void tearDown(){
-        player1 = null;
-        player2 = null;
-        cardObj = null;
     }
 }
