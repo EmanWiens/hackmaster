@@ -465,23 +465,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-    class RenderTimer {
-        int milli;
-        Game game;
-        Handler handler;
-
-        public RenderTimer(int milli, Game game) {
-            this.milli = milli;
-            this.game = game;
-
-            handler = new Handler();
-            handler.postDelayed(delayTimer(), milli);
-        public Runnable delayTimer() {
-            Runnable r = new Runnable() {
-                @Override
-                public void run() {
-                    game.setPlayer1Turn(true);
-                    renderBattleView();
-                }
 }
