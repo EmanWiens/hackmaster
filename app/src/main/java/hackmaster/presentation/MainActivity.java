@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void renderPlayedCard(CardClass card, boolean aiDelay) {
         Handler handler = new Handler();
-        if (aiDelay) {
+        if (aiDelay && !gameDone()) {
             handler.postDelayed(delayRender(), 1850); // DELAY
             gameInSession.setRenderDelayToggle(true);
         }
@@ -202,8 +202,8 @@ public class MainActivity extends AppCompatActivity {
             renderPlayerResource(player1);
             renderPlayerResource(player2);
 
-            if (gameInSession instanceof SinglePlayerGame && !gameInSession.getRenderDelayToggle()) {
-                if (playedCardOne != null)
+            if (gameInSession instanceof SinglePlayerGame ) {
+                if (playedCardOne != null && gameInSession.getRenderDelayToggle())
                     renderPlayedCard(playedCardOne, false);
 
                 if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
