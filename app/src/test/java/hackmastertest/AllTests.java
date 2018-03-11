@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 import hackmastertest.businessTest.DeckManagerUnitTest;
 import hackmastertest.businessTest.GameUnitTest;
 import hackmastertest.businessTest.ResourceManagerUnitTest;
-import hackmastertest.businessTest.SetUpSinglePlayerGameUnitTest;
+import hackmastertest.businessTest.SinglePlayerGameUnitTest;
 import hackmastertest.objectsTest.CardClassUnitTest;
 import hackmastertest.objectsTest.EnemyAIUnitTest;
 import hackmastertest.objectsTest.PlayerClassUnitTest;
@@ -23,7 +23,7 @@ import hackmastertest.persistenceTest.PlayerStatsSavesTest;
         PlayerClassUnitTest.class,
         ResourceClassUnitTest.class,
         PlayerStatsSavesTest.class,
-        SetUpSinglePlayerGameUnitTest.class
+        SinglePlayerGameUnitTest.class
 })
 public class AllTests {
 

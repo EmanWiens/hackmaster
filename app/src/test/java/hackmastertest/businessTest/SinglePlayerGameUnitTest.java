@@ -1,5 +1,7 @@
 package hackmastertest.businessTest;
 
+import android.support.v4.widget.TextViewCompat;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +19,7 @@ import hackmastertest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 
-public class SetUpSinglePlayerGameUnitTest {
+public class SinglePlayerGameUnitTest {
     Game game;
     PlayerClass player1;
     PlayerClass player2;
@@ -115,5 +117,23 @@ public class SetUpSinglePlayerGameUnitTest {
 
         assertEquals("Pop-up", player2Hand[4].getName());
         assertEquals(deck[9].getName(), player2Hand[4].getName());
+    }
+
+    @Test
+    public void testPlayCardEventCardStorage()
+    {
+        deck = game.getDeck();
+
+        CardClass beforePlayed = game.getPlayer1().getCard(4);
+        game.playCardEvent(4);
+        assertEquals(game.getPlayedCardOne().getName(), beforePlayed.getName());
+
+        beforePlayed = game.getPlayer1().getCard(1);
+        game.playCardEvent(1);
+        assertEquals(game.getPlayedCardOne().getName(), beforePlayed.getName());
+
+        beforePlayed = game.getPlayer1().getCard(2);
+        game.playCardEvent(2);
+        assertEquals(game.getPlayedCardOne().getName(), beforePlayed.getName());
     }
 }
