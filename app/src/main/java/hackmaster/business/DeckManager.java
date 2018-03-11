@@ -19,7 +19,7 @@ public abstract class DeckManager {
         ArrayList<CardClass>listDeck = new ArrayList<>();
         String emsg = cardDataAccess.getCardSequential(listDeck);
         deck = listDeck.toArray(new CardClass[0]);
-        shuffleDeck();
+        //shuffleDeck();
         resetIndex();
     }
 
@@ -64,4 +64,5 @@ public abstract class DeckManager {
     public static void setDeck(CardClass[] set) { deck = set; }
     public static void resetIndex() { nextIndex = 0; }
     public static int getNextIndex() { return nextIndex; }
+    public static void setIndex(int i) {nextIndex = i;}
 }
