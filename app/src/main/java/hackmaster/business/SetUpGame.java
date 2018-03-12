@@ -9,6 +9,7 @@ public abstract class SetUpGame {
 
     public static Game setUpSinglePlayerGame() {
         DeckManager.initDeck();
+        DeckManager.shuffleDeck();
 
         PlayerClass player1 = new PlayerClass(0,
                 "HackerMan",
@@ -23,6 +24,7 @@ public abstract class SetUpGame {
 
     public static Game setUpMultiplayerGame() {
         DeckManager.initDeck();
+        DeckManager.shuffleDeck();
 
         PlayerClass player1 = new PlayerClass(0,
                 "HackerMan",
@@ -35,5 +37,5 @@ public abstract class SetUpGame {
         return new MultiplayerGame(player1, player2);
     }
 
-    public static final ResourceClass startOfGameResources() { return startOfGameResources.clone(); }
+    public static ResourceClass startOfGameResources() { return startOfGameResources.clone(); }
 }

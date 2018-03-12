@@ -38,12 +38,14 @@ public abstract class Game {
         CardClass nextCard = DeckManager.dealNextCard();
         CardClass doNothing = new CardClass(-1, "Do Nothing", "Do Nothing", "Do Nothing", null, null);
         CardClass playedCard = player.getCard(playerCard);
+
         if (getDiscard()) {
             ResourceManager.applyCard(player1Turn, player1, player2, doNothing);
             discardOff();
         } else {
             ResourceManager.applyCard(player1Turn, player1, player2, playedCard);
         }
+        
         player.setCard(playerCard, nextCard);
     }
 
