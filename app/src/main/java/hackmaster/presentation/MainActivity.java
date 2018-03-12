@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
                     renderPlayedCard(playedCardTwo, true);
 
 //                if (gameInSession.getRenderDelayToggle())
-//                    playerTurnText.setText("Player 1 Turn");
+                    playerTurnText.setText("Player 1 Turn");
 //                else
 //                    playerTurnText.setText("AI Turn");
             }
@@ -241,6 +241,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            if(gameInSession.getDiscard()) {
+                setDiscard(false);
+            } else {
+                setDiscard(true);
+            }
         }
     }
 
@@ -263,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(0);
             renderBattleView();
             renderPressedCardBorder(0);
-            setDiscard(true);
+            //setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -275,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(1);
             renderBattleView();
             renderPressedCardBorder(1);
-            setDiscard(true);
+            //setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -287,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(2);
             renderBattleView();
             renderPressedCardBorder(2);
-            setDiscard(true);
+            //setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -299,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(3);
             renderBattleView();
             renderPressedCardBorder(3);
-            setDiscard(true);
+            //setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -311,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(4);
             renderBattleView();
             renderPressedCardBorder(4);
-            setDiscard(true);
+            //setDiscard(true);
             if (gameDone())
                 getWinner();
         }
