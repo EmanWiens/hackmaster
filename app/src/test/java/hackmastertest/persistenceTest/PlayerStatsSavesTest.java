@@ -20,13 +20,18 @@ public class PlayerStatsSavesTest {
 
     @Test
     public void testLevelUp() {
-        assertEquals("The Level should be 0",0, playerStats.getLevel());
+        assertEquals(0, playerStats.getLevel());
 
         playerStats.addLevel();
-        assertEquals("The Level should be 1",1, playerStats.getLevel());
+        assertEquals(1, playerStats.getLevel());
 
         playerStats.addLevel();
-        assertEquals("The Level should be 1",1, playerStats.getLevel());
+        assertEquals(2, playerStats.getLevel());
+
+        playerStats.addLevel();
+        playerStats.addLevel();
+        playerStats.addLevel();
+        assertEquals(5, playerStats.getLevel());
     }
     @Test
     public void testWinAndLose() {
@@ -75,7 +80,7 @@ public class PlayerStatsSavesTest {
 
     @Test
     public void testPlayerName() {
-        fail("Test that the saved player name is correct");
+        fail("Test that the saved player name is correct and the ID");
     }
 
     @Test
