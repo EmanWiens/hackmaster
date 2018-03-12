@@ -47,6 +47,8 @@ public class PlayerClass {
         resources.increaseBotnetByRate();
     }
 
+    public void addHealth(int health) {resources.addHealth(health);}
+
     public void addResources(ResourceClass addRes) {
         resources.addResources(addRes);
         resourceLimit();

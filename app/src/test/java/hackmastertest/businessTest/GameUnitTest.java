@@ -208,4 +208,27 @@ public class GameUnitTest {
         testGame.setRenderDelay(true);
         assertTrue(testGame.getRenderDelay());
     }
+
+    @Test
+    public void testDiscardValue() {
+        assertNotNull(testGame.getDiscard());
+        assertFalse(testGame.getDiscard());
+        testGame.discardOn();
+        assertTrue(testGame.getDiscard());
+        testGame.discardOff();
+        assertFalse(testGame.getDiscard());
+    }
+
+    @Test
+    public void testGameDone() {
+        assertFalse(testGame.gameDone());
+        testGame.addHealthPlayer1(-100);
+        assertTrue(testGame.gameDone());
+        testGame.addHealthPlayer2(-100);
+        assertTrue(testGame.gameDone());
+        testGame.addHealthPlayer1(100);
+        assertTrue(testGame.gameDone());
+        testGame.addHealthPlayer2(100);
+        assertFalse(testGame.gameDone());
+    }
 }

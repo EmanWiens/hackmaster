@@ -99,17 +99,26 @@ public class PlayerClassUnitTest {
         int health = player1.getHealth();
         assertEquals(1000, health);
 
-        player1 = new PlayerClass(0,"", new ResourceClass(10,0,0,0,0,0,0), null);
+        player1 = new PlayerClass(0, "", new ResourceClass(10, 0, 0, 0, 0, 0, 0), null);
         health = player1.getHealth();
         assertEquals(10, health);
 
-        player1 = new PlayerClass(0,"", new ResourceClass(0,0,0,0,0,0,0), null);
+        player1 = new PlayerClass(0, "", new ResourceClass(0, 0, 0, 0, 0, 0, 0), null);
         health = player1.getHealth();
         assertEquals(0, health);
 
-        player1 = new PlayerClass(0,"", new ResourceClass(0,0,0,0,0,0,0), null);
+        player1 = new PlayerClass(0, "", new ResourceClass(0, 0, 0, 0, 0, 0, 0), null);
         health = player1.getHealth();
         assertEquals(0, health);
+    }
+
+    @Test
+    public void testModifyingHealth() {
+        assertEquals("Player health should be 1000", 1000, player1.getHealth());
+        player1.addHealth(100);
+        assertEquals("Player health should be 1100", 1100, player1.getHealth());
+        player1.addHealth(-1100);
+        assertEquals("Player health should be 0", 0, player1.getHealth());
     }
 
     private CardClass generateCard(int id, String name, String type, String desc) {
