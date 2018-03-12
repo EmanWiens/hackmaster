@@ -16,10 +16,11 @@ public abstract class DBController
 	}
 
 	public static String getDBPathName() {
-		if (dbPathName == null)
+		if (dbPathName == null {
 			return dbName;
-		else
+		} else{
 			return dbPathName;
+		}
 	}
 
 	public static void setDBPathName(String pathName) {
