@@ -1,52 +1,55 @@
 package hackmastertest.objectsTest;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
+import hackmaster.application.Services;
 import hackmaster.business.DeckManager;
+import hackmaster.business.Game;
+import hackmaster.business.SetUpGame;
+import hackmaster.business.SinglePlayerGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.ResourceClass;
+import hackmastertest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.fail;
 
 public class EnemyAIUnitTest {
 
-    hackmaster.objects.EnemyAI player;
-    hackmaster.business.DeckManager deckM;
+    Game game = SetUpGame.setUpSinglePlayerGame();
+    EnemyAI player;
     int card;
-
 
     @Before
     public void setup() {
-        deckM.initDeck();
+        Services.closeDataAccess();
+        DataAccessStub dbStub = new DataAccessStub("stub");
+        Services.createDataAccess(dbStub,dbStub,dbStub);
+
+        DeckManager.initDeck();
         card = 0;
 
-        GameManager.setSinglePlayer(true);
-
         hackmaster.objects.ResourceClass r = new ResourceClass(100, 2, 2, 2, 2, 2, 2);
-        player = new EnemyAI(1, "Enemy Bot", r, deckM.dealFirstHandOfGame());
+        player = new EnemyAI(1, "Enemy Bot", r, DeckManager.dealFirstHandOfGame());
 
     }
 
     @Test
     public void testEnemyAI() {
-        assertNotNull(player);
+        assert(game instanceof SinglePlayerGame);
+        assert(game.getPlayer2() instanceof EnemyAI);
     }
 
     @Test
     public void testNextCard () {
-        // TODO which card should be played next based on the heurisitc
+        fail();
     }
 
     private void resetDeck() {
-        // player negative is cost and positive is gain
-        // enemy negative is loss and positive is gain
-
         ArrayList<CardClass> testDeck = new ArrayList<CardClass>();
         testDeck.add(new CardClass(0, "-101 health", "Defense", "Do Nothing",
                 new ResourceClass(-101, 0, 0, 0, 0,0, 0), null));
@@ -97,7 +100,7 @@ public class EnemyAIUnitTest {
         testDeck.add(new CardClass(0, "-3 cpuRate", "Attack", "Makes a lot of CPU",
                 new ResourceClass(0, 0, 0, 0, 0,0, -3), null));
 
-        deckM.setDeck(testDeck.toArray(new CardClass[0]));
+        DeckManager.setDeck(testDeck.toArray(new CardClass[0]));
     }
 
     @Test
@@ -130,11 +133,5 @@ public class EnemyAIUnitTest {
         assertEquals("-2 cpu", playable[9].getName());
 
         assertEquals("-1 cpuRate", playable[10].getName());
-    }
-
-    @After
-    public void tearDown(){
-        player = null;
-        deckM = null;
     }
 }

@@ -5,10 +5,12 @@ import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
 
+import hackmaster.application.Services;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmaster.objects.CardClass;
 import hackmaster.business.DeckManager;
+import hackmastertest.persistenceTest.DataAccessStub;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -25,7 +27,11 @@ public class PlayerClassUnitTest {
 
     @Before
     public void setUp(){
+        Services.closeDataAccess();
+        DataAccessStub dbStub = new DataAccessStub("stub");
+        Services.createDataAccess(dbStub,dbStub,dbStub);
         DeckManager.initDeck();
+
         player1_resource = new ResourceClass(1000,50,3, 53, 2, 55, 1);
         player1_cards = DeckManager.dealFirstHandOfGame();
         player1 = new PlayerClass(1, "Test_Name", player1_resource, player1_cards);

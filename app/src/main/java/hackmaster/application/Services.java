@@ -7,7 +7,7 @@ import hackmaster.persistence.DataAccessObject;
 import hackmaster.persistence.PlayerDataAccess;
 import hackmaster.persistence.PlayerDataAccessInterface;
 
-public class Services
+public abstract class Services
 {
 	private static DBInterface dataAccessService = null;
 	private static PlayerDataAccessInterface playerDataAccessService = null;

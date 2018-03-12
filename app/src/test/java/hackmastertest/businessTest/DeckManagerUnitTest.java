@@ -68,5 +68,4 @@ public class DeckManagerUnitTest {
        } catch ( ArrayIndexOutOfBoundsException exp) {
        }
     }
-    
 }

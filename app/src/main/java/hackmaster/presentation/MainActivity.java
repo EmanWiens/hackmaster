@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 
 import android.content.res.AssetManager;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Button;
 
 import com.example.owner.hackmaster20.R;
 
@@ -25,7 +27,9 @@ import java.io.InputStreamReader;
 
 import hackmaster.application.DBController;
 import hackmaster.business.Game;
+import hackmaster.business.MultiplayerGame;
 import hackmaster.business.SetUpGame;
+import hackmaster.business.SinglePlayerGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.PlayerStatsSaves;
@@ -54,26 +58,27 @@ public class MainActivity extends AppCompatActivity {
         DBController.shutDown();
     }
 
-    synchronized public void drawPlayedCard(CardClass card, boolean delay) {
-        // DELAY
-        // Handler handler = new Handler();
-        if (delay) {
-            //handler.postDelayed(delayDraw(), 2000); // DELAY
+    public void renderPlayedCard(CardClass card, boolean aiDelay) {
+        Handler handler = new Handler();
+        if (aiDelay && !gameDone()) {
+            handler.postDelayed(delayRender(), 1850); // DELAY
+            gameInSession.setRenderDelayToggle(true);
+        }
+        else if (gameInSession != null && !gameInSession.gamePaused()) {
             ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
             imageView.setBackgroundResource(returnImageCardID(card.getID()));
-        }
-        else {
-            ImageView imageView = findViewById(R.id.imageViewPlayedCard0);
-            imageView.setBackgroundResource(returnImageCardID(card.getID()));
+
+            if (gameInSession.getRenderDelayToggle())
+                gameInSession.setRenderDelayToggle(false);
         }
     }
 
     // DELAY
-    public Runnable delayDraw() {
+    public Runnable delayRender() {
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                drawPlayedCard(gameInSession.getPlayedCardAi(), false);
+                renderPlayedCard(gameInSession.getPlayedCardTwo(), false);
             }
         };
         return r;
@@ -82,13 +87,12 @@ public class MainActivity extends AppCompatActivity {
     public void checkStateSound()
     {
         ImageButton muteBtn = findViewById(R.id.muteBtn);
-        if (musicManager.getStateMusic()) {
+        if (musicManager.getStateMusic())
             muteBtn.setBackgroundResource(R.drawable.volumeunmute);
-        }
-        else {
+        else
             muteBtn.setBackgroundResource(R.drawable.volumemute);
-        }
     }
+
     public void muteSoundBackground(View v){
         ImageButton muteBtn = findViewById(R.id.muteBtn);
         if (musicManager.getStateMusic()) {
@@ -140,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void drawPlayerResource(PlayerClass player) {
+    public void renderPlayerResource(PlayerClass player) {
         if (player.getId() == 0) {
             fillText((TextView)findViewById(R.id.minerP), player.minerToString());
             fillText((TextView)findViewById(R.id.cSpeedP), player.cSpeedToString());
@@ -151,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
             health.setProgress(player.getHealth());
             fillText((TextView)findViewById(R.id.player1), player.getName());
         }
-        else if (player.getId() == 1){
+        else if (player.getId() == 1) {
             fillText((TextView)findViewById(R.id.minerE), player.minerToString());
             fillText((TextView)findViewById(R.id.cSpeedE), player.cSpeedToString());
             fillText((TextView)findViewById(R.id.botnetE), player.botnetToString());
@@ -169,17 +173,13 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO change this (marc)
     public void statsPress(View v) {
-        // gameInSession.initStats();
-
         setContentView(R.layout.stats_view); //change
         TextView text=(TextView)findViewById(R.id.nicknameTxtView);
-        // text.setText(gameInSession.getPlayerName());
 
         text=(TextView)findViewById(R.id.winLoseTxtView);
-        // text.setText(Integer.toString(gameInSession.getWin()));
     }
 
-    public void DrawCard(CardClass card, int slot) {
+    public void renderCard(CardClass card, int slot) {
         ImageButton imageButton = null;
         int[] imageButtonCardList = new int[]{
                 R.id.imageButtonCard0, R.id.imageButtonCard1,R.id.imageButtonCard2,
@@ -190,40 +190,51 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void renderBattleView() {
-        CardClass playedCardAi = gameInSession.getPlayedCardAi();
-        CardClass playedCard = gameInSession.getPlayedCard();
+        CardClass playedCardTwo = gameInSession.getPlayedCardTwo();
+        CardClass playedCardOne = gameInSession.getPlayedCardOne();
         PlayerClass player1 = gameInSession.getPlayer1();
         PlayerClass player2 = gameInSession.getPlayer2();
-        boolean player1Turn = gameInSession.getPlayer1Turn();
 
         if (!gameInSession.gamePaused()) {
-            drawPlayerResource(player1);
-            drawPlayerResource(player2);
+            renderPlayerResource(player1);
+            renderPlayerResource(player2);
 
-            if (playedCard != null)
-               drawPlayedCard(playedCard, false);
-            if (playedCardAi != null)
-                drawPlayedCard(playedCardAi, true);
+            if (gameInSession instanceof SinglePlayerGame ) {
+                if (playedCardOne != null && !gameInSession.getRenderDelayToggle())
+                    renderPlayedCard(playedCardOne, false);
 
-            if (gameInSession.getPlayer1Turn())
+                if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
+                    renderPlayedCard(playedCardTwo, true);
+            }
+            else if (gameInSession instanceof MultiplayerGame) {
+                if(!gameInSession.getPlayer1Turn() && playedCardOne != null)
+                    renderPlayedCard(playedCardOne, false);
+                else if (gameInSession.getPlayer1Turn() && playedCardTwo != null)
+                    renderPlayedCard(playedCardTwo, false);
+            }
+
+            if (gameInSession.getPlayer1Turn()) {
                 for (int i = 0; i < player1.getCards().length; i++) {
                     if (player1.getCards()[i] != null)
-                        DrawCard(player1.getCards()[i], i);
+                        renderCard(player1.getCards()[i], i);
                 }
-            else
+            }
+            else {
                 for (int i = 0; i < player2.getCards().length; i++) {
                     if (player2.getCards()[i] != null)
-                        DrawCard(player2.getCards()[i], i);
+                        renderCard(player2.getCards()[i], i);
                 }
+            }
         }
     }
-    public void singlePlayPress(View v) {
+
+    public void singlePlayMessage(View v) {
         setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpSinglePlayerGame();
         renderBattleView();
     }
 
-    public void multiPlayPress(View v) {
+    public void multiPlayMessage(View v) {
         setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpMultiplayerGame();
         renderBattleView();
@@ -231,67 +242,79 @@ public class MainActivity extends AppCompatActivity {
 
     public void firstcardPress(View v)
     {
-        gameInSession.playCardEvent(0);
-        renderBattleView();
-        cardPress(0);
-        if (gameDone())
-            getWinner();
-    }
-    public void secondcardPress(View v)
-    {
-        gameInSession.playCardEvent(1);
-        renderBattleView();
-        cardPress(1);
-        if (gameDone())
-            getWinner();
-    }
-    public void thirdcardPress(View v)
-    {
-        gameInSession.playCardEvent(2);
-        renderBattleView();
-        cardPress(2);
-        if (gameDone())
-            getWinner();
-    }
-    public void fourthcardPress(View v)
-    {
-        gameInSession.playCardEvent(3);
-        renderBattleView();
-        cardPress(3);
-        if (gameDone())
-            getWinner();
-    }
-    public void fifthcardPress(View v)
-    {
-        gameInSession.playCardEvent(4);
-        renderBattleView();
-        cardPress(4);
-        if (gameDone())
-            getWinner();
-    }
-    private void cardPress(int chosenCard) {
-        ImageView[]  imageCardBorder = new ImageView[6] ;
-        imageCardBorder[0]= findViewById(R.id.imageBorderCard0);
-        imageCardBorder[1]= findViewById(R.id.imageBorderCard1);
-        imageCardBorder[2]= findViewById(R.id.imageBorderCard2);
-        imageCardBorder[3] = findViewById(R.id.imageBorderCard3);
-        imageCardBorder[4] = findViewById(R.id.imageBorderCard4);
-        musicManager.playCardSelected(0.8f,0.8f);
-        for (int i=0; i<=4;i++)
-        {
-            if (i==chosenCard) {
-
-                imageCardBorder[i].setBackgroundResource(R.drawable.image_border);
-            }
-            else{
-                imageCardBorder[i].setBackgroundResource(android.R.color.transparent);
-            }
+        if (!gameInSession.getRenderDelayToggle()) {
+            gameInSession.playCardEvent(0);
+            renderBattleView();
+            renderPressedCardBorder(0);
+            setDiscard(true);
+            if (gameDone())
+                getWinner();
         }
     }
 
-    synchronized public void drawPlayedCard(CardClass card) {
-        ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
-         imageView.setBackgroundResource(returnImageCardID(card.getID()));
+    public void secondcardPress(View v)
+    {
+        if (!gameInSession.getRenderDelayToggle()) {
+            gameInSession.playCardEvent(1);
+            renderBattleView();
+            renderPressedCardBorder(1);
+            setDiscard(true);
+            if (gameDone())
+                getWinner();
+        }
+    }
+
+    public void thirdcardPress(View v)
+    {
+        if (!gameInSession.getRenderDelayToggle()) {
+            gameInSession.playCardEvent(2);
+            renderBattleView();
+            renderPressedCardBorder(2);
+            setDiscard(true);
+            if (gameDone())
+                getWinner();
+        }
+    }
+
+    public void fourthcardPress(View v)
+    {
+        if (!gameInSession.getRenderDelayToggle()) {
+            gameInSession.playCardEvent(3);
+            renderBattleView();
+            renderPressedCardBorder(3);
+            setDiscard(true);
+            if (gameDone())
+                getWinner();
+        }
+    }
+
+    public void fifthcardPress(View v)
+    {
+        if (!gameInSession.getRenderDelayToggle()) {
+            gameInSession.playCardEvent(4);
+            renderBattleView();
+            renderPressedCardBorder(4);
+            setDiscard(true);
+            if (gameDone())
+                getWinner();
+        }
+    }
+
+    private void renderPressedCardBorder(int chosenCard) {
+        ImageView[] imageCardBorder = new ImageView[6];
+        imageCardBorder[0] = findViewById(R.id.imageBorderCard0);
+        imageCardBorder[1] = findViewById(R.id.imageBorderCard1);
+        imageCardBorder[2] = findViewById(R.id.imageBorderCard2);
+        imageCardBorder[3] = findViewById(R.id.imageBorderCard3);
+        imageCardBorder[4] = findViewById(R.id.imageBorderCard4);
+        musicManager.playCardSelected(0.8f, 0.8f);
+
+        for (int i = 0; i <= 4; i++) {
+            if (i == chosenCard)
+                imageCardBorder[i].setBackgroundResource(R.drawable.image_border);
+            else
+                imageCardBorder[i].setBackgroundResource(android.R.color.transparent);
+        }
     }
 
     public void pauseMessage(View v) {
@@ -324,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    // change this (marc)
+    //TODO change this (marc)
     public void pauseStatsMessage(View v) {
         // gameInSession.initStats();
 
@@ -362,7 +385,7 @@ public class MainActivity extends AppCompatActivity {
         };
         return imageCardList[cardID];
     }
-    
+
     public void getWinner() {
         if (gameInSession.getPlayer2Health() < 1) {
             goToVictory(true);
@@ -386,6 +409,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // TODO should be in Game.java
     public boolean gameDone() {
         boolean result = false;
         if (gameInSession.getPlayer2Health() < 1)
@@ -393,6 +417,26 @@ public class MainActivity extends AppCompatActivity {
         if (gameInSession.getPlayer1Health() < 1)
             result = true;
         return result;
+    }
+
+    public void discardPress(View v) {
+        if (gameInSession.getDiscard() == true) {
+            setDiscard(true);
+        } else {
+            setDiscard(false);
+        }
+    }
+
+    public void setDiscard (boolean toggle) {
+        if (toggle) {
+            gameInSession.discardOff();
+            Button dicardButton = (Button)findViewById(R.id.discardBtn);
+            dicardButton.setText("DISCARD MODE");
+        } else {
+            gameInSession.discardOn();
+            Button dicardButton = (Button)findViewById(R.id.discardBtn);
+            dicardButton.setText("CANCEL DISCARD");
+        }
     }
 
     private void copyDatabaseToDevice() {
