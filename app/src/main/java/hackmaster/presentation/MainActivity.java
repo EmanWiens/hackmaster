@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Button;
 
 import com.example.owner.hackmaster20.R;
 
@@ -26,7 +27,7 @@ import java.io.InputStreamReader;
 
 import hackmaster.application.DBController;
 import hackmaster.business.Game;
-import hackmaster.business.MultiPlayerGame;
+import hackmaster.business.MultiplayerGame;
 import hackmaster.business.SetUpGame;
 import hackmaster.business.SinglePlayerGame;
 import hackmaster.objects.CardClass;
@@ -171,14 +172,10 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO change this (marc)
     public void statsPress(View v) {
-        // gameInSession.initStats();
-
         setContentView(R.layout.stats_view); //change
         TextView text=(TextView)findViewById(R.id.nicknameTxtView);
-        // text.setText(gameInSession.getPlayerName());
 
         text=(TextView)findViewById(R.id.winLoseTxtView);
-        // text.setText(Integer.toString(gameInSession.getWin()));
     }
 
     public void renderCard(CardClass card, int slot) {
@@ -208,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
                     renderPlayedCard(playedCardTwo, true);
             }
-            else if (gameInSession instanceof MultiPlayerGame) {
+            else if (gameInSession instanceof MultiplayerGame) {
                 if(!gameInSession.getPlayer1Turn() && playedCardOne != null)
                     renderPlayedCard(playedCardOne, false);
                 else if (gameInSession.getPlayer1Turn() && playedCardTwo != null)
@@ -248,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(0);
             renderBattleView();
             renderPressedCardBorder(0);
+            setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -259,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(1);
             renderBattleView();
             renderPressedCardBorder(1);
+            setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -270,6 +269,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(2);
             renderBattleView();
             renderPressedCardBorder(2);
+            setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -281,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(3);
             renderBattleView();
             renderPressedCardBorder(3);
+            setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -292,6 +293,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(4);
             renderBattleView();
             renderPressedCardBorder(4);
+            setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -344,7 +346,7 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    // change this (marc)
+    //TODO change this (marc)
     public void pauseStatsMessage(View v) {
         // gameInSession.initStats();
 
@@ -414,6 +416,26 @@ public class MainActivity extends AppCompatActivity {
         if (gameInSession.getPlayer1Health() < 1)
             result = true;
         return result;
+    }
+
+    public void discardPress(View v) {
+        if (gameInSession.getDiscard() == true) {
+            setDiscard(true);
+        } else {
+            setDiscard(false);
+        }
+    }
+
+    public void setDiscard (boolean toggle) {
+        if (toggle) {
+            gameInSession.discardOff();
+            Button dicardButton = (Button)findViewById(R.id.discardBtn);
+            dicardButton.setText("DISCARD MODE");
+        } else {
+            gameInSession.discardOn();
+            Button dicardButton = (Button)findViewById(R.id.discardBtn);
+            dicardButton.setText("CANCEL DISCARD");
+        }
     }
 
     private void copyDatabaseToDevice() {

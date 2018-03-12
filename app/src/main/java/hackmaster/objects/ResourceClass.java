@@ -19,6 +19,10 @@ public class ResourceClass {
         this.cpuRate = cpuRate;
     }
 
+    public ResourceClass clone() {
+        return new ResourceClass(health, hCoin, hCoinRate, botnet, botnetRate, cpu, cpuRate);
+    }
+
     public String toString() {
         String strung = "";
         if (health != 0)

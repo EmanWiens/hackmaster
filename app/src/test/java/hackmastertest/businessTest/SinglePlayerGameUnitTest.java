@@ -139,16 +139,16 @@ public class SinglePlayerGameUnitTest {
 
     @Test
     public void testPlayerTurnAfterPlayedCard() {
-        assert(game.getPlayer1Turn());
+        assert (game.getPlayer1Turn());
         game.playCardEvent(4);
 
-        assert(game.getPlayer1Turn());
+        assert (game.getPlayer1Turn());
         game.playCardEvent(3);
 
-        assert(game.getPlayer1Turn());
+        assert (game.getPlayer1Turn());
         game.playCardEvent(3);
 
-        assert(game.getPlayer1Turn());
+        assert (game.getPlayer1Turn());
         game.playCardEvent(3);
     }
 }

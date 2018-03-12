@@ -10,7 +10,7 @@ public class SinglePlayerGame extends Game {
 
     public void playCardEvent(int playerCard) {
         if (getPlayer1Turn() && !gamePaused() && !getRenderDelayToggle()) {
-            if(checkCard(playerCard, getPlayer1())) {
+            if(checkCard(playerCard, getPlayer1()) || getDiscard()) {
                 setPlayedCardOne(getPlayer1().getCard(playerCard));
                 playerTurn(playerCard, getPlayer1());
                 ResourceManager.applyTurnRate(getPlayer2());

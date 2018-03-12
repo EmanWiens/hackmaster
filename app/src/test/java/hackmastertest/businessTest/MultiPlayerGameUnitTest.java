@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import hackmaster.application.Services;
 import hackmaster.business.Game;
-import hackmaster.business.MultiPlayerGame;
+import hackmaster.business.MultiplayerGame;
 import hackmaster.business.SetUpGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
@@ -37,7 +37,7 @@ public class MultiPlayerGameUnitTest {
 
     @Test
     public void testSetupInstances() {
-        assert(game instanceof MultiPlayerGame);
+        assert(game instanceof MultiplayerGame);
         assert(player1 instanceof PlayerClass);
         assert (player2 instanceof EnemyAI);
     }
