@@ -125,9 +125,9 @@ public abstract class Game {
     public CardClass[] getDeck() { return DeckManager.getDeck(); }
     public ResourceClass getPlayer1Res() { return player1.getResources(); }
     public ResourceClass getPlayer2Res() { return player2.getResources(); }
-
-    // TODO test these (marc)
     public void discardOn() {discard = true;}
     public void discardOff() {discard = false;}
     public boolean getDiscard() {return discard;}
+    public void addHealthPlayer1(int health) {player1.addHealth(health);}
+    public void addHealthPlayer2(int health) {player2.addHealth(health);}
 }

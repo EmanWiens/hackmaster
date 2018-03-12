@@ -87,4 +87,5 @@ public class PlayerClass {
     public CardClass getCard(int i) { return hand[i]; }
     public String getName() { return name; }
     public int getHealth() { return resources.getHealth(); }
+    public void addHealth(int health) {resources.addHealth(health);}
 }

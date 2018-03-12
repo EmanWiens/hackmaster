@@ -93,6 +93,15 @@ public class PlayerClassUnitTest {
         assertEquals("cpu should be 0", 0, player1.getResources().getCpu());
     }
 
+    @Test
+    public void testModifyingHealth() {
+        assertEquals("Player health should be 1000", 1000, player1.getHealth());
+        player1.addHealth(100);
+        assertEquals("Player health should be 1100", 1100, player1.getHealth());
+        player1.addHealth(-1100);
+        assertEquals("Player health should be 0", 0, player1.getHealth());
+    }
+
     @After
     public void tearDown(){
         player1_resource = null;

@@ -16,6 +16,7 @@ import hackmastertest.persistenceTest.DataAccessStub;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
 
@@ -186,5 +187,28 @@ public class GameUnitTest {
         testGame.pauseGame();
         testGame.pauseGame();
         assert(!testGame.gamePaused());
+    }
+
+    @Test
+    public void testDiscardValue() {
+        assertNotNull(testGame.getDiscard());
+        assertFalse(testGame.getDiscard());
+        testGame.discardOn();
+        assertTrue(testGame.getDiscard());
+        testGame.discardOff();
+        assertFalse(testGame.getDiscard());
+    }
+
+    @Test
+    public void testGameDone() {
+        assertFalse(testGame.gameDone());
+        testGame.addHealthPlayer1(-100);
+        assertTrue(testGame.gameDone());
+        testGame.addHealthPlayer2(-100);
+        assertTrue(testGame.gameDone());
+        testGame.addHealthPlayer1(100);
+        assertTrue(testGame.gameDone());
+        testGame.addHealthPlayer2(100);
+        assertFalse(testGame.gameDone());
     }
 }
