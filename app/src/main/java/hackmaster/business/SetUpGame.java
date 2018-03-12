@@ -30,6 +30,6 @@ public abstract class SetUpGame {
                 "HackerMan-2nd",
                 new ResourceClass(100, 10, 2, 10, 2, 10, 2), DeckManager.dealFirstHandOfGame());
 
-        return new MultiPlayerGame(player1, player2);
+        return new MultiplayerGame(player1, player2);
     }
 }

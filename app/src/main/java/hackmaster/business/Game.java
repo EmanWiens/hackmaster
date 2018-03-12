@@ -19,6 +19,8 @@ public abstract class Game {
     private static CardClass playedCardOne;
     private static CardClass playedCardTwo;
 
+    private boolean discard = false;
+
     public Game(PlayerClass p1, PlayerClass p2) {
         player1 = p1;
         player2 = p2;
@@ -32,6 +34,7 @@ public abstract class Game {
 
     public void playCardEvent(int playerCard) { System.out.print("Error in game. Please try starting a new game."); }
 
+    // TODO unused delete?
     public boolean cantPlayCard(PlayerClass player) {
         for (int i = 0; i < player.cardsSize(); i++)
             if (checkCard(i, player))
@@ -41,8 +44,13 @@ public abstract class Game {
 
     public void playerTurn(int playerCard, PlayerClass player) {
         CardClass nextCard = DeckManager.dealNextCard();
+        CardClass doNothing = new CardClass(-1, "Do Nothing", "Do Nothing", "Do Nothing", null, null);
         CardClass playedCard = player.getCard(playerCard);
-        ResourceManager.applyCard(player1Turn, player1, player2, playedCard);
+        if (getDiscard()) {
+            ResourceManager.applyCard(player1Turn, player1, player2, doNothing);
+            discardOff();
+        } else
+            ResourceManager.applyCard(player1Turn, player1, player2, playedCard);
         player.setCard(playerCard, nextCard);
     }
 
@@ -84,7 +92,7 @@ public abstract class Game {
             return 1;
     }
 
-    //test this (marc)
+    // TODO test this (marc)
     public boolean gameDone() {
         boolean result = false;
         if (player2.getHealth() < 1) {
@@ -103,18 +111,10 @@ public abstract class Game {
         pStats.setPlayerName("Player_1");
     }
 
-    public int getPlayer1Health() {
-        return player1.getHealth();
-    }
-    public int getPlayer2Health() {
-        return player2.getHealth();
-    }
-    public String getPlayerName() {
-        return pStats.getName();
-    }
-    public int getWin() {
-        return pStats.getWin();
-    }
+    public int getPlayer1Health() {return player1.getHealth();}
+    public int getPlayer2Health() {return player2.getHealth();}
+    public String getPlayerName() {return pStats.getName();}
+    public int getWin() {return pStats.getWin();}
     public void addWin() { pStats.addWin();}
     public void addLoss() { pStats.addLoss();}
     public boolean getRenderDelayToggle() { return renderDelayToggle; }
@@ -134,4 +134,9 @@ public abstract class Game {
     public CardClass getDeckCardAt(int i) { return DeckManager.getCardAt(i); }
     public CardClass[] getDeck() { return DeckManager.getDeck(); }
     public int getDeckMangerDealNextCard() { return DeckManager.getNextIndex(); }
+
+    // TODO test these (marc)
+    public void discardOn() {discard = true;}
+    public void discardOff() {discard = false;}
+    public boolean getDiscard() {return discard;}
 }
