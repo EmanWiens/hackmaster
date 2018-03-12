@@ -62,5 +62,5 @@ public class PlayerStatsSaves {
     public int getTotalGames() { return totalGames; }
     public String getName() {
         return playerName;
-    } //test this (marc)
+    }
 }

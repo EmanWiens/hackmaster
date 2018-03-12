@@ -15,6 +15,7 @@ import hackmastertest.persistenceTest.DataAccessStub;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
 
@@ -135,22 +136,22 @@ public class GameUnitTest {
         assertEquals("Expensive Health", testGame.getPlayer1().getCard(2).getName());
 
         testGame.discardCard(4, testGame.getPlayer1());
-        assert (testGame.getPlayer1().getCard(4).equals(testGame.getDeckCardAt(0)));
+        assertTrue(testGame.getPlayer1().getCard(4).equals(testGame.getDeckCardAt(0)));
         assertEquals("Nothing", testGame.getPlayer1().getCard(4).getName());
 
         testGame.discardCard(3, testGame.getPlayer1());
-        assert (testGame.getPlayer1().getCard(3).equals(testGame.getDeckCardAt(1)));
+        assertTrue(testGame.getPlayer1().getCard(3).equals(testGame.getDeckCardAt(1)));
         assertEquals("Normal card", testGame.getPlayer1().getCard(3).getName());
 
         testGame.discardCard(2, testGame.getPlayer1());
-        assert (testGame.getPlayer1().getCard(2).equals(testGame.getDeckCardAt(2)));
+        assertTrue(testGame.getPlayer1().getCard(2).equals(testGame.getDeckCardAt(2)));
         assertEquals("Expensive Health", testGame.getPlayer1().getCard(2).getName());
 
         testGame.discardCard(4, testGame.getPlayer1());
         testGame.discardCard(4, testGame.getPlayer1());
         testGame.discardCard(4, testGame.getPlayer1());
         testGame.discardCard(4, testGame.getPlayer1());
-        assert (testGame.getPlayer1().getCard(2).equals(testGame.getDeckCardAt(3)));
+        assertTrue(testGame.getPlayer1().getCard(2).equals(testGame.getDeckCardAt(3)));
         assertEquals("Normal card", testGame.getPlayer1().getCard(1).getName());
     }
 
@@ -197,7 +198,7 @@ public class GameUnitTest {
         assertFalse(testGame.getRenderDelay());
 
         testGame.setRenderDelay(true);
-        assert(testGame.getRenderDelay());
+        assertTrue(testGame.getRenderDelay());
 
         testGame.setRenderDelay(true);
         testGame.setRenderDelay(false);
@@ -205,6 +206,6 @@ public class GameUnitTest {
 
         testGame.setRenderDelay(false);
         testGame.setRenderDelay(true);
-        assertFalse(testGame.getRenderDelay());
+        assertTrue(testGame.getRenderDelay());
     }
 }

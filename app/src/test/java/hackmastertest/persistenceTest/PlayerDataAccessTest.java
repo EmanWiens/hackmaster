@@ -18,6 +18,6 @@ public class PlayerDataAccessTest {
     // TODO STUB TEST
     @Test
     public void testDB() {
-        fail();
+        fail("All the tests for this class still need to be done");
     }
 }

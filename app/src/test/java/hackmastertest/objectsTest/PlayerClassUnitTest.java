@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 
 import hackmaster.application.Services;
+import hackmaster.business.ResourceManager;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmaster.objects.CardClass;
@@ -85,7 +86,7 @@ public class PlayerClassUnitTest {
 
     @Test
     public void testNegativeResources() {
-        ResourceClass neg_res = new ResourceClass(0, -10000, 0, -10000, 0,-10000, 0);
+        ResourceClass neg_res = new ResourceClass(0, -10000, 0, -10000, 0, -10000, 0);
         player1.addResources(neg_res);
 
         assertEquals("hCoin should be 0", 0, player1.getResources().gethCoin());
@@ -93,16 +94,25 @@ public class PlayerClassUnitTest {
         assertEquals("cpu should be 0", 0, player1.getResources().getCpu());
     }
 
-    @After
-    public void tearDown(){
-        player1_resource = null;
-        player1_cards = null;
-        player1 = null;
+    @Test
+    public void testGetHealth() {
+        int health = player1.getHealth();
+        assertEquals(1000, health);
+
+        player1 = new PlayerClass(0,"", new ResourceClass(10,0,0,0,0,0,0), null);
+        health = player1.getHealth();
+        assertEquals(10, health);
+
+        player1 = new PlayerClass(0,"", new ResourceClass(0,0,0,0,0,0,0), null);
+        health = player1.getHealth();
+        assertEquals(0, health);
+
+        player1 = new PlayerClass(0,"", new ResourceClass(0,0,0,0,0,0,0), null);
+        health = player1.getHealth();
+        assertEquals(0, health);
     }
 
-    // HELPER METHOD
     private CardClass generateCard(int id, String name, String type, String desc) {
-        CardClass new_card = new CardClass(id, name, type, desc, player1_resource, player2);
-        return new_card;
+        return new CardClass(id, name, type, desc, player1_resource, player2);
     }
 }

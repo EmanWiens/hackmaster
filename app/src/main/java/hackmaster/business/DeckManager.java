@@ -1,7 +1,6 @@
 package hackmaster.business;
 
 import java.util.ArrayList;
-
 import hackmaster.application.Services;
 import hackmaster.persistence.CardDataAccessInterface;
 import hackmaster.objects.CardClass;

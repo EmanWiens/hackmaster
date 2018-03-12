@@ -9,6 +9,7 @@ import hackmaster.business.DeckManager;
 import hackmaster.objects.CardClass;
 import hackmastertest.persistenceTest.DataAccessStub;
 
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
 
@@ -34,12 +35,36 @@ public class DeckManagerUnitTest {
 
     @Test
     public void testDealNextCard() {
-        CardClass Card1 = DeckManager.dealNextCard();
-        assertEquals(0, Card1.getID());
+        CardClass card1 = DeckManager.dealNextCard();
+        assertEquals(0, card1.getID());
+        assertTrue(DeckManager.getNextIndex() == 1);
 
-        CardClass Card2 = DeckManager.dealNextCard();
+        card1 = DeckManager.dealNextCard();
+        assertEquals(1,card1.getID());
+        assertTrue(DeckManager.getNextIndex() == 2);
 
-        assertEquals(1,Card2.getID());
+        card1 = DeckManager.dealNextCard();
+        assertEquals(2,card1.getID());
+        assertTrue(DeckManager.getNextIndex() == 3);
+
+        card1 = DeckManager.dealNextCard();
+        assertTrue(DeckManager.getNextIndex() == 4);
+        card1 = DeckManager.dealNextCard();
+        assertTrue(DeckManager.getNextIndex() == 5);
+        assertEquals(4,card1.getID());
+    }
+
+    @Test
+    public void testResetIndex() {
+        assertTrue(DeckManager.getNextIndex() == 0);
+        DeckManager.dealNextCard();
+        DeckManager.dealNextCard();
+        assertTrue(DeckManager.getNextIndex() == 2);
+        DeckManager.dealNextCard();
+        assertTrue(DeckManager.getNextIndex() == 3);
+
+        DeckManager.resetIndex();
+        assertTrue(DeckManager.getNextIndex() == 0);
     }
 
     @Test
