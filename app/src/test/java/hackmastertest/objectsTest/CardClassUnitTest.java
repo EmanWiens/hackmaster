@@ -1,11 +1,12 @@
 package hackmastertest.objectsTest;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import hackmaster.application.Services;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.ResourceClass;
+import hackmastertest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -17,6 +18,10 @@ public class CardClassUnitTest {
 
     @Before
     public void setUp(){
+        Services.closeDataAccess();
+        DataAccessStub dbStub = new DataAccessStub("stub");
+        Services.createDataAccess(dbStub,dbStub,dbStub);
+
         player1 = new ResourceClass(1000,50,3, 53, 2, 55, 1);
         player2 = new ResourceClass(1000,56,8, 54, 1, 99, 10);
         cardObj = new CardClass(1, "TestCard_1", "Upgrade", "desc", player1, player2);
@@ -36,12 +41,5 @@ public class CardClassUnitTest {
         String expectedOutput = String.format("TestCard_1\nType:Upgrade\n%s", cardObj.resString());
         System.out.println(cardObj);
         assertEquals(expectedOutput,cardObj.toString());
-    }
-
-    @After
-    public void tearDown(){
-        player1 = null;
-        player2 = null;
-        cardObj = null;
     }
 }

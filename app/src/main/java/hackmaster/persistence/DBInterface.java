@@ -1,12 +1,9 @@
 package hackmaster.persistence;
 
-import hackmaster.objects.CardClass;
-
-/**
- * Created by Owner on 2/18/2018.
- */
+import java.sql.Statement;
 
 public interface DBInterface {
-    CardClass[] getCards();
-    // TODO write the database interface and make the functions CardsList and real DB
+    void open(String string);
+    void close();
+    Statement getNewStatement();
 }

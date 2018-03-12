@@ -1,8 +1,5 @@
 package hackmaster.objects;
 
-import java.util.ArrayList;
-import hackmaster.business.GameManager;
-
 public class EnemyAI extends PlayerClass {
     private int nextCard;
 
@@ -11,8 +8,9 @@ public class EnemyAI extends PlayerClass {
     }
 
     public int playNextCard() {
-        nextCard = -1;
-
+        if (nextCard!=0) {
+            nextCard = -1;
+        }
         CardClass[] playable = playableCards();
 
         if (playable.length == 0) {
@@ -45,10 +43,11 @@ public class EnemyAI extends PlayerClass {
     private int bestCard(CardClass[] playable) {
         int bestCard = -1;
         int bestCost = 10000;
+        double heurisitCost = 0;
 
         for (int i = 0; i < playable.length; i++) {
             ResourceClass cardR = playable[i].getPlayerR();
-            int testCost = cardR.getBotnet() + cardR.gethCoin() + cardR.getCpu();
+            int testCost = cardR.getBotnet() + cardR.gethCoin() + cardR.getCpu() + cardR.getHealth();
             if (testCost <= bestCost) {
                 bestCost = testCost;
                 bestCard = i;
@@ -97,7 +96,7 @@ public class EnemyAI extends PlayerClass {
         double worth = 0;
         double total = 0;
         ResourceClass playerR = assess.getCardResource().getPlayerR();
-        CardClass playedCard = GameManager.getPlayedCard();
+        CardClass playedCard = GameManager.getPlayedCardOne();
 
         if (playedCard != null) {
             if (assess.getType().equals("Attack")) {
@@ -134,7 +133,7 @@ public class EnemyAI extends PlayerClass {
         ResourceClass playerR = assess.getCardResource().getPlayerR();
 
         if (getHealth() < .20 * GameManager.maxHealth ||
-                (GameManager.getPlayedCard() != null && GameManager.getPlayedCard().getType().equals("Attack"))) {
+                (GameManager.getPlayedCardOne() != null && GameManager.getPlayedCardOne().getType().equals("Attack"))) {
             if (playerR.getHealth() > 0) {
                 worth += 1.0;
                 total++;

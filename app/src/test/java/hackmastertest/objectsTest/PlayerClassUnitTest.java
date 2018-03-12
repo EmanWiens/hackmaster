@@ -5,10 +5,12 @@ import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
 
+import hackmaster.application.Services;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmaster.objects.CardClass;
 import hackmaster.business.DeckManager;
+import hackmastertest.persistenceTest.DataAccessStub;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -25,9 +27,13 @@ public class PlayerClassUnitTest {
 
     @Before
     public void setUp(){
-        DeckManager.initDeck( 4);
+        Services.closeDataAccess();
+        DataAccessStub dbStub = new DataAccessStub("stub");
+        Services.createDataAccess(dbStub,dbStub,dbStub);
+        DeckManager.initDeck();
+
         player1_resource = new ResourceClass(1000,50,3, 53, 2, 55, 1);
-        player1_cards = DeckManager.dealCards(7);
+        player1_cards = DeckManager.dealFirstHandOfGame();
         player1 = new PlayerClass(1, "Test_Name", player1_resource, player1_cards);
         player2 = new ResourceClass(1000,56,8, 54, 1, 99, 10);
     }
@@ -37,15 +43,15 @@ public class PlayerClassUnitTest {
         assertNotNull(player1);
         assertEquals("id should be 1",1,player1.getId());
         assertEquals("name should be Test_Name","Test_Name",player1.getName());
-        assertEquals("Test if card exists and has the correct amount of cards", 7, player1.getCards().length);
+        assertEquals("Test if card exists and has the correct amount of cards", 5, player1.getCards().length);
         assertSame("resource object should be same", player1_resource, player1.getResources());
     }
 
     @Test
     public void testGetCardIndex() {
-        assertEquals("The Index should be 1",1, player1.getCardIndex(1,player1.getCards()));
-        assertEquals("The Index should be 0",0, player1.getCardIndex(0,player1.getCards()));
-        assertEquals("The Index should be 2",2, player1.getCardIndex(2,player1.getCards()));
+        assertEquals("The Index should be 1", 1, player1.getCardIndex(player1.getCard(1).getID(),player1.getCards()));
+        assertEquals("The Index should be 0",0, player1.getCardIndex(player1.getCard(0).getID(),player1.getCards()));
+        assertEquals("The Index should be 2",2, player1.getCardIndex(player1.getCard(2).getID(),player1.getCards()));
     }
 
     @Test
@@ -58,7 +64,7 @@ public class PlayerClassUnitTest {
         assertEquals("Test set first index", 1, player1.getCard(0).getID());
         assertEquals("Test set card 2", 2, player1.getCard(1).getID());
         assertEquals("Test set card 3", 3, player1.getCard(2).getID());
-        assertEquals("Test set edge", 10, player1.getCard(6).getID());
+        assertEquals("Test set edge", 4, player1.getCard(4).getID());
 
         try {
             player1.setCard(8, generateCard(5,"test out of bounds", "t5","card 5"));

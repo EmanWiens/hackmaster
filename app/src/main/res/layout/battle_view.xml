@@ -5,233 +5,222 @@
     android:id="@+id/battle_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/battle"
     android:minHeight="69dp"
     tools:context="hackmaster.presentation.MainActivity">
 
+
     <TextView
         android:id="@+id/player2"
-        android:layout_width="100dp"
-        android:layout_height="26dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/player_2"
         app:layout_constraintBottom_toTopOf="@+id/healthE"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
         app:layout_constraintTop_toBottomOf="@+id/player2Img" />
 
     <TextView
         android:id="@+id/player1"
-        android:layout_width="100dp"
-        android:layout_height="34dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="16dp"
         android:text="@string/player_1"
         app:layout_constraintBottom_toTopOf="@+id/healthP"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout4"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/player1Img" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="695dp"
-        android:layout_height="227dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="860dp"
+        android:layout_height="248dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timer">
 
-        <TextView
-            android:id="@+id/card2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:onClick="cardPress"
-            android:paddingLeft="3dp"
-            android:text="card2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/card3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/card1"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/card0"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:onClick="cardPress"
-            android:paddingLeft="3dp"
-            android:text="card0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/card1"
-            app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/card1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:onClick="cardPress"
-            android:paddingLeft="3dp"
-            android:text="card1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/card2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/card0"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/card4"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:onClick="cardPress"
-            android:paddingLeft="3dp"
-            android:text="card4"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/card5"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/card3"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/card5"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:onClick="cardPress"
-            android:paddingLeft="3dp"
-            android:text="card5"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/card4"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/card3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:onClick="cardPress"
-            android:paddingLeft="3dp"
-            android:text="card3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/card4"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/card2"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageBorderCard0"
-            android:layout_width="116dp"
-            android:layout_height="224dp"
+            android:layout_width="150dp"
+            android:layout_height="235dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:adjustViewBounds="false"
-            android:padding="7dp"
+            android:background="@drawable/image_border"
             android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card0"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageBorderCard1"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageBorderCard1"
-            android:layout_width="116dp"
-            android:layout_height="224dp"
-            android:layout_marginBottom="3dp"
-            android:layout_marginStart="1dp"
+            android:layout_width="150dp"
+            android:layout_height="235dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/image_border"
             android:padding="7dp"
             android:scaleType="centerInside"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/card1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintEnd_toStartOf="@+id/imageBorderCard2"
+            app:layout_constraintStart_toEndOf="@+id/imageBorderCard0"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageBorderCard2"
-            android:layout_width="120dp"
-            android:layout_height="224dp"
-            android:layout_marginStart="2dp"
+            android:layout_width="150dp"
+            android:layout_height="235dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/image_border"
             android:padding="7dp"
             android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card2"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageBorderCard3"
+            app:layout_constraintStart_toEndOf="@+id/imageBorderCard1"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageBorderCard3"
-            android:layout_width="118dp"
-            android:layout_height="224dp"
+            android:layout_width="150dp"
+            android:layout_height="235dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/image_border"
             android:padding="7dp"
             android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card3"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageBorderCard4"
+            app:layout_constraintStart_toEndOf="@+id/imageBorderCard2"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageBorderCard4"
-            android:layout_width="118dp"
-            android:layout_height="224dp"
-            android:layout_marginStart="1dp"
+            android:layout_width="150dp"
+            android:layout_height="235dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/image_border"
             android:padding="7dp"
             android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card4"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageBorderCard3"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageBorderCard5"
-            android:layout_width="111dp"
-            android:layout_height="223dp"
-            android:layout_marginStart="1dp"
-            android:padding="7dp"
-            android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="@+id/card5"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/imageButtonCard0"
+            android:layout_width="140dp"
+            android:layout_height="220dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/attackplus"
+            android:onClick="firstcardPress"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/imageBorderCard0"
+            app:layout_constraintEnd_toEndOf="@+id/imageBorderCard0"
+            app:layout_constraintStart_toStartOf="@+id/imageBorderCard0"
+            app:layout_constraintTop_toTopOf="@+id/imageBorderCard0"
+            app:layout_constraintVertical_bias="0.0" />
 
 
+        <ImageButton
+            android:id="@+id/imageButtonCard1"
+            android:layout_width="140dp"
+            android:layout_height="220dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/attackplus"
+            android:onClick="secondcardPress"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/imageBorderCard1"
+            app:layout_constraintEnd_toEndOf="@+id/imageBorderCard1"
+            app:layout_constraintStart_toStartOf="@+id/imageBorderCard1"
+            app:layout_constraintTop_toTopOf="@+id/imageBorderCard1"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageButton
+            android:id="@+id/imageButtonCard2"
+            android:layout_width="140dp"
+            android:layout_height="220dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/attackphash"
+            android:onClick="thirdcardPress"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/imageBorderCard2"
+            app:layout_constraintEnd_toEndOf="@+id/imageBorderCard2"
+            app:layout_constraintStart_toStartOf="@+id/imageBorderCard2"
+            app:layout_constraintTop_toTopOf="@+id/imageBorderCard2" />
+
+        <ImageButton
+            android:id="@+id/imageButtonCard3"
+            android:layout_width="140dp"
+            android:layout_height="220dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/attackphash"
+            android:onClick="fourthcardPress"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/imageBorderCard3"
+            app:layout_constraintEnd_toEndOf="@+id/imageBorderCard3"
+            app:layout_constraintStart_toStartOf="@+id/imageBorderCard3"
+            app:layout_constraintTop_toTopOf="@+id/imageBorderCard3" />
+
+        <ImageButton
+            android:id="@+id/imageButtonCard4"
+            android:layout_width="140dp"
+            android:layout_height="220dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/attackphash"
+            android:onClick="fifthcardPress"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/imageBorderCard4"
+            app:layout_constraintEnd_toEndOf="@+id/imageBorderCard4"
+            app:layout_constraintStart_toStartOf="@+id/imageBorderCard4"
+            app:layout_constraintTop_toTopOf="@+id/imageBorderCard4"
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/minerP"
             android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_height="85dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -245,7 +234,7 @@
         <TextView
             android:id="@+id/cSpeedP"
             android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_height="85dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -259,14 +248,14 @@
         <TextView
             android:id="@+id/botnetP"
             android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_height="85dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="botnetP"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cSpeedP" />
 
@@ -305,9 +294,11 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="100dp"
         android:layout_height="24dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout4"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/healthP" />
 
@@ -316,63 +307,55 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="100dp"
         android:layout_height="25dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
         app:layout_constraintTop_toBottomOf="@+id/healthE" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout4"
-        android:layout_width="243dp"
-        android:layout_height="218dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/playedCard1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
+        <ImageView
+            android:id="@+id/imageViewPlayedCard0"
+            android:layout_width="140dp"
+            android:layout_height="220dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:paddingLeft="3dp"
-            android:text="playedCard1"
+            android:background="@drawable/attackplus"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/playedCard0"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/playedCard0"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
-            android:paddingLeft="3dp"
-            android:text="playedCard0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/playedCard1"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewPlayedCard1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageViewPlayedCard1"
+            android:layout_width="140dp"
+            android:layout_height="220dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/attackplus"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPlayedCard0"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </android.support.constraint.ConstraintLayout>
 
     <TextView
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="11dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginBottom="4dp"
         android:text="Timer"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toStartOf="@+id/pauseBtn"
@@ -384,6 +367,7 @@
         android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="128dp"
+        android:layout_marginTop="4dp"
         android:onClick="pauseMessage"
         android:text="Pause"
         app:layout_constraintBottom_toTopOf="@+id/timer"
@@ -394,13 +378,15 @@
 
     <TextView
         android:id="@+id/healthP"
-        android:layout_width="82dp"
-        android:layout_height="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:scrollbarSize="50dip"
-        android:text="Health: 100%"
+        android:text="100%"
         app:layout_constraintBottom_toTopOf="@+id/healthPBarP"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout4"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/player1" />
 
@@ -408,27 +394,26 @@
         android:id="@+id/healthE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Health: 100%"
+        android:text="100%"
         app:layout_constraintBottom_toTopOf="@+id/healthPBarE"
-        app:layout_constraintStart_toStartOf="@+id/player2"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
         app:layout_constraintTop_toBottomOf="@+id/player2" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/minerE"
             android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_height="85dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -442,7 +427,7 @@
         <TextView
             android:id="@+id/cSpeedE"
             android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_height="85dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -457,7 +442,7 @@
         <TextView
             android:id="@+id/botnetE"
             android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_height="85dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -474,6 +459,7 @@
         android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="128dp"
+        android:layout_marginTop="4dp"
         android:text="Discard Mode"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toStartOf="@+id/pauseBtn"
@@ -485,13 +471,12 @@
         android:id="@+id/gameTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="21dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="4dp"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/timer"
         app:layout_constraintEnd_toStartOf="@+id/pauseBtn"
         app:layout_constraintStart_toEndOf="@+id/discardBtn"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+
 </android.support.constraint.ConstraintLayout>
