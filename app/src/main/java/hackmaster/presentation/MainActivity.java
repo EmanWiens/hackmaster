@@ -67,8 +67,9 @@ public class MainActivity extends AppCompatActivity {
             ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
             imageView.setBackgroundResource(returnImageCardID(card.getID()));
 
-            if (gameInSession.getRenderDelayToggle())
+            if (gameInSession.getRenderDelayToggle()) {
                 gameInSession.setRenderDelayToggle(false);
+            }
         }
     }
 
@@ -194,6 +195,8 @@ public class MainActivity extends AppCompatActivity {
         PlayerClass player1 = gameInSession.getPlayer1();
         PlayerClass player2 = gameInSession.getPlayer2();
 
+        TextView playerTurnText=(TextView)findViewById(R.id.playerTurn);
+
         if (!gameInSession.gamePaused()) {
             renderPlayerResource(player1);
             renderPlayerResource(player2);
@@ -204,12 +207,25 @@ public class MainActivity extends AppCompatActivity {
 
                 if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
                     renderPlayedCard(playedCardTwo, true);
+
+//                if (gameInSession.getRenderDelayToggle())
+//                    playerTurnText.setText("Player 1 Turn");
+//                else
+//                    playerTurnText.setText("AI Turn");
             }
             else if (gameInSession instanceof MultiplayerGame) {
+
                 if(!gameInSession.getPlayer1Turn() && playedCardOne != null)
                     renderPlayedCard(playedCardOne, false);
                 else if (gameInSession.getPlayer1Turn() && playedCardTwo != null)
                     renderPlayedCard(playedCardTwo, false);
+
+                if (gameInSession.getPlayer1Turn()) {
+                    playerTurnText.setText("Player 1's Turn");
+                }
+                else {
+                    playerTurnText.setText("Player 2's Turn");
+                }
             }
 
             if (gameInSession.getPlayer1Turn()) {
@@ -224,6 +240,7 @@ public class MainActivity extends AppCompatActivity {
                         renderCard(player2.getCards()[i], i);
                 }
             }
+
         }
     }
 

@@ -41,8 +41,9 @@ public abstract class Game {
         if (getDiscard()) {
             ResourceManager.applyCard(player1Turn, player1, player2, doNothing);
             discardOff();
-        } else
+        } else {
             ResourceManager.applyCard(player1Turn, player1, player2, playedCard);
+        }
         player.setCard(playerCard, nextCard);
     }
 
