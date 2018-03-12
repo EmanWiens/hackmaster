@@ -42,11 +42,9 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="860dp"
         android:layout_height="248dp"
-        android:layout_marginTop="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <ImageView
@@ -354,11 +352,13 @@
         android:id="@+id/pauseBtn"
         android:layout_width="128dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:onClick="pauseMessage"
         android:text="Pause"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
         app:layout_constraintStart_toEndOf="@+id/playerTurn"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
@@ -447,9 +447,10 @@
         android:id="@+id/discardBtn"
         android:layout_width="128dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:onClick="discardPress"
         android:text="Discard Mode"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
