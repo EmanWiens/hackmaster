@@ -34,14 +34,6 @@ public abstract class Game {
 
     public void playCardEvent(int playerCard) { System.out.print("Error in game. Please try starting a new game."); }
 
-    // TODO unused delete?
-    public boolean cantPlayCard(PlayerClass player) {
-        for (int i = 0; i < player.cardsSize(); i++)
-            if (checkCard(i, player))
-                return false;
-        return true;
-    }
-
     public void playerTurn(int playerCard, PlayerClass player) {
         CardClass nextCard = DeckManager.dealNextCard();
         CardClass doNothing = new CardClass(-1, "Do Nothing", "Do Nothing", "Do Nothing", null, null);
@@ -85,14 +77,8 @@ public abstract class Game {
         return canPlay;
     }
 
-    public int getPlayerNum() {
-        if(player1Turn)
-            return 0;
-        else
-            return 1;
-    }
 
-    // TODO test this (marc)
+    //test this (marc)
     public boolean gameDone() {
         boolean result = false;
         if (player2.getHealth() < 1) {
@@ -105,8 +91,9 @@ public abstract class Game {
     }
 
     public void initStats() {
-        if(pStats == null)
+        if(pStats == null) {
             pStats = new PlayerStatsSaves();
+        }
 
         pStats.setPlayerName("Player_1");
     }
@@ -133,6 +120,8 @@ public abstract class Game {
     public void setDeck(CardClass[] set) { DeckManager.setDeck(set); }
     public CardClass getDeckCardAt(int i) { return DeckManager.getCardAt(i); }
     public CardClass[] getDeck() { return DeckManager.getDeck(); }
+    public ResourceClass getPlayer1Res() { return player1.getResources(); }
+    public ResourceClass getPlayer2Res() { return player2.getResources(); }
     public int getDeckMangerDealNextCard() { return DeckManager.getNextIndex(); }
 
     // TODO test these (marc)

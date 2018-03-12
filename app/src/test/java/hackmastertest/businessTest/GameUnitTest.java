@@ -1,5 +1,6 @@
 package hackmastertest.businessTest;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,10 +9,12 @@ import hackmaster.business.DeckManager;
 import hackmaster.business.Game;
 import hackmaster.business.SetUpGame;
 import hackmaster.objects.CardClass;
+import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmastertest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.fail;
 
@@ -72,7 +75,6 @@ public class GameUnitTest {
 
         testGame.setDeck(resetDeck());
         assertEquals(10, testGame.getDeck().length);
-
     }
 
     private void setPlayerHands() {
@@ -81,43 +83,12 @@ public class GameUnitTest {
         testGame.getPlayer1().setCard(2, testGame.getDeckCardAt(2));
         testGame.getPlayer1().setCard(3, testGame.getDeckCardAt(3));
         testGame.getPlayer1().setCard(4, testGame.getDeckCardAt(4));
+
         testGame.getPlayer2().setCard(0, testGame.getDeckCardAt(5));
         testGame.getPlayer2().setCard(1, testGame.getDeckCardAt(6));
         testGame.getPlayer2().setCard(2, testGame.getDeckCardAt(7));
         testGame.getPlayer2().setCard(3, testGame.getDeckCardAt(8));
         testGame.getPlayer2().setCard(4, testGame.getDeckCardAt(9));
-    }
-
-    @Test
-    public void testSetUpSingleGame() {
-        assertEquals("HackerMan", testGame.getPlayer1().getName());
-        assertEquals(0, testGame.getPlayer1().getId());
-        assertEquals(100, testGame.getPlayer1().getResources().getHealth());
-        assertEquals(10, testGame.getPlayer1().getResources().gethCoin());
-        assertEquals(2, testGame.getPlayer1().getResources().gethCoinRate());
-        assertEquals(10, testGame.getPlayer1().getResources().getBotnet());
-        assertEquals(2, testGame.getPlayer1().getResources().getBotnetRate());
-        assertEquals(2, testGame.getPlayer1().getResources().getCpuRate());
-        assertEquals(10, testGame.getPlayer1().getResources().getCpu());
-
-
-        assertEquals(1, testGame.getPlayer2().getId());
-        assertEquals("Enemy Bot", testGame.getPlayer2().getName());
-        assertEquals(100, testGame.getPlayer2().getResources().getHealth());
-        assertEquals(10, testGame.getPlayer2().getResources().gethCoin());
-        assertEquals(2, testGame.getPlayer2().getResources().gethCoinRate());
-        assertEquals(10, testGame.getPlayer2().getResources().getBotnet());
-        assertEquals(2, testGame.getPlayer2().getResources().getBotnetRate());
-        assertEquals(2, testGame.getPlayer2().getResources().getCpuRate());
-        assertEquals(10, testGame.getPlayer2().getResources().getCpu());
-    }
-
-    @Test
-    public void testPlayCardEvent()
-    {
-       testGame.playCardEvent(4);
-       // is this failing because of the delay?
-       assertEquals("Should be Player 1 Turn", 0, testGame.getPlayerNum());
     }
 
     @Test
@@ -138,7 +109,7 @@ public class GameUnitTest {
 
     @Test
     public void testCheckCard() {
-        resetDeck();
+        testGame.setDeck(resetDeck());
         setPlayerHands();
 
         assertEquals( true, testGame.checkCard(0, testGame.getPlayer1()));
@@ -146,6 +117,7 @@ public class GameUnitTest {
         assertEquals(false, testGame.checkCard(2, testGame.getPlayer1()));
         assertEquals(false, testGame.checkCard(3, testGame.getPlayer1()));
         assertEquals(false, testGame.checkCard(4, testGame.getPlayer1()));
+
         assertEquals(false, testGame.checkCard(0, testGame.getPlayer2()));
         assertEquals(true, testGame.checkCard(1, testGame.getPlayer2()));
         assertEquals(true, testGame.checkCard(2, testGame.getPlayer2()));
@@ -155,34 +127,36 @@ public class GameUnitTest {
 
     @Test
     public void testDiscardCardPlayer1(){
-        resetDeck();
+        testGame.setDeck(resetDeck());
         setPlayerHands();
         DeckManager.resetIndex();
 
-        assertEquals("The player card at index 0 should be Nothing ", "Nothing", testGame.getPlayer1().getCard(0).getName());
-        assertEquals("The player card at index 1 should be Normal Card", "Normal card", testGame.getPlayer1().getCard(1).getName());
-        assertEquals("The player card at index 2 should be Expensive Health", "Expensive Health", testGame.getPlayer1().getCard(2).getName());
+        assertEquals("Nothing", testGame.getPlayer1().getCard(0).getName());
+        assertEquals("Normal card", testGame.getPlayer1().getCard(1).getName());
+        assertEquals("Expensive Health", testGame.getPlayer1().getCard(2).getName());
 
         testGame.discardCard(4, testGame.getPlayer1());
-        //assertEquals("The card should be at index 0 if the deck",true, testGame.getPlayer1().getCard(4).equals(testGame.getDeckCardAt(0)));
-        assertEquals("The player card at index 0 should be Nothing", "Nothing", testGame.getPlayer1().getCard(4).getName());
+        assert(testGame.getPlayer1().getCard(4).equals(testGame.getDeckCardAt(0)));
+        assertEquals("Nothing", testGame.getPlayer1().getCard(4).getName());
 
         testGame.discardCard(3, testGame.getPlayer1());
-        //assertEquals("The card should be at index 1 if the deck",true, testGame.getPlayer1().getCard(3).equals(testGame.getDeckCardAt(1)));
-        assertEquals("The player card at index4 should have the name Normal card", "Normal card", testGame.getPlayer1().getCard(3).getName());
+        assert(testGame.getPlayer1().getCard(3).equals(testGame.getDeckCardAt(1)));
+        assertEquals("Normal card", testGame.getPlayer1().getCard(3).getName());
 
         testGame.discardCard(2, testGame.getPlayer1());
-        //assertEquals("The card should be at index 2 of the deck", true, testGame.getPlayer1().getCard(2).equals(testGame.getDeckCardAt(2)));
-        assertEquals("The player card at index 2 should be Expensive Health", "Expensive Health", testGame.getPlayer1().getCard(2).getName());
+        assert(testGame.getPlayer1().getCard(2).equals(testGame.getDeckCardAt(2)));
+        assertEquals("Expensive Health", testGame.getPlayer1().getCard(2).getName());
 
-        testGame.discardCard(1, testGame.getPlayer1());
-        //assertEquals("The card should be at index 3 of the deck", true, testGame.getPlayer1().getCard(1).equals(testGame.getDeckCardAt(3)));
-        assertEquals("The player card at index 1 should be Expensive HCoin", "Expensive HCoin", testGame.getPlayer1().getCard(1).getName());
+        testGame.discardCard(4, testGame.getPlayer1());
+        testGame.discardCard(4, testGame.getPlayer1());
+        testGame.discardCard(4, testGame.getPlayer1());
+        testGame.discardCard(4, testGame.getPlayer1());
+        assert(testGame.getPlayer1().getCard(2).equals(testGame.getDeckCardAt(3)));
+        assertEquals("Normal card", testGame.getPlayer1().getCard(1).getName());
     }
 
     @Test
     public void testCheckStats() {
-
         testGame.initStats();
         assertNotNull(testGame.getPlayerName());
         assertEquals("The player name should be Player_1", "Player_1", testGame.getPlayerName());
