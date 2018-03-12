@@ -9,7 +9,6 @@ public abstract class SetUpGame {
 
     public static Game setUpSinglePlayerGame() {
         DeckManager.initDeck();
-        DeckManager.shuffleDeck();
 
         PlayerClass player1 = new PlayerClass(0,
                 "HackerMan",
@@ -24,7 +23,6 @@ public abstract class SetUpGame {
 
     public static Game setUpMultiplayerGame() {
         DeckManager.initDeck();
-        DeckManager.shuffleDeck();
 
         PlayerClass player1 = new PlayerClass(0,
                 "HackerMan",

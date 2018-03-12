@@ -126,7 +126,6 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
         tempCard = new CardClass(28, "Mass Hack", "Attack", "Extreme Use of CPU",
                 new ResourceClass(20, 0, 0, 0, 0, -50, 0), new ResourceClass(-25, 0, 0, 0, 0, 0, 0));
         cards.add(tempCard);
-
     }
 
     public void close() { }

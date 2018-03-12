@@ -38,10 +38,4 @@ public class PlayerStatsSavesTest {
         assertEquals("The total wins 0.0", 0.0, playerStats.getWin(), 0.01);
         assertEquals("The Level should be 0", 0, playerStats.getLevel());
     }
-
-    @After
-    public void tearDown() {
-        playerStats = null;
-    }
-
 }

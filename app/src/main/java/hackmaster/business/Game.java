@@ -45,7 +45,7 @@ public abstract class Game {
         } else {
             ResourceManager.applyCard(player1Turn, player1, player2, playedCard);
         }
-        
+
         player.setCard(playerCard, nextCard);
     }
 
@@ -125,7 +125,6 @@ public abstract class Game {
     public CardClass[] getDeck() { return DeckManager.getDeck(); }
     public ResourceClass getPlayer1Res() { return player1.getResources(); }
     public ResourceClass getPlayer2Res() { return player2.getResources(); }
-    public int getDeckMangerDealNextCard() { return DeckManager.getNextIndex(); }
 
     // TODO test these (marc)
     public void discardOn() {discard = true;}
