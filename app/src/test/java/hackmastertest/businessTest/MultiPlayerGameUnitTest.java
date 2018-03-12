@@ -46,32 +46,32 @@ public class MultiPlayerGameUnitTest {
     public void testPlayer1Resources() {
         player1Res = game.getPlayer1Res();
 
-        assertEquals(SetUpGame.startOfGameResources.getBotnet(), player1Res.getBotnet());
-        assertEquals(SetUpGame.startOfGameResources.getBotnetRate(), player1Res.getBotnetRate());
+        assertEquals(SetUpGame.startOfGameResources().getBotnet(), player1Res.getBotnet());
+        assertEquals(SetUpGame.startOfGameResources().getBotnetRate(), player1Res.getBotnetRate());
 
-        assertEquals(SetUpGame.startOfGameResources.getCpu(), player1Res.getCpu());
-        assertEquals(SetUpGame.startOfGameResources.getCpuRate(), player1Res.getCpuRate());
+        assertEquals(SetUpGame.startOfGameResources().getCpu(), player1Res.getCpu());
+        assertEquals(SetUpGame.startOfGameResources().getCpuRate(), player1Res.getCpuRate());
 
-        assertEquals(SetUpGame.startOfGameResources.gethCoin(), player1Res.gethCoin());
-        assertEquals(SetUpGame.startOfGameResources.gethCoinRate(), player1Res.gethCoinRate());
+        assertEquals(SetUpGame.startOfGameResources().gethCoin(), player1Res.gethCoin());
+        assertEquals(SetUpGame.startOfGameResources().gethCoinRate(), player1Res.gethCoinRate());
 
-        assertEquals(SetUpGame.startOfGameResources.getHealth(), player1Res.getHealth());
+        assertEquals(SetUpGame.startOfGameResources().getHealth(), player1Res.getHealth());
     }
 
     @Test
     public void testPlayer2Resources() {
         player2Res = game.getPlayer2Res();
 
-        assertEquals(SetUpGame.startOfGameResources.getBotnet(), player2Res.getBotnet());
-        assertEquals(SetUpGame.startOfGameResources.getBotnetRate(), player2Res.getBotnetRate());
+        assertEquals(SetUpGame.startOfGameResources().getBotnet(), player2Res.getBotnet());
+        assertEquals(SetUpGame.startOfGameResources().getBotnetRate(), player2Res.getBotnetRate());
 
-        assertEquals(SetUpGame.startOfGameResources.getCpu(), player2Res.getCpu());
-        assertEquals(SetUpGame.startOfGameResources.getCpuRate(), player2Res.getCpuRate());
+        assertEquals(SetUpGame.startOfGameResources().getCpu(), player2Res.getCpu());
+        assertEquals(SetUpGame.startOfGameResources().getCpuRate(), player2Res.getCpuRate());
 
-        assertEquals(SetUpGame.startOfGameResources.gethCoin(), player2Res.gethCoin());
-        assertEquals(SetUpGame.startOfGameResources.gethCoinRate(), player2Res.gethCoinRate());
+        assertEquals(SetUpGame.startOfGameResources().gethCoin(), player2Res.gethCoin());
+        assertEquals(SetUpGame.startOfGameResources().gethCoinRate(), player2Res.gethCoinRate());
 
-        assertEquals(SetUpGame.startOfGameResources.getHealth(), player2Res.getHealth());
+        assertEquals(SetUpGame.startOfGameResources().getHealth(), player2Res.getHealth());
     }
 
     @Test
