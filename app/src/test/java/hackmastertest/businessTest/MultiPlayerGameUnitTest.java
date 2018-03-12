@@ -4,10 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import hackmaster.application.Services;
-import hackmaster.business.DeckManager;
 import hackmaster.business.Game;
+import hackmaster.business.MultiPlayerGame;
 import hackmaster.business.SetUpGame;
-import hackmaster.business.SinglePlayerGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
@@ -16,9 +15,8 @@ import hackmastertest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.fail;
 
-public class SinglePlayerGameUnitTest {
+public class MultiPlayerGameUnitTest {
     Game game;
     PlayerClass player1;
     PlayerClass player2;
@@ -34,12 +32,12 @@ public class SinglePlayerGameUnitTest {
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub,dbStub,dbStub);
 
-        game = SetUpGame.setUpSinglePlayerGame();
+        game = SetUpGame.setUpMultiplayerGame();
     }
 
     @Test
     public void testSetupInstances() {
-        assert(game instanceof SinglePlayerGame);
+        assert(game instanceof MultiPlayerGame);
         assert(player1 instanceof PlayerClass);
         assert (player2 instanceof EnemyAI);
     }
@@ -126,15 +124,20 @@ public class SinglePlayerGameUnitTest {
         assertEquals(game.getPlayedCardOne().getName(), beforePlayed.getName());
         assertFalse(beforePlayed.getName().equals(game.getPlayer1().getCard(4).getName()));
 
-        beforePlayed = game.getPlayer1().getCard(1);
+        beforePlayed = game.getPlayer2().getCard(1);
         game.playCardEvent(1);
-        assertEquals(game.getPlayedCardOne().getName(), beforePlayed.getName());
+        assertEquals(game.getPlayedCardTwo().getName(), beforePlayed.getName());
         assertFalse(beforePlayed.getName().equals(game.getPlayer1().getCard(1).getName()));
 
         beforePlayed = game.getPlayer1().getCard(2);
         game.playCardEvent(2);
         assertEquals(game.getPlayedCardOne().getName(), beforePlayed.getName());
         assertFalse(beforePlayed.getName().equals(game.getPlayer1().getCard(2).getName()));
+
+        beforePlayed = game.getPlayer2().getCard(3);
+        game.playCardEvent(3);
+        assertEquals(game.getPlayedCardTwo().getName(), beforePlayed.getName());
+        assertFalse(beforePlayed.getName().equals(game.getPlayer1().getCard(3).getName()));
     }
 
     @Test
@@ -142,13 +145,13 @@ public class SinglePlayerGameUnitTest {
         assert(game.getPlayer1Turn());
         game.playCardEvent(4);
 
-        assert(game.getPlayer1Turn());
+        assert(!game.getPlayer1Turn());
         game.playCardEvent(3);
 
         assert(game.getPlayer1Turn());
         game.playCardEvent(3);
 
-        assert(game.getPlayer1Turn());
+        assert(!game.getPlayer1Turn());
         game.playCardEvent(3);
     }
 }

@@ -5,12 +5,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Set;
 
+import hackmaster.application.Services;
+import hackmaster.business.DeckManager;
+import hackmaster.business.Game;
 import hackmaster.business.ResourceManager;
+import hackmaster.business.SetUpGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
+import hackmastertest.persistenceTest.DataAccessStub;
+
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.fail;
 
@@ -25,6 +32,10 @@ public class ResourceManagerUnitTest {
 
     @Before
     public void setUp() {
+        Services.closeDataAccess();
+        DataAccessStub dbStub = new DataAccessStub("stub");
+        Services.createDataAccess(dbStub,dbStub,dbStub);
+
         int count = 0;
         testDeck[count] = new CardClass(0, "CPU Boost", "Upgrade", "Upgrade your CPU",
                 new ResourceClass(0, -10, 0, 0, 0, 1, 0), null);
