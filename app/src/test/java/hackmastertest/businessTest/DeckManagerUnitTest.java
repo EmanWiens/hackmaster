@@ -22,6 +22,10 @@ public class DeckManagerUnitTest {
         DeckManager.initDeck();
     }
 
+    @Test
+    public void testingStandardForTeamB() {
+        fail("From now on no messages in asserts");
+    }
 
     @Test
     public void testDealInitialHand() {

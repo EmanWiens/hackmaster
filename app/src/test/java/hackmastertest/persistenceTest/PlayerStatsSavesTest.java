@@ -20,6 +20,11 @@ public class PlayerStatsSavesTest {
 
     @Test
     public void testLevelUp() {
+        assertEquals("The Level should be 0",0, playerStats.getLevel());
+
+        playerStats.addLevel();
+        assertEquals("The Level should be 1",1, playerStats.getLevel());
+
         playerStats.addLevel();
         assertEquals("The Level should be 1",1, playerStats.getLevel());
     }

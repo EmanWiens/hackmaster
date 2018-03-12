@@ -30,6 +30,4 @@ import hackmastertest.persistenceTest.PlayerStatsSavesTest;
         PlayerDataAccessTest.class,
         PlayerStatsSavesTest.class
 })
-public class AllTests {
-
-}
+public class AllTests { }

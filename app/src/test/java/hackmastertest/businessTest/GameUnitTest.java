@@ -159,12 +159,12 @@ public class GameUnitTest {
     public void testCheckStats() {
         testGame.initStats();
         assertNotNull(testGame.getPlayerName());
-        assertEquals("The player name should be Player_1", "Player_1", testGame.getPlayerName());
-        assertEquals("The Players wins should be 0", 0, testGame.getWin());
+        assertEquals("Player_1", testGame.getPlayerName());
+        assertEquals(0, testGame.getWin());
         testGame.addWin();
-        assertEquals("The Players wins should be 1", 1, testGame.getWin());
+        assertEquals(1, testGame.getWin());
         testGame.addLoss();
-        assertEquals("The Players wins should be 1", 1, testGame.getWin());
+        assertEquals(1, testGame.getWin());
     }
 
     @Test

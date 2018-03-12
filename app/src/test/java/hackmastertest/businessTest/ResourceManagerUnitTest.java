@@ -84,9 +84,6 @@ public class ResourceManagerUnitTest {
     }
 
     private CardClass[] setDeck() {
-        // player negative is cost and positive is gain
-        // enemy negative is loss and positive is gain
-
         ArrayList<CardClass> testDeck = new ArrayList<>();
         testDeck.add(new CardClass(0, "-101 health", "Defense", "Do Nothing",
                 new ResourceClass(-101, 0, 0, 0, 0, 0, 0), null));
@@ -186,6 +183,22 @@ public class ResourceManagerUnitTest {
         assertEquals(2, player3.getResources().gethCoin());
         assertEquals(2, player3.getResources().getCpu());
         assertEquals(2, player3.getResources().getBotnet());
+
+        ResourceManager.applyTurnRate(player3);
+        assertEquals(3, player3.getResources().gethCoin());
+        assertEquals(3, player3.getResources().getCpu());
+        assertEquals(3, player3.getResources().getBotnet());
+
+        ResourceManager.applyTurnRate(player3);
+        ResourceManager.applyTurnRate(player3);
+        assertEquals(5, player3.getResources().gethCoin());
+        assertEquals(5, player3.getResources().getCpu());
+        assertEquals(5, player3.getResources().getBotnet());
+    }
+
+    @Test
+    public void testApplyTurnRateAfterCard() {
+        fail("Manually add a cards resources to the player and apply the turn rate to make sure all rates are being applied after the new card");
     }
 
     @Test
