@@ -1,17 +1,11 @@
 package hackmastertest.businessTest;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Set;
-
 import hackmaster.application.Services;
-import hackmaster.business.DeckManager;
-import hackmaster.business.Game;
 import hackmaster.business.ResourceManager;
-import hackmaster.business.SetUpGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
@@ -93,7 +87,7 @@ public class ResourceManagerUnitTest {
         // player negative is cost and positive is gain
         // enemy negative is loss and positive is gain
 
-        ArrayList<CardClass> testDeck = new ArrayList<CardClass>();
+        ArrayList<CardClass> testDeck = new ArrayList<>();
         testDeck.add(new CardClass(0, "-101 health", "Defense", "Do Nothing",
                 new ResourceClass(-101, 0, 0, 0, 0, 0, 0), null));
         testDeck.add(new CardClass(0, "-100 health", "Defense", "Costs a normal amount",
@@ -189,9 +183,9 @@ public class ResourceManagerUnitTest {
     @Test
     public void testApplyTurnRate() {
         ResourceManager.applyTurnRate(player3);
-        assertEquals("The hCoinRate of player3 should be 2", 2, player3.getResources().gethCoin());
-        assertEquals("The terraFlops of player3 should be 2", 2, player3.getResources().getCpu());
-        assertEquals("The botnetRate of player3 should be 2", 2, player3.getResources().getBotnet());
+        assertEquals(2, player3.getResources().gethCoin());
+        assertEquals(2, player3.getResources().getCpu());
+        assertEquals(2, player3.getResources().getBotnet());
     }
 
     @Test

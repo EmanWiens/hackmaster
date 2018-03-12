@@ -14,7 +14,7 @@ public abstract class Game {
 
     private boolean player1Turn;
     private boolean paused;
-    private boolean renderDelayToggle;
+    private boolean renderDelay;
 
     private static CardClass playedCardOne;
     private static CardClass playedCardTwo;
@@ -80,7 +80,6 @@ public abstract class Game {
         return canPlay;
     }
 
-
     //test this (marc)
     public boolean gameDone() {
         boolean result = false;
@@ -107,8 +106,8 @@ public abstract class Game {
     public int getWin() {return pStats.getWin();}
     public void addWin() { pStats.addWin();}
     public void addLoss() { pStats.addLoss();}
-    public boolean getRenderDelayToggle() { return renderDelayToggle; }
-    public void setRenderDelayToggle(boolean set) { renderDelayToggle = set; }
+    public boolean getRenderDelay() { return renderDelay; }
+    public void setRenderDelay(boolean set) { renderDelay = set; }
     public CardClass getPlayedCardOne() { return playedCardOne; }
     public CardClass getPlayedCardTwo() { return playedCardTwo; }
     public void pauseGame() { paused = true; }

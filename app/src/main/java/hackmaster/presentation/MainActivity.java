@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import hackmaster.application.DBController;
-import hackmaster.business.DeckManager;
 import hackmaster.business.Game;
 import hackmaster.business.MultiplayerGame;
 import hackmaster.business.SetUpGame;
@@ -62,14 +61,14 @@ public class MainActivity extends AppCompatActivity {
         Handler handler = new Handler();
         if (aiDelay && !gameDone()) {
             handler.postDelayed(delayRender(), 1850); // DELAY
-            gameInSession.setRenderDelayToggle(true);
+            gameInSession.setRenderDelay(true);
         }
         else if (gameInSession != null && !gameInSession.gamePaused()) {
             ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
             imageView.setBackgroundResource(returnImageCardID(card.getID()));
 
-            if (gameInSession.getRenderDelayToggle()) {
-                gameInSession.setRenderDelayToggle(false);
+            if (gameInSession.getRenderDelay()) {
+                gameInSession.setRenderDelay(false);
             }
         }
     }
@@ -203,13 +202,13 @@ public class MainActivity extends AppCompatActivity {
             renderPlayerResource(player2);
 
             if (gameInSession instanceof SinglePlayerGame ) {
-                if (playedCardOne != null && !gameInSession.getRenderDelayToggle())
+                if (playedCardOne != null && !gameInSession.getRenderDelay())
                     renderPlayedCard(playedCardOne, false);
 
                 if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
                     renderPlayedCard(playedCardTwo, true);
 
-//                if (gameInSession.getRenderDelayToggle())
+//                if (gameInSession.getRenderDelay())
                     playerTurnText.setText("Player 1 Turn");
 //                else
 //                    playerTurnText.setText("AI Turn");
@@ -265,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void firstcardPress(View v)
     {
-        if (!gameInSession.getRenderDelayToggle()) {
+        if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(0);
             renderBattleView();
             renderPressedCardBorder(0);
@@ -277,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void secondcardPress(View v)
     {
-        if (!gameInSession.getRenderDelayToggle()) {
+        if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(1);
             renderBattleView();
             renderPressedCardBorder(1);
@@ -289,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void thirdcardPress(View v)
     {
-        if (!gameInSession.getRenderDelayToggle()) {
+        if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(2);
             renderBattleView();
             renderPressedCardBorder(2);
@@ -301,7 +300,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void fourthcardPress(View v)
     {
-        if (!gameInSession.getRenderDelayToggle()) {
+        if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(3);
             renderBattleView();
             renderPressedCardBorder(3);
@@ -313,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void fifthcardPress(View v)
     {
-        if (!gameInSession.getRenderDelayToggle()) {
+        if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(4);
             renderBattleView();
             renderPressedCardBorder(4);

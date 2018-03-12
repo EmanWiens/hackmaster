@@ -1,7 +1,6 @@
 package hackmaster.objects;
 
 import java.util.ArrayList;
-
 import hackmaster.business.Game;
 
 public class PlayerClass {
