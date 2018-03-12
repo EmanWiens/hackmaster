@@ -166,4 +166,25 @@ public class GameUnitTest {
         testGame.addLoss();
         assertEquals("The Players wins should be 1", 1, testGame.getWin());
     }
+
+    @Test
+    public void testCheckPause() {
+        testGame.pauseGame();
+        assert(testGame.gamePaused());
+
+        testGame.unpauseGame();
+        assert(!testGame.gamePaused());
+
+        testGame.unpauseGame();
+        testGame.unpauseGame();
+        assert(!testGame.gamePaused());
+
+        testGame.pauseGame();
+        testGame.unpauseGame();
+        assert(!testGame.gamePaused());
+
+        testGame.pauseGame();
+        testGame.pauseGame();
+        assert(!testGame.gamePaused());
+    }
 }
