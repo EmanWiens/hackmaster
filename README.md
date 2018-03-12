@@ -55,3 +55,10 @@ Stats: brings you to the same stats page as in the game<br />
  <br />
 Build once, if build doesn't work go to build->clean build. Then hit play.<br /> 
 If you can't run the simulator got on tools->android->sync gradle.<br />
+
+## Credit to Music
+ <br />"Java" Song : https://www.youtube.com/watch?v=b-Cr0EWwaTk<br /> 
+ <br />"Dual_Core" Song: https://www.youtube.com/watch?v=FoUWHfh733Y&index=21&list=RDiN1uaITfA1c <br /> 
+  <br />"Hacker" Song: https://www.youtube.com/watch?v=iN1uaITfA1c&index=1&list=RDiN1uaITfA1c<br /> 
+ <br />"Welcome To Our World" Song: https://www.youtube.com/watch?v=rLsJCCNXUto&list=RDiN1uaITfA1c&index=3<br /> 
+  <br />"Pirate Music" Song: https://www.youtube.com/watch?v=Gc74aRe7OLM <br /> 

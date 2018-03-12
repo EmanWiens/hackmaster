@@ -19,7 +19,7 @@ public abstract class Game {
     private static CardClass playedCardOne;
     private static CardClass playedCardTwo;
 
-    private boolean discard = false;
+    private boolean discard;
 
     public Game(PlayerClass p1, PlayerClass p2) {
         player1 = p1;
