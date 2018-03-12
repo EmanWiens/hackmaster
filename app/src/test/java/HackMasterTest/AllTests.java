@@ -12,6 +12,7 @@ import hackmastertest.objectsTest.CardClassUnitTest;
 import hackmastertest.objectsTest.EnemyAIUnitTest;
 import hackmastertest.objectsTest.PlayerClassUnitTest;
 import hackmastertest.objectsTest.ResourceClassUnitTest;
+import hackmastertest.persistenceTest.PlayerDataAccessTest;
 import hackmastertest.persistenceTest.PlayerStatsSavesTest;
 
 @RunWith(Suite.class)
@@ -25,7 +26,9 @@ import hackmastertest.persistenceTest.PlayerStatsSavesTest;
         ResourceClassUnitTest.class,
         PlayerStatsSavesTest.class,
         SinglePlayerGameUnitTest.class,
-        MultiPlayerGameUnitTest.class
+        MultiPlayerGameUnitTest.class,
+        PlayerDataAccessTest.class,
+        PlayerStatsSavesTest.class
 })
 public class AllTests {
 

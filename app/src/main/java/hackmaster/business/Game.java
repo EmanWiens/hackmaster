@@ -80,7 +80,6 @@ public abstract class Game {
         return canPlay;
     }
 
-
     //test this (marc)
     public boolean gameDone() {
         boolean result = false;
