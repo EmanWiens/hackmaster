@@ -235,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void multiPlayMessage(View v) {
         setContentView(R.layout.battle_view);
+
         gameInSession = SetUpGame.setUpMultiplayerGame();
         renderBattleView();
     }
