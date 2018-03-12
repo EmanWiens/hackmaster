@@ -1,6 +1,5 @@
 package hackmaster.presentation;
 
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     // give a "copy" of the interface to the gameManager
     private MusicManager musicManager;
     private Game gameInSession;
-    private PlayerStatsSaves playerStats; // TODO move the player stats out of game manager into main for now
+    private PlayerStatsSaves playerStats;
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
     @Override
@@ -87,10 +86,12 @@ public class MainActivity extends AppCompatActivity {
     public void checkStateSound()
     {
         ImageButton muteBtn = findViewById(R.id.muteBtn);
-        if (musicManager.getStateMusic())
+        if (musicManager.getStateMusic()) {
             muteBtn.setBackgroundResource(R.drawable.volumeunmute);
-        else
+        }
+        else {
             muteBtn.setBackgroundResource(R.drawable.volumemute);
+        }
     }
 
     public void muteSoundBackground(View v){
@@ -110,8 +111,9 @@ public class MainActivity extends AppCompatActivity {
         View currLayout = findViewById(android.R.id.content);
         int currLayoutId = currLayout.getId();
 
-        if (currLayoutId == R.id.main_activity)
+        if (currLayoutId == R.id.main_activity) {
             return;
+        }
         else if (gameInSession != null) {
             if (!gameInSession.gamePaused()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -257,7 +259,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void multiPlayMessage(View v) {
         setContentView(R.layout.battle_view);
-
         gameInSession = SetUpGame.setUpMultiplayerGame();
         renderBattleView();
     }
@@ -268,7 +269,6 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(0);
             renderBattleView();
             renderPressedCardBorder(0);
-            //setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -280,7 +280,6 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(1);
             renderBattleView();
             renderPressedCardBorder(1);
-            //setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -292,7 +291,6 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(2);
             renderBattleView();
             renderPressedCardBorder(2);
-            //setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -304,7 +302,6 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(3);
             renderBattleView();
             renderPressedCardBorder(3);
-            //setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -316,7 +313,6 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(4);
             renderBattleView();
             renderPressedCardBorder(4);
-            //setDiscard(true);
             if (gameDone())
                 getWinner();
         }
@@ -332,10 +328,12 @@ public class MainActivity extends AppCompatActivity {
         musicManager.playCardSelected(0.8f, 0.8f);
 
         for (int i = 0; i <= 4; i++) {
-            if (i == chosenCard)
+            if (i == chosenCard) {
                 imageCardBorder[i].setBackgroundResource(R.drawable.image_border);
-            else
+            }
+            else {
                 imageCardBorder[i].setBackgroundResource(android.R.color.transparent);
+            }
         }
     }
 
@@ -434,10 +432,12 @@ public class MainActivity extends AppCompatActivity {
     // TODO should be in Game.java
     public boolean gameDone() {
         boolean result = false;
-        if (gameInSession.getPlayer2Health() < 1)
+        if (gameInSession.getPlayer2Health() < 1) {
             result = true;
-        if (gameInSession.getPlayer1Health() < 1)
+        }
+        if (gameInSession.getPlayer1Health() < 1) {
             result = true;
+        }
         return result;
     }
 

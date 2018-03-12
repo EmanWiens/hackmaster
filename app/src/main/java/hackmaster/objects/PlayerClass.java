@@ -20,8 +20,9 @@ public class PlayerClass {
         ArrayList<CardClass> playable = new ArrayList<CardClass>();
 
         for (int i = 0; i < cardsSize(); i++) {
-            if (Game.checkCard(i, this))
+            if (Game.checkCard(i, this)) {
                 playable.add(getCard(i));
+            }
         }
 
         return playable.toArray(new CardClass[0]);
