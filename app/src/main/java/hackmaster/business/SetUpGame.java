@@ -35,5 +35,5 @@ public abstract class SetUpGame {
         return new MultiplayerGame(player1, player2);
     }
 
-    public static final ResourceClass startOfGameResources() { return startOfGameResources.clone(); }
+    public static ResourceClass startOfGameResources() { return startOfGameResources.clone(); }
 }

@@ -1,7 +1,6 @@
 package hackmaster.objects;
 
 import java.util.ArrayList;
-
 import hackmaster.business.Game;
 
 public class PlayerClass {
@@ -21,8 +20,9 @@ public class PlayerClass {
         ArrayList<CardClass> playable = new ArrayList<CardClass>();
 
         for (int i = 0; i < cardsSize(); i++) {
-            if (Game.checkCard(i, this))
+            if (Game.checkCard(i, this)) {
                 playable.add(getCard(i));
+            }
         }
 
         return playable.toArray(new CardClass[0]);
@@ -47,6 +47,8 @@ public class PlayerClass {
     public void increaseBotnetByRate() {
         resources.increaseBotnetByRate();
     }
+
+    public void addHealth(int health) {resources.addHealth(health);}
 
     public void addResources(ResourceClass addRes) {
         resources.addResources(addRes);

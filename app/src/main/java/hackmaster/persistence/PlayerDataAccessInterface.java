@@ -1,7 +1,6 @@
 package hackmaster.persistence;
 
 import java.util.List;
-
 import hackmaster.objects.PlayerStatsSaves;
 
 public interface PlayerDataAccessInterface extends DBComponentInterface{

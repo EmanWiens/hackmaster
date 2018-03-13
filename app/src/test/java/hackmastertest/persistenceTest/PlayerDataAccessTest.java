@@ -1,10 +1,11 @@
 package hackmastertest.persistenceTest;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import hackmaster.objects.PlayerStatsSaves;
+
+import static junit.framework.Assert.fail;
 
 public class PlayerDataAccessTest {
     private PlayerStatsSaves playerStats;
@@ -15,5 +16,8 @@ public class PlayerDataAccessTest {
     }
 
     // TODO STUB TEST
-
+    @Test
+    public void testDB() {
+        fail("All the tests for this class still need to be done");
+    }
 }

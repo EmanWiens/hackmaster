@@ -126,7 +126,6 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
         tempCard = new CardClass(28, "Mass Hack", "Attack", "Extreme Use of CPU",
                 new ResourceClass(20, 0, 0, 0, 0, -50, 0), new ResourceClass(-25, 0, 0, 0, 0, 0, 0));
         cards.add(tempCard);
-
     }
 
     public void close() { }
@@ -140,7 +139,7 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
         return null;
     }
 
-    public List<PlayerStatsSaves> getPlayersList() { return new ArrayList<PlayerStatsSaves>(players); } // SHALLOW COPY
+    public List<PlayerStatsSaves> getPlayersList() { return new ArrayList<>(players); } // SHALLOW COPY
 
     public List<String> getPlayersNamesList() {
         ArrayList<String> playerNames = new ArrayList<String>();
@@ -196,8 +195,7 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
     public String updateCard(CardClass card) {
         String result = null;
         int index = cards.indexOf(card);
-        if (index >= 0)
-        {
+        if (index >= 0) {
             cards.set(index, card);
         }
         return result;
@@ -206,8 +204,7 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
     public String removeCard(CardClass card) {
         String result = null;
         int index = cards.indexOf(card);
-        if (index >= 0)
-        {
+        if (index >= 0) {
             cards.remove(index);
         }
         return result;

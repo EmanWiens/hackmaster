@@ -1,4 +1,3 @@
-*.iml
 .gradle
 /local.properties
 /.idea/workspace.xml
@@ -9,8 +8,5 @@
 .externalNativeBuild
 .idea/misc.xml
 .idea/modules.xml
-.idea/misc.xml
-.idea/misc.xml
-*.xml
-.idea/modules.xml
 .idea/workspace.xml___jb_tmp___
+*.iml

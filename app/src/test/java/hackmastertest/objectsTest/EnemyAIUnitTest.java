@@ -46,7 +46,7 @@ public class EnemyAIUnitTest {
 
     @Test
     public void testNextCard () {
-        fail();
+        fail("Write tests for the AI to make sure there is some consistency for choosing the next card.");
     }
 
     private void resetDeck() {

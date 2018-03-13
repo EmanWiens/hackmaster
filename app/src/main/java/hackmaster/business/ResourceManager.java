@@ -11,10 +11,11 @@ public abstract class ResourceManager {
     }
 
     public static void applyCard(boolean player1Turn, PlayerClass p1, PlayerClass p2, CardClass card) {
-        if (player1Turn)
+        if (player1Turn) {
             ApplyCardToPlayer(p1, p2, card);
-        else
+        } else {
             ApplyCardToPlayer(p2, p1, card);
+        }
     }
 
     private static void ApplyCardToPlayer(PlayerClass p1, PlayerClass p2, CardClass card) {
