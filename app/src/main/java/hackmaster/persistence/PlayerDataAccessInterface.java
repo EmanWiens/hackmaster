@@ -9,6 +9,5 @@ public interface PlayerDataAccessInterface extends DBComponentInterface{
     PlayerStatsSaves getPlayer(int playerID);
     int addNewPlayer(PlayerStatsSaves newPlayer);
     String removePlayer(int playerID);
-    void updatePlayerStats(PlayerStatsSaves newPlayer);
     // TODO geyPlayer win, loss, level
 }

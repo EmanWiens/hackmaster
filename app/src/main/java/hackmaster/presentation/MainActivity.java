@@ -46,30 +46,28 @@ public class MainActivity extends AppCompatActivity {
         musicManager.backGroundMusicStart();
         musicManager.initSoundPool();
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         DBController.shutDown();
     }
 
-    public void checkStateSound()
-    {
+    public void checkStateSound() {
         ImageButton muteBtn = findViewById(R.id.muteBtn);
         if (musicManager.getStateMusic()) {
             muteBtn.setBackgroundResource(R.drawable.volumeunmute);
-        }
-        else {
+        } else {
             muteBtn.setBackgroundResource(R.drawable.volumemute);
         }
     }
 
-    public void muteSoundBackground(View v){
+    public void muteSoundBackground(View v) {
         ImageButton muteBtn = findViewById(R.id.muteBtn);
         if (musicManager.getStateMusic()) {
             muteBtn.setBackgroundResource(R.drawable.volumemute);
             musicManager.pauseBacgroundMusic();
-        }
-        else {
+        } else {
             muteBtn.setBackgroundResource(R.drawable.volumeunmute);
             musicManager.resumeBacgroundMusic();
         }
@@ -82,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (currLayoutId == R.id.main_activity) {
             return;
-        }
-        else if (gameInSession != null) {
+        } else if (gameInSession != null) {
             if (!gameInSession.gamePaused()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("You are about to exit the game.")
@@ -100,14 +97,12 @@ public class MainActivity extends AppCompatActivity {
                         });
 
                 builder.show();
-            }
-            else if (gameInSession.gamePaused()) {
+            } else if (gameInSession.gamePaused()) {
                 setContentView(R.layout.battle_view);
                 gameInSession.unpauseGame();
                 renderView.renderBattleView();
             }
-        }
-        else {
+        } else {
             if (gameInSession != null) {
                 setContentView(R.layout.main_activity);
                 checkStateSound();
@@ -118,14 +113,14 @@ public class MainActivity extends AppCompatActivity {
     // TODO change this (marc)
     public void statsPress(View v) {
         setContentView(R.layout.stats_view); //change
-        TextView text=(TextView)findViewById(R.id.nicknameTxtView);
-        text=(TextView)findViewById(R.id.winLoseTxtView);
+        TextView text = (TextView) findViewById(R.id.nicknameTxtView);
+        text = (TextView) findViewById(R.id.winLoseTxtView);
     }
 
     public void singlePlayMessage(View v) {
         setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpSinglePlayerGame();
-        renderView = new RenderView(gameInSession,MainActivity.this);
+        renderView = new RenderView(gameInSession, MainActivity.this);
         renderView.renderBattleView();
     }
 
@@ -136,8 +131,7 @@ public class MainActivity extends AppCompatActivity {
         renderView.renderBattleView();
     }
 
-    public void firstcardPress(View v)
-    {
+    public void firstcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(0);
             renderView.renderBattleView();
@@ -147,8 +141,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void secondcardPress(View v)
-    {
+    public void secondcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(1);
             renderView.renderBattleView();
@@ -158,8 +151,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void thirdcardPress(View v)
-    {
+    public void thirdcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(2);
             renderView.renderBattleView();
@@ -169,8 +161,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void fourthcardPress(View v)
-    {
+    public void fourthcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(3);
             renderView.renderBattleView();
@@ -180,8 +171,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void fifthcardPress(View v)
-    {
+    public void fifthcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(4);
             renderView.renderBattleView();
@@ -223,18 +213,13 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO change this (marc)
     public void pauseStatsMessage(View v) {
-        playerStats
-        if (playerStats != null) {
+        setContentView(R.layout.stats_view);
 
-            setContentView(R.layout.stats_view);
+        TextView text = (TextView) findViewById(R.id.nicknameTxtView);
+        // text.setText(gameInSession.getPlayerName());
 
-            TextView text = (TextView) findViewById(R.id.nicknameTxtView);
-
-            text.setText(gameInSession.getPlayerName());
-
-            text = (TextView) findViewById(R.id.winLoseTxtView);
-            text.setText(Integer.toString(gameInSession.getWin()));
-        }
+        text = (TextView) findViewById(R.id.winLoseTxtView);
+        // text.setText(Integer.toString(gameInSession.getWin()));
     }
 
     public void discardPress(View v) {
@@ -257,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
     public void getWinner() {
         if (gameInSession.getPlayer2Health() < 1) {
             goToVictory(true);
-        } else {//  (GameManager.getPlayer2Health() < 1) {
+        } else {// (GameManager.getPlayer2Health() < 1) {
             goToVictory(false);
         }
     }

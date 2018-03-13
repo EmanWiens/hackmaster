@@ -133,7 +133,7 @@ public class RenderView {
         }
 
         if (gameInSession.getRenderDelay()) {
-            fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "AI Turn");
+            fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "AI's Turn");
         }
     }
 
