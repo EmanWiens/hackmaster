@@ -6,16 +6,13 @@ import android.content.DialogInterface;
 
 import android.content.res.AssetManager;
 import android.os.Build;
-import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Button;
 
 import com.example.owner.hackmaster20.R;
 
@@ -26,17 +23,14 @@ import java.io.InputStreamReader;
 
 import hackmaster.application.DBController;
 import hackmaster.business.Game;
-import hackmaster.business.MultiplayerGame;
 import hackmaster.business.SetUpGame;
-import hackmaster.business.SinglePlayerGame;
-import hackmaster.objects.CardClass;
-import hackmaster.objects.PlayerClass;
 import hackmaster.objects.PlayerStatsSaves;
 
 public class MainActivity extends AppCompatActivity {
     // give a "copy" of the interface to the gameManager
     private MusicManager musicManager;
     private Game gameInSession;
+    private RenderView renderView;
     private PlayerStatsSaves playerStats;
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
@@ -54,33 +48,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         DBController.shutDown();
-    }
-
-    public void renderPlayedCard(CardClass card, boolean aiDelay) {
-        Handler handler = new Handler();
-        if (aiDelay && !gameDone()) {
-            handler.postDelayed(delayRender(), 1850); // DELAY
-            gameInSession.setRenderDelay(true);
-        }
-        else if (gameInSession != null && !gameInSession.gamePaused()) {
-            ImageView imageView = findViewById(R.id.imageViewPlayedCard1);
-            imageView.setBackgroundResource(returnImageCardID(card.getID()));
-
-            if (gameInSession.getRenderDelay()) {
-                gameInSession.setRenderDelay(false);
-            }
-        }
-    }
-
-    // DELAY
-    public Runnable delayRender() {
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                renderPlayedCard(gameInSession.getPlayedCardTwo(), false);
-            }
-        };
-        return r;
     }
 
     public void checkStateSound()
@@ -135,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             else if (gameInSession.gamePaused()) {
                 setContentView(R.layout.battle_view);
                 gameInSession.unpauseGame();
-                renderBattleView();
+                renderView.renderBattleView();
             }
         }
         else {
@@ -146,130 +113,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void renderPlayerResource(PlayerClass player) {
-        if (player.getId() == 0) {
-            fillText((TextView)findViewById(R.id.minerP), player.minerToString());
-            fillText((TextView)findViewById(R.id.cSpeedP), player.cSpeedToString());
-            fillText((TextView)findViewById(R.id.botnetP), player.botnetToString());
-
-            fillText((TextView)findViewById(R.id.healthP), player.playerHealthToString());
-            ProgressBar health = findViewById(R.id.healthPBarP);
-            health.setProgress(player.getHealth());
-            fillText((TextView)findViewById(R.id.player1), player.getName());
-        }
-        else if (player.getId() == 1) {
-            fillText((TextView)findViewById(R.id.minerE), player.minerToString());
-            fillText((TextView)findViewById(R.id.cSpeedE), player.cSpeedToString());
-            fillText((TextView)findViewById(R.id.botnetE), player.botnetToString());
-
-            fillText((TextView)findViewById(R.id.healthE), player.playerHealthToString());
-            ProgressBar health = findViewById(R.id.healthPBarE);
-            health.setProgress(player.getHealth());
-            fillText((TextView)findViewById(R.id.player2), player.getName());
-        }
-    }
-
-    private void fillText (TextView view, String string) {
-        view.setText(string);
-    }
-
     // TODO change this (marc)
     public void statsPress(View v) {
         setContentView(R.layout.stats_view); //change
         TextView text=(TextView)findViewById(R.id.nicknameTxtView);
-
         text=(TextView)findViewById(R.id.winLoseTxtView);
-    }
-
-    public void renderCard(CardClass card, int slot) {
-        ImageButton imageButton = null;
-        int[] imageButtonCardList = new int[]{
-                R.id.imageButtonCard0, R.id.imageButtonCard1,R.id.imageButtonCard2,
-                R.id.imageButtonCard3,R.id.imageButtonCard4};
-
-        imageButton = findViewById(imageButtonCardList[slot]);
-        imageButton.setBackgroundResource(returnImageCardID(card.getID()));
-    }
-
-    public void renderBattleView() {
-        CardClass playedCardTwo = gameInSession.getPlayedCardTwo();
-        CardClass playedCardOne = gameInSession.getPlayedCardOne();
-        PlayerClass player1 = gameInSession.getPlayer1();
-        PlayerClass player2 = gameInSession.getPlayer2();
-
-        TextView playerTurnText=(TextView)findViewById(R.id.playerTurn);
-
-        if (!gameInSession.gamePaused()) {
-            renderPlayerResource(player1);
-            renderPlayerResource(player2);
-
-            if (gameInSession instanceof SinglePlayerGame ) {
-                if (playedCardOne != null && !gameInSession.getRenderDelay())
-                    renderPlayedCard(playedCardOne, false);
-
-                if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
-                    renderPlayedCard(playedCardTwo, true);
-
-//                if (gameInSession.getRenderDelay())
-                    playerTurnText.setText("Player 1 Turn");
-//                else
-//                    playerTurnText.setText("AI Turn");
-            }
-            else if (gameInSession instanceof MultiplayerGame) {
-
-                if(!gameInSession.getPlayer1Turn() && playedCardOne != null)
-                    renderPlayedCard(playedCardOne, false);
-                else if (gameInSession.getPlayer1Turn() && playedCardTwo != null)
-                    renderPlayedCard(playedCardTwo, false);
-
-                if (gameInSession.getPlayer1Turn()) {
-                    playerTurnText.setText("Player 1's Turn");
-                }
-                else {
-                    playerTurnText.setText("Player 2's Turn");
-                }
-            }
-
-            if (gameInSession.getPlayer1Turn()) {
-                for (int i = 0; i < player1.getCards().length; i++) {
-                    if (player1.getCards()[i] != null)
-                        renderCard(player1.getCards()[i], i);
-                }
-            }
-            else {
-                for (int i = 0; i < player2.getCards().length; i++) {
-                    if (player2.getCards()[i] != null)
-                        renderCard(player2.getCards()[i], i);
-                }
-            }
-
-            if(gameInSession.getDiscard()) {
-                setDiscard(false);
-            } else {
-                setDiscard(true);
-            }
-        }
     }
 
     public void singlePlayMessage(View v) {
         setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpSinglePlayerGame();
-        renderBattleView();
+        renderView = new RenderView(gameInSession,MainActivity.this);
+        renderView.renderBattleView();
     }
 
     public void multiPlayMessage(View v) {
         setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpMultiplayerGame();
-        renderBattleView();
+        renderView = new RenderView(gameInSession, MainActivity.this);
+        renderView.renderBattleView();
     }
 
     public void firstcardPress(View v)
     {
         if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(0);
-            renderBattleView();
-            renderPressedCardBorder(0);
-            if (gameDone())
+            renderView.renderBattleView();
+            renderView.renderPressedCardBorder(0);
+            if (renderView.gameDone())
                 getWinner();
         }
     }
@@ -278,9 +149,9 @@ public class MainActivity extends AppCompatActivity {
     {
         if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(1);
-            renderBattleView();
-            renderPressedCardBorder(1);
-            if (gameDone())
+            renderView.renderBattleView();
+            renderView.renderPressedCardBorder(1);
+            if (renderView.gameDone())
                 getWinner();
         }
     }
@@ -289,9 +160,9 @@ public class MainActivity extends AppCompatActivity {
     {
         if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(2);
-            renderBattleView();
-            renderPressedCardBorder(2);
-            if (gameDone())
+            renderView.renderBattleView();
+            renderView.renderPressedCardBorder(2);
+            if (renderView.gameDone())
                 getWinner();
         }
     }
@@ -300,9 +171,9 @@ public class MainActivity extends AppCompatActivity {
     {
         if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(3);
-            renderBattleView();
-            renderPressedCardBorder(3);
-            if (gameDone())
+            renderView.renderBattleView();
+            renderView.renderPressedCardBorder(3);
+            if (renderView.gameDone())
                 getWinner();
         }
     }
@@ -311,29 +182,10 @@ public class MainActivity extends AppCompatActivity {
     {
         if (!gameInSession.getRenderDelay()) {
             gameInSession.playCardEvent(4);
-            renderBattleView();
-            renderPressedCardBorder(4);
-            if (gameDone())
+            renderView.renderBattleView();
+            renderView.renderPressedCardBorder(4);
+            if (renderView.gameDone())
                 getWinner();
-        }
-    }
-
-    private void renderPressedCardBorder(int chosenCard) {
-        ImageView[] imageCardBorder = new ImageView[6];
-        imageCardBorder[0] = findViewById(R.id.imageBorderCard0);
-        imageCardBorder[1] = findViewById(R.id.imageBorderCard1);
-        imageCardBorder[2] = findViewById(R.id.imageBorderCard2);
-        imageCardBorder[3] = findViewById(R.id.imageBorderCard3);
-        imageCardBorder[4] = findViewById(R.id.imageBorderCard4);
-        musicManager.playCardSelected(0.8f, 0.8f);
-
-        for (int i = 0; i <= 4; i++) {
-            if (i == chosenCard) {
-                imageCardBorder[i].setBackgroundResource(R.drawable.image_border);
-            }
-            else {
-                imageCardBorder[i].setBackgroundResource(android.R.color.transparent);
-            }
         }
     }
 
@@ -345,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
     public void pauseResumeMessage(View v) {
         setContentView(R.layout.battle_view);
         gameInSession.unpauseGame();
-        renderBattleView();
+        renderView.renderBattleView();
     }
 
     public void pauseExitMessage(View v) {
@@ -389,23 +241,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public int returnImageCardID(int cardID)
-    {
-        int[] imageCardList = new int[]{
-                R.drawable.morecores,R.drawable.morecores, R.drawable.botnet,
-                R.drawable.cutsomewires, R.drawable.upgradebotnet,R.drawable.upgradecpu,
-                R.drawable.upgradehashrate,R.drawable.ddos,R.drawable.filetransfer,
-                R.drawable.popup,R.drawable.antivirus,R.drawable.firewall,
-                R.drawable.playthemarket,R.drawable.overclock,R.drawable.serverfarm,
-                R.drawable.expand,R.drawable.marketcrash, R.drawable.networkoutage,
-                R.drawable.throttle, R.drawable.hack,R.drawable.debug, R.drawable.exploit,
-                R.drawable.zeroday, R.drawable.attackplus, R.drawable.attackplusplus,
-                R.drawable.attackphash, R.drawable.extremehack,R.drawable.epichack,
-                R.drawable.masshack
-        };
-        return imageCardList[cardID];
-    }
-
     public void getWinner() {
         if (gameInSession.getPlayer2Health() < 1) {
             goToVictory(true);
@@ -426,38 +261,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // gameInSession.addLoss();
             img.setImageResource(R.drawable.defeat);
-        }
-    }
-
-    // TODO should be in Game.java
-    public boolean gameDone() {
-        boolean result = false;
-        if (gameInSession.getPlayer2Health() < 1) {
-            result = true;
-        }
-        if (gameInSession.getPlayer1Health() < 1) {
-            result = true;
-        }
-        return result;
-    }
-
-    public void discardPress(View v) {
-        if (gameInSession.getDiscard() == true) {
-            setDiscard(true);
-        } else {
-            setDiscard(false);
-        }
-    }
-
-    public void setDiscard (boolean toggle) {
-        if (toggle) {
-            gameInSession.discardOff();
-            Button dicardButton = (Button)findViewById(R.id.discardBtn);
-            dicardButton.setText("DISCARD MODE");
-        } else {
-            gameInSession.discardOn();
-            Button dicardButton = (Button)findViewById(R.id.discardBtn);
-            dicardButton.setText("CANCEL DISCARD");
         }
     }
 
