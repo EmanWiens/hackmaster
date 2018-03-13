@@ -19,7 +19,7 @@ public abstract class Game {
     private static CardClass playedCardOne;
     private static CardClass playedCardTwo;
 
-    private boolean discard = false;
+    private boolean discard;
 
     public Game(PlayerClass p1, PlayerClass p2) {
         player1 = p1;
@@ -41,8 +41,9 @@ public abstract class Game {
         if (getDiscard()) {
             ResourceManager.applyCard(player1Turn, player1, player2, doNothing);
             discardOff();
-        } else
+        } else {
             ResourceManager.applyCard(player1Turn, player1, player2, playedCard);
+        }
         player.setCard(playerCard, nextCard);
     }
 
