@@ -70,10 +70,6 @@ public class PlayerClass {
         }
     }
     public ResourceClass getResources() { return resources; }
-    public void setResources(ResourceClass res) {
-        resources = res;
-        resourceLimit();
-    }
     public static int getCardIndex(int id, CardClass[] hand) {
         int j=-1;
         for (int i = 0; i < hand.length; i++)
@@ -85,12 +81,10 @@ public class PlayerClass {
     public String playerHealthToString() {
         return "Health: " + getHealth() + "%";
     }
-
     public int getId() { return playerId; }
     public CardClass[] getCards() { return hand; }
     public int cardsSize() { return hand.length; }
     public CardClass getCard(int i) { return hand[i]; }
     public String getName() { return name; }
-    public String toStringHealth() { return "Health: " + resources.getHealth() + "%";}
     public int getHealth() { return resources.getHealth(); }
 }
