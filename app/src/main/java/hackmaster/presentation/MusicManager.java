@@ -59,7 +59,7 @@ public class MusicManager {
         int  randomNum = rand.nextInt(6) + 1;
         int[] songsList = new int[]{
                 R.raw.javarapsong,  R.raw.background, R.raw.dualcore,
-                R.raw.hackersong, R.raw.piratemusic};
+                R.raw.hackersong, R.raw.piratemusic, R.raw.welcometoourworld};
         mediaPlayer = MediaPlayer.create(contextVariable, songsList[randomNum]);
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
