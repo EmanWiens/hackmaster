@@ -25,6 +25,8 @@ import hackmaster.application.DBController;
 import hackmaster.business.Game;
 import hackmaster.business.SetUpGame;
 import hackmaster.objects.PlayerStatsSaves;
+import hackmaster.persistence.PlayerDataAccess;
+import hackmaster.persistence.PlayerDataAccessInterface;
 
 public class MainActivity extends AppCompatActivity {
     // give a "copy" of the interface to the gameManager
@@ -221,15 +223,18 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO change this (marc)
     public void pauseStatsMessage(View v) {
-        // gameInSession.initStats();
+        playerStats
+        if (playerStats != null) {
 
-        setContentView(R.layout.stats_view);
+            setContentView(R.layout.stats_view);
 
-        TextView text=(TextView)findViewById(R.id.nicknameTxtView);
-        // text.setText(gameInSession.getPlayerName());
+            TextView text = (TextView) findViewById(R.id.nicknameTxtView);
 
-        text=(TextView)findViewById(R.id.winLoseTxtView);
-        // text.setText(Integer.toString(gameInSession.getWin()));
+            text.setText(gameInSession.getPlayerName());
+
+            text = (TextView) findViewById(R.id.winLoseTxtView);
+            text.setText(Integer.toString(gameInSession.getWin()));
+        }
     }
 
     public void discardPress(View v) {
