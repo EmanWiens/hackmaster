@@ -2,7 +2,6 @@ package hackmaster.presentation;
 
 
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -23,8 +22,9 @@ public class RenderView {
     private Game gameInSession;
     private MainActivity mainActivity;
     boolean setUpDone=false;
+
     public RenderView(Game gameInSes, MainActivity mainAct) {
-        gameInSession=gameInSes;
+        gameInSession = gameInSes;
         mainActivity = mainAct;
         mainActivity.setContentView(R.layout.battle_view);
     }
@@ -41,9 +41,11 @@ public class RenderView {
 
             if (gameInSession.getRenderDelay()) {
                 gameInSession.setRenderDelay(false);
+                fillText((TextView) mainActivity.findViewById(R.id.playerTurn), "Player 1's turn");
             }
         }
     }
+
     public void renderPlayerResource(PlayerClass player) {
         if (player.getId() == 0) {
             fillText((TextView)mainActivity.findViewById(R.id.minerP), player.minerToString());
@@ -54,8 +56,7 @@ public class RenderView {
             ProgressBar health = mainActivity.findViewById(R.id.healthPBarP);
             health.setProgress(player.getHealth());
             fillText((TextView)mainActivity.findViewById(R.id.player1), player.getName());
-        }
-        else if (player.getId() == 1) {
+        } else if (player.getId() == 1) {
             fillText((TextView)mainActivity.findViewById(R.id.minerE), player.minerToString());
             fillText((TextView)mainActivity.findViewById(R.id.cSpeedE), player.cSpeedToString());
             fillText((TextView)mainActivity.findViewById(R.id.botnetE), player.botnetToString());
@@ -73,36 +74,40 @@ public class RenderView {
         PlayerClass player1 = gameInSession.getPlayer1();
         PlayerClass player2 = gameInSession.getPlayer2();
 
-        TextView playerTurnText=(TextView)mainActivity.findViewById(R.id.playerTurn);
-
         if (!gameInSession.gamePaused()) {
             renderPlayerResource(player1);
             renderPlayerResource(player2);
 
             if (gameInSession instanceof SinglePlayerGame ) {
-                if (playedCardOne != null && !gameInSession.getRenderDelay())
+                if (playedCardOne != null && !gameInSession.getRenderDelay()) {
                     renderPlayedCard(playedCardOne, false);
+                }
 
-                if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame)
+                if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame) {
                     renderPlayedCard(playedCardTwo, true);
+                }
 
-//                if (gameInSession.getRenderDelay())
-                playerTurnText.setText("Player 1 Turn");
-//                else
-//                    playerTurnText.setText("AI Turn");
+                if (gameInSession.getRenderDelay()) {
+                    fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "AI Turn");
+                }
+                else {
+
+                }
             }
             else if (gameInSession instanceof MultiplayerGame) {
 
-                if(!gameInSession.getPlayer1Turn() && playedCardOne != null)
+                if(!gameInSession.getPlayer1Turn() && playedCardOne != null) {
                     renderPlayedCard(playedCardOne, false);
-                else if (gameInSession.getPlayer1Turn() && playedCardTwo != null)
+                }
+                else if (gameInSession.getPlayer1Turn() && playedCardTwo != null) {
                     renderPlayedCard(playedCardTwo, false);
+                }
 
                 if (gameInSession.getPlayer1Turn()) {
-                    playerTurnText.setText("Player 1's Turn");
+                    fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "Player 1's turn");
                 }
                 else {
-                    playerTurnText.setText("Player 2's Turn");
+                    fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "Player 2's turn");
                 }
             }
 
@@ -126,6 +131,7 @@ public class RenderView {
             }
         }
     }
+
     public void renderCard(CardClass card, int slot) {
         ImageButton imageButton = null;
         int[] imageButtonCardList = new int[]{
@@ -135,6 +141,7 @@ public class RenderView {
         imageButton = mainActivity.findViewById(imageButtonCardList[slot]);
         imageButton.setBackgroundResource(returnImageCardID(card.getID()));
     }
+
     public void renderPressedCardBorder(int chosenCard) {
         ImageView[] imageCardBorder = new ImageView[6];
         imageCardBorder[0] = mainActivity.findViewById(R.id.imageBorderCard0);
@@ -153,8 +160,9 @@ public class RenderView {
             }
         }
     }
+
     public void discardPress(View v) {
-        if (gameInSession.getDiscard() == true) {
+        if (gameInSession.getDiscard()) {
             setDiscard(true);
         } else {
             setDiscard(false);
@@ -164,17 +172,17 @@ public class RenderView {
     public void setDiscard (boolean toggle) {
         if (toggle) {
             gameInSession.discardOff();
-            Button dicardButton = (Button)mainActivity.findViewById(R.id.discardBtn);
+            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
             dicardButton.setText("DISCARD MODE");
         } else {
             gameInSession.discardOn();
-            Button dicardButton = (Button)mainActivity.findViewById(R.id.discardBtn);
+            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
             dicardButton.setText("CANCEL DISCARD");
         }
     }
 
     // DELAY
-    public Runnable delayRender() {
+    private Runnable delayRender() {
         Runnable r = new Runnable() {
             @Override
             public void run() {
@@ -184,7 +192,8 @@ public class RenderView {
         return r;
     }
 
-    private void fillText (TextView view, String string) {view.setText(string);}
+    public void fillText (TextView view, String string) {view.setText(string);}
+
     private int returnImageCardID(int cardID)
     {
         int[] imageCardList = new int[]{
@@ -213,12 +222,9 @@ public class RenderView {
         }
         return result;
     }
+
     public void activateContentView()
     {
-       // setUpDone=false;
         gameInSession.pauseGame();
-        mainActivity.setContentView(R.layout.continue_view);
     }
-
-
 }
