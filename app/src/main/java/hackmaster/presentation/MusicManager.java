@@ -56,7 +56,7 @@ public class MusicManager {
     public void backGroundMusicStart() {
         musicOn =true;
         Random rand = new Random();
-        int  randomNum = rand.nextInt(6) + 1;
+        int  randomNum = rand.nextInt(5);
         int[] songsList = new int[]{
                 R.raw.javarapsong,  R.raw.background, R.raw.dualcore,
                 R.raw.hackersong, R.raw.piratemusic, R.raw.welcometoourworld};
