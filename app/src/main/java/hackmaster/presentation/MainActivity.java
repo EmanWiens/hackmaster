@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(0);
             renderView.renderBattleView();
             renderView.renderPressedCardBorder(0);
-            if (renderView.gameDone())
+            if (gameInSession.gameDone())
                 getWinner();
         }
     }
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(1);
             renderView.renderBattleView();
             renderView.renderPressedCardBorder(1);
-            if (renderView.gameDone())
+            if (gameInSession.gameDone())
                 getWinner();
         }
     }
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(2);
             renderView.renderBattleView();
             renderView.renderPressedCardBorder(2);
-            if (renderView.gameDone())
+            if (gameInSession.gameDone())
                 getWinner();
         }
     }
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(3);
             renderView.renderBattleView();
             renderView.renderPressedCardBorder(3);
-            if (renderView.gameDone())
+            if (gameInSession.gameDone())
                 getWinner();
         }
     }
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(4);
             renderView.renderBattleView();
             renderView.renderPressedCardBorder(4);
-            if (renderView.gameDone())
+            if (gameInSession.gameDone())
                 getWinner();
         }
     }
@@ -230,6 +230,14 @@ public class MainActivity extends AppCompatActivity {
 
         text=(TextView)findViewById(R.id.winLoseTxtView);
         // text.setText(Integer.toString(gameInSession.getWin()));
+    }
+
+    public void discardPress(View v) {
+        if (gameInSession.getDiscard()) {
+            renderView.renderDiscardButton(true);
+        } else {
+            renderView.renderDiscardButton(false);
+        }
     }
 
     public void statsExitMessage(View v) {

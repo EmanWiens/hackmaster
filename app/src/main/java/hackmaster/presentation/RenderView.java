@@ -31,7 +31,7 @@ public class RenderView {
 
     public void renderPlayedCard(CardClass card, boolean aiDelay) {
         Handler handler = new Handler();
-        if (aiDelay && !gameDone()) {
+        if (aiDelay && !gameInSession.gameDone()) {
             handler.postDelayed(delayRender(), 1850); // DELAY
             gameInSession.setRenderDelay(true);
         }
@@ -79,36 +79,11 @@ public class RenderView {
             renderPlayerResource(player2);
 
             if (gameInSession instanceof SinglePlayerGame ) {
-                if (playedCardOne != null && !gameInSession.getRenderDelay()) {
-                    renderPlayedCard(playedCardOne, false);
-                }
-
-                if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame) {
-                    renderPlayedCard(playedCardTwo, true);
-                }
-
-                if (gameInSession.getRenderDelay()) {
-                    fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "AI Turn");
-                }
-                else {
-
-                }
+                renderSinglePlayerGame(playedCardTwo, playedCardOne);
             }
             else if (gameInSession instanceof MultiplayerGame) {
 
-                if(!gameInSession.getPlayer1Turn() && playedCardOne != null) {
-                    renderPlayedCard(playedCardOne, false);
-                }
-                else if (gameInSession.getPlayer1Turn() && playedCardTwo != null) {
-                    renderPlayedCard(playedCardTwo, false);
-                }
-
-                if (gameInSession.getPlayer1Turn()) {
-                    fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "Player 1's turn");
-                }
-                else {
-                    fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "Player 2's turn");
-                }
+                renderMultiPlayerGame(playedCardTwo, playedCardOne);
             }
 
             if (gameInSession.getPlayer1Turn()) {
@@ -125,10 +100,40 @@ public class RenderView {
             }
 
             if(gameInSession.getDiscard()) {
-                setDiscard(false);
+                renderDiscardButton(false);
             } else {
-                setDiscard(true);
+                renderDiscardButton(true);
             }
+        }
+    }
+
+    private void renderMultiPlayerGame(CardClass playedCardTwo, CardClass playedCardOne) {
+        if(!gameInSession.getPlayer1Turn() && playedCardOne != null) {
+            renderPlayedCard(playedCardOne, false);
+        }
+        else if (gameInSession.getPlayer1Turn() && playedCardTwo != null) {
+            renderPlayedCard(playedCardTwo, false);
+        }
+
+        if (gameInSession.getPlayer1Turn()) {
+            fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "Player 1's turn");
+        }
+        else {
+            fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "Player 2's turn");
+        }
+    }
+
+    private void renderSinglePlayerGame(CardClass playedCardTwo, CardClass playedCardOne) {
+        if (playedCardOne != null && !gameInSession.getRenderDelay()) {
+            renderPlayedCard(playedCardOne, false);
+        }
+
+        if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame) {
+            renderPlayedCard(playedCardTwo, true);
+        }
+
+        if (gameInSession.getRenderDelay()) {
+            fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "AI Turn");
         }
     }
 
@@ -161,15 +166,7 @@ public class RenderView {
         }
     }
 
-    public void discardPress(View v) {
-        if (gameInSession.getDiscard()) {
-            setDiscard(true);
-        } else {
-            setDiscard(false);
-        }
-    }
-
-    public void setDiscard (boolean toggle) {
+    public void renderDiscardButton(boolean toggle) {
         if (toggle) {
             gameInSession.discardOff();
             Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
@@ -192,7 +189,7 @@ public class RenderView {
         return r;
     }
 
-    public void fillText (TextView view, String string) {view.setText(string);}
+    private void fillText (TextView view, String string) {view.setText(string);}
 
     private int returnImageCardID(int cardID)
     {
@@ -209,18 +206,6 @@ public class RenderView {
                 R.drawable.masshack
         };
         return imageCardList[cardID];
-    }
-
-    // TODO should be in Game.java
-    public boolean gameDone() {
-        boolean result = false;
-        if (gameInSession.getPlayer2Health() < 1) {
-            result = true;
-        }
-        if (gameInSession.getPlayer1Health() < 1) {
-            result = true;
-        }
-        return result;
     }
 
     public void activateContentView()
