@@ -8,9 +8,7 @@ public class EnemyAI extends PlayerClass {
     }
 
     public int playNextCard() {
-        if (nextCard!=0) {
-            nextCard = -1;
-        }
+        int nextCard =  -1;
         CardClass[] playable = playableCards();
 
         if (playable.length == 0) {
@@ -18,7 +16,7 @@ public class EnemyAI extends PlayerClass {
         }
         else {
             nextCard = bestCard(playable);
-            nextCard = getCardIndex(playable[nextCard].getID(), getCards());
+            nextCard = getCardIndex(playable[nextCard].getID());
         }
 
         return nextCard;

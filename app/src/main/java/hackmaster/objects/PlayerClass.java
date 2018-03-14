@@ -71,8 +71,10 @@ public class PlayerClass {
             System.out.println("Index " + index + " is out of bounds");
         }
     }
+
     public ResourceClass getResources() { return resources; }
-    public static int getCardIndex(int id, CardClass[] hand) {
+
+    public int getCardIndex(int id) {
         int j=-1;
         for (int i = 0; i < hand.length; i++)
             if (id == hand[i].getID())

@@ -93,6 +93,7 @@ public class ResourceClass {
     public int getCpuRate() { return cpuRate; }
     public int getCpu() { return cpu; }
 
+    public void setHealth(int i) { health = i;}
     public void setBotnetRate(int i) { botnetRate = i;}
     public void sethCoinRate(int i) { hCoinRate = i;}
     public void setCpuRate(int i) { cpuRate = i;}

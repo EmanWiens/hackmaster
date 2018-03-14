@@ -8,9 +8,7 @@ public class EnemyAI extends PlayerClass {
     }
 
     public int playNextCard() {
-        if (nextCard!=0) {
-            nextCard = -1;
-        }
+        int nextCard =  -1;
         CardClass[] playable = playableCards();
 
         if (playable.length == 0) {
@@ -18,20 +16,20 @@ public class EnemyAI extends PlayerClass {
         }
         else {
             nextCard = bestCard(playable);
-            nextCard = getCardIndex(playable[nextCard].getID(), getCards());
+            nextCard = getCardIndex(playable[nextCard].getID());
         }
 
         return nextCard;
     }
 
-    private int bestCard(CardClass[] playable) {
+    public int bestCard(CardClass[] playable) {
         int bestCard = -1;
-        int bestCost = 10000;
+        int bestCost = -1;
 
         for (int i = 0; i < playable.length; i++) {
             ResourceClass cardR = playable[i].getPlayerR();
-            int testCost = cardR.getBotnet() + cardR.gethCoin() + cardR.getCpu() + cardR.getHealth();
-            if (testCost <= bestCost) {
+            int testCost = Math.abs(cardR.getBotnet()) + Math.abs(cardR.gethCoin()) + Math.abs(cardR.getCpu()) + Math.abs(cardR.getHealth());
+            if (testCost >= bestCost) {
                 bestCost = testCost;
                 bestCard = i;
             }

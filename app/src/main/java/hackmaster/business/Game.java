@@ -31,7 +31,8 @@ public abstract class Game {
         player1Turn = true;
     }
 
-    public boolean playCardEvent(int playerCard) { System.out.print("Error in game. Please try starting a new game.");
+    public boolean playCardEvent(int playerCard) {
+        System.out.print("Error in game. Please try starting a new game.");
         return false;
     }
 
@@ -75,13 +76,13 @@ public abstract class Game {
             canPlay = false;
         }
 
-        if(playerResource.gethCoin() + cardResource.gethCoinRate() < 1) {
+        if(playerResource.gethCoinRate() + cardResource.gethCoinRate() < 1) {
             canPlay = false;
         }
-        if(playerResource.getBotnet() + cardResource.getBotnetRate() < 1) {
+        if(playerResource.getBotnetRate() + cardResource.getBotnetRate() < 1) {
             canPlay = false;
         }
-        if(playerResource.getCpu() + cardResource.getCpuRate() < 1) {
+        if(playerResource.getCpuRate() + cardResource.getCpuRate() < 1) {
             canPlay = false;
         }
 
@@ -102,10 +103,6 @@ public abstract class Game {
 
     public int getPlayer1Health() {return player1.getHealth();}
     public int getPlayer2Health() {return player2.getHealth();}
-    public String getPlayerName() {return pStats.getName();}
-    public int getWin() {return pStats.getWin();}
-    public void addWin() { pStats.addWin();}
-    public void addLoss() { pStats.addLoss();}
     public boolean getRenderDelay() { return renderDelay; }
     public void setRenderDelay(boolean set) { renderDelay = set; }
     public CardClass getPlayedCardOne() { return playedCardOne; }
