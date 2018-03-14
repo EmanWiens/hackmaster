@@ -57,7 +57,7 @@ public class PlayerStatsSaves {
 
         return result;
     }
-    public void setPlayerName(String name) { playerName = name; }
+
     public int getPlayerID() { return playerID; }
     public int getLevel() {
         return level;

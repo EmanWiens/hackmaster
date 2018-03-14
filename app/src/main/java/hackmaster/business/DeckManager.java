@@ -30,10 +30,6 @@ public abstract class DeckManager {
         return cards;
     }
 
-    private static void updateIndex() {
-        nextIndex = (nextIndex + 1) % deck.length;
-    }
-
     public static CardClass dealNextCard() {
         CardClass nextCard = deck[nextIndex];
         updateIndex();
@@ -41,6 +37,9 @@ public abstract class DeckManager {
         return nextCard;
     }
 
+    private static void updateIndex() {
+        nextIndex = (nextIndex + 1) % deck.length;
+    }
     public static CardClass getCardAt(int i){return deck[i];}
     public static int getSizeDeck() { return deck.length; }
     public static CardClass[] getADeck() { return deck; }

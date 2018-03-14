@@ -25,7 +25,7 @@ import hackmaster.business.SetUpGame;
 import hackmaster.objects.PlayerStatsSaves;
 
 public class MainActivity extends AppCompatActivity {
-    // give a "copy" of the interface to the gameManager
+
     private MusicManager musicManager;
     private Game gameInSession;
     private RenderView renderView;
@@ -106,11 +106,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // TODO change this (marc)
     public void statsPress(View v) {
-        setContentView(R.layout.stats_view); //change
-        TextView text = (TextView) findViewById(R.id.nicknameTxtView);
-        text = (TextView) findViewById(R.id.winLoseTxtView);
+        setContentView(R.layout.stats_view);
     }
 
     public void singlePlayMessage(View v) {
@@ -205,15 +202,8 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    //TODO change this (marc)
     public void pauseStatsMessage(View v) {
         setContentView(R.layout.stats_view);
-
-        TextView text = (TextView) findViewById(R.id.nicknameTxtView);
-        // text.setText(gameInSession.getPlayerName());
-
-        text = (TextView) findViewById(R.id.winLoseTxtView);
-        // text.setText(Integer.toString(gameInSession.getWin()));
     }
 
 
@@ -251,7 +241,6 @@ public class MainActivity extends AppCompatActivity {
             DBController.setDBPathName(dataDirectory.toString() + "/" + DBController.dbName);
 
         } catch (IOException ioe) {
-            //TODO: Do exception handling Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
         }
     }
 

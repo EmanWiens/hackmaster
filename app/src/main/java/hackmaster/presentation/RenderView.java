@@ -248,11 +248,9 @@ public class RenderView {
         ImageView img= mainActivity.findViewById(R.id.statsImg);
         TextView textView = mainActivity.findViewById(R.id.textViewResult);
         if (winner) {
-            // gameInSession.addWin();
             img.setImageResource(R.drawable.victory);
             textView.setText("PlAYER 1 WIN");
         } else {
-            // gameInSession.addLoss();
             img.setImageResource(R.drawable.defeat);
             textView.setText("PlAYER 1 LOSE");
             textView.setTextColor(Color.RED);

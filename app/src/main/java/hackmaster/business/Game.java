@@ -8,7 +8,6 @@ import hackmaster.objects.ResourceClass;
 public abstract class Game {
     public static final int hand = 5;
 
-    private PlayerStatsSaves pStats;
     private PlayerClass player1;
     private PlayerClass player2;
 
