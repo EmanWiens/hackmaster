@@ -79,8 +79,6 @@ Game
 (name: Marc act: 30mins)(est: 30mins) Make new cards
 
 Stats
-(name: Marc act: hrs) (est: 1hr) Track the player stats
-(name: Marc est: 1hr) Show stats screen
 (name: Jansen act: 2hrs) (est: 1hr) Refactored player stats to work with DB
 
 Database
