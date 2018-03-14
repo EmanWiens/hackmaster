@@ -21,9 +21,9 @@ public abstract class Game {
 
     private boolean discard;
 
-    public Game(PlayerClass p1, PlayerClass p2) {
-        player1 = p1;
-        player2 = p2;
+    public Game(PlayerClass player1, PlayerClass player2) {
+        this.player1 = player1;
+        this.player2 = player2;
 
         playedCardTwo = null;
         playedCardOne = null;
@@ -89,7 +89,6 @@ public abstract class Game {
         return canPlay;
     }
 
-    //test this (marc)
     public boolean gameDone() {
         boolean result = false;
         if (player2.getHealth() < 1) {

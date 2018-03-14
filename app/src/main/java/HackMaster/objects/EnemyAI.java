@@ -1,8 +1,6 @@
 package hackmaster.objects;
 
 public class EnemyAI extends PlayerClass {
-    private int nextCard;
-
     public EnemyAI(int id, String n, ResourceClass r, CardClass[] c) {
         super(id, n, r, c);
     }

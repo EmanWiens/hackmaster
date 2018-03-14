@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hackmaster.objects.PlayerStatsSaves;
+import hackmaster.persistence.DataAccessObject;
 
 public class PlayerDataAccess implements PlayerDataAccessInterface {
     private Statement statement;
@@ -35,7 +36,6 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
         String result = null;
 
         try {
-            // get the list of players from the db
             resultSet = statement.executeQuery("SELECT * FROM PLAYERS");
         } catch(Exception e) {
             DataAccessObject.processSQLError(e);
@@ -79,6 +79,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
         return result;
     }
 
+
     @Override
     public ArrayList<PlayerStatsSaves> getPlayerRandom(int playerID){
         String playerName;
@@ -103,6 +104,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
         }
         return player;
     }
+
 
     @Override
     public String insertPlayer(PlayerStatsSaves newPlayer) {
@@ -156,7 +158,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
 
     @Override
     public String removePlayer(int playerID) {
-        String result = null;
+        String result;
         try {
             updateCount = statement.executeUpdate("DELETE FROM PLAYERS WHERE CARDID =" + playerID);
             result = DataAccessObject.checkWarning(statement, updateCount);
@@ -167,5 +169,4 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
         }
         return result;
     }
-
 }

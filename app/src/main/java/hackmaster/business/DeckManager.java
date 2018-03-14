@@ -13,24 +13,11 @@ public abstract class DeckManager {
 
     public static void initDeck() {
         cardDataAccess = Services.getCardDataAccess();
-        ArrayList<CardClass>listDeck = new ArrayList<>();
-        String emsg = cardDataAccess.getCardSequential(listDeck);
+        ArrayList<CardClass> listDeck = new ArrayList<>();
+        String eMsg = cardDataAccess.getCardSequential(listDeck);
+        if(eMsg!=null) System.out.println(eMsg);
         deck = listDeck.toArray(new CardClass[0]);
         resetIndex();
-    }
-
-    // Knuth shuffle
-    // TODO RUN TEST WITH SEED -JANSEN
-    public static void shuffleDeck(){
-        CardClass temp;
-        int pick;
-        int n = deck.length;
-        for(int i = n - 1; i>=0; i--){
-            pick = (int) Math.floor((i+1)*Math.random());
-            temp = deck[i];
-            deck[i] = deck[pick];
-            deck[pick] = temp;
-        }
     }
 
     public static CardClass[] dealFirstHandOfGame() {
