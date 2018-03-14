@@ -12,32 +12,28 @@ public class CardClass {
         this.cardID = id;
     }
 
-    public CardClass(int id, String name, String type, String d, ResourceClass p, ResourceClass e) {
+    public CardClass(int id, String name, String type, String description, ResourceClass resource, ResourceClass enemyResource) {
         this.cardID = id;
         this.name = name;
         this.type = type;
-        description = d;
-        player = p;
-        enemy = e;
+        this.description = description;
+        player = resource;
+        enemy = enemyResource;
     }
     public String toString() {
         String strung;
 
         strung = name + "\nType:" + type;
         strung += "\n" + resString();
-
         return strung;
     }
 
     public String resString() {
         String strung = "\nResources\n";
 
-        if (player != null)
-            strung += "Player:" + player.toString();
+        if (player != null) strung += "Player:" + player.toString();
         strung+="\n----\n";
-        if (enemy != null)
-            strung += "Enemy:" + enemy.toString();
-
+        if (enemy != null) strung += "Enemy:" + enemy.toString();
         return strung;
     }
 
@@ -48,11 +44,8 @@ public class CardClass {
         result = false;
         if (object instanceof CardClass) {
             card = (CardClass) object;
-            if (card.cardID == cardID) {
-                result = true;
-            }
+            if (card.cardID == cardID) result = true;
         }
-
         return result;
     }
 

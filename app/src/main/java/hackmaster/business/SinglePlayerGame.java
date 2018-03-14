@@ -4,8 +4,8 @@ import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
 
 public class SinglePlayerGame extends Game {
-    public SinglePlayerGame(PlayerClass p1, PlayerClass ai) {
-        super(p1,ai);
+    public SinglePlayerGame(PlayerClass player1, PlayerClass ai) {
+        super(player1,ai);
     }
 
     public boolean playCardEvent(int playerCard) {
