@@ -156,18 +156,29 @@ public class EnemyAIUnitTest {
         tempList.add(DeckManager.getCardAt(1));
         tempList.add(DeckManager.getCardAt(2));
         int bestCard = ai.bestCard(tempList.toArray(new CardClass[0]));
-        assertEquals(0, bestCard);
+        assertEquals(2, bestCard);
 
-        tempList.add(DeckManager.getCardAt(3));
-        tempList.add(DeckManager.getCardAt(4));
-        tempList.add(DeckManager.getCardAt(5));
+        tempList.add(DeckManager.getCardAt(6));
+        tempList.add(DeckManager.getCardAt(7));
+        tempList.add(DeckManager.getCardAt(8));
         bestCard = ai.bestCard(tempList.toArray(new CardClass[0]));
-        assertEquals(0, bestCard);
+        assertEquals(5, bestCard);
 
-        tempList.add(DeckManager.getCardAt(4));
-        tempList.add(DeckManager.getCardAt(3));
-        tempList.add(DeckManager.getCardAt(5));
+        tempList.clear();
+        tempList.add(DeckManager.getCardAt(8));
+        tempList.add(DeckManager.getCardAt(7));
+        tempList.add(DeckManager.getCardAt(6));
         bestCard = ai.bestCard(tempList.toArray(new CardClass[0]));
-        assertEquals(0, bestCard);
+        assertEquals(2, bestCard);
+
+        tempList.clear();
+        tempList.add(DeckManager.getCardAt(6));
+        tempList.add(DeckManager.getCardAt(8));
+        tempList.add(DeckManager.getCardAt(7));
+        bestCard = ai.bestCard(tempList.toArray(new CardClass[0]));
+        assertEquals(2, bestCard);
+
+        bestCard = ai.bestCard(DeckManager.getADeck());
+        assertEquals(2, bestCard);
     }
 }
