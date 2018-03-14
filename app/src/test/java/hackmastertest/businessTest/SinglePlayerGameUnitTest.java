@@ -81,19 +81,19 @@ public class SinglePlayerGameUnitTest {
         deck = game.getDeck();
 
         assertEquals("CPU Boost", player1Hand[0].getName());
-        assertEquals(deck[0].getName(), player1Hand[0].getName());
+        assertEquals(deck[0], player1Hand[0]);
 
         assertEquals("More Cores", player1Hand[1].getName());
-        assertEquals(deck[1].getName(), player1Hand[1].getName());
+        assertEquals(deck[1], player1Hand[1]);
 
         assertEquals("bot.net", player1Hand[2].getName());
-        assertEquals(deck[2].getName(), player1Hand[2].getName());
+        assertEquals(deck[2], player1Hand[2]);
 
         assertEquals("Сut some wires", player1Hand[3].getName());
-        assertEquals(deck[3].getName(), player1Hand[3].getName());
+        assertEquals(deck[3], player1Hand[3]);
 
         assertEquals("Upgrade Botnet", player1Hand[4].getName());
-        assertEquals(deck[4].getName(), player1Hand[4].getName());
+        assertEquals(deck[4], player1Hand[4]);
     }
 
     @Test
@@ -102,19 +102,19 @@ public class SinglePlayerGameUnitTest {
         deck = game.getDeck();
 
         assertEquals("Upgrade CPU", player2Hand[0].getName());
-        assertEquals(deck[5].getName(), player2Hand[0].getName());
+        assertEquals(deck[5].getID(), player2Hand[0].getID());
 
         assertEquals("Upgrade Hash Rate", player2Hand[1].getName());
-        assertEquals(deck[6].getName(), player2Hand[1].getName());
+        assertEquals(deck[6].getID(), player2Hand[1].getID());
 
         assertEquals("DDOS", player2Hand[2].getName());
-        assertEquals(deck[7].getName(), player2Hand[2].getName());
+        assertEquals(deck[7].getID(), player2Hand[2].getID());
 
         assertEquals("File Transfer", player2Hand[3].getName());
-        assertEquals(deck[8].getName(), player2Hand[3].getName());
+        assertEquals(deck[8].getID(), player2Hand[3].getID());
 
         assertEquals("Pop-up", player2Hand[4].getName());
-        assertEquals(deck[9].getName(), player2Hand[4].getName());
+        assertEquals(deck[9].getID(), player2Hand[4].getID());
     }
 
     @Test
@@ -122,18 +122,24 @@ public class SinglePlayerGameUnitTest {
     {
         CardClass beforePlayed = game.getPlayer1().getCard(4);
         game.playCardEvent(4);
-        assertEquals(game.getPlayedCardOne().getName(), beforePlayed.getName());
-        assertFalse(beforePlayed.getName().equals(game.getPlayer1().getCard(4).getName()));
+        assertEquals(game.getPlayedCardOne(), beforePlayed);
+        assertFalse(beforePlayed.equals(game.getPlayer1().getCard(4)));
 
         beforePlayed = game.getPlayer1().getCard(1);
         game.playCardEvent(1);
-        assertEquals(game.getPlayedCardOne().getName(), beforePlayed.getName());
-        assertFalse(beforePlayed.getName().equals(game.getPlayer1().getCard(1).getName()));
+        assertEquals(game.getPlayedCardOne(), beforePlayed);
+        assertFalse(beforePlayed.equals(game.getPlayer1().getCard(1)));
 
         beforePlayed = game.getPlayer1().getCard(2);
         game.playCardEvent(2);
-        assertEquals(game.getPlayedCardOne().getName(), beforePlayed.getName());
-        assertFalse(beforePlayed.getName().equals(game.getPlayer1().getCard(2).getName()));
+        assertEquals(game.getPlayedCardOne(), beforePlayed);
+        assertFalse(beforePlayed.equals(game.getPlayer1().getCard(2)));
+
+        beforePlayed = game.getPlayer1().getCard(0);
+        game.discardOn();
+        game.playCardEvent(0);
+        assertEquals(game.getPlayedCardOne(), beforePlayed);
+        assertFalse(beforePlayed.equals(game.getPlayer1().getCard(0)));
     }
 
     @Test

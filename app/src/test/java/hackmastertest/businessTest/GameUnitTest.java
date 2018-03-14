@@ -35,23 +35,23 @@ public class GameUnitTest {
         CardClass[] testDeck = new CardClass[10];
         testDeck[0] = new CardClass(0, "Nothing", "Defense", "Do Nothing",
                 new ResourceClass(0, 0, 0, 0, 0, 0, 0), null);
-        testDeck[1] = new CardClass(0, "Normal card", "Defense", "Costs a normal amount",
+        testDeck[1] = new CardClass(1, "Normal card", "Defense", "Costs a normal amount",
                 new ResourceClass(0, -1, 0, -1, 0, -1, 0), null);
-        testDeck[2] = new CardClass(0, "Expensive Health", "Attack", "Costs a lot of Health",
+        testDeck[2] = new CardClass(2, "Expensive Health", "Attack", "Costs a lot of Health",
                 new ResourceClass(-2000, 0, 0, 0, 0, 0, 0), null);
-        testDeck[3] = new CardClass(0, "Expensive HCoin", "Attack", "Costs a lot of HCoin",
+        testDeck[3] = new CardClass(3, "Expensive HCoin", "Attack", "Costs a lot of HCoin",
                 new ResourceClass(0, -2000, 0, 0, 0, 0, 0), null);
-        testDeck[4] = new CardClass(0, "Expensive BotNet", "Attack", "Costs a lot of Botnet",
+        testDeck[4] = new CardClass(4, "Expensive BotNet", "Attack", "Costs a lot of Botnet",
                 new ResourceClass(0, 0, 0, -2000, 0, 0, 0), null);
-        testDeck[5] = new CardClass(0, "Expensive GPU", "Attack", "Costs a lot of CPU",
+        testDeck[5] = new CardClass(5, "Expensive GPU", "Attack", "Costs a lot of CPU",
                 new ResourceClass(0, 0, 0, 0, 0, -2000, 0), null);
-        testDeck[6] = new CardClass(0, "Generate Health", "Attack", "Makes a lot of Health",
+        testDeck[6] = new CardClass(6, "Generate Health", "Attack", "Makes a lot of Health",
                 new ResourceClass(2000, 0, 0, 0, 0, 0, 0), null);
-        testDeck[7] = new CardClass(0, "Generate HCoin", "Attack", "Makes a lot of HCoin",
+        testDeck[7] = new CardClass(7, "Generate HCoin", "Attack", "Makes a lot of HCoin",
                 new ResourceClass(0, 2000, 0, 0, 0, 0, 0), null);
-        testDeck[8] = new CardClass(0, "Generate BotNet", "Attack", "Makes a lot of BotNet",
+        testDeck[8] = new CardClass(8, "Generate BotNet", "Attack", "Makes a lot of BotNet",
                 new ResourceClass(0, 0, 0, 2000, 0, 0, 0), null);
-        testDeck[9] = new CardClass(0, "Generate CPU", "Attack", "Makes a lot of CPU",
+        testDeck[9] = new CardClass(9, "Generate CPU", "Attack", "Makes a lot of CPU",
                 new ResourceClass(0, 0, 0, 0, 0, 2000, 0), null);
 
         return testDeck;
@@ -60,11 +60,11 @@ public class GameUnitTest {
     @Test
     public void testSetDeck() {
         CardClass[] testDeck = new CardClass[3];
-        testDeck[0] = new CardClass(0, "Nothing", "Defense", "Do Nothing",
+        testDeck[0] = new CardClass(10, "Nothing", "Defense", "Do Nothing",
                 new ResourceClass(0, 0, 0, 0, 0, 0, 0), null);
-        testDeck[1] = new CardClass(0, "Normal card", "Defense", "Costs a normal amount",
+        testDeck[1] = new CardClass(11, "Normal card", "Defense", "Costs a normal amount",
                 new ResourceClass(0, -1, 0, -1, 0, -1, 0), null);
-        testDeck[2] = new CardClass(0, "Expensive Health", "Attack", "Costs a lot of Health",
+        testDeck[2] = new CardClass(12, "Expensive Health", "Attack", "Costs a lot of Health",
                 new ResourceClass(-2000, 0, 0, 0, 0, 0, 0), null);
         testGame.setDeck(testDeck);
 
