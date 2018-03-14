@@ -101,7 +101,7 @@ public abstract class Game {
 
     public void initStats() {
         if(pStats == null) {
-            pStats = new PlayerStatsSaves();
+            pStats = new PlayerStatsSaves(-1);
         }
 
         pStats.setPlayerName("Player_1");

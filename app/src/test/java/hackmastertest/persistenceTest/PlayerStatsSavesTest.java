@@ -14,7 +14,7 @@ public class PlayerStatsSavesTest {
 
     @Before
     public void Setup() {
-        playerStats = new PlayerStatsSaves();
+        playerStats = new PlayerStatsSaves(0,"Tester",0,0,0,0);
     }
 
 
