@@ -3,7 +3,6 @@ package hackmaster.presentation;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-
 import android.content.res.AssetManager;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -102,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             else if (gameInSession.gamePaused()) {
                 setContentView(R.layout.battle_view);
                 gameInSession.unpauseGame();
-                renderView.renderBattleView();
+                renderView.renderBattleView(-1);
             }
         }
         else {
@@ -124,71 +123,61 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpSinglePlayerGame();
         renderView = new RenderView(gameInSession,MainActivity.this);
-        renderView.renderBattleView();
+        renderView.setUpBattleView();
     }
 
     public void multiPlayMessage(View v) {
         setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpMultiplayerGame();
         renderView = new RenderView(gameInSession, MainActivity.this);
-        renderView.renderBattleView();
+        renderView.setUpBattleView();
     }
 
-    public void firstcardPress(View v)
-    {
+    public void firstcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
-            gameInSession.playCardEvent(0);
-            renderView.renderBattleView();
-            renderView.renderPressedCardBorder(0);
-            if (renderView.gameDone())
-                getWinner();
+            if (gameInSession.playCardEvent(0)) {
+                renderView.renderBattleView(0);
+            }
         }
     }
 
-    public void secondcardPress(View v)
-    {
+    public void secondcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
-            gameInSession.playCardEvent(1);
-            renderView.renderBattleView();
-            renderView.renderPressedCardBorder(1);
-            if (renderView.gameDone())
-                getWinner();
+           if( gameInSession.playCardEvent(1))
+            renderView.renderBattleView(1);
         }
     }
 
     public void thirdcardPress(View v)
     {
         if (!gameInSession.getRenderDelay()) {
-            gameInSession.playCardEvent(2);
-            renderView.renderBattleView();
-            renderView.renderPressedCardBorder(2);
-            if (renderView.gameDone())
-                getWinner();
+            if (gameInSession.playCardEvent(2))
+            renderView.renderBattleView(2);
         }
     }
 
     public void fourthcardPress(View v)
     {
         if (!gameInSession.getRenderDelay()) {
-            gameInSession.playCardEvent(3);
-            renderView.renderBattleView();
-            renderView.renderPressedCardBorder(3);
-            if (renderView.gameDone())
-                getWinner();
+           if (gameInSession.playCardEvent(3))
+            renderView.renderBattleView(3);
         }
     }
 
     public void fifthcardPress(View v)
     {
         if (!gameInSession.getRenderDelay()) {
-            gameInSession.playCardEvent(4);
-            renderView.renderBattleView();
-            renderView.renderPressedCardBorder(4);
-            if (renderView.gameDone())
-                getWinner();
+            if (gameInSession.playCardEvent(4))
+            renderView.renderBattleView(4);
         }
     }
-
+    public void discardPress(View v) {
+        if (gameInSession.getDiscard() == true) {
+            renderView.setDiscard(true);
+        } else {
+            renderView.setDiscard(false);
+        }
+    }
     public void pauseMessage(View v) {
         gameInSession.pauseGame();
         setContentView(R.layout.pause_view);
@@ -197,7 +186,13 @@ public class MainActivity extends AppCompatActivity {
     public void pauseResumeMessage(View v) {
         setContentView(R.layout.battle_view);
         gameInSession.unpauseGame();
-        renderView.renderBattleView();
+        renderView.initSetUp();
+        renderView.renderBattleView(-1);
+    }
+    public void resumeFromContinueWindow(View v) {
+        setContentView(R.layout.battle_view);
+        renderView.initSetUp();
+        renderView.renderBattleView(-1);
     }
 
     public void pauseExitMessage(View v) {
@@ -239,6 +234,11 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.main_activity);
             checkStateSound();
         }
+    }
+    public void finishGame(View v)
+    {
+        setContentView(R.layout.main_activity);
+        checkStateSound();
     }
 
     public void getWinner() {

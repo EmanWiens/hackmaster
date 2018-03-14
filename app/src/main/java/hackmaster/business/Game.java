@@ -32,7 +32,9 @@ public abstract class Game {
         player1Turn = true;
     }
 
-    public void playCardEvent(int playerCard) { System.out.print("Error in game. Please try starting a new game."); }
+    public boolean playCardEvent(int playerCard) { System.out.print("Error in game. Please try starting a new game.");
+        return false;
+    }
 
     public void playerTurn(int playerCard, PlayerClass player) {
         CardClass nextCard = DeckManager.dealNextCard();
