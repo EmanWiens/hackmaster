@@ -24,7 +24,6 @@ public abstract class Game {
     public Game(PlayerClass p1, PlayerClass p2) {
         player1 = p1;
         player2 = p2;
-        initStats();
 
         playedCardTwo = null;
         playedCardOne = null;
@@ -32,7 +31,9 @@ public abstract class Game {
         player1Turn = true;
     }
 
-    public void playCardEvent(int playerCard) { System.out.print("Error in game. Please try starting a new game."); }
+    public boolean playCardEvent(int playerCard) { System.out.print("Error in game. Please try starting a new game.");
+        return false;
+    }
 
     public void playerTurn(int playerCard, PlayerClass player) {
         CardClass nextCard = DeckManager.dealNextCard();
@@ -98,15 +99,7 @@ public abstract class Game {
         }
         return result;
     }
-
-    public void initStats() {
-        if(pStats == null) {
-            pStats = new PlayerStatsSaves(-1);
-        }
-
-        pStats.setPlayerName("Player_1");
-    }
-
+    
     public int getPlayer1Health() {return player1.getHealth();}
     public int getPlayer2Health() {return player2.getHealth();}
     public String getPlayerName() {return pStats.getName();}

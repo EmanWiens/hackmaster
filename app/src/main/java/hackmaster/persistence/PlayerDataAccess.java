@@ -170,4 +170,10 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
         }
         return result;
     }
+
+    public void updatePlayerStats(PlayerStatsSaves pStats) {
+        getPlayer(pStats.getPlayerID());
+        removePlayer(pStats.getPlayerID());
+        addNewPlayer(pStats);
+    }
 }

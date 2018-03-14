@@ -157,7 +157,7 @@ public class GameUnitTest {
 
     @Test
     public void testCheckStats() {
-        testGame.initStats();
+        fail("This needs to be moved to wherever player stats need to be tested");
         assertNotNull(testGame.getPlayerName());
         assertEquals("Player_1", testGame.getPlayerName());
         assertEquals(0, testGame.getWin());
