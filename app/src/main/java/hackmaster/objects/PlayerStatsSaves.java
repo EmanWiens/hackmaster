@@ -7,6 +7,7 @@ public class PlayerStatsSaves {
     private int totalLoses;
     private int totalGames;
     private int level;
+
     private int playerID;
 
     public PlayerStatsSaves(int id) {
@@ -36,10 +37,6 @@ public class PlayerStatsSaves {
         level++;
     }
 
-    public void setPlayerName(String name) {
-        playerName = name;
-    } //test this (marc)
-
     public double getWinLossRatio() {
         double result = totalWins;
         if (totalLoses != 0) {
@@ -62,7 +59,7 @@ public class PlayerStatsSaves {
 
         return result;
     }
-
+    public void setPlayerName(String name) { playerName = name; }
     public int getPlayerID() { return playerID; }
     public int getLevel() {
         return level;

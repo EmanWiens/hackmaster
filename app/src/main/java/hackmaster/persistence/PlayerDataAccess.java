@@ -140,9 +140,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
         String where;
         String cmdString;
         String result = null;
-        int id, win, loss, games, level;
         try {
-            // Should check for empty values and not update them
             values = newPlayer.getName()
                     +", '" + newPlayer.getWin()
                     +"', '" + newPlayer.getLoss()
@@ -150,7 +148,6 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
                     +"', " + newPlayer.getLevel();
             where = "where PlayerID=" +newPlayer.getPlayerID();
             cmdString = "Update Cards " +" Set " +values +" " +where;
-            //System.out.println(cmdString);
             updateCount = statement.executeUpdate(cmdString);
             result = DataAccessObject.checkWarning(statement, updateCount);
         }
@@ -173,12 +170,4 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
         }
         return result;
     }
-
- /*
-    public void updatePlayerStats(PlayerStatsSaves pStats) {
-        getPlayer(pStats.getPlayerID());
-        removePlayer(pStats.getPlayerID());
-        addNewPlayer(pStats);
-    }
-    */
 }

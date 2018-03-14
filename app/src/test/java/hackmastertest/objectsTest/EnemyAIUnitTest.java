@@ -25,17 +25,15 @@ public class EnemyAIUnitTest {
     int card;
 
     @Before
-    public void setup() {
+    public void setUp() {
         Services.closeDataAccess();
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub,dbStub,dbStub);
-
-        DeckManager.initDeck();
+        // DeckManager.initDeck();
         card = 0;
 
-        hackmaster.objects.ResourceClass r = new ResourceClass(100, 2, 2, 2, 2, 2, 2);
+        ResourceClass r = new ResourceClass(100, 2, 2, 2, 2, 2, 2);
         player = new EnemyAI(1, "Enemy Bot", r, DeckManager.dealFirstHandOfGame());
-
     }
 
     @Test
@@ -44,13 +42,19 @@ public class EnemyAIUnitTest {
         assert(game.getPlayer2() instanceof EnemyAI);
     }
 
+
     @Test
     public void testNextCard () {
-        fail("Write tests for the AI to make sure there is some consistency for choosing the next card.");
+        resetDeck();
+        DeckManager.resetIndex();
+        EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), DeckManager.getADeck());
+
+        int nextCard = ai.playNextCard(game);
+
     }
 
     private void resetDeck() {
-        ArrayList<CardClass> testDeck = new ArrayList<CardClass>();
+        ArrayList<CardClass> testDeck = new ArrayList<>();
         testDeck.add(new CardClass(0, "-101 health", "Defense", "Do Nothing",
                 new ResourceClass(-101, 0, 0, 0, 0,0, 0), null));
         testDeck.add(new CardClass(0, "-100 health", "Defense", "Costs a normal amount",
@@ -133,5 +137,54 @@ public class EnemyAIUnitTest {
         assertEquals("-2 cpu", playable[9].getName());
 
         assertEquals("-1 cpuRate", playable[10].getName());
+    }
+
+    @Test
+    public void testAIDiscard() {
+        resetDeck();
+        DeckManager.resetIndex();
+        EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), DeckManager.getADeck());
+
+        CardClass[] playable = ai.playableCards();
+        assertEquals(11, playable.length);
+
+        fail("Write the tests to see that the AI discards");
+    }
+
+    @Test
+    public void testAIBestCard() {
+        resetDeck();
+        DeckManager.resetIndex();
+        EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), DeckManager.getADeck());
+
+        ArrayList<CardClass> tempList = new ArrayList<>();
+        tempList.add(DeckManager.getCardAt(0));
+        tempList.add(DeckManager.getCardAt(1));
+        tempList.add(DeckManager.getCardAt(2));
+        int bestCard = ai.bestCard(tempList.toArray(new CardClass[0]));
+        assertEquals(0, bestCard);
+
+        tempList.add(DeckManager.getCardAt(6));
+        tempList.add(DeckManager.getCardAt(7));
+        tempList.add(DeckManager.getCardAt(8));
+        bestCard = ai.bestCard(tempList.toArray(new CardClass[0]));
+        assertEquals(0, bestCard);
+
+        tempList.clear();
+        tempList.add(DeckManager.getCardAt(8));
+        tempList.add(DeckManager.getCardAt(7));
+        tempList.add(DeckManager.getCardAt(6));
+        bestCard = ai.bestCard(tempList.toArray(new CardClass[0]));
+        assertEquals(2, bestCard);
+
+        tempList.clear();
+        tempList.add(DeckManager.getCardAt(6));
+        tempList.add(DeckManager.getCardAt(8));
+        tempList.add(DeckManager.getCardAt(7));
+        bestCard = ai.bestCard(tempList.toArray(new CardClass[0]));
+        assertEquals(2, bestCard);
+
+        bestCard = ai.bestCard(DeckManager.getADeck());
+        assertEquals(0, bestCard);
     }
 }

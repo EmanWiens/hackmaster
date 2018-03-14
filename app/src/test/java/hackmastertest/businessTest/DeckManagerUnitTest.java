@@ -23,11 +23,6 @@ public class DeckManagerUnitTest {
     }
 
     @Test
-    public void testingStandardForTeamB() {
-        fail("From now on no messages in asserts");
-    }
-
-    @Test
     public void testDealInitialHand() {
         CardClass[] deck =DeckManager.dealFirstHandOfGame();
         assertEquals( 0, deck[0].getID());
