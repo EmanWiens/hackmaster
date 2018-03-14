@@ -156,13 +156,13 @@ public class EnemyAIUnitTest {
         tempList.add(DeckManager.getCardAt(1));
         tempList.add(DeckManager.getCardAt(2));
         int bestCard = ai.bestCard(tempList.toArray(new CardClass[0]));
-        assertEquals(2, bestCard);
+        assertEquals(0, bestCard);
 
         tempList.add(DeckManager.getCardAt(6));
         tempList.add(DeckManager.getCardAt(7));
         tempList.add(DeckManager.getCardAt(8));
         bestCard = ai.bestCard(tempList.toArray(new CardClass[0]));
-        assertEquals(5, bestCard);
+        assertEquals(0, bestCard);
 
         tempList.clear();
         tempList.add(DeckManager.getCardAt(8));
@@ -179,6 +179,6 @@ public class EnemyAIUnitTest {
         assertEquals(2, bestCard);
 
         bestCard = ai.bestCard(DeckManager.getADeck());
-        assertEquals(2, bestCard);
+        assertEquals(0, bestCard);
     }
 }
