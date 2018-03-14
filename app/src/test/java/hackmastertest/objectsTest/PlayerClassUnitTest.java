@@ -121,11 +121,6 @@ public class PlayerClassUnitTest {
         assertEquals("Player health should be 0", 0, player1.getHealth());
     }
 
-    @Test
-    public void testAddResources() {
-        fail("Try some simple tests to make sure that the resources are being added proper");
-    }
-
     private CardClass generateCard(int id, String name, String type, String desc) {
         return new CardClass(id, name, type, desc, player1_resource, player2);
     }

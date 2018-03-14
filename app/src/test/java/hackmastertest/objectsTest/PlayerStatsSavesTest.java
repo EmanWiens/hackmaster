@@ -1,4 +1,4 @@
-package hackmastertest.persistenceTest;
+package hackmastertest.objectsTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -77,14 +77,5 @@ public class PlayerStatsSavesTest {
         playerStats.addLoss();
         assertEquals(4, playerStats.getLoss());
     }
-
-    @Test
-    public void testPlayerName() {
-        fail("Test that the saved player name is correct and the ID");
-    }
-
-    @Test
-    public void testGetTotalGame() {
-        fail("test that the total games comes out right");
-    }
+    
 }

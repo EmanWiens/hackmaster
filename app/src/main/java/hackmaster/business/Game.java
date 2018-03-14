@@ -99,7 +99,7 @@ public abstract class Game {
         }
         return result;
     }
-    
+
     public int getPlayer1Health() {return player1.getHealth();}
     public int getPlayer2Health() {return player2.getHealth();}
     public String getPlayerName() {return pStats.getName();}

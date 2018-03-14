@@ -44,11 +44,6 @@ public class EnemyAIUnitTest {
         assert(game.getPlayer2() instanceof EnemyAI);
     }
 
-    @Test
-    public void testNextCard () {
-        fail("Write tests for the AI to make sure there is some consistency for choosing the next card.");
-    }
-
     private void resetDeck() {
         ArrayList<CardClass> testDeck = new ArrayList<CardClass>();
         testDeck.add(new CardClass(0, "-101 health", "Defense", "Do Nothing",
