@@ -36,7 +36,6 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
         String result = null;
 
         try {
-            // get the list of players from the db
             resultSet = statement.executeQuery("SELECT * FROM PLAYERS");
         } catch(Exception e) {
             DataAccessObject.processSQLError(e);
@@ -159,7 +158,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
 
     @Override
     public String removePlayer(int playerID) {
-        String result = null;
+        String result;
         try {
             updateCount = statement.executeUpdate("DELETE FROM PLAYERS WHERE CARDID =" + playerID);
             result = DataAccessObject.checkWarning(statement, updateCount);

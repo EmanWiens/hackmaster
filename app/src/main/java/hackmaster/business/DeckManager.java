@@ -19,20 +19,6 @@ public abstract class DeckManager {
         resetIndex();
     }
 
-    // Knuth shuffle
-    // TODO RUN TEST WITH SEED -JANSEN
-    public static void shuffleDeck(){
-        CardClass temp;
-        int pick;
-        int n = deck.length;
-        for(int i = n - 1; i>=0; i--){
-            pick = (int) Math.floor((i+1)*Math.random());
-            temp = deck[i];
-            deck[i] = deck[pick];
-            deck[pick] = temp;
-        }
-    }
-
     public static CardClass[] dealFirstHandOfGame() {
         CardClass[] cards = new CardClass[Game.hand];
 
