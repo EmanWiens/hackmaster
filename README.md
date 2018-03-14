@@ -75,22 +75,22 @@ If you can't run the simulator got on tools->android->sync gradle.<br /><br />
 
 ## New Features/Changes
  <br />
- •Improved UI<br />
+ Improved UI<br />
     •Added Background Music<br />
     •Added Card Images<br />
     •Added Background Images<br />
- •Improved Gameplay<br />
+ Improved Gameplay<br />
     •Discard functionality<br />
     •Added Victory/Defeat Screen<br />
- •Enemy AI<br />
+ Enemy AI<br />
     •AI now looks for the best/worst card to play<br />
     •AI can discard unplayable cards<br />
- •Multiplayer<br />
+ Multiplayer<br />
     •Added "hotseat" multiplayer<br />
     •Added screen indication between Player 1 turn and Player 2 turn<br />
- •Database<br />
+ Database<br />
     •Added a database that handles how cards and player stats are stored<br />
- •Refactored Code Base<br />
+ Refactored Code Base<br />
     •Code base has been refactored for improved interactivity between classes<br /><br />
     
 ## Credit to Music
