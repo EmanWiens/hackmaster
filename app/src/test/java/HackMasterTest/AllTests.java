@@ -25,8 +25,7 @@ import hackmastertest.persistenceTest.PlayerStatsSavesTest;
         ResourceClassUnitTest.class,
         PlayerStatsSavesTest.class,
         SinglePlayerGameUnitTest.class,
-        MultiPlayerGameUnitTest.class
+        MultiPlayerGameUnitTest.class,
+        PlayerStatsSavesTest.class
 })
-public class AllTests {
-
-}
+public class AllTests { }

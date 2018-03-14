@@ -30,7 +30,7 @@ public class EnemyAI extends PlayerClass {
 
         for (int i = 0; i < playable.length; i++) {
             ResourceClass cardR = playable[i].getPlayerR();
-            int testCost = cardR.getBotnet() + cardR.gethCoin() + cardR.getCpu();
+            int testCost = cardR.getBotnet() + cardR.gethCoin() + cardR.getCpu() + cardR.getHealth();
             if (testCost <= worstCost) {
                 worstCost = testCost;
                 worstCard = i;
@@ -43,7 +43,6 @@ public class EnemyAI extends PlayerClass {
     private int bestCard(CardClass[] playable) {
         int bestCard = -1;
         int bestCost = 10000;
-        double heurisitCost = 0;
 
         for (int i = 0; i < playable.length; i++) {
             ResourceClass cardR = playable[i].getPlayerR();

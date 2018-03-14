@@ -97,9 +97,4 @@ public class ResourceClassUnitTest {
         assertEquals("botnet should be 55",55, resource.getBotnet());
         assertEquals("cpu should be 56",56, resource.getCpu());
     }
-
-    @After
-    public void tearDown(){
-        resource = null;
-    }
 }

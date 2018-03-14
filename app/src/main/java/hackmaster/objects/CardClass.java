@@ -28,12 +28,7 @@ public class CardClass {
 
         return strung;
     }
-    public ResourceClass getPlayerR() { return player; }
-    public ResourceClass getEnemyR() { return enemy; }
-    public String getName() { return name; }
-    public String getType() { return type; }
-    public int getID() { return cardID; }
-    public String getDescription() { return description; }
+
     public String resString() {
         String strung = "\nResources\n";
 
@@ -45,6 +40,7 @@ public class CardClass {
 
         return strung;
     }
+
     public boolean equals(Object object) {
         boolean result;
         CardClass card;
@@ -59,4 +55,11 @@ public class CardClass {
 
         return result;
     }
+
+    public ResourceClass getPlayerR() { return player; }
+    public ResourceClass getEnemyR() { return enemy; }
+    public String getName() { return name; }
+    public String getType() { return type; }
+    public int getID() { return cardID; }
+    public String getDescription() { return description; }
 }

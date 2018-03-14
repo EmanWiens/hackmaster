@@ -53,55 +53,36 @@ public class MusicManager {
         });
         this.soundIdCardSelected = this.soundPool.load(contextVariable, R.raw.select,1);
     }
+
     public void backGroundMusicStart() {
         musicOn =true;
         Random rand = new Random();
-        int  n = rand.nextInt(6) + 1;
-        if (n==1) {
-            //credit: https://www.youtube.com/watch?v=b-Cr0EWwaTk
-            mediaPlayer = MediaPlayer.create(contextVariable, R.raw.javarapsong);
-        }
-        else if (n==2)
-        {
-            mediaPlayer = MediaPlayer.create(contextVariable, R.raw.background);
-        }
-        else if (n==3)
-        {
-            //credit: https://www.youtube.com/watch?v=FoUWHfh733Y&index=21&list=RDiN1uaITfA1c
-            mediaPlayer = MediaPlayer.create( contextVariable, R.raw.dualcore);
-        }
-        else if (n==4)
-        {
-            //credit: https://www.youtube.com/watch?v=iN1uaITfA1c&index=1&list=RDiN1uaITfA1c
-            mediaPlayer = MediaPlayer.create( contextVariable, R.raw.hackersong);
-        }
-        else if (n==5)
-        {
-            //credit: https://www.youtube.com/watch?v=rLsJCCNXUto&list=RDiN1uaITfA1c&index=3
-            mediaPlayer = MediaPlayer.create( contextVariable, R.raw.welcometoourworld);
-        }
-        else if (n==6)
-        {
-            //credit: https://www.youtube.com/watch?v=Gc74aRe7OLM
-            mediaPlayer = MediaPlayer.create(contextVariable, R.raw.piratemusic);
-        }
-        mediaPlayer.start(); // no need to call prepare(); create() does that for you
+        int  randomNum = rand.nextInt(5);
+        int[] songsList = new int[]{
+                R.raw.javarapsong,  R.raw.background, R.raw.dualcore,
+                R.raw.hackersong, R.raw.piratemusic, R.raw.welcometoourworld};
+        mediaPlayer = MediaPlayer.create(contextVariable, songsList[randomNum]);
+        mediaPlayer.start();
         mediaPlayer.setLooping(true);
     }
+
     public void playCardSelected(float leftVolumn, float rightVolumn) {
         if(getSoundPoolLoaded()) {
             // Play sound CardSelected.wav
             this.soundPool.play(this.soundIdCardSelected,leftVolumn, rightVolumn, 1, 0, 1f);
         }
     }
+
     public  void pauseBacgroundMusic() {
         mediaPlayer.pause();
         musicOn =false;
     }
+
     public  void resumeBacgroundMusic() {
         mediaPlayer.start();
         musicOn =true;
     }
+
     private boolean getSoundPoolLoaded() {return soundPoolLoaded;}
     public  boolean getStateMusic() {return musicOn;}
 }

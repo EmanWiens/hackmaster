@@ -28,13 +28,10 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
         players = new ArrayList<PlayerStatsSaves>();
         player = new PlayerStatsSaves(100, "Gary Chalmers", 0, 0, 0, 0);
         players.add(player);
-        players = new ArrayList<PlayerStatsSaves>();
         player = new PlayerStatsSaves(200, "Selma Bouvier", 1, 1, 2, 1);
         players.add(player);
-        players = new ArrayList<PlayerStatsSaves>();
         player = new PlayerStatsSaves(300, "Arnie Pye", 50, 20, 70, 20);
         players.add(player);
-        players = new ArrayList<PlayerStatsSaves>();
         player = new PlayerStatsSaves(400, "Bailey Bailey", 100, 100, 200, 30);
         players.add(player);
 
@@ -126,7 +123,6 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
         tempCard = new CardClass(28, "Mass Hack", "Attack", "Extreme Use of CPU",
                 new ResourceClass(20, 0, 0, 0, 0, -50, 0), new ResourceClass(-25, 0, 0, 0, 0, 0, 0));
         cards.add(tempCard);
-
     }
 
     public void close() { }
@@ -140,30 +136,44 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
         return null;
     }
 
-    public List<PlayerStatsSaves> getPlayersList() { return new ArrayList<PlayerStatsSaves>(players); } // SHALLOW COPY
-
-    public List<String> getPlayersNamesList() {
-        ArrayList<String> playerNames = new ArrayList<String>();
-        for(PlayerStatsSaves player : players) playerNames.add(player.getName());
-        return playerNames;
+    public String getPlayerSequential(List<PlayerStatsSaves> playerResult) {
+        String result = null;
+        playerResult.addAll(players);
+        return result;
     }
 
-    public PlayerStatsSaves getPlayer(int playerID) {
-        PlayerStatsSaves player = null;
+    public String getPlayersNamesList(List<String> playerResult) {
+        String result = null;
+        for(PlayerStatsSaves player : players) playerResult.add(player.getName());
+        return result;
+    }
+
+    public ArrayList<PlayerStatsSaves> getPlayerRandom(int playerID) {
+        ArrayList<PlayerStatsSaves> player = new ArrayList<PlayerStatsSaves>();
         for(PlayerStatsSaves playerNode : players) {
-            if(playerNode.getPlayerID()==playerID) player = playerNode;
+            if(playerNode.getPlayerID()==playerID) player.add(playerNode);
         }
         return player;
     }
 
-    public int addNewPlayer(PlayerStatsSaves newPlayer){
-        players.add(newPlayer);
-        return newPlayer.getPlayerID();
+    public String insertPlayer(PlayerStatsSaves player){
+        String result = null;
+        players.add(player);
+        return result;
+    }
+
+    public String updatePlayer(PlayerStatsSaves player) {
+        String result = null;
+        int index = players.indexOf(player);
+        if (index >= 0) {
+            players.set(index, player);
+        }
+        return result;
     }
 
     public String removePlayer(int playerID) {
         String result = null;
-        PlayerStatsSaves player = getPlayer(playerID);
+        PlayerStatsSaves player = new PlayerStatsSaves(playerID);
         int index = players.indexOf(player);
         if (index >= 0)
         {
@@ -178,11 +188,10 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
         return result;
     }
 
-    public CardClass getCardRandom(CardClass newCard) {
-        CardClass card = null;
-        int cardID = newCard.getID();
+    public ArrayList<CardClass> getCardRandom(int cardID) {
+        ArrayList<CardClass> card = new ArrayList<CardClass>();
         for(CardClass cardNode : cards) {
-            if(cardNode.getID()==cardID) card = cardNode;
+            if(cardNode.getID()==cardID) card.add(cardNode);
         }
         return card;
     }
@@ -196,18 +205,17 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
     public String updateCard(CardClass card) {
         String result = null;
         int index = cards.indexOf(card);
-        if (index >= 0)
-        {
+        if (index >= 0) {
             cards.set(index, card);
         }
         return result;
     }
 
-    public String removeCard(CardClass card) {
+    public String removeCard(int cardID) {
         String result = null;
+        CardClass card = new CardClass(cardID);
         int index = cards.indexOf(card);
-        if (index >= 0)
-        {
+        if (index >= 0) {
             cards.remove(index);
         }
         return result;

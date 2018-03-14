@@ -1,7 +1,6 @@
 package hackmaster.business;
 
 import java.util.ArrayList;
-
 import hackmaster.application.Services;
 import hackmaster.persistence.CardDataAccessInterface;
 import hackmaster.objects.CardClass;
@@ -12,14 +11,11 @@ public abstract class DeckManager {
     private static CardClass[] deck = null;
     private static CardDataAccessInterface cardDataAccess;
 
-    abstract void methodToOverride(); // TODO example of a method to be overriden by subclass
-
     public static void initDeck() {
         cardDataAccess = Services.getCardDataAccess();
         ArrayList<CardClass>listDeck = new ArrayList<>();
         String emsg = cardDataAccess.getCardSequential(listDeck);
         deck = listDeck.toArray(new CardClass[0]);
-        //shuffleDeck();
         resetIndex();
     }
 

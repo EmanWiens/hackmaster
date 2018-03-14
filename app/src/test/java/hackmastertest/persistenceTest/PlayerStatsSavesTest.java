@@ -1,9 +1,10 @@
 package hackmastertest.persistenceTest;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import hackmaster.objects.PlayerStatsSaves;
@@ -13,17 +14,27 @@ public class PlayerStatsSavesTest {
 
     @Before
     public void Setup() {
-        playerStats = new PlayerStatsSaves();
+        playerStats = new PlayerStatsSaves(0,"Tester",0,0,0,0);
     }
 
 
     @Test
     public void testLevelUp() {
+        assertEquals(0, playerStats.getLevel());
+
         playerStats.addLevel();
-        assertEquals("The Level should be 1",1, playerStats.getLevel());
+        assertEquals(1, playerStats.getLevel());
+
+        playerStats.addLevel();
+        assertEquals(2, playerStats.getLevel());
+
+        playerStats.addLevel();
+        playerStats.addLevel();
+        playerStats.addLevel();
+        assertEquals(5, playerStats.getLevel());
     }
     @Test
-    public void testWinandLose() {
+    public void testWinAndLose() {
         assertEquals("The value of win/lose ratio should be 0" ,0.00,playerStats.getLevel(), 0.0001);
         playerStats.addWin();
         assertEquals("The value of win/lose ratio should be 1", 1.00, playerStats.getWinLossRatio(), 0.0001);
@@ -39,9 +50,41 @@ public class PlayerStatsSavesTest {
         assertEquals("The Level should be 0", 0, playerStats.getLevel());
     }
 
-    @After
-    public void tearDown() {
-        playerStats = null;
+    @Test
+    public void testGetWin() {
+        assertEquals(0, playerStats.getWin());
+        playerStats.addWin();
+        assertEquals(1, playerStats.getWin());
+
+        playerStats.addWin();
+        assertEquals(2, playerStats.getWin());
+
+        playerStats.addWin();
+        playerStats.addWin();
+        assertEquals(4, playerStats.getWin());
     }
 
+    @Test
+    public void testGetLoss() {
+        assertEquals(0, playerStats.getLoss());
+        playerStats.addLoss();
+        assertEquals(1, playerStats.getLoss());
+
+        playerStats.addLoss();
+        assertEquals(2, playerStats.getLoss());
+
+        playerStats.addLoss();
+        playerStats.addLoss();
+        assertEquals(4, playerStats.getLoss());
+    }
+
+    @Test
+    public void testPlayerName() {
+        fail("Test that the saved player name is correct and the ID");
+    }
+
+    @Test
+    public void testGetTotalGame() {
+        fail("test that the total games comes out right");
+    }
 }

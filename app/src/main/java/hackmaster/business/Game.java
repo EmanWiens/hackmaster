@@ -14,17 +14,16 @@ public abstract class Game {
 
     private boolean player1Turn;
     private boolean paused;
-    private boolean renderDelayToggle;
+    private boolean renderDelay;
 
     private static CardClass playedCardOne;
     private static CardClass playedCardTwo;
 
-    private boolean discard = false;
+    private boolean discard;
 
     public Game(PlayerClass p1, PlayerClass p2) {
         player1 = p1;
         player2 = p2;
-        initStats();
 
         playedCardTwo = null;
         playedCardOne = null;
@@ -32,17 +31,22 @@ public abstract class Game {
         player1Turn = true;
     }
 
-    public void playCardEvent(int playerCard) { System.out.print("Error in game. Please try starting a new game."); }
+    public boolean playCardEvent(int playerCard) { System.out.print("Error in game. Please try starting a new game.");
+        return false;
+    }
 
     public void playerTurn(int playerCard, PlayerClass player) {
         CardClass nextCard = DeckManager.dealNextCard();
         CardClass doNothing = new CardClass(-1, "Do Nothing", "Do Nothing", "Do Nothing", null, null);
         CardClass playedCard = player.getCard(playerCard);
+
         if (getDiscard()) {
             ResourceManager.applyCard(player1Turn, player1, player2, doNothing);
             discardOff();
-        } else
+        } else {
             ResourceManager.applyCard(player1Turn, player1, player2, playedCard);
+        }
+
         player.setCard(playerCard, nextCard);
     }
 
@@ -58,25 +62,31 @@ public abstract class Game {
         ResourceClass cardResource = card.getPlayerR();
         ResourceClass playerResource = player.getResources();
 
-        if(playerResource.getHealth() + cardResource.getHealth() < 0)
+        if(playerResource.getHealth() + cardResource.getHealth() < 0) {
             canPlay = false;
-        if(playerResource.gethCoin() + cardResource.gethCoin() < 0)
+        }
+        if(playerResource.gethCoin() + cardResource.gethCoin() < 0) {
             canPlay = false;
-        if(playerResource.getBotnet() + cardResource.getBotnet() < 0)
+        }
+        if(playerResource.getBotnet() + cardResource.getBotnet() < 0) {
             canPlay = false;
-        if(playerResource.getCpu() + cardResource.getCpu() < 0)
+        }
+        if(playerResource.getCpu() + cardResource.getCpu() < 0) {
             canPlay = false;
+        }
 
-        if(playerResource.gethCoin() + cardResource.gethCoinRate() < 1)
+        if(playerResource.gethCoin() + cardResource.gethCoinRate() < 1) {
             canPlay = false;
-        if(playerResource.getBotnet() + cardResource.getBotnetRate() < 1)
+        }
+        if(playerResource.getBotnet() + cardResource.getBotnetRate() < 1) {
             canPlay = false;
-        if(playerResource.getCpu() + cardResource.getCpuRate() < 1)
+        }
+        if(playerResource.getCpu() + cardResource.getCpuRate() < 1) {
             canPlay = false;
+        }
 
         return canPlay;
     }
-
 
     //test this (marc)
     public boolean gameDone() {
@@ -89,23 +99,15 @@ public abstract class Game {
         }
         return result;
     }
-
-    public void initStats() {
-        if(pStats == null) {
-            pStats = new PlayerStatsSaves();
-        }
-
-        pStats.setPlayerName("Player_1");
-    }
-
+    
     public int getPlayer1Health() {return player1.getHealth();}
     public int getPlayer2Health() {return player2.getHealth();}
     public String getPlayerName() {return pStats.getName();}
     public int getWin() {return pStats.getWin();}
     public void addWin() { pStats.addWin();}
     public void addLoss() { pStats.addLoss();}
-    public boolean getRenderDelayToggle() { return renderDelayToggle; }
-    public void setRenderDelayToggle(boolean set) { renderDelayToggle = set; }
+    public boolean getRenderDelay() { return renderDelay; }
+    public void setRenderDelay(boolean set) { renderDelay = set; }
     public CardClass getPlayedCardOne() { return playedCardOne; }
     public CardClass getPlayedCardTwo() { return playedCardTwo; }
     public void pauseGame() { paused = true; }
@@ -122,10 +124,9 @@ public abstract class Game {
     public CardClass[] getDeck() { return DeckManager.getDeck(); }
     public ResourceClass getPlayer1Res() { return player1.getResources(); }
     public ResourceClass getPlayer2Res() { return player2.getResources(); }
-    public int getDeckMangerDealNextCard() { return DeckManager.getNextIndex(); }
-
-    // TODO test these (marc)
     public void discardOn() {discard = true;}
     public void discardOff() {discard = false;}
     public boolean getDiscard() {return discard;}
+    public void addHealthPlayer1(int health) {player1.addHealth(health);}
+    public void addHealthPlayer2(int health) {player2.addHealth(health);}
 }

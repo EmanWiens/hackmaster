@@ -11,7 +11,7 @@ public abstract class SetUpGame {
         DeckManager.initDeck();
 
         PlayerClass player1 = new PlayerClass(0,
-                "HackerMan",
+                "HackMaster",
                 startOfGameResources.clone(), DeckManager.dealFirstHandOfGame());
 
         PlayerClass player2 = new EnemyAI(1,
@@ -35,5 +35,5 @@ public abstract class SetUpGame {
         return new MultiplayerGame(player1, player2);
     }
 
-    public static final ResourceClass startOfGameResources() { return startOfGameResources.clone(); }
+    public static ResourceClass startOfGameResources() { return startOfGameResources.clone(); }
 }
