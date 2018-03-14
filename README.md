@@ -73,6 +73,14 @@ In game: <br />
 Build once, if build doesn't work go to build->clean build. Then hit play.<br /> 
 If you can't run the simulator got on tools->android->sync gradle.<br />
 
+## New Features
+ <br />
+ •Improved UI (Graphics and Sound)<br />
+ •Discard functionality<br />
+ •Enemy AI<br />
+ •Multiplayer ("hotseat")<br />
+ •Database Stuff<br />
+
 ## Credit to Music
 <br />"Java" Song : https://www.youtube.com/watch?v=b-Cr0EWwaTk<br /> 
 <br />"Dual_Core" Song: https://www.youtube.com/watch?v=FoUWHfh733Y&index=21&list=RDiN1uaITfA1c <br /> 
