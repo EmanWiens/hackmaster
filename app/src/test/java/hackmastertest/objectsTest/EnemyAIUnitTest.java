@@ -44,11 +44,16 @@ public class EnemyAIUnitTest {
 
     @Test
     public void testNextCard () {
-        fail("Write tests for the AI to make sure there is some consistency for choosing the next card.");
+        resetDeck();
+        DeckManager.resetIndex();
+        EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), DeckManager.getADeck());
+
+        int nextCard = ai.playNextCard(game);
+
     }
 
     private void resetDeck() {
-        ArrayList<CardClass> testDeck = new ArrayList<CardClass>();
+        ArrayList<CardClass> testDeck = new ArrayList<>();
         testDeck.add(new CardClass(0, "-101 health", "Defense", "Do Nothing",
                 new ResourceClass(-101, 0, 0, 0, 0,0, 0), null));
         testDeck.add(new CardClass(0, "-100 health", "Defense", "Costs a normal amount",
