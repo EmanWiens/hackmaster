@@ -80,7 +80,7 @@ public class MultiPlayerGameUnitTest {
         deck = game.getDeck();
 
         assertEquals("CPU Boost", player1Hand[0].getName());
-        assertEquals(deck[0].getName(), player1Hand[0].getName());
+        assertEquals(deck[0].getName(), player1Hand[0]);
 
         assertEquals("More Cores", player1Hand[1].getName());
         assertEquals(deck[1].getName(), player1Hand[1].getName());

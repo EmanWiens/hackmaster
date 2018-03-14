@@ -58,17 +58,7 @@ public class RenderView {
         if (!gameInSession.gamePaused()) {
             renderPlayerResource(player1);
             renderPlayerResource(player2);
-            if (gameInSession.getPlayer1Turn()) {
-                renderTheHandDeck(player1);
-            }
-            else {
-                renderTheHandDeck(player2);
-            }
-            if(gameInSession.getDiscard()) {
-                setDiscard(false);
-            } else {
-                setDiscard(true);
-            }
+            renderCards();
         }
     }
     public void setDiscard (boolean toggle) {
@@ -92,16 +82,7 @@ public class RenderView {
                 renderPressedCardBorder(borderID);
                 showContinueView=true;
             }
-            if (gameInSession.getPlayer1Turn()) {
-                 renderTheHandDeck(player1);
-                 } else {
-                renderTheHandDeck(player2);
-            }
-            if(gameInSession.getDiscard()) {
-                setDiscard(false);
-            } else {
-                setDiscard(true);
-            }
+            renderCards();
             if (!multiPlayer) {
                 if (playedCardOne != null && !gameInSession.getRenderDelay() )
                     renderPlayedCard(playedCardOne, false);
@@ -111,12 +92,12 @@ public class RenderView {
                 playerTurnText.setText(aiTurn);
             } else if (multiPlayer) {
 
-                if (!gameInSession.getPlayer1Turn() ) {
+                if (!gameInSession.getPlayer1Turn() && playedCardOne!=null) {
                     renderPlayedCard(playedCardOne, false);
                     playerTurnText.setText(player2Turn);
                     if (showContinueView)
                         activateContentView(player2Turn);
-                } else {
+                } else if (playedCardTwo!=null) {
                     renderPlayedCard(playedCardTwo, false);
                     playerTurnText.setText(player1Turn);
                     if (showContinueView)
@@ -128,7 +109,19 @@ public class RenderView {
            {
                 getWinner();
            }
-}
+    }
+    private void renderCards() {
+                if (gameInSession.getPlayer1Turn()) {
+                    renderTheHandDeck(player1);
+                } else {
+                    renderTheHandDeck(player2);
+                }
+                if(gameInSession.getDiscard()) {
+                    setDiscard(false);
+                } else {
+                    setDiscard(true);
+                }
+            }
     private void renderTheHandDeck(PlayerClass player)
     {
         for (int i = 0; i < player.getCards().length; i++) {

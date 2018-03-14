@@ -1,5 +1,6 @@
 package hackmaster.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -72,15 +73,15 @@ public class CardDataAccess implements CardDataAccessInterface {
     }
 
     @Override
-    public CardClass getCardRandom(CardClass newCard) {
-        CardClass card = null;
+    public ArrayList<CardClass> getCardRandom(int cardID) {
+        ArrayList<CardClass> card = new ArrayList<CardClass>();
         int myID = -1;
         String myName, myType, myDesc;
         int myPHealth = 0, myPCoin = 0, myPCoinRate = 0, myPBotnet = 0, myPBotnetRate = 0, myPCPU = 0, myPCPURate = 0, myEHealth = 0;
         int myECoin = 0, myECoinRate = 0, myEBotnet = 0, myEBotnetRate = 0, myECPU = 0, myECPURate = 0;
 
         try {
-            resultSet = statement.executeQuery("Select * from Cards where CardID=" + newCard.getID());
+            resultSet = statement.executeQuery("Select * from Cards where CardID=" + cardID);
             while (resultSet.next()) {
                 myID = resultSet.getInt("CardID");
                 myName = resultSet.getString("Name");
@@ -100,9 +101,9 @@ public class CardDataAccess implements CardDataAccessInterface {
                 myEBotnetRate = resultSet.getInt("EBotnetRate");
                 myECPU = resultSet.getInt("ECPU");
                 myECPURate = resultSet.getInt("ECPURate");
-                card = new CardClass(myID, myName, myType, myDesc,
+                card.add(new CardClass(myID, myName, myType, myDesc,
                         new ResourceClass(myPHealth, myPCoin, myPCoinRate, myPBotnet, myPBotnetRate, myPCPU, myPCPURate),
-                        new ResourceClass(myEHealth, myECoin, myECoinRate, myEBotnet, myEBotnetRate, myECPU, myECPURate));
+                        new ResourceClass(myEHealth, myECoin, myECoinRate, myEBotnet, myEBotnetRate, myECPU, myECPURate)));
             }
             resultSet.close();
         } catch (Exception e) {
@@ -144,7 +145,6 @@ public class CardDataAccess implements CardDataAccessInterface {
         String cmdString;
         String result = null;
         try {
-            // Should check for empty values and not update them
             values = "Name='" +card.getName()
                     +"', Type='" +card.getType()
                     +"', Description='" +card.getDescription()
@@ -157,7 +157,6 @@ public class CardDataAccess implements CardDataAccessInterface {
                     +", PCPURate=" +card.getPlayerR().getCpuRate();
             where = "where CardID=" +card.getID();
             cmdString = "Update Cards " +" Set " +values +" " +where;
-            //System.out.println(cmdString);
             updateCount = statement.executeUpdate(cmdString);
             result = DataAccessObject.checkWarning(statement, updateCount);
         }
@@ -168,15 +167,16 @@ public class CardDataAccess implements CardDataAccessInterface {
     }
 
     @Override
-    public String removeCard(CardClass card) {
+    public String removeCard(int cardID) {
         int values;
         String result = null;
         try {
-            values = card.getID();
+            values = cardID;
             updateCount = statement.executeUpdate("Delete from Cards where CardID=" +values);
             result = DataAccessObject.checkWarning(statement, updateCount);
         }
         catch (Exception e) {
+            result = e.getMessage();
             DataAccessObject.processSQLError(e);
         }
         return result;

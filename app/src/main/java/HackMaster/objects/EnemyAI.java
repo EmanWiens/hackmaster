@@ -16,7 +16,7 @@ public class EnemyAI extends PlayerClass {
         }
         else {
             nextCard = bestCard(playable);
-            nextCard = getCardIndex(playable[nextCard].getID(), getCards());
+            nextCard = getCardIndex(playable[nextCard].getID());
         }
 
         return nextCard;

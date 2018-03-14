@@ -42,6 +42,7 @@ public class EnemyAIUnitTest {
         assert(game.getPlayer2() instanceof EnemyAI);
     }
 
+
     @Test
     public void testNextCard () {
         resetDeck();

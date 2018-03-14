@@ -18,10 +18,6 @@ public class CardClassUnitTest {
 
     @Before
     public void setUp(){
-        Services.closeDataAccess();
-        DataAccessStub dbStub = new DataAccessStub("stub");
-        Services.createDataAccess(dbStub,dbStub,dbStub);
-
         player1 = new ResourceClass(1000,50,3, 53, 2, 55, 1);
         player2 = new ResourceClass(1000,56,8, 54, 1, 99, 10);
         cardObj = new CardClass(1, "TestCard_1", "Upgrade", "desc", player1, player2);
@@ -30,10 +26,10 @@ public class CardClassUnitTest {
     @Test
     public void testInitCardClass() {
         assertNotNull(cardObj);
-        assertEquals("The id should be 1",1, cardObj.getID());
-        assertEquals("The name of this card should be TestCard_1","TestCard_1", cardObj.getName());
-        assertEquals("The type should be Upgrade","Upgrade", cardObj.getType());
-        assertEquals("The description should be desc","desc", cardObj.getDescription());
+        assertEquals(1, cardObj.getID());
+        assertEquals("TestCard_1", cardObj.getName());
+        assertEquals("Upgrade", cardObj.getType());
+        assertEquals("desc", cardObj.getDescription());
     }
 
     @Test
