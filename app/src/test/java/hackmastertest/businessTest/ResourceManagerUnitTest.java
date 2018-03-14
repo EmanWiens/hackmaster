@@ -197,11 +197,6 @@ public class ResourceManagerUnitTest {
     }
 
     @Test
-    public void testApplyTurnRateAfterCard() {
-        fail("Manually add a cards resources to the player and apply the turn rate to make sure all rates are being applied after the new card");
-    }
-
-    @Test
     public void testNullApplyTurnRate() {
         try {
             ResourceManager.applyTurnRate(null);

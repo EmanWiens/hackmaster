@@ -12,22 +12,23 @@ import hackmastertest.objectsTest.CardClassUnitTest;
 import hackmastertest.objectsTest.EnemyAIUnitTest;
 import hackmastertest.objectsTest.PlayerClassUnitTest;
 import hackmastertest.objectsTest.ResourceClassUnitTest;
-import hackmastertest.persistenceTest.PlayerDataAccessTest;
-import hackmastertest.persistenceTest.PlayerStatsSavesTest;
+import hackmastertest.persistenceTest.DataAccessTest;
+import hackmastertest.objectsTest.PlayerStatsSavesTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         DeckManagerUnitTest.class,
         GameUnitTest.class,
+        MultiPlayerGameUnitTest.class,
         ResourceManagerUnitTest.class,
+        SinglePlayerGameUnitTest.class,
         CardClassUnitTest.class,
         EnemyAIUnitTest.class,
         PlayerClassUnitTest.class,
         ResourceClassUnitTest.class,
-        PlayerStatsSavesTest.class,
-        SinglePlayerGameUnitTest.class,
-        MultiPlayerGameUnitTest.class,
-        PlayerDataAccessTest.class,
+        DataAccessTest.class,
         PlayerStatsSavesTest.class
+
+
 })
 public class AllTests { }
