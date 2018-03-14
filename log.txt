@@ -26,7 +26,7 @@ Feb 9, 2018: (Sam 3hr) Added a functioning pause menu
 Feb 10, 2018: (Emaunel 2hrs) Tried to fix bug with cards being applied
 (Vlad 4hr) Updated the DeckManagerUnit test. Updated the GameManagerUnitTest. In order to complete the UnitTest for Persistance Layer: In functions where Presentation Layer is CalledAdded. Boolean variable to check if it's in test mode then don't Draw Cards. Fixed error messages for Invalid Test Cases at DeckManagerUnitTest. Printing to screen needs to be refactored.
 Feb 11, 2018: (2pm - 7:30pm) Group meeting with everyone to go over project and code. Got single player up and tested. The game is playable. Fixed bugs. 
-AI responds too fast (System.Thread stops printing to screen), playerís played card is on the top right, and the AIís played card is on the top left of the screen (right is meant to be deck to draw cards from, left is played card)
+AI responds too fast (System.Thread stops printing to screen), player‚Äôs played card is on the top right, and the AI‚Äôs played card is on the top left of the screen (right is meant to be deck to draw cards from, left is played card)
 (Emanuel) Added player two AI, now responds by playing a card.
 (Vlad) Updated Resource Manager Unit Test v3.0. Minor fixes refactoring.
 (Marc) added unit tests for enemyAI and playerStatsSaveTest
@@ -37,5 +37,73 @@ Feb 12, 2018: (Sam 2 hrs) Fixed Fail in DeckManagerUnitTest, added AllTests, add
 Feb 13, 2018: (Sam 3 hrs) Cleaned up Presentation and Game Manager for Iteration 1. Added testCheckCard
 
 Known bugs
-1. ìBotnet gen.î never increases.
+1. ‚ÄúBotnet gen.‚Äù never increases.
 2. The two cards at the top: Left is meant to be deck (to draw cards from), and right is card played. The AI in single player has no delay so he plays his card instantly (System.Thread delays painting)
+
+
+Iteration 2
+
+User Stories:
+Enemy AI
+Multiplayer
+View Stats
+General Gameplay Improvements
+
+Dev Tasks:
+Game
+(name:Emanuel act: 3.5hrs) (est: 2 hrs) show the battle screen and player 2 cards so that 2 players can play in local multiplayer
+(name: Marc act: 2hrs) (est: 3 hrs) discard card mode for player to discard a card
+(name: Marc act: 2hrs) (est: 3 hrs) Discard Mode
+(name: Marc act: 1hr)(est: 1hr) Player turn indication
+(name: Marc act: 1hr)(est: 1hr) Victory/Defeat screen
+(name: Emanuel act: 2 hrs) (est: 2 hrs) Discard card tests
+(name: Emanuel act: 1hr) (est: 1hr) AI can discard a when no cards are playable
+(name: Emanuel act: hrs) (est: 2hr) AI can discard a card test
+(name: Emanuel act: 4hrs) (est: 4hrs) Look for worst card test
+(name: Emanuel act: 2hrs) (est: 2hrs) AI gets list of playable cards to choose a playing card
+(name: Emanuel act: 2.5hrs) (est: 1hr) AI playable cards test
+(name: Emanuel act: 6hrs) (est: 4hrs) Look for best card in playable cards
+(name: Emanuel act: hrs) (est: 3hrs) Look for best card test
+(name: Emanuel act: 1hr) (est: 1hr) Look for worst card
+(name: Emanuel act: 1hrs) (est: 1hr) Look for worst card test
+(name: Emanuel act: 6hrs) (est: 5hrs) Rehash GameManger code and add Multiplayer
+(name: Vlad act:4 hrs) (est: 2hr) Create Music Manager
+(name: Vlad act: 3 hrs) (est: 2hr) Create Continue Screen for Multiplayer 
+(name: Samuel act: 1.5hr) (est: 1hr) Changed how the AI discards cards
+(name: Jansen act: 2 hr) (est: 2hr) Shuffle deck and tests
+(name: Marc act: 30mins)(est: 30mins) Make new cards
+
+Stats
+(name: Marc act: hrs) (est: 1hr) Track the player stats
+(name: Marc est: 1hr) Show stats screen
+(name: Jansen act: 2hrs) (est: 1hr) Refactored player stats to work with DB
+
+Database
+(name: Samuel act: 4 hrs) (est: 3hrs) Finished the HSQLDB-java interface, started on connecting to project
+(name: Samuel act: 2 hrs) (est: 3 hrs) Connected SQL DB to our app
+(name: Samuel act: 1.5hrs) (est: 2hrs) Refactoring for consistency
+(name: Jansen act: 2hrs) (est: 2hrs) Restructured HSQLDB implementation 
+(name: Jansen act: 2hrs) (est: 2hrs) Created DB Stub
+(name: Jansen act: 1hr) (est: 1hr) PlayerStats DB
+
+GUI
+(name: Vlad act: 10 hrs)(est: 5hr) Change display of the cards into Images
+(name: Vlad act: 1 hrs)(est: 0.5hrs) Create custom theme
+(name: Vlad/Marc act: 0.5hrs)(est: 0.5hrs) Change the background image of the MainActivity
+(name: Vlad/Marc act: 8hrs)(est: 4hrs) Redesign the GUI to make it more user friendly
+(name: Marc act: 2hr)(est: 1hr) Created a splash screen
+(name: Vlad act:3 hrs)(est: 1hr) Redesign win/lose screen
+
+Refactoring
+(name: Emanuel act: 2.5hrs) (est: 2hrs) Put all paints into own functions
+(name: Emanuel act: 4hrs) (est: 3hrs) Add more tests and refactor some
+(name: Emanuel act: 3hrs) (est: 3hrs) Refactor Game tests to add more coverage 
+(name: Emanuel act: 2.5hrs) (est: 2hrs) add test coverage the added multiplayer game features
+(name: Samuel act: 1 hr) (est: 1 hr) Removed redundant object CardResource
+(name: Samuel act: 1.5 hr) (est: 2 hr) Restricted which classes can draw to screen, grouped all the draw functions of gameManager into 1 function
+(name: Vlad act: 12 hrs)(est: 5hr) Create rendering separate from Business Layer
+(name: Vlad act:3 hrs)(est: 1hr) Refactor All cards and make them more aggressive
+
+Known bugs: 
+March 12, 2018: The AI card is applied immediately after the players turn and the AI‚Äôs played card will be applied immediately. However, for the sake of smoothe gameplay the AI played card is painted with a delay, ideally we‚Äôd like the AI card to be applied after the AI card is drawn.
+
