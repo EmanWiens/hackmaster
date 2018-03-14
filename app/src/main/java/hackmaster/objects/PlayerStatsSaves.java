@@ -39,9 +39,7 @@ public class PlayerStatsSaves {
 
     public double getWinLossRatio() {
         double result = totalWins;
-        if (totalLoses != 0) {
-            result /= totalLoses;
-        }
+        if (totalLoses != 0) {result /= totalLoses;}
         return result;
     }
 

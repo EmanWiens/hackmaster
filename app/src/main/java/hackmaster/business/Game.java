@@ -63,29 +63,15 @@ public abstract class Game {
         ResourceClass cardResource = card.getPlayerR();
         ResourceClass playerResource = player.getResources();
 
-        if(playerResource.getHealth() + cardResource.getHealth() < 0) {
+        if(playerResource.getHealth() + cardResource.getHealth() < 0 ||
+                playerResource.gethCoin() + cardResource.gethCoin() < 0 ||
+                playerResource.getBotnet() + cardResource.getBotnet() < 0 ||
+                playerResource.getCpu() + cardResource.getCpu() < 0 ||
+                playerResource.gethCoinRate() + cardResource.gethCoinRate() < 1 ||
+                playerResource.getBotnetRate() + cardResource.getBotnetRate() < 1 ||
+                playerResource.getCpuRate() + cardResource.getCpuRate() < 1) {
             canPlay = false;
         }
-        if(playerResource.gethCoin() + cardResource.gethCoin() < 0) {
-            canPlay = false;
-        }
-        if(playerResource.getBotnet() + cardResource.getBotnet() < 0) {
-            canPlay = false;
-        }
-        if(playerResource.getCpu() + cardResource.getCpu() < 0) {
-            canPlay = false;
-        }
-
-        if(playerResource.gethCoinRate() + cardResource.gethCoinRate() < 1) {
-            canPlay = false;
-        }
-        if(playerResource.getBotnetRate() + cardResource.getBotnetRate() < 1) {
-            canPlay = false;
-        }
-        if(playerResource.getCpuRate() + cardResource.getCpuRate() < 1) {
-            canPlay = false;
-        }
-
         return canPlay;
     }
 

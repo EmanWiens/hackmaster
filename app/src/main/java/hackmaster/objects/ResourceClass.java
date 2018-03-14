@@ -25,36 +25,26 @@ public class ResourceClass {
 
     public String toString() {
         String strung = "";
-        if (health != 0)
-            strung +="\nHealth: "+health;
-        if (hCoinRate != 0)
-            strung +="\nHCoin Rate: "+ hCoinRate;
-        if (hCoin != 0)
-            strung +="\nHackCoin: " + hCoin;
-        if (botnetRate != 0)
-            strung +="\nBotnet gen.: " + botnetRate;
-        if (botnet != 0)
-            strung +="\nBotnet: "+ botnet;
-        if (cpuRate != 0)
-            strung +="\nCPU Rate: "+ cpuRate;
-        if (cpu != 0)
-            strung +="\nCPU: "+ cpu;
+        if (health != 0) strung +="\nHealth: "+health;
+        if (hCoinRate != 0) strung +="\nHCoin Rate: "+ hCoinRate;
+        if (hCoin != 0) strung +="\nHackCoin: " + hCoin;
+        if (botnetRate != 0) strung +="\nBotnet gen.: " + botnetRate;
+        if (botnet != 0) strung +="\nBotnet: "+ botnet;
+        if (cpuRate != 0) strung +="\nCPU Rate: "+ cpuRate;
+        if (cpu != 0) strung +="\nCPU: "+ cpu;
         return strung;
     }
 
     public String minerToString() {
-        return "\nHackCoin Rate: " + hCoinRate +
-                "\n----\nHackCoin: " + hCoin;
+        return "\nHackCoin Rate: " + hCoinRate + "\n----\nHackCoin: " + hCoin;
     }
 
     public String cSpeedToString() {
-        return "\nCPU Rate: " + cpuRate +
-                "\n----\nCPU: " + cpu;
+        return "\nCPU Rate: " + cpuRate + "\n----\nCPU: " + cpu;
     }
 
     public String botnetToString() {
-        return "\nBotnet gen.: " + botnetRate +
-                "\n----\nBotnet: " + botnet;
+        return "\nBotnet gen.: " + botnetRate + "\n----\nBotnet: " + botnet;
     }
 
     public void addResources(ResourceClass add) {

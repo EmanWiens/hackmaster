@@ -14,7 +14,8 @@ public abstract class DeckManager {
     public static void initDeck() {
         cardDataAccess = Services.getCardDataAccess();
         ArrayList<CardClass>listDeck = new ArrayList<>();
-        String emsg = cardDataAccess.getCardSequential(listDeck);
+        String eMsg = cardDataAccess.getCardSequential(listDeck);
+        if(eMsg!=null) System.out.println(eMsg);
         deck = listDeck.toArray(new CardClass[0]);
         resetIndex();
     }
