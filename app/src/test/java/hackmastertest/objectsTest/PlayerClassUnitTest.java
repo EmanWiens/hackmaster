@@ -2,11 +2,9 @@ package hackmastertest.objectsTest;
 
 
 import org.junit.Test;
-import org.junit.After;
 import org.junit.Before;
 
 import hackmaster.application.Services;
-import hackmaster.business.ResourceManager;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmaster.objects.CardClass;

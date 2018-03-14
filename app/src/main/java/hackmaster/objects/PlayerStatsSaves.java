@@ -7,6 +7,7 @@ public class PlayerStatsSaves {
     private int totalLoses;
     private int totalGames;
     private int level;
+
     private int playerID;
 
     public PlayerStatsSaves(int id) {
