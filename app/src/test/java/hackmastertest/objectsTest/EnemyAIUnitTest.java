@@ -137,11 +137,22 @@ public class EnemyAIUnitTest {
 
     @Test
     public void testAIDiscard() {
-        fail("add test for discard a card");
+        resetDeck();
+        DeckManager.resetIndex();
+        EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), DeckManager.getADeck());
+
+        CardClass[] playable = ai.playableCards();
+        assertEquals(11, playable.length);
+
+        fail("Write the tests to see that the AI discards");
     }
 
     @Test
     public void testAIBestCard() {
-        fail("Test that the best card is consistent");
+        resetDeck();
+        DeckManager.resetIndex();
+        EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), DeckManager.getADeck());
+
+        ai.bestCard(DeckManager.getADeck());
     }
 }
