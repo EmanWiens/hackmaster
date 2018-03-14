@@ -39,10 +39,6 @@ public class PlayerStatsSaves {
         level++;
     }
 
-    public void setPlayerName(String name) {
-        playerName = name;
-    } //test this (marc)
-
     public double getWinLossRatio() {
         double result = totalWins;
         if (totalLoses != 0) {
