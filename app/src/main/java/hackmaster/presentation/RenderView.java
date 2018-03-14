@@ -30,8 +30,9 @@ public class RenderView {
     CardClass playedCardOne;
     private  TextView playerTurnText;
     boolean multiPlayer;
+
     public RenderView(Game gameInSes, MainActivity mainAct) {
-        gameInSession=gameInSes;
+        gameInSession = gameInSes;
         mainActivity = mainAct;
         mainActivity.setContentView(R.layout.battle_view);
         initSetUp();
@@ -53,7 +54,6 @@ public class RenderView {
 
     public void setUpBattleView()
     {
-        //SetUp
         playerTurnText.setText("Player 1 Turn");
         if (!gameInSession.gamePaused()) {
             renderPlayerResource(player1);
@@ -69,6 +69,17 @@ public class RenderView {
             } else {
                 setDiscard(true);
             }
+        }
+    }
+    public void setDiscard (boolean toggle) {
+        if (toggle) {
+            gameInSession.discardOff();
+            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
+            dicardButton.setText("DISCARD MODE");
+        } else {
+            gameInSession.discardOn();
+            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
+            dicardButton.setText("CANCEL DISCARD");
         }
     }
     public void renderBattleView(int borderID) {
@@ -129,7 +140,7 @@ public class RenderView {
 
     public void renderPlayedCard(CardClass card, boolean aiDelay) {
         Handler handler = new Handler();
-        if (aiDelay && !gameDone()) {
+        if (aiDelay && !gameInSession.gameDone()) {
             handler.postDelayed(delayRender(), 1850); // DELAY
             gameInSession.setRenderDelay(true);
         }
@@ -139,9 +150,11 @@ public class RenderView {
 
             if (gameInSession.getRenderDelay()) {
                 gameInSession.setRenderDelay(false);
+                fillText((TextView) mainActivity.findViewById(R.id.playerTurn), "Player 1's turn");
             }
         }
     }
+
     public void renderPlayerResource(PlayerClass player) {
         if (player.getId() == 0) {
             fillText((TextView)mainActivity.findViewById(R.id.minerP), player.minerToString());
@@ -152,8 +165,7 @@ public class RenderView {
             ProgressBar health = mainActivity.findViewById(R.id.healthPBarP);
             health.setProgress(player.getHealth());
             fillText((TextView)mainActivity.findViewById(R.id.player1), player.getName());
-        }
-        else if (player.getId() == 1) {
+        } else if (player.getId() == 1) {
             fillText((TextView)mainActivity.findViewById(R.id.minerE), player.minerToString());
             fillText((TextView)mainActivity.findViewById(R.id.cSpeedE), player.cSpeedToString());
             fillText((TextView)mainActivity.findViewById(R.id.botnetE), player.botnetToString());
@@ -165,7 +177,6 @@ public class RenderView {
         }
     }
 
-
     public void renderCard(CardClass card, int slot) {
         ImageButton imageButton = null;
         int[] imageButtonCardList = new int[]{
@@ -175,6 +186,7 @@ public class RenderView {
         imageButton = mainActivity.findViewById(imageButtonCardList[slot]);
         imageButton.setBackgroundResource(returnImageCardID(card.getID()));
     }
+
     public void renderPressedCardBorder(int chosenCard) {
         ImageView[] imageCardBorder = new ImageView[6];
         imageCardBorder[0] = mainActivity.findViewById(R.id.imageBorderCard0);
@@ -204,7 +216,7 @@ public class RenderView {
         }
     }
 
-    public void setDiscard (boolean toggle) {
+    public void renderDiscardButton(boolean toggle) {
         if (toggle) {
             gameInSession.discardOff();
             Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
@@ -216,7 +228,7 @@ public class RenderView {
         }
     }
 
-    public Runnable delayRender() {
+    private Runnable delayRender() {
         Runnable r = new Runnable() {
             @Override
             public void run() {
@@ -227,6 +239,7 @@ public class RenderView {
     }
 
     private void fillText (TextView view, String string) {view.setText(string);}
+
     private int returnImageCardID(int cardID)
     {
         int[] imageCardList = new int[]{
@@ -243,6 +256,7 @@ public class RenderView {
         };
         return imageCardList[cardID];
     }
+
 
     public boolean gameDone() {
         boolean result = false;
@@ -281,4 +295,7 @@ public class RenderView {
     }
 
     }
+
+
+
 

@@ -24,6 +24,8 @@ import hackmaster.application.DBController;
 import hackmaster.business.Game;
 import hackmaster.business.SetUpGame;
 import hackmaster.objects.PlayerStatsSaves;
+import hackmaster.persistence.PlayerDataAccess;
+import hackmaster.persistence.PlayerDataAccessInterface;
 
 public class MainActivity extends AppCompatActivity {
     // give a "copy" of the interface to the gameManager
@@ -43,30 +45,28 @@ public class MainActivity extends AppCompatActivity {
         musicManager.backGroundMusicStart();
         musicManager.initSoundPool();
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         DBController.shutDown();
     }
 
-    public void checkStateSound()
-    {
+    public void checkStateSound() {
         ImageButton muteBtn = findViewById(R.id.muteBtn);
         if (musicManager.getStateMusic()) {
             muteBtn.setBackgroundResource(R.drawable.volumeunmute);
-        }
-        else {
+        } else {
             muteBtn.setBackgroundResource(R.drawable.volumemute);
         }
     }
 
-    public void muteSoundBackground(View v){
+    public void muteSoundBackground(View v) {
         ImageButton muteBtn = findViewById(R.id.muteBtn);
         if (musicManager.getStateMusic()) {
             muteBtn.setBackgroundResource(R.drawable.volumemute);
             musicManager.pauseBacgroundMusic();
-        }
-        else {
+        } else {
             muteBtn.setBackgroundResource(R.drawable.volumeunmute);
             musicManager.resumeBacgroundMusic();
         }
@@ -79,8 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (currLayoutId == R.id.main_activity) {
             return;
-        }
-        else if (gameInSession != null) {
+        } else if (gameInSession != null) {
             if (!gameInSession.gamePaused()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("You are about to exit the game.")
@@ -97,14 +96,12 @@ public class MainActivity extends AppCompatActivity {
                         });
 
                 builder.show();
-            }
-            else if (gameInSession.gamePaused()) {
+            } else if (gameInSession.gamePaused()) {
                 setContentView(R.layout.battle_view);
                 gameInSession.unpauseGame();
                 renderView.renderBattleView(-1);
             }
-        }
-        else {
+        } else {
             if (gameInSession != null) {
                 setContentView(R.layout.main_activity);
                 checkStateSound();
@@ -115,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
     // TODO change this (marc)
     public void statsPress(View v) {
         setContentView(R.layout.stats_view); //change
-        TextView text=(TextView)findViewById(R.id.nicknameTxtView);
-        text=(TextView)findViewById(R.id.winLoseTxtView);
+        TextView text = (TextView) findViewById(R.id.nicknameTxtView);
+        text = (TextView) findViewById(R.id.winLoseTxtView);
     }
 
     public void singlePlayMessage(View v) {
@@ -148,24 +145,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void thirdcardPress(View v)
-    {
+    public void thirdcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
             if (gameInSession.playCardEvent(2))
             renderView.renderBattleView(2);
         }
     }
 
-    public void fourthcardPress(View v)
-    {
+    public void fourthcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
            if (gameInSession.playCardEvent(3))
             renderView.renderBattleView(3);
         }
     }
 
-    public void fifthcardPress(View v)
-    {
+    public void fifthcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
             if (gameInSession.playCardEvent(4))
             renderView.renderBattleView(4);
@@ -216,16 +210,16 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO change this (marc)
     public void pauseStatsMessage(View v) {
-        // gameInSession.initStats();
-
         setContentView(R.layout.stats_view);
 
-        TextView text=(TextView)findViewById(R.id.nicknameTxtView);
+        TextView text = (TextView) findViewById(R.id.nicknameTxtView);
         // text.setText(gameInSession.getPlayerName());
 
-        text=(TextView)findViewById(R.id.winLoseTxtView);
+        text = (TextView) findViewById(R.id.winLoseTxtView);
         // text.setText(Integer.toString(gameInSession.getWin()));
     }
+
+
 
     public void statsExitMessage(View v) {
         if (gameInSession != null) {
@@ -241,28 +235,6 @@ public class MainActivity extends AppCompatActivity {
         checkStateSound();
     }
 
-    public void getWinner() {
-        if (gameInSession.getPlayer2Health() < 1) {
-            goToVictory(true);
-        } else {//  (GameManager.getPlayer2Health() < 1) {
-            goToVictory(false);
-        }
-    }
-
-    public void goToVictory(boolean winner) {
-        setContentView(R.layout.results_view);
-        // GameManager.setInGame(false);
-        gameInSession = null;
-
-        ImageView img= (ImageView) findViewById(R.id.statsImg);
-        if (winner) {
-            // gameInSession.addWin();
-            img.setImageResource(R.drawable.victory);
-        } else {
-            // gameInSession.addLoss();
-            img.setImageResource(R.drawable.defeat);
-        }
-    }
 
     private void copyDatabaseToDevice() {
         final String DB_PATH = "db";

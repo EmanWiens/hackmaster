@@ -24,7 +24,6 @@ public abstract class Game {
     public Game(PlayerClass p1, PlayerClass p2) {
         player1 = p1;
         player2 = p2;
-        initStats();
 
         playedCardTwo = null;
         playedCardOne = null;
@@ -99,14 +98,6 @@ public abstract class Game {
             result = true;
         }
         return result;
-    }
-
-    public void initStats() {
-        if(pStats == null) {
-            pStats = new PlayerStatsSaves();
-        }
-
-        pStats.setPlayerName("Player_1");
     }
 
     public int getPlayer1Health() {return player1.getHealth();}

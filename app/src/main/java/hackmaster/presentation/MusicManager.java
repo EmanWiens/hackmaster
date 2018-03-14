@@ -53,6 +53,7 @@ public class MusicManager {
         });
         this.soundIdCardSelected = this.soundPool.load(contextVariable, R.raw.select,1);
     }
+
     public void backGroundMusicStart() {
         musicOn =true;
         Random rand = new Random();
@@ -64,20 +65,24 @@ public class MusicManager {
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
     }
+
     public void playCardSelected(float leftVolumn, float rightVolumn) {
         if(getSoundPoolLoaded()) {
             // Play sound CardSelected.wav
             this.soundPool.play(this.soundIdCardSelected,leftVolumn, rightVolumn, 1, 0, 1f);
         }
     }
+
     public  void pauseBacgroundMusic() {
         mediaPlayer.pause();
         musicOn =false;
     }
+
     public  void resumeBacgroundMusic() {
         mediaPlayer.start();
         musicOn =true;
     }
+
     private boolean getSoundPoolLoaded() {return soundPoolLoaded;}
     public  boolean getStateMusic() {return musicOn;}
 }
