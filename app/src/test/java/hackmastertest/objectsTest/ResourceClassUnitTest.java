@@ -9,92 +9,79 @@ import static org.junit.Assert.assertEquals;
 
 public class ResourceClassUnitTest {
     private ResourceClass resource;
-    private int[][] testCaseData = {
-            {0,1000,50,3,53,2,55,1},
-            {1,1001,51,4,54,3,56,2},
-            {-2,999,49,2,52,1,54,0}
-    };
-    private int numberToAdd;
 
     @Before
     public void setUp(){
-        resource = new ResourceClass(1000,50,3, 53, 2, 55, 1);
+        resource = new ResourceClass(100,100,5, 0, -2, -50, 0);
     }
 
     @Test
     public void testInitResourceClass() {
         assertNotNull(resource);
-        assertEquals("Health should be 1000",1000,resource.getHealth());
-        assertEquals("hCoin should be 50",50,resource.gethCoin());
-        assertEquals("hCoin rate should be 3",3,resource.gethCoinRate());
-        assertEquals("botnet should be 53",53,resource.getBotnet());
-        assertEquals("botnetRate should be 2",2,resource.getBotnetRate());
-        assertEquals("cpu should be 55",55,resource.getCpu());
-        assertEquals("cpuRate should be 1",1,resource.getCpuRate());
+        assertEquals(100, resource.getHealth());
+        assertEquals(100, resource.gethCoin());
+        assertEquals(5, resource.gethCoinRate());
+        assertEquals(0, resource.getBotnet());
+        assertEquals(-2, resource.getBotnetRate());
+        assertEquals(-50, resource.getCpu());
+        assertEquals(0, resource.getCpuRate());
+    }
+
+    @Test
+    public void testSetResourceClass() {
+        resource.setBotnet(10);
+        resource.setCpu(-10);
+        resource.sethCoin(0);
+        resource.setBotnetRate(0);
+        resource.setCpuRate(-1);
+        resource.sethCoinRate(2);
+        resource.setHealth(50);
+        assertEquals(10, resource.getBotnet());
+        assertEquals(-10, resource.getCpu());
+        assertEquals(0, resource.gethCoin());
+        assertEquals(0, resource.getBotnetRate());
+        assertEquals(-1, resource.getCpuRate());
+        assertEquals(2, resource.gethCoinRate());
+        assertEquals(50, resource.getHealth());
     }
 
     @Test
     public void testSingleResourceAddition() {
-        System.out.println("Testing Single Resource Addition...\n");
-
-        // This could be written better...
-        for(int i = 0; i < testCaseData.length; i++) {
-            numberToAdd = testCaseData[i][0];
-            resource.addHealth(numberToAdd);
-            resource.addHCoin(numberToAdd);
-            resource.addHCoinRate(numberToAdd);
-            resource.addBotnet(numberToAdd);
-            resource.addBotnetRate(numberToAdd);
-            resource.addCpu(numberToAdd);
-            resource.addCpuRate(numberToAdd);
-
-            System.out.printf("Number to add -> %d ; Health -> %d ; hCoin -> %d ; hCoinRate -> %d ; " +
-                            "Botnet -> %d ; BotnetRate -> %d ; CpuRate -> %d ; cpu -> %d\n",
-                    numberToAdd, resource.getHealth(), resource.gethCoin(), resource.gethCoinRate(), resource.getBotnet(),
-                    resource.getBotnetRate(), resource.getCpuRate(), resource.getCpu());
-
-            assertEquals(testCaseData[i][1],resource.getHealth());
-            assertEquals(testCaseData[i][2],resource.gethCoin());
-            assertEquals(testCaseData[i][3],resource.gethCoinRate());
-            assertEquals(testCaseData[i][4],resource.getBotnet());
-            assertEquals(testCaseData[i][5],resource.getBotnetRate());
-            assertEquals(testCaseData[i][6],resource.getCpu());
-            assertEquals(testCaseData[i][7],resource.getCpuRate());
-        }
+        resource.addBotnet(10);
+        resource.addCpu(-10);
+        resource.addHCoin(0);
+        resource.addBotnetRate(0);
+        resource.addCpuRate(-1);
+        resource.addHCoinRate(2);
+        resource.addHealth(50);
+        assertEquals(10, resource.getBotnet());
+        assertEquals(-60, resource.getCpu());
+        assertEquals(100, resource.gethCoin());
+        assertEquals(-2, resource.getBotnetRate());
+        assertEquals(-1, resource.getCpuRate());
+        assertEquals(7, resource.gethCoinRate());
+        assertEquals(150, resource.getHealth());
     }
 
     @Test
     public void testAddResources() {
-        System.out.println("\nTesting addResources...\n");
-
-        for(int i = 0; i < testCaseData.length; i++) {
-            numberToAdd = testCaseData[i][0];
-            resource.addResources(new ResourceClass(numberToAdd, numberToAdd, numberToAdd, numberToAdd, numberToAdd, numberToAdd, numberToAdd));
-
-            System.out.printf("Number to add -> %d ; Health -> %d ; hCoin -> %d ; hCoinRate -> %d ; " +
-                            "Botnet -> %d ; BotnetRate -> %d ; CpuRate -> %d ; cpu -> %d\n",
-                    numberToAdd, resource.getHealth(), resource.gethCoin(), resource.gethCoinRate(), resource.getBotnet(),
-                    resource.getBotnetRate(), resource.getCpuRate(), resource.getCpu());
-
-            assertEquals(testCaseData[i][1],resource.getHealth());
-            assertEquals(testCaseData[i][2],resource.gethCoin());
-            assertEquals(testCaseData[i][3],resource.gethCoinRate());
-            assertEquals(testCaseData[i][4],resource.getBotnet());
-            assertEquals(testCaseData[i][5],resource.getBotnetRate());
-            assertEquals(testCaseData[i][6],resource.getCpu());
-            assertEquals(testCaseData[i][7],resource.getCpuRate());
-        }
+        resource.addResources(new ResourceClass(50, 0,2,10,0,-10,-1));
+        assertEquals(10, resource.getBotnet());
+        assertEquals(-60, resource.getCpu());
+        assertEquals(100, resource.gethCoin());
+        assertEquals(-2, resource.getBotnetRate());
+        assertEquals(-1, resource.getCpuRate());
+        assertEquals(7, resource.gethCoinRate());
+        assertEquals(150, resource.getHealth());
     }
 
     @Test
     public void testAddRates() {
-        System.out.println("\nTesting add Rates...\n");
-
         resource.increaseHcoinByRate();
         resource.increaseCpuByRate();
         resource.increaseBotnetByRate();
-        assertEquals("hCoin should be 53",53, resource.gethCoin());
-        assertEquals("botnet should be 55",55, resource.getBotnet());
-        assertEquals("cpu should be 56",56, resource.getCpu());
+        assertEquals(105, resource.gethCoin());
+        assertEquals(-2, resource.getBotnet());
+        assertEquals(-50, resource.getCpu());
     }
 }

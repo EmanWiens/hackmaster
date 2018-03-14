@@ -75,13 +75,13 @@ public abstract class Game {
             canPlay = false;
         }
 
-        if(playerResource.gethCoin() + cardResource.gethCoinRate() < 1) {
+        if(playerResource.gethCoinRate() + cardResource.gethCoinRate() < 1) {
             canPlay = false;
         }
-        if(playerResource.getBotnet() + cardResource.getBotnetRate() < 1) {
+        if(playerResource.getBotnetRate() + cardResource.getBotnetRate() < 1) {
             canPlay = false;
         }
-        if(playerResource.getCpu() + cardResource.getCpuRate() < 1) {
+        if(playerResource.getCpuRate() + cardResource.getCpuRate() < 1) {
             canPlay = false;
         }
 

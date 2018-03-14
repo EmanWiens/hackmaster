@@ -145,7 +145,6 @@ public class CardDataAccess implements CardDataAccessInterface {
         String cmdString;
         String result = null;
         try {
-            // Should check for empty values and not update them
             values = "Name='" +card.getName()
                     +"', Type='" +card.getType()
                     +"', Description='" +card.getDescription()
@@ -158,7 +157,6 @@ public class CardDataAccess implements CardDataAccessInterface {
                     +", PCPURate=" +card.getPlayerR().getCpuRate();
             where = "where CardID=" +card.getID();
             cmdString = "Update Cards " +" Set " +values +" " +where;
-            //System.out.println(cmdString);
             updateCount = statement.executeUpdate(cmdString);
             result = DataAccessObject.checkWarning(statement, updateCount);
         }
