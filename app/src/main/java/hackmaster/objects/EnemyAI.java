@@ -26,12 +26,12 @@ public class EnemyAI extends PlayerClass {
 
     public int bestCard(CardClass[] playable) {
         int bestCard = -1;
-        int bestCost = 10000;
+        int bestCost = -1;
 
         for (int i = 0; i < playable.length; i++) {
             ResourceClass cardR = playable[i].getPlayerR();
-            int testCost = cardR.getBotnet() + cardR.gethCoin() + cardR.getCpu() + cardR.getHealth();
-            if (testCost <= bestCost) {
+            int testCost = Math.abs(cardR.getBotnet()) + Math.abs(cardR.gethCoin()) + Math.abs(cardR.getCpu()) + Math.abs(cardR.getHealth());
+            if (testCost >= bestCost) {
                 bestCost = testCost;
                 bestCard = i;
             }
