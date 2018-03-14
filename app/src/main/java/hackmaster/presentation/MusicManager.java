@@ -68,7 +68,6 @@ public class MusicManager {
 
     public void playCardSelected(float leftVolumn, float rightVolumn) {
         if(getSoundPoolLoaded()) {
-            // Play sound CardSelected.wav
             this.soundPool.play(this.soundIdCardSelected,leftVolumn, rightVolumn, 1, 0, 1f);
         }
     }
