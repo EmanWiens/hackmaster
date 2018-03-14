@@ -9,41 +9,41 @@ Major packages:
 The main code of the project is currently split between five packages: Application, Business, Objects, Persistence, and Presentation. These packages are in the directory hackmaster/app/src/main/java/hackmaster. 
 
 The application package cointains the files: 
-•DBController.java - Manages the name and path of the database. Gets called to start the initial database.
-•Services.java - Starts and stops the database and controls which database is connected.
+â€¢DBController.java - Manages the name and path of the database. Gets called to start the initial database.
+â€¢Services.java - Starts and stops the database and controls which database is connected.
 
 
 The business package contains the files: 
-•DeckManager.java - Gets cards from the database and deals cards when necessary.
-•Game.java - Tracks the game as it progresses. Can check if a player can play a card and if a player has lost all of their health.
-•MultiplayerGame.java - Subclass of Game. Manages the turn and resources of a multiplayer game.
-•ResourceManager.java - Applies cards played to the players.
-•SetUpSingleGame.java - Initializes the game and deck.
-•SinglePlayerGame.java - Subclass of Game. Manages the turn and resources of a singleplayer game.
+â€¢DeckManager.java - Gets cards from the database and deals cards when necessary.
+â€¢Game.java - Tracks the game as it progresses. Can check if a player can play a card and if a player has lost all of their health.
+â€¢MultiplayerGame.java - Subclass of Game. Manages the turn and resources of a multiplayer game.
+â€¢ResourceManager.java - Applies cards played to the players.
+â€¢SetUpSingleGame.java - Initializes the game and deck.
+â€¢SinglePlayerGame.java - Subclass of Game. Manages the turn and resources of a singleplayer game.
 
 
 The Objects package contains the files: 
-•CardClass.java - A card in the game. Costs resources, gives something in return
-•EnemyAI.java (extends PlayerClass) - The enemy AI in single player
-•PlayerClass.java - A player in the game. Has resources and cards
-•PlayerStatsSaves.java - Holds the players stats (overall app-user stats) does not currently track anything
-•ResourceClass.java - The resources that a player or a card has (also holds player health)
+â€¢CardClass.java - A card in the game. Costs resources, gives something in return
+â€¢EnemyAI.java (extends PlayerClass) - The enemy AI in single player
+â€¢PlayerClass.java - A player in the game. Has resources and cards
+â€¢PlayerStatsSaves.java - Holds the players stats (overall app-user stats) does not currently track anything
+â€¢ResourceClass.java - The resources that a player or a card has (also holds player health)
 
 
 The Persistence package contains the files:
-•CardDataAccess.java - Implements CardDataAccessInterface. Uses SQL statements to query the card database.
-•CardDataAccessInterface.java - Extends DBComponentInterface. Interface for card database.
-•DBComponentInterface.java - Interface for database access. Gets statements passes from DataAccessObject.
-•DBInterface.java - Interface for database initialization.
-•DataAccessObject.java Implements DBInterface. Initializes and opens the database. Creates statements for database access.
-•PlayerDataAccess.java - Implements PlayerDataAccessInterface. Uses SQL statements to query the player stats database.
-•PlayerDataAccessInterface.java - Extends DBComponentInterface. Interface for player stats database.
+â€¢CardDataAccess.java - Implements CardDataAccessInterface. Uses SQL statements to query the card database.
+â€¢CardDataAccessInterface.java - Extends DBComponentInterface. Interface for card database.
+â€¢DBComponentInterface.java - Interface for database access. Gets statements passes from DataAccessObject.
+â€¢DBInterface.java - Interface for database initialization.
+â€¢DataAccessObject.java Implements DBInterface. Initializes and opens the database. Creates statements for database access.
+â€¢PlayerDataAccess.java - Implements PlayerDataAccessInterface. Uses SQL statements to query the player stats database.
+â€¢PlayerDataAccessInterface.java - Extends DBComponentInterface. Interface for player stats database.
 
 
 The Presentation package contains the files:
-•MainActivity.java - Tracks player input and updates the screen.
-•MusicManager.java - Selects the music to be played.
-•SplashActivity.java - Loading screen for the app.
+â€¢MainActivity.java - Tracks player input and updates the screen.
+â€¢MusicManager.java - Selects the music to be played.
+â€¢SplashActivity.java - Loading screen for the app.
 
 
 The project also contains test packages that mirrors the packages listed above. The test packages are located in hackmaster/app/src/test/java/HackMasterTest/ 
@@ -79,27 +79,33 @@ If you can't run the simulator got on tools->android->sync gradle.
 New Features/Changes
 
 Improved UI
-•Added Background Music
-•Added Card Images
-•Added Background Images
+â€¢Added Background Music
+â€¢Added Card Images
+â€¢Added Background Images
 
 Improved Gameplay
-•Discard functionality
-•Added Victory/Defeat Screen
+â€¢Discard functionality
+â€¢Added Victory/Defeat Screen
 
 Enemy AI
-•AI now looks for the best/worst card to play
-•AI can discard unplayable cards
+â€¢AI now looks for the best/worst card to play
+â€¢AI can discard unplayable cards
 
 Multiplayer
-•Added "hotseat" multiplayer
-•Added screen indication between Player 1 turn and Player 2 turn
+â€¢Added "hotseat" multiplayer
+â€¢Added screen indication between Player 1 turn and Player 2 turn
 
 Database
-•Added a database that handles how cards and player stats are stored
+â€¢Added a database that handles how cards and player stats are stored
 
 Refactored Code Base
-•Code base has been refactored for improved interactivity between classes
+â€¢Code base has been refactored for improved interactivity between classes
+
+Issues
+
+March 12, 2018: The AI card is applied immediately after the players turn and the AIâ€™s played card will be applied immediately. However, for the sake of smooth gameplay the AI played card is painted with a delay, ideally, weâ€™d like the AI card to be applied after the AI card is drawn.
+
+March 14, 2018: When returning from the pause screen the renderer will show the last cards the user and AI played. The AIâ€™s card is also played with a delay. The cards do not apply again and this is simply a displaying issue.
 
 Credit to Music
 
