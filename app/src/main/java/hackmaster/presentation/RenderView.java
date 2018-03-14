@@ -20,6 +20,7 @@ import hackmaster.objects.PlayerClass;
 public class RenderView {
     private Game gameInSession;
     private MainActivity mainActivity;
+    private MusicManager musicManager;
     private PlayerClass player1;
     private PlayerClass player2;
     private String player1Turn;
@@ -31,9 +32,10 @@ public class RenderView {
     private  TextView playerTurnText;
     boolean multiPlayer;
 
-    public RenderView(Game gameInSes, MainActivity mainAct) {
+    public RenderView(Game gameInSes, MainActivity mainAct,  MusicManager musicManag) {
         gameInSession = gameInSes;
         mainActivity = mainAct;
+        musicManager=musicManag;
         mainActivity.setContentView(R.layout.battle_view);
         initSetUp();
     }
@@ -88,7 +90,7 @@ public class RenderView {
             renderPlayerResource(player1);
             renderPlayerResource(player2);
             showContinueView=false;
-            if (borderID>0) {
+            if (borderID!=-1) {
                 renderPressedCardBorder(borderID);
                 showContinueView=true;
             }
@@ -194,7 +196,7 @@ public class RenderView {
         imageCardBorder[2] = mainActivity.findViewById(R.id.imageBorderCard2);
         imageCardBorder[3] = mainActivity.findViewById(R.id.imageBorderCard3);
         imageCardBorder[4] = mainActivity.findViewById(R.id.imageBorderCard4);
-     //TODO Make sure Sound Plays   musicManager.playCardSelected(0.8f, 0.8f);
+        musicManager.playCardSelected(0.8f, 0.8f);
         for (int i = 0; i <= 4; i++) {
             if (i == chosenCard) {
                 imageCardBorder[i].setBackgroundResource(R.drawable.image_border);

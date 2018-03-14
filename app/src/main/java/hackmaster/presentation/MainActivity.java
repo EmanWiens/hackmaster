@@ -119,14 +119,14 @@ public class MainActivity extends AppCompatActivity {
     public void singlePlayMessage(View v) {
         setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpSinglePlayerGame();
-        renderView = new RenderView(gameInSession,MainActivity.this);
+        renderView = new RenderView(gameInSession,MainActivity.this,musicManager);
         renderView.setUpBattleView();
     }
 
     public void multiPlayMessage(View v) {
         setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpMultiplayerGame();
-        renderView = new RenderView(gameInSession, MainActivity.this);
+        renderView = new RenderView(gameInSession, MainActivity.this,musicManager);
         renderView.setUpBattleView();
     }
 
