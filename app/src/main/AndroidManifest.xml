@@ -23,7 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="hackmaster.presentation.MainActivity" />
+
+        <activity
+            android:name="hackmaster.presentation.MainActivity"
+            android:screenOrientation="landscape">
+        </activity>
+
     </application>
 
 </manifest>
