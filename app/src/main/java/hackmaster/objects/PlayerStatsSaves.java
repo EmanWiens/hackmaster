@@ -1,7 +1,7 @@
 package hackmaster.objects;
 
 public class PlayerStatsSaves {
-    private String playerName = "HackMaster";
+    private String playerName = "hackmaster";
     private int totalWins = 0;
     private int totalLoses = 0;
     private int totalGames = 0;

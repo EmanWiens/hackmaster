@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.owner.hackmaster20.R;
@@ -24,8 +23,6 @@ import hackmaster.application.DBController;
 import hackmaster.business.Game;
 import hackmaster.business.SetUpGame;
 import hackmaster.objects.PlayerStatsSaves;
-import hackmaster.persistence.PlayerDataAccess;
-import hackmaster.persistence.PlayerDataAccessInterface;
 
 public class MainActivity extends AppCompatActivity {
     // give a "copy" of the interface to the gameManager

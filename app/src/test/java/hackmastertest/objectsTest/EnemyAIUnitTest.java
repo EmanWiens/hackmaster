@@ -134,4 +134,14 @@ public class EnemyAIUnitTest {
 
         assertEquals("-1 cpuRate", playable[10].getName());
     }
+
+    @Test
+    public void testAIDiscard() {
+        fail("add test for discard a card");
+    }
+
+    @Test
+    public void testAIBestCard() {
+        fail("Test that the best card is consistent");
+    }
 }

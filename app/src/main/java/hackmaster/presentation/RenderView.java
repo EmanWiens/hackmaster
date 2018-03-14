@@ -3,7 +3,6 @@ package hackmaster.presentation;
 
 import android.graphics.Color;
 import android.os.Handler;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -12,7 +11,6 @@ import android.widget.Button;
 import com.example.owner.hackmaster20.R;
 import hackmaster.business.Game;
 import hackmaster.business.MultiplayerGame;
-import hackmaster.business.SinglePlayerGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
 

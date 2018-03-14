@@ -8,7 +8,6 @@ import hackmaster.business.DeckManager;
 import hackmaster.business.Game;
 import hackmaster.business.SetUpGame;
 import hackmaster.objects.CardClass;
-import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmastertest.persistenceTest.DataAccessStub;
 
