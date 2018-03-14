@@ -25,17 +25,15 @@ public class EnemyAIUnitTest {
     int card;
 
     @Before
-    public void setup() {
+    public void setUp() {
         Services.closeDataAccess();
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub,dbStub,dbStub);
-
-        DeckManager.initDeck();
+        // DeckManager.initDeck();
         card = 0;
 
-        hackmaster.objects.ResourceClass r = new ResourceClass(100, 2, 2, 2, 2, 2, 2);
+        ResourceClass r = new ResourceClass(100, 2, 2, 2, 2, 2, 2);
         player = new EnemyAI(1, "Enemy Bot", r, DeckManager.dealFirstHandOfGame());
-
     }
 
     @Test
@@ -153,6 +151,23 @@ public class EnemyAIUnitTest {
         DeckManager.resetIndex();
         EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), DeckManager.getADeck());
 
-        ai.bestCard(DeckManager.getADeck());
+        ArrayList<CardClass> tempList = new ArrayList<>();
+        tempList.add(DeckManager.getCardAt(0));
+        tempList.add(DeckManager.getCardAt(1));
+        tempList.add(DeckManager.getCardAt(2));
+        int bestCard = ai.bestCard(tempList.toArray(new CardClass[0]));
+        assertEquals(0, bestCard);
+
+        tempList.add(DeckManager.getCardAt(3));
+        tempList.add(DeckManager.getCardAt(4));
+        tempList.add(DeckManager.getCardAt(5));
+        bestCard = ai.bestCard(tempList.toArray(new CardClass[0]));
+        assertEquals(0, bestCard);
+
+        tempList.add(DeckManager.getCardAt(4));
+        tempList.add(DeckManager.getCardAt(3));
+        tempList.add(DeckManager.getCardAt(5));
+        bestCard = ai.bestCard(tempList.toArray(new CardClass[0]));
+        assertEquals(0, bestCard);
     }
 }
