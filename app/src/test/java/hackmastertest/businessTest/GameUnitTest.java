@@ -150,7 +150,7 @@ public class GameUnitTest {
         testGame.discardCard(4, testGame.getPlayer1());
         testGame.discardCard(4, testGame.getPlayer1());
         testGame.discardCard(4, testGame.getPlayer1());
-        assertTrue(testGame.getPlayer1().getCard(2).equals(testGame.getDeckCardAt(3)));
+        assertTrue(testGame.getPlayer1().getCard(4).equals(testGame.getDeckCardAt(6)));
         assertEquals("Normal card", testGame.getPlayer1().getCard(1).getName());
     }
 
