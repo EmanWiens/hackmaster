@@ -13,7 +13,6 @@ import com.example.owner.hackmaster20.R;
 
 import java.util.Random;
 
-
 public class MusicManager {
     private static final int MAX_STREAMS=100;
     private static Context contextVariable;
@@ -27,7 +26,7 @@ public class MusicManager {
     public MusicManager(Context context) {
         contextVariable= context;
     }
-    //Credit: https://o7planning.org/en/10521/android-2d-game-tutorial-for-beginners
+
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
     public void initSoundPool()  {
         if (Build.VERSION.SDK_INT >= 21 ) {
@@ -53,6 +52,7 @@ public class MusicManager {
         });
         this.soundIdCardSelected = this.soundPool.load(contextVariable, R.raw.select,1);
     }
+
     public void backGroundMusicStart() {
         musicOn =true;
         Random rand = new Random();
@@ -64,20 +64,23 @@ public class MusicManager {
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
     }
+
     public void playCardSelected(float leftVolumn, float rightVolumn) {
         if(getSoundPoolLoaded()) {
-            // Play sound CardSelected.wav
             this.soundPool.play(this.soundIdCardSelected,leftVolumn, rightVolumn, 1, 0, 1f);
         }
     }
+
     public  void pauseBacgroundMusic() {
         mediaPlayer.pause();
         musicOn =false;
     }
+
     public  void resumeBacgroundMusic() {
         mediaPlayer.start();
         musicOn =true;
     }
+
     private boolean getSoundPoolLoaded() {return soundPoolLoaded;}
     public  boolean getStateMusic() {return musicOn;}
 }

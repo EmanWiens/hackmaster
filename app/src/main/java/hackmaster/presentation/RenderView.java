@@ -1,32 +1,133 @@
 package hackmaster.presentation;
 
 
+import android.graphics.Color;
 import android.os.Handler;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Button;
-
 import com.example.owner.hackmaster20.R;
-
 import hackmaster.business.Game;
 import hackmaster.business.MultiplayerGame;
-import hackmaster.business.SinglePlayerGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
-
 
 public class RenderView {
     private Game gameInSession;
     private MainActivity mainActivity;
-    boolean setUpDone=false;
+    private MusicManager musicManager;
+    private PlayerClass player1;
+    private PlayerClass player2;
+    private String player1Turn;
+    private String player2Turn;
+    private String aiTurn;
+    private boolean showContinueView;
+    CardClass playedCardTwo;
+    CardClass playedCardOne;
+    private  TextView playerTurnText;
+    boolean multiPlayer;
 
-    public RenderView(Game gameInSes, MainActivity mainAct) {
+    public RenderView(Game gameInSes, MainActivity mainAct,  MusicManager musicManag) {
         gameInSession = gameInSes;
         mainActivity = mainAct;
+        musicManager=musicManag;
         mainActivity.setContentView(R.layout.battle_view);
+        initSetUp();
+    }
+
+    public void initSetUp() {
+        multiPlayer=false;
+       if  (gameInSession instanceof MultiplayerGame)
+       {
+           multiPlayer=true;
+       }
+       player1 = gameInSession.getPlayer1();
+       player2 = gameInSession.getPlayer2();
+       playerTurnText = mainActivity.findViewById(R.id.playerTurn);
+       player1Turn="Player 1's Turn";
+       player2Turn="Player 2's Turn";
+       aiTurn="AI Turn";
+    }
+
+    public void setUpBattleView() {
+        playerTurnText.setText("Player 1 Turn");
+        if (!gameInSession.gamePaused()) {
+            renderPlayerResource(player1);
+            renderPlayerResource(player2);
+            renderCards();
+        }
+    }
+
+    public void setDiscard (boolean toggle) {
+        if (toggle) {
+            gameInSession.discardOff();
+            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
+            dicardButton.setText("DISCARD MODE");
+        } else {
+            gameInSession.discardOn();
+            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
+            dicardButton.setText("CANCEL DISCARD");
+        }
+    }
+
+    public void renderBattleView(int borderID) {
+            playedCardOne = gameInSession.getPlayedCardOne();
+            playedCardTwo = gameInSession.getPlayedCardTwo();
+            renderPlayerResource(player1);
+            renderPlayerResource(player2);
+            showContinueView=false;
+            if (borderID!=-1) {
+                renderPressedCardBorder(borderID);
+                showContinueView=true;
+            }
+            renderCards();
+            if (!multiPlayer) {
+                if (playedCardOne != null && !gameInSession.getRenderDelay() )
+                    renderPlayedCard(playedCardOne, false);
+                playerTurnText.setText(player1Turn);
+                if (playedCardTwo != null )
+                    renderPlayedCard(playedCardTwo, true);
+                playerTurnText.setText(aiTurn);
+            } else if (multiPlayer) {
+
+                if (!gameInSession.getPlayer1Turn() && playedCardOne!=null) {
+                    renderPlayedCard(playedCardOne, false);
+                    playerTurnText.setText(player2Turn);
+                    if (showContinueView)
+                        activateContentView(player2Turn);
+                } else if (playedCardTwo!=null) {
+                    renderPlayedCard(playedCardTwo, false);
+                    playerTurnText.setText(player1Turn);
+                    if (showContinueView)
+                    activateContentView(player1Turn);
+                }
+            }
+
+        if (gameInSession.gameDone())
+           {
+                getWinner();
+           }
+    }
+    private void renderCards() {
+                if (gameInSession.getPlayer1Turn()) {
+                    renderTheHandDeck(player1);
+                } else {
+                    renderTheHandDeck(player2);
+                }
+                if(gameInSession.getDiscard()) {
+                    setDiscard(false);
+                } else {
+                    setDiscard(true);
+                }
+    }
+
+    private void renderTheHandDeck(PlayerClass player) {
+        for (int i = 0; i < player.getCards().length; i++) {
+            if (player.getCards()[i] != null)
+                renderCard(player.getCards()[i], i);
+        }
     }
 
     public void renderPlayedCard(CardClass card, boolean aiDelay) {
@@ -68,75 +169,6 @@ public class RenderView {
         }
     }
 
-    public void renderBattleView() {
-        CardClass playedCardTwo = gameInSession.getPlayedCardTwo();
-        CardClass playedCardOne = gameInSession.getPlayedCardOne();
-        PlayerClass player1 = gameInSession.getPlayer1();
-        PlayerClass player2 = gameInSession.getPlayer2();
-
-        if (!gameInSession.gamePaused()) {
-            renderPlayerResource(player1);
-            renderPlayerResource(player2);
-
-            if (gameInSession instanceof SinglePlayerGame ) {
-                renderSinglePlayerGame(playedCardTwo, playedCardOne);
-            }
-            else if (gameInSession instanceof MultiplayerGame) {
-
-                renderMultiPlayerGame(playedCardTwo, playedCardOne);
-            }
-
-            if (gameInSession.getPlayer1Turn()) {
-                for (int i = 0; i < player1.getCards().length; i++) {
-                    if (player1.getCards()[i] != null)
-                        renderCard(player1.getCards()[i], i);
-                }
-            }
-            else {
-                for (int i = 0; i < player2.getCards().length; i++) {
-                    if (player2.getCards()[i] != null)
-                        renderCard(player2.getCards()[i], i);
-                }
-            }
-
-            if(gameInSession.getDiscard()) {
-                renderDiscardButton(false);
-            } else {
-                renderDiscardButton(true);
-            }
-        }
-    }
-
-    private void renderMultiPlayerGame(CardClass playedCardTwo, CardClass playedCardOne) {
-        if(!gameInSession.getPlayer1Turn() && playedCardOne != null) {
-            renderPlayedCard(playedCardOne, false);
-        }
-        else if (gameInSession.getPlayer1Turn() && playedCardTwo != null) {
-            renderPlayedCard(playedCardTwo, false);
-        }
-
-        if (gameInSession.getPlayer1Turn()) {
-            fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "Player 1's turn");
-        }
-        else {
-            fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "Player 2's turn");
-        }
-    }
-
-    private void renderSinglePlayerGame(CardClass playedCardTwo, CardClass playedCardOne) {
-        if (playedCardOne != null && !gameInSession.getRenderDelay()) {
-            renderPlayedCard(playedCardOne, false);
-        }
-
-        if (playedCardTwo != null && gameInSession instanceof SinglePlayerGame) {
-            renderPlayedCard(playedCardTwo, true);
-        }
-
-        if (gameInSession.getRenderDelay()) {
-            fillText((TextView)mainActivity.findViewById(R.id.playerTurn), "AI Turn");
-        }
-    }
-
     public void renderCard(CardClass card, int slot) {
         ImageButton imageButton = null;
         int[] imageButtonCardList = new int[]{
@@ -154,8 +186,7 @@ public class RenderView {
         imageCardBorder[2] = mainActivity.findViewById(R.id.imageBorderCard2);
         imageCardBorder[3] = mainActivity.findViewById(R.id.imageBorderCard3);
         imageCardBorder[4] = mainActivity.findViewById(R.id.imageBorderCard4);
-     //TODO Make sure Sound Plays   musicManager.playCardSelected(0.8f, 0.8f);
-
+        musicManager.playCardSelected(0.8f, 0.8f);
         for (int i = 0; i <= 4; i++) {
             if (i == chosenCard) {
                 imageCardBorder[i].setBackgroundResource(R.drawable.image_border);
@@ -166,19 +197,17 @@ public class RenderView {
         }
     }
 
-    public void renderDiscardButton(boolean toggle) {
-        if (toggle) {
-            gameInSession.discardOff();
-            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
-            dicardButton.setText("DISCARD MODE");
-        } else {
-            gameInSession.discardOn();
-            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
-            dicardButton.setText("CANCEL DISCARD");
+    public void activateContentView(String playerTurn)
+    {
+        mainActivity.setContentView(R.layout.continue_view);
+        TextView textView = mainActivity.findViewById(R.id.textViewPlayerTurn);
+        textView.setText(playerTurn);
+        if (playerTurn.equals("Player 1's Turn"))
+        {
+            textView.setTextColor(Color.RED);
         }
     }
 
-    // DELAY
     private Runnable delayRender() {
         Runnable r = new Runnable() {
             @Override
@@ -189,10 +218,7 @@ public class RenderView {
         return r;
     }
 
-    private void fillText (TextView view, String string) {view.setText(string);}
-
-    private int returnImageCardID(int cardID)
-    {
+    private int returnImageCardID(int cardID) {
         int[] imageCardList = new int[]{
                 R.drawable.morecores,R.drawable.morecores, R.drawable.botnet,
                 R.drawable.cutsomewires, R.drawable.upgradebotnet,R.drawable.upgradecpu,
@@ -208,8 +234,32 @@ public class RenderView {
         return imageCardList[cardID];
     }
 
-    public void activateContentView()
-    {
-        gameInSession.pauseGame();
+    public void getWinner() {
+        if (gameInSession.getPlayer2Health() < 1) {
+            goToVictory(true);
+        } else {
+            goToVictory(false);
+        }
     }
+
+    public void goToVictory(boolean winner) {
+        mainActivity.setContentView(R.layout.results_view);
+        gameInSession = null;
+        ImageView img= mainActivity.findViewById(R.id.statsImg);
+        TextView textView = mainActivity.findViewById(R.id.textViewResult);
+        if (winner) {
+            img.setImageResource(R.drawable.victory);
+            textView.setText("PlAYER 1 WIN");
+        } else {
+            img.setImageResource(R.drawable.defeat);
+            textView.setText("PlAYER 1 LOSE");
+            textView.setTextColor(Color.RED);
+        }
+    }
+
+    private void fillText (TextView view, String string) {view.setText(string);}
 }
+
+
+
+

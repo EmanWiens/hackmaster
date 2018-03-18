@@ -1,7 +1,6 @@
 # HackMaster
 <br />
-Branches to look for: 
-  Iteration 2
+## Branches to look for: Iteration-2-final
 
 HackMaster is a turn based 2-player card game in which you play cards which expend resources. In return the cards can be used for either upgrading, defending, or attacking. The cards cost resources, and resources are incremented by resource rate each time it's the players turn (every second time). <br /><br />
 
@@ -71,8 +70,28 @@ In game: <br />
 ## Andriod studio 
  <br />
 Build once, if build doesn't work go to build->clean build. Then hit play.<br /> 
-If you can't run the simulator got on tools->android->sync gradle.<br />
+If you can't run the simulator got on tools->android->sync gradle.<br /><br />
 
+## New Features/Changes
+ <br />
+ Improved UI<br />
+    •Added Background Music<br />
+    •Added Card Images<br />
+    •Added Background Images<br /><br />
+ Improved Gameplay<br />
+    •Discard functionality<br />
+    •Added Victory/Defeat Screen<br /><br />
+ Enemy AI<br />
+    •AI now looks for the best/worst card to play<br />
+    •AI can discard unplayable cards<br /><br />
+ Multiplayer<br />
+    •Added "hotseat" multiplayer<br />
+    •Added screen indication between Player 1 turn and Player 2 turn<br /><br />
+ Database<br />
+    •Added a database that handles how cards and player stats are stored<br /><br />
+ Refactored Code Base<br />
+    •Code base has been refactored for improved interactivity between classes<br /><br />
+    
 ## Credit to Music
 <br />"Java" Song : https://www.youtube.com/watch?v=b-Cr0EWwaTk<br /> 
 <br />"Dual_Core" Song: https://www.youtube.com/watch?v=FoUWHfh733Y&index=21&list=RDiN1uaITfA1c <br /> 

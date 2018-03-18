@@ -8,7 +8,6 @@ import hackmaster.objects.ResourceClass;
 public abstract class Game {
     public static final int hand = 5;
 
-    private PlayerStatsSaves pStats;
     private PlayerClass player1;
     private PlayerClass player2;
 
@@ -24,7 +23,6 @@ public abstract class Game {
     public Game(PlayerClass p1, PlayerClass p2) {
         player1 = p1;
         player2 = p2;
-        initStats();
 
         playedCardTwo = null;
         playedCardOne = null;
@@ -32,7 +30,10 @@ public abstract class Game {
         player1Turn = true;
     }
 
-    public void playCardEvent(int playerCard) { System.out.print("Error in game. Please try starting a new game."); }
+    public boolean playCardEvent(int playerCard) {
+        System.out.print("Error in game. Please try starting a new game.");
+        return false;
+    }
 
     public void playerTurn(int playerCard, PlayerClass player) {
         CardClass nextCard = DeckManager.dealNextCard();
@@ -61,33 +62,18 @@ public abstract class Game {
         ResourceClass cardResource = card.getPlayerR();
         ResourceClass playerResource = player.getResources();
 
-        if(playerResource.getHealth() + cardResource.getHealth() < 0) {
+        if(playerResource.getHealth() + cardResource.getHealth() < 0 ||
+                playerResource.gethCoin() + cardResource.gethCoin() < 0 ||
+                playerResource.getBotnet() + cardResource.getBotnet() < 0 ||
+                playerResource.getCpu() + cardResource.getCpu() < 0 ||
+                playerResource.gethCoinRate() + cardResource.gethCoinRate() < 1 ||
+                playerResource.getBotnetRate() + cardResource.getBotnetRate() < 1 ||
+                playerResource.getCpuRate() + cardResource.getCpuRate() < 1) {
             canPlay = false;
         }
-        if(playerResource.gethCoin() + cardResource.gethCoin() < 0) {
-            canPlay = false;
-        }
-        if(playerResource.getBotnet() + cardResource.getBotnet() < 0) {
-            canPlay = false;
-        }
-        if(playerResource.getCpu() + cardResource.getCpu() < 0) {
-            canPlay = false;
-        }
-
-        if(playerResource.gethCoin() + cardResource.gethCoinRate() < 1) {
-            canPlay = false;
-        }
-        if(playerResource.getBotnet() + cardResource.getBotnetRate() < 1) {
-            canPlay = false;
-        }
-        if(playerResource.getCpu() + cardResource.getCpuRate() < 1) {
-            canPlay = false;
-        }
-
         return canPlay;
     }
 
-    //test this (marc)
     public boolean gameDone() {
         boolean result = false;
         if (player2.getHealth() < 1) {
@@ -99,20 +85,8 @@ public abstract class Game {
         return result;
     }
 
-    public void initStats() {
-        if(pStats == null) {
-            pStats = new PlayerStatsSaves();
-        }
-
-        pStats.setPlayerName("Player_1");
-    }
-
     public int getPlayer1Health() {return player1.getHealth();}
     public int getPlayer2Health() {return player2.getHealth();}
-    public String getPlayerName() {return pStats.getName();}
-    public int getWin() {return pStats.getWin();}
-    public void addWin() { pStats.addWin();}
-    public void addLoss() { pStats.addLoss();}
     public boolean getRenderDelay() { return renderDelay; }
     public void setRenderDelay(boolean set) { renderDelay = set; }
     public CardClass getPlayedCardOne() { return playedCardOne; }

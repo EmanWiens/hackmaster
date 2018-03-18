@@ -11,7 +11,7 @@ public abstract class SetUpGame {
         DeckManager.initDeck();
 
         PlayerClass player1 = new PlayerClass(0,
-                "HackerMan",
+                "hackmaster",
                 startOfGameResources.clone(), DeckManager.dealFirstHandOfGame());
 
         PlayerClass player2 = new EnemyAI(1,

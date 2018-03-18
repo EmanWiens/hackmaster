@@ -1,10 +1,11 @@
-package hackmastertest.persistenceTest;
+package hackmastertest.objectsTest;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import hackmaster.objects.PlayerStatsSaves;
@@ -14,7 +15,7 @@ public class PlayerStatsSavesTest {
 
     @Before
     public void Setup() {
-        playerStats = new PlayerStatsSaves();
+        playerStats = new PlayerStatsSaves(0,"Tester",0,0,0,0);
     }
 
 
@@ -35,19 +36,20 @@ public class PlayerStatsSavesTest {
     }
     @Test
     public void testWinAndLose() {
-        assertEquals("The value of win/lose ratio should be 0" ,0.00,playerStats.getLevel(), 0.0001);
         playerStats.addWin();
-        assertEquals("The value of win/lose ratio should be 1", 1.00, playerStats.getWinLossRatio(), 0.0001);
+        assertEquals(1.00, playerStats.getWinLossRatio(), 0.0001);
+        assertEquals(1, playerStats.getTotalGames());
         playerStats.addLoss();
         playerStats.addLoss();
-        assertEquals("The value of win/lose ratio should be .5", 0.50, playerStats.getWinLossRatio(), 0.0001);
+        assertEquals(0.50, playerStats.getWinLossRatio(), 0.0001);
+        assertEquals(3, playerStats.getTotalGames());
     }
 
     @Test
     public void testInitPlayerStats() {
         assertNotNull(playerStats);
-        assertEquals("The total wins 0.0", 0.0, playerStats.getWin(), 0.01);
-        assertEquals("The Level should be 0", 0, playerStats.getLevel());
+        assertEquals(0, playerStats.getWin());
+        assertEquals(0, playerStats.getLevel());
     }
 
     @Test
@@ -79,12 +81,9 @@ public class PlayerStatsSavesTest {
     }
 
     @Test
-    public void testPlayerName() {
-        fail("Test that the saved player name is correct and the ID");
+    public void testEquals() {
+        PlayerStatsSaves otherPlayer = new PlayerStatsSaves(0,"Not Tester",123,321,444,55);
+        assertEquals(otherPlayer, playerStats);
     }
 
-    @Test
-    public void testGetTotalGame() {
-        fail("test that the total games comes out right");
-    }
 }
