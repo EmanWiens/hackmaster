@@ -174,12 +174,10 @@ public class MainActivity extends AppCompatActivity {
     public void pauseResumeMessage(View v) {
         setContentView(R.layout.battle_view);
         gameInSession.unpauseGame();
-        renderView.initSetUp();
         renderView.renderBattleView(-1);
     }
     public void resumeFromContinueWindow(View v) {
         setContentView(R.layout.battle_view);
-        renderView.initSetUp();
         renderView.renderBattleView(-1);
     }
 
@@ -216,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
             checkStateSound();
         }
     }
+
     public void finishGame(View v)
     {
         setContentView(R.layout.main_activity);

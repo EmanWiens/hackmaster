@@ -9,6 +9,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Button;
 import com.example.owner.hackmaster20.R;
+
+import java.util.LinkedList;
+
 import hackmaster.business.Game;
 import hackmaster.business.MultiplayerGame;
 import hackmaster.objects.CardClass;
@@ -24,35 +27,38 @@ public class RenderView {
     private String player2Turn;
     private String aiTurn;
     private boolean showContinueView;
-    CardClass playedCardTwo;
-    CardClass playedCardOne;
-    private  TextView playerTurnText;
+    private CardClass playedCardTwo;
+    private CardClass playedCardOne;
+    private TextView playerTurnText;
     boolean multiPlayer;
+
+    private LinkedList<Object> renderQ;
+    private int priority;
 
     public RenderView(Game gameInSes, MainActivity mainAct,  MusicManager musicManag) {
         gameInSession = gameInSes;
         mainActivity = mainAct;
-        musicManager=musicManag;
+        musicManager = musicManag;
         mainActivity.setContentView(R.layout.battle_view);
+        priority = 0;
         initSetUp();
     }
 
-    public void initSetUp() {
-        multiPlayer=false;
-       if  (gameInSession instanceof MultiplayerGame)
-       {
-           multiPlayer=true;
+    private void initSetUp() {
+       if (gameInSession instanceof MultiplayerGame) {
+           multiPlayer = true;
        }
        player1 = gameInSession.getPlayer1();
        player2 = gameInSession.getPlayer2();
        playerTurnText = mainActivity.findViewById(R.id.playerTurn);
-       player1Turn="Player 1's Turn";
-       player2Turn="Player 2's Turn";
-       aiTurn="AI Turn";
+       player1Turn = "Player 1's Turn";
+       player2Turn = "Player 2's Turn";
+       aiTurn = "AI Turn";
     }
 
     public void setUpBattleView() {
         playerTurnText.setText("Player 1 Turn");
+
         if (!gameInSession.gamePaused()) {
             renderPlayerResource(player1);
             renderPlayerResource(player2);
@@ -110,6 +116,7 @@ public class RenderView {
                 getWinner();
            }
     }
+
     private void renderCards() {
                 if (gameInSession.getPlayer1Turn()) {
                     renderTheHandDeck(player1);
