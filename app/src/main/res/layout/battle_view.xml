@@ -272,7 +272,7 @@
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout4"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/player1" />
 
     <ImageView
         android:id="@+id/player2Img"
@@ -286,7 +286,7 @@
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/player2" />
 
     <ProgressBar
         android:id="@+id/healthPBarP"
