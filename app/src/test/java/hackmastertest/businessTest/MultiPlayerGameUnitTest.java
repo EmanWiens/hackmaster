@@ -39,6 +39,11 @@ public class MultiPlayerGameUnitTest {
         ArrayList<CardClass> listDeck = new ArrayList<>();
         dbStub.getCardSequential(listDeck);
         game.setDeck(listDeck.toArray(new CardClass[0]));
+        player1 = game.getPlayer1();
+        player2 = game.getPlayer2();
+        DeckManager.resetIndex();
+        player1.setHand(DeckManager.dealFirstHandOfGame());
+        player2.setHand(DeckManager.dealFirstHandOfGame());
     }
 
     @Test

@@ -82,6 +82,7 @@ public class PlayerClass {
         return j;
     }
 
+    public void setHand(CardClass[] cards) {hand = cards;}
     public String playerHealthToString() {
         return "Health: " + getHealth() + "%";
     }
