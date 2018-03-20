@@ -3,7 +3,10 @@ package hackmastertest.businessTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import hackmaster.application.Services;
+import hackmaster.business.DeckManager;
 import hackmaster.business.Game;
 import hackmaster.business.MultiplayerGame;
 import hackmaster.business.SetUpGame;
@@ -33,6 +36,9 @@ public class MultiPlayerGameUnitTest {
         Services.createDataAccess(dbStub,dbStub,dbStub);
 
         game = SetUpGame.setUpMultiplayerGame();
+        ArrayList<CardClass> listDeck = new ArrayList<>();
+        dbStub.getCardSequential(listDeck);
+        game.setDeck(listDeck.toArray(new CardClass[0]));
     }
 
     @Test

@@ -3,6 +3,8 @@ package hackmastertest.businessTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import hackmaster.application.Services;
 import hackmaster.business.Game;
 import hackmaster.business.SetUpGame;
@@ -34,6 +36,9 @@ public class SinglePlayerGameUnitTest {
         Services.createDataAccess(dbStub,dbStub,dbStub);
 
         game = SetUpGame.setUpSinglePlayerGame();
+        ArrayList<CardClass> listDeck = new ArrayList<>();
+        dbStub.getCardSequential(listDeck);
+        game.setDeck(listDeck.toArray(new CardClass[0]));
     }
 
     @Test

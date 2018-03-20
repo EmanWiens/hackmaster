@@ -3,6 +3,7 @@ package hackmastertest.persistenceTest;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerStatsSaves;
@@ -185,6 +186,18 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
     public String getCardSequential(List<CardClass> cardResult) {
         String result = null;
         cardResult.addAll(cards);
+        return result;
+    }
+
+    public String getRandomDeck(List<CardClass> cardResult, Random random) {
+        String result = null;
+        cardResult.addAll(cards);
+        for (int i = cardResult.size() - 1; i > 0; i--) {
+            int index = random.nextInt(i + 1);
+            CardClass card = cardResult.get(index);
+            cardResult.set(index, cardResult.get(i));
+            cardResult.set(i, card);
+        }
         return result;
     }
 
