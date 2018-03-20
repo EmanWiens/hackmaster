@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerStatsSaves;
@@ -105,5 +106,11 @@ public class DataAccessTest {
         assertNull(result);
         cards = dbStub.getCardRandom(35);
         assertEquals(0, cards.size());
+
+        cards.clear();
+        dbStub.getRandomDeck(cards, new Random(0));
+        assertEquals(29, cards.size());
+        assertEquals(1, cards.get(0).getID());
+        assertEquals(12, cards.get(28).getID());
     }
 }

@@ -1,6 +1,8 @@
 package hackmaster.business;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import hackmaster.application.Services;
 import hackmaster.persistence.CardDataAccessInterface;
 import hackmaster.objects.CardClass;
@@ -14,7 +16,7 @@ public abstract class DeckManager {
     public static void initDeck() {
         cardDataAccess = Services.getCardDataAccess();
         ArrayList<CardClass>listDeck = new ArrayList<>();
-        String eMsg = cardDataAccess.getCardSequential(listDeck);
+        String eMsg = cardDataAccess.getRandomDeck(listDeck, new Random());
         if(eMsg!=null) System.out.println(eMsg);
         deck = listDeck.toArray(new CardClass[0]);
         resetIndex();
