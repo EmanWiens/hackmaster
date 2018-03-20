@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import com.example.owner.hackmaster20.R;
 
 import java.util.LinkedList;
@@ -69,12 +70,16 @@ public class RenderView {
     public void setDiscard (boolean toggle) {
         if (toggle) {
             gameInSession.discardOff();
-            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
-            dicardButton.setText("DISCARD MODE");
+//            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
+//            dicardButton.setText("DISCARD MODE");
+            ImageButton btn = (ImageButton)mainActivity.findViewById(R.id.discardBtn);
+            btn.setImageResource(R.drawable.discardbutton);
         } else {
             gameInSession.discardOn();
-            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
-            dicardButton.setText("CANCEL DISCARD");
+//            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
+//            dicardButton.setText("CANCEL DISCARD");
+            ImageButton btn = (ImageButton)mainActivity.findViewById(R.id.discardBtn);
+            btn.setImageResource(R.drawable.canceldiscard);
         }
     }
 
