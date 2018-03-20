@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context="hackmaster.presentation.MainActivity">
 
-    <Button
+    <ImageButton
         android:id="@+id/singlePlayBtn"
         android:layout_width="240dp"
         android:layout_height="84dp"
@@ -16,7 +16,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:background="@android:color/holo_green_light"
+        android:background="@drawable/singleplayerbutton"
         android:onClick="singlePlayMessage"
         android:text="Single Player"
         android:textSize="30sp"
@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <Button
+    <ImageButton
         android:id="@+id/multiPlayBtn"
         android:layout_width="240dp"
         android:layout_height="84dp"
@@ -33,7 +33,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:background="@android:color/holo_red_light"
+        android:background="@drawable/multiplayerbutton"
         android:onClick="multiPlayMessage"
         android:text="Multiplayer"
         android:textSize="30sp"
@@ -42,7 +42,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/singlePlayBtn" />
 
-    <Button
+    <ImageButton
         android:id="@+id/stats"
         android:layout_width="240dp"
         android:layout_height="80dp"
@@ -50,7 +50,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@drawable/statsbutton"
         android:onClick="statsPress"
         android:text="Stats"
         android:textSize="30sp"
