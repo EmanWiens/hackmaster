@@ -36,7 +36,7 @@ public class SinglePlayerGameUnitTest {
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub,dbStub,dbStub);
 
-        game = SetUpGame.setUpSinglePlayerGame();
+        game = SetUpGame.setUpSinglePlayerGame("hackmaster");
         ArrayList<CardClass> listDeck = new ArrayList<>();
         dbStub.getCardSequential(listDeck);
         game.setDeck(listDeck.toArray(new CardClass[0]));

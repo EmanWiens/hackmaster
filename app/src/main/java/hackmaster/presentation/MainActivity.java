@@ -9,6 +9,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private RenderView renderView;
     private Render render;
     private PlayerStatsSaves playerStats;
+    private String playerName;
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
     @Override
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         musicManager.initSoundPool();
 
         render = Render.setUpRender(gameInSession, this, musicManager);
-        render.setContentView(R.layout.main_activity);
+        render.setContentView(R.layout.signin_view);
     }
 
     @Override
@@ -120,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void singlePlayMessage(View v) {
         render.setContentView(R.layout.battle_view);
-        gameInSession = SetUpGame.setUpSinglePlayerGame();
+        gameInSession = SetUpGame.setUpSinglePlayerGame(playerName);
 
         Render.updateRender(gameInSession, this, musicManager);
 
@@ -204,7 +206,15 @@ public class MainActivity extends AppCompatActivity {
         render.setContentView(R.layout.stats_view);
     }
 
+    public void signInExitMessage(View v) {
+        EditText input = (EditText) findViewById(R.id.playerOneName);
+        String inputName = input.getText().toString();
+        if(inputName != null && !inputName.isEmpty()){
+            playerName = inputName;
 
+            render.setContentView(R.layout.main_activity);
+        }
+    }
 
     public void statsExitMessage(View v) {
         if (gameInSession != null) {
@@ -215,8 +225,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void finishGame(View v)
-    {
+    public void finishGame(View v) {
         render.setContentView(R.layout.main_activity);
         checkStateSound();
     }

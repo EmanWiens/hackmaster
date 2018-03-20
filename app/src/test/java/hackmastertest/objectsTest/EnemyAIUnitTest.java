@@ -20,7 +20,7 @@ import static junit.framework.Assert.fail;
 
 public class EnemyAIUnitTest {
 
-    Game game = SetUpGame.setUpSinglePlayerGame();
+    Game game = SetUpGame.setUpSinglePlayerGame("hackmaster");
     EnemyAI player;
     int card;
 

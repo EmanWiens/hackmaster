@@ -27,7 +27,7 @@ public class GameUnitTest {
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub, dbStub, dbStub);
 
-        testGame = SetUpGame.setUpSinglePlayerGame();
+        testGame = SetUpGame.setUpSinglePlayerGame("hackmaster");
     }
 
     private CardClass[] resetDeck() {
