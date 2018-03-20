@@ -39,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
         copyDatabaseToDevice();
         DBController.startUp();
         musicManager = new MusicManager(this);
-        setContentView(R.layout.main_activity);
         musicManager.backGroundMusicStart();
         musicManager.initSoundPool();
 
         render = Render.setUpRender(gameInSession, this, musicManager);
+        render.setContentView(R.layout.main_activity);
     }
 
     @Override
@@ -84,13 +84,13 @@ public class MainActivity extends AppCompatActivity {
             if (!gameInSession.gamePaused()) {
                 exitGameDialog();
             } else if (gameInSession.gamePaused()) {
-                setContentView(R.layout.battle_view);
+                render.setContentView(R.layout.battle_view);
                 gameInSession.unpauseGame();
                 renderView.renderBattleView(-1);
             }
         } else {
             if (gameInSession != null) {
-                setContentView(R.layout.main_activity);
+                render.setContentView(R.layout.main_activity);
                 checkStateSound();
             }
         }
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage("You are about to exit the game.")
                 .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        setContentView(R.layout.main_activity);
+                        render.setContentView(R.layout.main_activity);
                         checkStateSound();
                     }
                 })
@@ -115,11 +115,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void statsPress(View v) {
-        setContentView(R.layout.stats_view);
+        render.setContentView(R.layout.stats_view);
     }
 
     public void singlePlayMessage(View v) {
-        setContentView(R.layout.battle_view);
+        render.setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpSinglePlayerGame();
 
         Render.updateRender(gameInSession, this, musicManager);
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void multiPlayMessage(View v) {
-        setContentView(R.layout.battle_view);
+        render.setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpMultiplayerGame();
 
         Render.updateRender(gameInSession, this, musicManager);
@@ -182,17 +182,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void pauseMessage(View v) {
         gameInSession.pauseGame();
-        setContentView(R.layout.pause_view);
+        render.setContentView(R.layout.pause_view);
     }
 
     public void pauseResumeMessage(View v) {
-        setContentView(R.layout.battle_view);
+        render.setContentView(R.layout.battle_view);
         gameInSession.unpauseGame();
         renderView.renderBattleView(-1);
     }
 
     public void resumeFromContinueWindow(View v) {
-        setContentView(R.layout.battle_view);
+        render.setContentView(R.layout.battle_view);
         renderView.renderBattleView(-1);
     }
 
@@ -201,23 +201,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pauseStatsMessage(View v) {
-        setContentView(R.layout.stats_view);
+        render.setContentView(R.layout.stats_view);
     }
 
 
 
     public void statsExitMessage(View v) {
         if (gameInSession != null) {
-            setContentView(R.layout.pause_view);
+            render.setContentView(R.layout.pause_view);
         } else {
-            setContentView(R.layout.main_activity);
+            render.setContentView(R.layout.main_activity);
             checkStateSound();
         }
     }
 
     public void finishGame(View v)
     {
-        setContentView(R.layout.main_activity);
+        render.setContentView(R.layout.main_activity);
         checkStateSound();
     }
 
