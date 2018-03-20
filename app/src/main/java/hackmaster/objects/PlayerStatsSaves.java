@@ -58,6 +58,7 @@ public class PlayerStatsSaves {
         return result;
     }
 
+    public void setPlayerName(String playerName) { this.playerName = playerName; }
     public int getPlayerID() { return playerID; }
     public int getLevel() {
         return level;

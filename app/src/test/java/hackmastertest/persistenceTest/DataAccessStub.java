@@ -157,10 +157,25 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
         return player;
     }
 
-    public String insertPlayer(PlayerStatsSaves player){
-        String result = null;
-        players.add(player);
-        return result;
+    public int insertPlayer(PlayerStatsSaves player){
+        int id = -1;
+        String name = player.getName();
+        int i = 0;
+        boolean found = false;
+
+        while(i < players.size() && !found) {
+            if(players.get(i).getName().equals(name)) {
+                id = players.get(i).getPlayerID();
+                found = true;
+            }
+            i++;
+        }
+
+        if(!found) {
+            players.add(player);
+            id = player.getPlayerID();
+        }
+        return id;
     }
 
     public String updatePlayer(PlayerStatsSaves player) {

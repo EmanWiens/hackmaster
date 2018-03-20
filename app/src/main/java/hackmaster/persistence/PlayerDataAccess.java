@@ -104,6 +104,35 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
     }
 
     @Override
+    public int insertPlayer(PlayerStatsSaves newPlayer) {
+        String playerName = newPlayer.getName();
+        String result = null;
+        String values;
+        int id = -1;
+        try {
+            resultSet = statement.executeQuery("SELECT PLAYERID FROM PLAYERS WHERE NAME =" + playerName);
+            if(resultSet.next()) {
+                id = resultSet.getInt("PLAYERID");
+            } else {
+                values = newPlayer.getName() + "', '0', '0', '0', '0'";
+                updateCount = statement.executeUpdate("INSERT INTO PLAYERS ( PLAYERID, NAME, WINS, LOSSES, GAMESPLAYED, LEVEL)" +" VALUES( NULL, '" +values +")");
+                result = DataAccessObject.checkWarning(statement, updateCount);
+                if(updateCount == 1) {
+                    resultSet = statement.getGeneratedKeys();
+                    if(resultSet.next()) {
+                        id = resultSet.getInt(1);
+                    }
+                } else id = -1;
+            }
+        }
+        catch (Exception e) {
+            DataAccessObject.processSQLError(e);
+        }
+        return id;
+    }
+
+    /*
+    @Override
     public String insertPlayer(PlayerStatsSaves newPlayer) {
         String values;
         String result = null;
@@ -129,6 +158,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
         }
         return result;
     }
+    */
 
     @Override
     public String updatePlayer(PlayerStatsSaves newPlayer) {
@@ -143,7 +173,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
                     +"', '" + newPlayer.getTotalGames()
                     +"', " + newPlayer.getLevel();
             where = "where PlayerID=" +newPlayer.getPlayerID();
-            cmdString = "Update Cards " +" Set " +values +" " +where;
+            cmdString = "Update PLAYERS " +" Set " +values +" " +where;
             updateCount = statement.executeUpdate(cmdString);
             result = DataAccessObject.checkWarning(statement, updateCount);
         }

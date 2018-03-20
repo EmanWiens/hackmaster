@@ -52,8 +52,13 @@ public class DataAccessTest {
         assertEquals(0, players.size());
 
         player = new PlayerStatsSaves(35);
-        result = dbStub.insertPlayer(player);
-        assertNull(result);
+        playerID = dbStub.insertPlayer(player);
+        assertEquals(35, playerID);
+        player = new PlayerStatsSaves(20);
+        player.setPlayerName("Gary Chalmers");
+        playerID = dbStub.insertPlayer(player);
+        assertEquals(100,playerID);
+
         players = dbStub.getPlayerRandom(35);
         assertEquals(1, players.size());
         assertEquals(35, players.get(0).getPlayerID());
