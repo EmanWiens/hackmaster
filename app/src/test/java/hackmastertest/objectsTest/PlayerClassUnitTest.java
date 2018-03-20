@@ -4,6 +4,8 @@ package hackmastertest.objectsTest;
 import org.junit.Test;
 import org.junit.Before;
 
+import java.util.ArrayList;
+
 import hackmaster.application.Services;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
@@ -30,6 +32,12 @@ public class PlayerClassUnitTest {
         DeckManager.initDeck();
 
         player1_resource = new ResourceClass(1000,50,3, 0, 2, 55, 1);
+
+        ArrayList<CardClass> listDeck = new ArrayList<>();
+        dbStub.getCardSequential(listDeck);
+        DeckManager.setDeck(listDeck.toArray(new CardClass[0]));
+        DeckManager.resetIndex();
+
         player1_cards = DeckManager.dealFirstHandOfGame();
         player1 = new PlayerClass(1, "Test_Name", player1_resource, player1_cards);
         player2 = new ResourceClass(1000,56,8, 54, 1, 99, 10);

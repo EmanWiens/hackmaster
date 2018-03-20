@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Random;
 
 import hackmaster.objects.CardClass;
 import hackmaster.objects.ResourceClass;
@@ -70,6 +71,18 @@ public class CardDataAccess implements CardDataAccessInterface {
             DataAccessObject.processSQLError(e);
         }
         return result;
+    }
+
+    @Override
+    public String getRandomDeck(List<CardClass> cardResult, Random random) {
+        String emsg = getCardSequential(cardResult);
+        for (int i = cardResult.size() - 1; i > 0; i--) {
+            int index = random.nextInt(i + 1);
+            CardClass card = cardResult.get(index);
+            cardResult.set(index, cardResult.get(i));
+            cardResult.set(i, card);
+        }
+        return emsg;
     }
 
     @Override
