@@ -8,14 +8,14 @@ import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
-import hackmaster.objects.PlayerStatsSaves;
+import hackmaster.objects.PlayerStats;
 
 public class PlayerStatsSavesTest {
-    private PlayerStatsSaves playerStats;
+    private PlayerStats playerStats;
 
     @Before
     public void Setup() {
-        playerStats = new PlayerStatsSaves(0,"Tester",0,0,0,0);
+        playerStats = new PlayerStats(0,"Tester",0,0,0,0);
     }
 
 
@@ -82,7 +82,7 @@ public class PlayerStatsSavesTest {
 
     @Test
     public void testEquals() {
-        PlayerStatsSaves otherPlayer = new PlayerStatsSaves(0,"Not Tester",123,321,444,55);
+        PlayerStats otherPlayer = new PlayerStats(0,"Not Tester",123,321,444,55);
         assertEquals(otherPlayer, playerStats);
     }
 

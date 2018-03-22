@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import hackmaster.objects.CardClass;
-import hackmaster.objects.PlayerStatsSaves;
+import hackmaster.objects.PlayerStats;
 import hackmaster.objects.ResourceClass;
 import hackmaster.persistence.CardDataAccessInterface;
 import hackmaster.persistence.DBInterface;
@@ -17,23 +17,23 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
     private String dbName;
     private String dbType = "stub";
 
-    private ArrayList<PlayerStatsSaves> players;
+    private ArrayList<PlayerStats> players;
     private ArrayList<CardClass> cards;
 
     public DataAccessStub(String dbName) { this.dbName = dbName; }
 
     public void open(String dbPath) {
-        PlayerStatsSaves player;
+        PlayerStats player;
         CardClass tempCard;
 
-        players = new ArrayList<PlayerStatsSaves>();
-        player = new PlayerStatsSaves(100, "Gary Chalmers", 0, 0, 0, 0);
+        players = new ArrayList<PlayerStats>();
+        player = new PlayerStats(100, "Gary Chalmers", 0, 0, 0, 0);
         players.add(player);
-        player = new PlayerStatsSaves(200, "Selma Bouvier", 1, 1, 2, 1);
+        player = new PlayerStats(200, "Selma Bouvier", 1, 1, 2, 1);
         players.add(player);
-        player = new PlayerStatsSaves(300, "Arnie Pye", 50, 20, 70, 20);
+        player = new PlayerStats(300, "Arnie Pye", 50, 20, 70, 20);
         players.add(player);
-        player = new PlayerStatsSaves(400, "Bailey Bailey", 100, 100, 200, 30);
+        player = new PlayerStats(400, "Bailey Bailey", 100, 100, 200, 30);
         players.add(player);
 
         cards = new ArrayList<CardClass>();
@@ -137,7 +137,7 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
         return null;
     }
 
-    public String getPlayerSequential(List<PlayerStatsSaves> playerResult) {
+    public String getPlayerSequential(List<PlayerStats> playerResult) {
         String result = null;
         playerResult.addAll(players);
         return result;
@@ -145,25 +145,25 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
 
     public String getPlayersNamesList(List<String> playerResult) {
         String result = null;
-        for(PlayerStatsSaves player : players) playerResult.add(player.getName());
+        for(PlayerStats player : players) playerResult.add(player.getName());
         return result;
     }
 
-    public ArrayList<PlayerStatsSaves> getPlayerRandom(int playerID) {
-        ArrayList<PlayerStatsSaves> player = new ArrayList<PlayerStatsSaves>();
-        for(PlayerStatsSaves playerNode : players) {
+    public ArrayList<PlayerStats> getPlayerRandom(int playerID) {
+        ArrayList<PlayerStats> player = new ArrayList<PlayerStats>();
+        for(PlayerStats playerNode : players) {
             if(playerNode.getPlayerID()==playerID) player.add(playerNode);
         }
         return player;
     }
 
-    public String insertPlayer(PlayerStatsSaves player){
+    public String insertPlayer(PlayerStats player){
         String result = null;
         players.add(player);
         return result;
     }
 
-    public String updatePlayer(PlayerStatsSaves player) {
+    public String updatePlayer(PlayerStats player) {
         String result = null;
         int index = players.indexOf(player);
         if (index >= 0) {
@@ -174,7 +174,7 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
 
     public String removePlayer(int playerID) {
         String result = null;
-        PlayerStatsSaves player = new PlayerStatsSaves(playerID);
+        PlayerStats player = new PlayerStats(playerID);
         int index = players.indexOf(player);
         if (index >= 0)
         {

@@ -1,6 +1,6 @@
 package hackmaster.objects;
 
-public class PlayerStatsSaves {
+public class PlayerStats {
 
     private String playerName;
     private int totalWins;
@@ -10,11 +10,11 @@ public class PlayerStatsSaves {
 
     private int playerID;
 
-    public PlayerStatsSaves(int id) {
+    public PlayerStats(int id) {
         this.playerID = id;
     }
 
-    public PlayerStatsSaves(int playerID, String playerName, int totalWins, int totalLoses, int totalGames, int level) {
+    public PlayerStats(int playerID, String playerName, int totalWins, int totalLoses, int totalGames, int level) {
         this.playerID = playerID;
         this.playerName = playerName;
         this.totalWins = totalWins;
@@ -45,11 +45,11 @@ public class PlayerStatsSaves {
 
     public boolean equals(Object object) {
         boolean result;
-        PlayerStatsSaves player;
+        PlayerStats player;
 
         result = false;
-        if (object instanceof PlayerStatsSaves) {
-            player = (PlayerStatsSaves) object;
+        if (object instanceof PlayerStats) {
+            player = (PlayerStats) object;
             if (player.playerID == playerID) {
                 result = true;
             }

@@ -22,7 +22,8 @@ import java.io.InputStreamReader;
 import hackmaster.application.DBController;
 import hackmaster.business.Game;
 import hackmaster.business.SetUpGame;
-import hackmaster.objects.PlayerStatsSaves;
+import hackmaster.business.StatsManager;
+import hackmaster.objects.PlayerStats;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Game gameInSession;
     private RenderView renderView;
     private Render render;
-    private PlayerStatsSaves playerStats;
+    private StatsManager stats;
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
     @Override
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         musicManager = new MusicManager(this);
         musicManager.backGroundMusicStart();
         musicManager.initSoundPool();
-
+        stats = new StatsManager();
         render = Render.setUpRender(gameInSession, this, musicManager);
         render.setContentView(R.layout.main_activity);
     }
@@ -102,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         render.setContentView(R.layout.main_activity);
+                        gameInSession = null;
                         checkStateSound();
                     }
                 })
@@ -116,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void statsPress(View v) {
         render.setContentView(R.layout.stats_view);
+        renderView.renderStats(stats.getActivePlayer());
     }
 
     public void singlePlayMessage(View v) {
@@ -202,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void pauseStatsMessage(View v) {
         render.setContentView(R.layout.stats_view);
+        renderView.renderStats(stats.getActivePlayer());
     }
 
 
@@ -218,6 +222,7 @@ public class MainActivity extends AppCompatActivity {
     public void finishGame(View v)
     {
         render.setContentView(R.layout.main_activity);
+        gameInSession = null;
         checkStateSound();
     }
 
@@ -269,4 +274,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 }

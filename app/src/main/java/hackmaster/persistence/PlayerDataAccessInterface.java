@@ -2,13 +2,13 @@ package hackmaster.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
-import hackmaster.objects.PlayerStatsSaves;
+import hackmaster.objects.PlayerStats;
 
 public interface PlayerDataAccessInterface extends DBComponentInterface{
-    String getPlayerSequential(List<PlayerStatsSaves> playerResult);
+    String getPlayerSequential(List<PlayerStats> playerResult);
     String getPlayersNamesList(List<String> playerResult);
-    ArrayList<PlayerStatsSaves> getPlayerRandom(int playerID);
-    String insertPlayer(PlayerStatsSaves player);
-    String updatePlayer(PlayerStatsSaves player);
+    ArrayList<PlayerStats> getPlayerRandom(int playerID);
+    String insertPlayer(PlayerStats player);
+    String updatePlayer(PlayerStats player);
     String removePlayer(int playerID);
 }

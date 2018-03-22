@@ -17,6 +17,7 @@ import hackmaster.business.Game;
 import hackmaster.business.MultiplayerGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
+import hackmaster.objects.PlayerStats;
 
 public class RenderView {
     private Game gameInSession;
@@ -262,6 +263,7 @@ public class RenderView {
         if (winner) {
             img.setImageResource(R.drawable.victory);
             textView.setText("PlAYER 1 WIN");
+
         } else {
             img.setImageResource(R.drawable.defeat);
             textView.setText("PlAYER 1 LOSE");
@@ -269,6 +271,11 @@ public class RenderView {
         }
     }
 
+    public void renderStats(PlayerStats player) {
+        fillText((TextView)mainActivity.findViewById(R.id.nicknameTxtView), player.getName());
+        fillText((TextView)mainActivity.findViewById(R.id.textView7), String.valueOf(player.getLevel()));
+        fillText((TextView)mainActivity.findViewById(R.id.winLoseTxtView), String.valueOf(player.getWinLossRatio()));
+    }
     private void fillText (TextView view, String string) {view.setText(string);}
 }
 

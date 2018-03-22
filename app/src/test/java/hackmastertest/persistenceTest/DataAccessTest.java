@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import hackmaster.objects.CardClass;
-import hackmaster.objects.PlayerStatsSaves;
+import hackmaster.objects.PlayerStats;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNull;
@@ -24,9 +24,9 @@ public class DataAccessTest {
     @Test
     public void testPlayerStatsAccess() {
 
-        ArrayList<PlayerStatsSaves> players = new ArrayList<PlayerStatsSaves>();
+        ArrayList<PlayerStats> players = new ArrayList<PlayerStats>();
         ArrayList<String> playerNames = new ArrayList<String>();
-        PlayerStatsSaves player;
+        PlayerStats player;
         int playerID;
         String result;
 
@@ -51,14 +51,14 @@ public class DataAccessTest {
         players = dbStub.getPlayerRandom(1234);
         assertEquals(0, players.size());
 
-        player = new PlayerStatsSaves(35);
+        player = new PlayerStats(35);
         result = dbStub.insertPlayer(player);
         assertNull(result);
         players = dbStub.getPlayerRandom(35);
         assertEquals(1, players.size());
         assertEquals(35, players.get(0).getPlayerID());
 
-        player = new PlayerStatsSaves(35, "Tester", 0, 0, 0, 0);
+        player = new PlayerStats(35, "Tester", 0, 0, 0, 0);
         result = dbStub.updatePlayer(player);
         assertNull(result);
         players = dbStub.getPlayerRandom(35);

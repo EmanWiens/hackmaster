@@ -146,6 +146,7 @@ public class CardDataAccess implements CardDataAccessInterface {
             result = DataAccessObject.checkWarning(statement, updateCount);
         }
         catch (Exception e) {
+            result = e.getMessage();
             DataAccessObject.processSQLError(e);
         }
         return result;

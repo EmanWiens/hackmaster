@@ -5,7 +5,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import hackmaster.objects.PlayerStatsSaves;
+import hackmaster.objects.PlayerStats;
 
 public class PlayerDataAccess implements PlayerDataAccessInterface {
     private Statement statement;
@@ -26,8 +26,8 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
     }
 
     @Override
-    public String getPlayerSequential(List<PlayerStatsSaves> playerResult){
-        PlayerStatsSaves player = null;
+    public String getPlayerSequential(List<PlayerStats> playerResult){
+        PlayerStats player = null;
 
         String playerName;
         int id, win, loss, games, level;
@@ -47,7 +47,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
                 loss = resultSet.getInt("LOSSES");
                 games = resultSet.getInt("GAMESPLAYED");
                 level = resultSet.getInt("LEVEL");
-                player = new PlayerStatsSaves(id,playerName,win,loss,games,level);
+                player = new PlayerStats(id,playerName,win,loss,games,level);
                 playerResult.add(player);
             }
             resultSet.close();
@@ -79,10 +79,10 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
     }
 
     @Override
-    public ArrayList<PlayerStatsSaves> getPlayerRandom(int playerID){
+    public ArrayList<PlayerStats> getPlayerRandom(int playerID){
         String playerName;
         int id, win, loss, games, level;
-        ArrayList<PlayerStatsSaves> player = new ArrayList<PlayerStatsSaves>();
+        ArrayList<PlayerStats> player = new ArrayList<PlayerStats>();
 
         try {
             resultSet = statement.executeQuery("SELECT * FROM PLAYERS WHERE PLAYERID =" + playerID);
@@ -93,7 +93,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
                 loss = resultSet.getInt("LOSSES");
                 games = resultSet.getInt("GAMESPLAYED");
                 level = resultSet.getInt("LEVEL");
-                player.add(new PlayerStatsSaves(id, playerName, win, loss, games, level));
+                player.add(new PlayerStats(id, playerName, win, loss, games, level));
                 resultSet.close();
             }
         }
@@ -104,24 +104,17 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
     }
 
     @Override
-    public String insertPlayer(PlayerStatsSaves newPlayer) {
+    public String insertPlayer(PlayerStats newPlayer) {
         String values;
         String result = null;
-        int newPlayerID = -1;
         try {
-            values = newPlayer.getName()
+            values = "'" + newPlayer.getName()
                     +", '" + newPlayer.getWin()
                     +"', '" + newPlayer.getLoss()
                     +"', '" + newPlayer.getTotalGames()
                     +"', " + newPlayer.getLevel();
-            updateCount = statement.executeUpdate("INSERT INTO PLAYERS ( PLAYERID, NAME, WINS, LOSSES, GAMESPLAYED, LEVEL)" +" VALUES( NULL, " +values +")");
+            updateCount = statement.executeUpdate("INSERT INTO PLAYERS ( NAME, WINS, LOSSES, GAMESPLAYED, LEVEL)" +" VALUES(" +values +")");
             result = DataAccessObject.checkWarning(statement, updateCount);
-            if(updateCount == 1) {
-                resultSet = statement.getGeneratedKeys();
-                if(resultSet.next()) {
-                    newPlayerID = resultSet.getInt(1);
-                }
-            } else newPlayerID = -1;
         }
         catch (Exception e) {
             result = e.getMessage();
@@ -131,7 +124,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
     }
 
     @Override
-    public String updatePlayer(PlayerStatsSaves newPlayer) {
+    public String updatePlayer(PlayerStats newPlayer) {
         String values;
         String where;
         String cmdString;
@@ -157,7 +150,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
     public String removePlayer(int playerID) {
         String result;
         try {
-            updateCount = statement.executeUpdate("DELETE FROM PLAYERS WHERE CARDID =" + playerID);
+            updateCount = statement.executeUpdate("DELETE FROM PLAYERS WHERE PLAYERID =" + playerID);
             result = DataAccessObject.checkWarning(statement, updateCount);
         }
         catch (Exception e) {

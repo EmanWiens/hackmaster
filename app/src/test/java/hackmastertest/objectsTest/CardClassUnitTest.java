@@ -35,7 +35,6 @@ public class CardClassUnitTest {
     @Test
     public void testToString(){
         String expectedOutput = String.format("TestCard_1\nType:Upgrade\n%s", cardObj.resString());
-        System.out.println(cardObj);
         assertEquals(expectedOutput,cardObj.toString());
     }
 }
