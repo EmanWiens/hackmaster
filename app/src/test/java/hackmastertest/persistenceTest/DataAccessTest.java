@@ -46,33 +46,32 @@ public class DataAccessTest {
         assertEquals("Arnie Pye", playerNames.get(2));
         assertEquals("Bailey Bailey", playerNames.get(3));
 
-        players = dbStub.getPlayerRandom(400);
-        assertEquals(400, players.get(0).getPlayerID());
-        players = dbStub.getPlayerRandom(1234);
-        assertEquals(0, players.size());
+        player = dbStub.getPlayerRandom(400);
+        assertEquals(400, player);
+        player = dbStub.getPlayerRandom(1234);
+        assertEquals(1234, player);
 
-        player = new PlayerStatsSaves(35);
-        playerID = dbStub.insertPlayer(player);
-        assertEquals(35, playerID);
+        playerID = dbStub.insertPlayer("Jansen");
+        assertEquals(0, playerID);
         player = new PlayerStatsSaves(20);
         player.setPlayerName("Gary Chalmers");
-        playerID = dbStub.insertPlayer(player);
+        playerID = dbStub.insertPlayer(player.getName());
         assertEquals(100,playerID);
 
-        players = dbStub.getPlayerRandom(35);
+        player = dbStub.getPlayerRandom(35);
         assertEquals(1, players.size());
         assertEquals(35, players.get(0).getPlayerID());
 
         player = new PlayerStatsSaves(35, "Tester", 0, 0, 0, 0);
         result = dbStub.updatePlayer(player);
         assertNull(result);
-        players = dbStub.getPlayerRandom(35);
+        player = dbStub.getPlayerRandom(35);
         assertEquals(1, players.size());
         assertEquals("Tester", players.get(0).getName());
 
         result = dbStub.removePlayer(35);
         assertNull(result);
-        players = dbStub.getPlayerRandom(35);
+        player = dbStub.getPlayerRandom(35);
         assertEquals(0, players.size());
     }
 

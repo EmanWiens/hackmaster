@@ -79,10 +79,10 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
     }
 
     @Override
-    public ArrayList<PlayerStatsSaves> getPlayerRandom(int playerID){
+    public PlayerStatsSaves getPlayerRandom(int playerID){
         String playerName;
         int id, win, loss, games, level;
-        ArrayList<PlayerStatsSaves> player = new ArrayList<PlayerStatsSaves>();
+        PlayerStatsSaves player = null;
 
         try {
             resultSet = statement.executeQuery("SELECT * FROM PLAYERS WHERE PLAYERID =" + playerID);
@@ -93,7 +93,7 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
                 loss = resultSet.getInt("LOSSES");
                 games = resultSet.getInt("GAMESPLAYED");
                 level = resultSet.getInt("LEVEL");
-                player.add(new PlayerStatsSaves(id, playerName, win, loss, games, level));
+                player = new PlayerStatsSaves(id, playerName, win, loss, games, level);
                 resultSet.close();
             }
         }
@@ -104,17 +104,16 @@ public class PlayerDataAccess implements PlayerDataAccessInterface {
     }
 
     @Override
-    public int insertPlayer(PlayerStatsSaves newPlayer) {
-        String playerName = newPlayer.getName();
+    public int insertPlayer(String playerName) {
         String result = null;
         String values;
         int id = -1;
         try {
-            resultSet = statement.executeQuery("SELECT PLAYERID FROM PLAYERS WHERE NAME =" + playerName);
+            resultSet = statement.executeQuery("SELECT PLAYERID FROM PLAYERS WHERE NAME ='" + playerName+"'");
             if(resultSet.next()) {
                 id = resultSet.getInt("PLAYERID");
             } else {
-                values = newPlayer.getName() + "', '0', '0', '0', '0'";
+                values = playerName + "', '0', '0', '0', '0'";
                 updateCount = statement.executeUpdate("INSERT INTO PLAYERS ( PLAYERID, NAME, WINS, LOSSES, GAMESPLAYED, LEVEL)" +" VALUES( NULL, '" +values +")");
                 result = DataAccessObject.checkWarning(statement, updateCount);
                 if(updateCount == 1) {

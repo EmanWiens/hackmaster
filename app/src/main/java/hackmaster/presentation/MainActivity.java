@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 
 import hackmaster.application.DBController;
 import hackmaster.business.Game;
+import hackmaster.business.PlayerManager;
 import hackmaster.business.SetUpGame;
 import hackmaster.objects.PlayerStatsSaves;
 
@@ -211,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
         String inputName = input.getText().toString();
         if(inputName != null && !inputName.isEmpty()){
             playerName = inputName;
-
+            PlayerManager.initPlayer(inputName);
             render.setContentView(R.layout.main_activity);
         }
     }

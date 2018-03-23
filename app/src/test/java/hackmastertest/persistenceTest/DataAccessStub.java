@@ -149,17 +149,18 @@ public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, C
         return result;
     }
 
-    public ArrayList<PlayerStatsSaves> getPlayerRandom(int playerID) {
-        ArrayList<PlayerStatsSaves> player = new ArrayList<PlayerStatsSaves>();
+    public PlayerStatsSaves getPlayerRandom(int playerID) {
+        PlayerStatsSaves  player = null;
         for(PlayerStatsSaves playerNode : players) {
-            if(playerNode.getPlayerID()==playerID) player.add(playerNode);
+            if(playerNode.getPlayerID()==playerID) player = playerNode;
         }
         return player;
     }
 
-    public int insertPlayer(PlayerStatsSaves player){
+    public int insertPlayer(String playerName){
         int id = -1;
-        String name = player.getName();
+        String name = playerName;
+        PlayerStatsSaves player = new PlayerStatsSaves(0,  playerName, 0, 0, 0, 0);
         int i = 0;
         boolean found = false;
 

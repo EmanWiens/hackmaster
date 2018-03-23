@@ -11,8 +11,8 @@ public abstract class SetUpGame {
     public static Game setUpSinglePlayerGame(String playerName) {
         DeckManager.initDeck();
 
-        PlayerClass player1 = new PlayerClass(0,
-                playerName,
+        PlayerClass player1 = new PlayerClass( PlayerManager.getPlayerOneID(),
+                PlayerManager.getPlayerOneName(),
                 startOfGameResources.clone(), DeckManager.dealFirstHandOfGame());
 
         PlayerClass player2 = new EnemyAI(1,
