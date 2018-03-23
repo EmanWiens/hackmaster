@@ -25,7 +25,7 @@ public class PlayerClassUnitTest {
     private ResourceClass player2;
 
     @Before
-    public void setUp(){
+    public void setup(){
         Services.closeDataAccess();
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub,dbStub,dbStub);

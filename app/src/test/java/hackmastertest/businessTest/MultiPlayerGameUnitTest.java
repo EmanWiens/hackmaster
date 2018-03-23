@@ -30,7 +30,7 @@ public class MultiPlayerGameUnitTest {
     CardClass[] player2Hand;
 
     @Before
-    public void setUP(){
+    public void setup(){
         Services.closeDataAccess();
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub,dbStub,dbStub);

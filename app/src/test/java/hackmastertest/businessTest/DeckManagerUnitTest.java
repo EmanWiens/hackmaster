@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 
 public class DeckManagerUnitTest {
     @Before
-    public void setUP(){
+    public void setup(){
         Services.closeDataAccess();
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub,dbStub,dbStub);
