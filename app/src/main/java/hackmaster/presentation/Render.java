@@ -10,6 +10,7 @@ public class Render {
     private MusicManager musicManager;
     private static Render internalCopy;
 
+
     private static int priorityDictionary[][];
     private int contentId;
 
@@ -35,12 +36,29 @@ public class Render {
         internalCopy.musicManager = musicManag;
     }
 
-    public void setContentView(int contentId) {
+    void setContentView(int contentId) {
         this.contentId = contentId;
         mainActivity.setContentView(contentId);
     }
 
     public void update() {
 
+    }
+
+    public void addRenderRequest(int id, int contentId) {
+
+    }
+
+
+
+
+    private class RenderItem {
+        int id;
+        int contentId;
+
+        public RenderItem(int id, int contentId) {
+            this.id = id;
+            this.contentId = contentId;
+        }
     }
 }
