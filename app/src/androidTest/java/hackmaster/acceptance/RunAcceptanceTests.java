@@ -1,9 +1,7 @@
-package comp3350.srsys;
+package hackmaster.acceptance;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
-import comp3350.srsys.acceptance.AcceptanceTests;
 
 public class RunAcceptanceTests
 {

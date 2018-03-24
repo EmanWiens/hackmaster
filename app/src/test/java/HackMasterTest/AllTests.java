@@ -28,7 +28,5 @@ import hackmastertest.objectsTest.PlayerStatsSavesTest;
         ResourceClassUnitTest.class,
         DataAccessTest.class,
         PlayerStatsSavesTest.class
-
-
 })
 public class AllTests { }
