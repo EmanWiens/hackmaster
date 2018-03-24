@@ -38,9 +38,11 @@ public class MainActivity extends AppCompatActivity {
         copyDatabaseToDevice();
         DBController.startUp();
         musicManager = new MusicManager(this);
-        setContentView(R.layout.main_activity);
         musicManager.backGroundMusicStart();
         musicManager.initSoundPool();
+
+        Render.updateRender(gameInSession, this, musicManager);
+        Render.setContentView(R.layout.main_activity);
     }
 
     @Override
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        // TODO move this into render (since this does a lot of render related ops
         View currLayout = findViewById(android.R.id.content);
         int currLayoutId = currLayout.getId();
 
@@ -78,48 +81,58 @@ public class MainActivity extends AppCompatActivity {
             return;
         } else if (gameInSession != null) {
             if (!gameInSession.gamePaused()) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("You are about to exit the game.")
-                        .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                setContentView(R.layout.main_activity);
-                                checkStateSound();
-                            }
-                        })
-                        .setNegativeButton("Stay in game", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // User cancelled the dialog
-                            }
-                        });
-
-                builder.show();
+                exitGameDialog();
             } else if (gameInSession.gamePaused()) {
-                setContentView(R.layout.battle_view);
+                Render.setContentView(R.layout.battle_view);
                 gameInSession.unpauseGame();
                 renderView.renderBattleView(-1);
             }
         } else {
             if (gameInSession != null) {
-                setContentView(R.layout.main_activity);
+                Render.setContentView(R.layout.main_activity);
                 checkStateSound();
             }
         }
     }
 
+    private void exitGameDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("You are about to exit the game.")
+                .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Render.setContentView(R.layout.main_activity);
+                        checkStateSound();
+                    }
+                })
+                .setNegativeButton("Stay in game", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+
+        builder.show();
+    }
+
     public void statsPress(View v) {
-        setContentView(R.layout.stats_view);
+        Render.setContentView(R.layout.stats_view);
     }
 
     public void singlePlayMessage(View v) {
-        setContentView(R.layout.battle_view);
+        Render.setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpSinglePlayerGame();
+
+        Render.updateRender(gameInSession, this, musicManager);
+
         renderView = new RenderView(gameInSession,MainActivity.this,musicManager);
         renderView.setUpBattleView();
     }
 
     public void multiPlayMessage(View v) {
-        setContentView(R.layout.battle_view);
+        Render.setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpMultiplayerGame();
+
+        Render.updateRender(gameInSession, this, musicManager);
+
         renderView = new RenderView(gameInSession, MainActivity.this,musicManager);
         renderView.setUpBattleView();
     }
@@ -168,57 +181,42 @@ public class MainActivity extends AppCompatActivity {
     }
     public void pauseMessage(View v) {
         gameInSession.pauseGame();
-        setContentView(R.layout.pause_view);
+        Render.setContentView(R.layout.pause_view);
     }
 
     public void pauseResumeMessage(View v) {
-        setContentView(R.layout.battle_view);
+        Render.setContentView(R.layout.battle_view);
         gameInSession.unpauseGame();
-        renderView.initSetUp();
         renderView.renderBattleView(-1);
     }
+
     public void resumeFromContinueWindow(View v) {
-        setContentView(R.layout.battle_view);
-        renderView.initSetUp();
+        Render.setContentView(R.layout.battle_view);
         renderView.renderBattleView(-1);
     }
 
     public void pauseExitMessage(View v) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("You are about to exit the game.")
-                .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        setContentView(R.layout.main_activity);
-                        gameInSession = null;
-                        checkStateSound();
-                    }
-                })
-                .setNegativeButton("Stay in game", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // User cancelled the dialog
-                    }
-                });
-
-        builder.show();
+        exitGameDialog();
     }
 
     public void pauseStatsMessage(View v) {
-        setContentView(R.layout.stats_view);
+        Render.setContentView(R.layout.stats_view);
     }
 
 
 
     public void statsExitMessage(View v) {
         if (gameInSession != null) {
-            setContentView(R.layout.pause_view);
+            Render.setContentView(R.layout.pause_view);
         } else {
-            setContentView(R.layout.main_activity);
+            Render.setContentView(R.layout.main_activity);
             checkStateSound();
         }
     }
+
     public void finishGame(View v)
     {
-        setContentView(R.layout.main_activity);
+        Render.setContentView(R.layout.main_activity);
         checkStateSound();
     }
 

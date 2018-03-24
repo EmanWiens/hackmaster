@@ -8,7 +8,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import com.example.owner.hackmaster20.R;
+
+import java.util.LinkedList;
+
 import hackmaster.business.Game;
 import hackmaster.business.MultiplayerGame;
 import hackmaster.objects.CardClass;
@@ -24,35 +28,39 @@ public class RenderView {
     private String player2Turn;
     private String aiTurn;
     private boolean showContinueView;
-    CardClass playedCardTwo;
-    CardClass playedCardOne;
-    private  TextView playerTurnText;
+    private CardClass playedCardTwo;
+    private CardClass playedCardOne;
+    private TextView playerTurnText;
     boolean multiPlayer;
+
+    private LinkedList<Object> renderQ;
+    private int priority;
 
     public RenderView(Game gameInSes, MainActivity mainAct,  MusicManager musicManag) {
         gameInSession = gameInSes;
         mainActivity = mainAct;
-        musicManager=musicManag;
+        musicManager = musicManag;
         mainActivity.setContentView(R.layout.battle_view);
+        priority = 0;
         initSetUp();
     }
 
-    public void initSetUp() {
-        multiPlayer=false;
-       if  (gameInSession instanceof MultiplayerGame)
-       {
-           multiPlayer=true;
+    private void initSetUp() {
+       if (gameInSession instanceof MultiplayerGame) {
+           multiPlayer = true;
        }
+
        player1 = gameInSession.getPlayer1();
        player2 = gameInSession.getPlayer2();
        playerTurnText = mainActivity.findViewById(R.id.playerTurn);
-       player1Turn="Player 1's Turn";
-       player2Turn="Player 2's Turn";
-       aiTurn="AI Turn";
+       player1Turn = "Player 1's Turn";
+       player2Turn = "Player 2's Turn";
+       aiTurn = "AI Turn";
     }
 
     public void setUpBattleView() {
         playerTurnText.setText("Player 1 Turn");
+
         if (!gameInSession.gamePaused()) {
             renderPlayerResource(player1);
             renderPlayerResource(player2);
@@ -63,12 +71,16 @@ public class RenderView {
     public void setDiscard (boolean toggle) {
         if (toggle) {
             gameInSession.discardOff();
-            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
-            dicardButton.setText("DISCARD MODE");
+//            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
+//            dicardButton.setText("DISCARD MODE");
+            ImageButton btn = (ImageButton)mainActivity.findViewById(R.id.discardBtn);
+            btn.setImageResource(R.drawable.discardbutton);
         } else {
             gameInSession.discardOn();
-            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
-            dicardButton.setText("CANCEL DISCARD");
+//            Button dicardButton = mainActivity.findViewById(R.id.discardBtn);
+//            dicardButton.setText("CANCEL DISCARD");
+            ImageButton btn = (ImageButton)mainActivity.findViewById(R.id.discardBtn);
+            btn.setImageResource(R.drawable.canceldiscard);
         }
     }
 
@@ -110,17 +122,18 @@ public class RenderView {
                 getWinner();
            }
     }
+
     private void renderCards() {
-                if (gameInSession.getPlayer1Turn()) {
-                    renderTheHandDeck(player1);
-                } else {
-                    renderTheHandDeck(player2);
-                }
-                if(gameInSession.getDiscard()) {
-                    setDiscard(false);
-                } else {
-                    setDiscard(true);
-                }
+        if (gameInSession.getPlayer1Turn()) {
+            renderTheHandDeck(player1);
+        } else {
+            renderTheHandDeck(player2);
+        }
+        if (gameInSession.getDiscard()) {
+            setDiscard(false);
+        } else {
+            setDiscard(true);
+        }
     }
 
     private void renderTheHandDeck(PlayerClass player) {
@@ -172,8 +185,8 @@ public class RenderView {
     public void renderCard(CardClass card, int slot) {
         ImageButton imageButton = null;
         int[] imageButtonCardList = new int[]{
-                R.id.imageButtonCard0, R.id.imageButtonCard1,R.id.imageButtonCard2,
-                R.id.imageButtonCard3,R.id.imageButtonCard4};
+                R.id.imageButtonCard0, R.id.imageButtonCard1, R.id.imageButtonCard2,
+                R.id.imageButtonCard3, R.id.imageButtonCard4};
 
         imageButton = mainActivity.findViewById(imageButtonCardList[slot]);
         imageButton.setBackgroundResource(returnImageCardID(card.getID()));
@@ -220,15 +233,15 @@ public class RenderView {
 
     private int returnImageCardID(int cardID) {
         int[] imageCardList = new int[]{
-                R.drawable.morecores,R.drawable.morecores, R.drawable.botnet,
-                R.drawable.cutsomewires, R.drawable.upgradebotnet,R.drawable.upgradecpu,
-                R.drawable.upgradehashrate,R.drawable.ddos,R.drawable.filetransfer,
-                R.drawable.popup,R.drawable.antivirus,R.drawable.firewall,
-                R.drawable.playthemarket,R.drawable.overclock,R.drawable.serverfarm,
-                R.drawable.expand,R.drawable.marketcrash, R.drawable.networkoutage,
-                R.drawable.throttle, R.drawable.hack,R.drawable.debug, R.drawable.exploit,
+                R.drawable.morecores, R.drawable.morecores, R.drawable.botnet,
+                R.drawable.cutsomewires, R.drawable.upgradebotnet, R.drawable.upgradecpu,
+                R.drawable.upgradehashrate, R.drawable.ddos, R.drawable.filetransfer,
+                R.drawable.popup, R.drawable.antivirus, R.drawable.firewall,
+                R.drawable.playthemarket, R.drawable.overclock, R.drawable.serverfarm,
+                R.drawable.expand, R.drawable.marketcrash, R.drawable.networkoutage,
+                R.drawable.throttle, R.drawable.hack, R.drawable.debug, R.drawable.exploit,
                 R.drawable.zeroday, R.drawable.attackplus, R.drawable.attackplusplus,
-                R.drawable.attackphash, R.drawable.extremehack,R.drawable.epichack,
+                R.drawable.attackphash, R.drawable.extremehack, R.drawable.epichack,
                 R.drawable.masshack
         };
         return imageCardList[cardID];
@@ -245,7 +258,7 @@ public class RenderView {
     public void goToVictory(boolean winner) {
         mainActivity.setContentView(R.layout.results_view);
         gameInSession = null;
-        ImageView img= mainActivity.findViewById(R.id.statsImg);
+        ImageView img = mainActivity.findViewById(R.id.statsImg);
         TextView textView = mainActivity.findViewById(R.id.textViewResult);
         if (winner) {
             img.setImageResource(R.drawable.victory);

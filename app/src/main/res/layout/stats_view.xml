@@ -7,14 +7,15 @@
     android:background="@drawable/stats"
     tools:context="hackmaster.presentation.MainActivity">
 
-    <Button
+    <ImageButton
         android:id="@+id/backBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="199dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
+        android:background="@drawable/exitbutton"
         android:onClick="statsExitMessage"
         android:text="Back"
         android:textSize="24sp"
@@ -126,7 +127,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/hackmaster"
+        android:src="@drawable/player1"
         app:layout_constraintBottom_toTopOf="@+id/backBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

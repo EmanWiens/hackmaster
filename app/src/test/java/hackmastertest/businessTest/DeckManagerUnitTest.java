@@ -1,8 +1,11 @@
 package hackmastertest.businessTest;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+
+import java.util.ArrayList;
 
 import hackmaster.application.Services;
 import hackmaster.business.DeckManager;
@@ -15,16 +18,19 @@ import static org.junit.Assert.assertEquals;
 
 public class DeckManagerUnitTest {
     @Before
-    public void setUP(){
+    public void setup(){
         Services.closeDataAccess();
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub,dbStub,dbStub);
         DeckManager.initDeck();
+        ArrayList<CardClass> listDeck = new ArrayList<>();
+        dbStub.getCardSequential(listDeck);
+        DeckManager.setDeck(listDeck.toArray(new CardClass[0]));
     }
 
     @Test
     public void testDealInitialHand() {
-        CardClass[] deck =DeckManager.dealFirstHandOfGame();
+        CardClass[] deck = DeckManager.dealFirstHandOfGame();
         assertEquals( 0, deck[0].getID());
         assertEquals( 1, deck[1].getID());
         assertEquals( 2, deck[2].getID());
@@ -91,5 +97,10 @@ public class DeckManagerUnitTest {
            fail("ArrayIndexOutOfBounds Expected");
        } catch ( ArrayIndexOutOfBoundsException exp) {
        }
+    }
+
+    @After
+    public void tearDown() {
+        Services.closeDataAccess();
     }
 }

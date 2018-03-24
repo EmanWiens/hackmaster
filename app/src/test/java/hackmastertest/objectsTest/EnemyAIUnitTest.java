@@ -16,6 +16,7 @@ import hackmaster.objects.ResourceClass;
 import hackmastertest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.fail;
 
 public class EnemyAIUnitTest {
@@ -25,7 +26,7 @@ public class EnemyAIUnitTest {
     int card;
 
     @Before
-    public void setUp() {
+    public void setup() {
         Services.closeDataAccess();
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub,dbStub,dbStub);
@@ -189,12 +190,16 @@ public class EnemyAIUnitTest {
     public void testAIDiscard() {
         resetDeck();
         DeckManager.resetIndex();
-        EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), DeckManager.getADeck());
 
-        CardClass[] playable = ai.playableCards();
-        assertEquals(11, playable.length);
+        ArrayList<CardClass> tempList = new ArrayList<>();
+        tempList.add(DeckManager.getCardAt(0));
+        tempList.add(DeckManager.getCardAt(5));
+        tempList.add(DeckManager.getCardAt(8));
+        EnemyAI ai = new EnemyAI(0, "Ai", new ResourceClass(100,2,2,2,2,2,2), tempList.toArray(new CardClass[0]));
 
-        fail("Write the tests to see that the AI discards");
+        int playCard = ai.playNextCard();
+        assertEquals("-101 health", ai.getCard(playCard).getName());
+        assertFalse(game.checkCard(playCard, ai));
     }
 
     @Test

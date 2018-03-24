@@ -7,7 +7,7 @@
     android:background="@drawable/pause"
     android:layout_height="match_parent">
 
-    <Button
+    <ImageButton
         android:id="@+id/pauseExitBtn"
         android:layout_width="240dp"
         android:layout_height="84dp"
@@ -15,7 +15,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
-        android:background="@android:color/holo_red_light"
+        android:background="@drawable/exitbutton"
         android:onClick="pauseExitMessage"
         android:text="Exit Game"
         android:textSize="24sp"
@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pauseStatsBtn" />
 
-    <Button
+    <ImageButton
         android:id="@+id/pauseResumeBtn"
         android:layout_width="240dp"
         android:layout_height="84dp"
@@ -32,7 +32,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="120dp"
-        android:background="@android:color/holo_green_light"
+        android:background="@drawable/resumebutton"
         android:onClick="pauseResumeMessage"
         android:text="Resume Game"
         android:textSize="24sp"
@@ -41,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pauseText" />
 
-    <Button
+    <ImageButton
         android:id="@+id/pauseStatsBtn"
         android:layout_width="240dp"
         android:layout_height="84dp"
@@ -49,7 +49,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@drawable/statsbutton2"
         android:onClick="pauseStatsMessage"
         android:text="Stats"
         android:textSize="24sp"
@@ -70,6 +70,7 @@
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/pauseResumeBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
