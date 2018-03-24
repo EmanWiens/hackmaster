@@ -73,6 +73,23 @@ public abstract class Render {
         return success;
     }
 
+    static boolean updateScreen() {
+        boolean success = false;
+
+        if (gameInSession.gameDone()) {
+            if (gameInSession.getPlayer1Won()) {
+                goToVictory(true);
+            } else {
+                goToVictory(false);
+            }
+        }
+        else if (contentId == R.layout.battle_view) {
+            success = renderBattleView();
+        }
+
+        return success;
+    }
+
     private static void updateLayoutId() {
         if (contentId == R.layout.main_activity) {
             layout = Layouts.MAIN_ACTIVITY;
@@ -94,7 +111,7 @@ public abstract class Render {
         }
     }
 
-    static boolean renderBattleView() {
+    private static boolean renderBattleView() {
         boolean success = false;
 
         if (layout == Layouts.BATTLE_VIEW) {
@@ -137,10 +154,6 @@ public abstract class Render {
                         if (showContinueView)
                             activateContentView(player1Turn);
                     }
-                }
-
-                if (gameInSession.gameDone()) {
-                    getWinner();
                 }
             }
             success = true;
@@ -294,19 +307,12 @@ public abstract class Render {
         return imageCardList[cardID];
     }
 
-    public static void getWinner() {
-        if (gameInSession.getPlayer2Health() < 1) {
-            goToVictory(true);
-        } else {
-            goToVictory(false);
-        }
-    }
-
-    public static void goToVictory(boolean winner) {
-        mainActivity.setContentView(R.layout.results_view);
+    private static void goToVictory(boolean winner) {
+        setContentView(R.layout.results_view);
         gameInSession = null;
         ImageView img = mainActivity.findViewById(R.id.statsImg);
         TextView textView = mainActivity.findViewById(R.id.textViewResult);
+
         if (winner) {
             img.setImageResource(R.drawable.victory);
             textView.setText("PlAYER 1 WON");

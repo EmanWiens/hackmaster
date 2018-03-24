@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 Render.setContentView(R.layout.battle_view);
                 gameInSession.unpauseGame();
                 Render.setBorderId(-1);
-                Render.renderBattleView();
+                Render.updateScreen();
             }
         } else {
             if (gameInSession != null) {
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
         Render.updateRender(gameInSession, this, musicManager);
         Render.setBorderId(-1);
-        Render.renderBattleView();
+        Render.updateScreen();
     }
 
     public void multiPlayMessage(View v) {
@@ -133,14 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
         Render.updateRender(gameInSession, this, musicManager);
         Render.setBorderId(-1);
-        Render.renderBattleView();
+        Render.updateScreen();
     }
 
     public void firstcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
             if (gameInSession.playCardEvent(0)) {
                 Render.setBorderId(0);
-                Render.renderBattleView();
+                Render.updateScreen();
             }
         }
     }
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         if (!gameInSession.getRenderDelay()) {
            if( gameInSession.playCardEvent(1)) {
                Render.setBorderId(1);
-               Render.renderBattleView();
+               Render.updateScreen();
            }
         }
     }
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         if (!gameInSession.getRenderDelay()) {
             if (gameInSession.playCardEvent(2)) {
                 Render.setBorderId(2);
-                Render.renderBattleView();
+                Render.updateScreen();
             }
         }
     }
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         if (!gameInSession.getRenderDelay()) {
            if (gameInSession.playCardEvent(3)) {
                Render.setBorderId(3);
-               Render.renderBattleView();
+               Render.updateScreen();
            }
         }
     }
@@ -176,17 +176,17 @@ public class MainActivity extends AppCompatActivity {
         if (!gameInSession.getRenderDelay()) {
             if (gameInSession.playCardEvent(4)) {
                 Render.setBorderId(4);
-                Render.renderBattleView();
+                Render.updateScreen();
             }
         }
     }
     public void discardPress(View v) {
         if (gameInSession.getDiscard()) {
             Render.setDiscard(true);
-            Render.renderBattleView();
+            Render.updateScreen();
         } else {
             Render.setDiscard(false);
-            Render.renderBattleView();
+            Render.updateScreen();
         }
     }
     public void pauseMessage(View v) {
@@ -198,13 +198,13 @@ public class MainActivity extends AppCompatActivity {
         Render.setContentView(R.layout.battle_view);
         gameInSession.unpauseGame();
         Render.setBorderId(-1);
-        Render.renderBattleView();
+        Render.updateScreen();
     }
 
     public void resumeFromContinueWindow(View v) {
         Render.setContentView(R.layout.battle_view);
         Render.setBorderId(-1);
-        Render.renderBattleView();
+        Render.updateScreen();
     }
 
     public void pauseExitMessage(View v) {
@@ -214,7 +214,6 @@ public class MainActivity extends AppCompatActivity {
     public void pauseStatsMessage(View v) {
         Render.setContentView(R.layout.stats_view);
     }
-
 
 
     public void statsExitMessage(View v) {
