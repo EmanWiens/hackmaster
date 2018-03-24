@@ -73,13 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // TODO move this into render (since this does a lot of render related ops
-        View currLayout = findViewById(android.R.id.content);
-        int currLayoutId = currLayout.getId();
-
-        if (currLayoutId == R.id.main_activity) {
-            return;
-        } else if (gameInSession != null) {
+        if (gameInSession != null) {
             if (!gameInSession.gamePaused()) {
                 exitGameDialog();
             } else if (gameInSession.gamePaused()) {
@@ -103,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         Render.setContentView(R.layout.main_activity);
                         checkStateSound();
+                        gameInSession = null;
                     }
                 })
                 .setNegativeButton("Stay in game", new DialogInterface.OnClickListener() {

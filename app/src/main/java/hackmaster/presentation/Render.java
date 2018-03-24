@@ -31,13 +31,9 @@ public abstract class Render {
     private static String player1Turn;
     private static String player2Turn;
     private static String aiTurn;
-    private static boolean showContinueView;
-    private static CardClass playedCardTwo;
-    private static CardClass playedCardOne;
-    private static TextView playerTurnText;
     private static boolean multiPlayer;
 
-    static void updateRender(Game gameInSes, MainActivity mainAct, MusicManager musicManag) {
+    public static void updateRender(Game gameInSes, MainActivity mainAct, MusicManager musicManag) {
         gameInSession = gameInSes;
         mainActivity = mainAct;
         musicManager = musicManag;
@@ -49,70 +45,90 @@ public abstract class Render {
         if (gameInSession instanceof MultiplayerGame) {
             multiPlayer = true;
         }
+        else {
+            multiPlayer = false;
+        }
 
         player1Turn = player1.getName() + "'s Turn";
         player2Turn = player2.getName() + "'s Turn";
         aiTurn = "AI's Turn";
     }
 
-    static void updateRender(MainActivity mainAct, MusicManager musicManag) {
+    public static void updateRender(MainActivity mainAct, MusicManager musicManag) {
         gameInSession = null;
         mainActivity = mainAct;
         musicManager = musicManag;
         firstSetup = true;
     }
 
-    static boolean setContentView(int contId) {
+    public static boolean setContentView(int contId) {
         boolean success = false;
 
         contentId = contId;
-        mainActivity.setContentView(contentId);
+        success = updateLayoutId();
 
-        updateLayoutId();
+        if (success) {
+            mainActivity.setContentView(contentId);
+        }
 
         return success;
     }
 
-    static boolean updateScreen() {
+    public static boolean updateScreen() {
         boolean success = false;
 
-        if (gameInSession.gameDone()) {
-            if (gameInSession.getPlayer1Won()) {
-                goToVictory(true);
-            } else {
-                goToVictory(false);
+
+        if (contentId == R.layout.battle_view) {
+            if (gameInSession.gameDone()) {
+                if (gameInSession.getPlayer1Won()) {
+                    goToVictory(true);
+                } else {
+                    goToVictory(false);
+                }
             }
-        }
-        else if (contentId == R.layout.battle_view) {
-            success = renderBattleView();
+            else {
+                success = renderBattleView();
+            }
         }
 
         return success;
     }
 
-    private static void updateLayoutId() {
+    private static boolean updateLayoutId() {
+        boolean success = false;
+
         if (contentId == R.layout.main_activity) {
             layout = Layouts.MAIN_ACTIVITY;
+            success = true;
         }
         else if (contentId == R.layout.battle_view) {
             layout = Layouts.BATTLE_VIEW;
+            success = true;
         }
         else if (contentId == R.layout.continue_view) {
             layout = Layouts.CONTINUE_VIEW;
+            success = true;
         }
         else if (contentId == R.layout.pause_view) {
             layout = Layouts.PAUSE_VIEW;
+            success = true;
         }
         else if (contentId == R.layout.results_view) {
             layout = Layouts.RESULTS_VIEW;
+            success = true;
         }
         else if (contentId == R.layout.stats_view) {
             layout = Layouts.STATS_VIEW;
+            success = true;
         }
+        return success;
     }
 
     private static boolean renderBattleView() {
         boolean success = false;
+        boolean showContinueView;
+        CardClass playedCardTwo;
+        CardClass playedCardOne;
 
         if (layout == Layouts.BATTLE_VIEW) {
             if (firstSetup) {
@@ -126,12 +142,6 @@ public abstract class Render {
                 renderPlayerResource(player1);
                 renderPlayerResource(player2);
 
-                showContinueView = false;
-                if (borderId != -1) {
-                    renderPressedCardBorder(borderId);
-                    showContinueView = true;
-                }
-
                 renderDiscard();
                 renderCards();
 
@@ -143,6 +153,12 @@ public abstract class Render {
                         renderPlayedCard(playedCardTwo, true);
                     fillText((TextView)mainActivity.findViewById(R.id.playerTurn), aiTurn);
                 } else if (multiPlayer) {
+                    showContinueView = false;
+                    if (borderId != -1) {
+                        renderPressedCardBorder(borderId);
+                        showContinueView = true;
+                    }
+
                     if (!gameInSession.getPlayer1Turn() && playedCardOne != null) {
                         renderPlayedCard(playedCardOne, false);
                         fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player2Turn);
@@ -230,7 +246,8 @@ public abstract class Render {
             ProgressBar health = mainActivity.findViewById(R.id.healthPBarP);
             health.setProgress(player.getHealth());
             fillText((TextView)mainActivity.findViewById(R.id.player1), player.getName());
-        } else if (player.getId() == 1) {
+        }
+        else if (player.getId() == 1) {
             fillText((TextView)mainActivity.findViewById(R.id.minerE), player.minerToString());
             fillText((TextView)mainActivity.findViewById(R.id.cSpeedE), player.cSpeedToString());
             fillText((TextView)mainActivity.findViewById(R.id.botnetE), player.botnetToString());
@@ -325,6 +342,6 @@ public abstract class Render {
 
     private static void fillText (TextView view, String string) { view.setText(string); }
 
-    static void setDiscard(boolean toggle) { discard = toggle; }
-    static void setBorderId(int id) { borderId = id; }
+    public static void setDiscard(boolean toggle) { discard = toggle; }
+    public static void setBorderId(int id) { borderId = id; }
 }
