@@ -2,12 +2,10 @@ package hackmaster.presentation;
 
 import android.graphics.Color;
 import android.os.Handler;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.example.owner.hackmaster20.R;
 
 import hackmaster.business.Game;
@@ -54,7 +52,7 @@ public abstract class Render {
 
         player1Turn = player1.getName() + "'s Turn";
         player2Turn = player2.getName() + "'s Turn";
-        aiTurn = "AI Turn";
+        aiTurn = "AI's Turn";
     }
 
     static void updateRender(MainActivity mainAct, MusicManager musicManag) {
@@ -96,15 +94,7 @@ public abstract class Render {
         }
     }
 
-    private static void updateScreen() {
-
-    }
-
-    public void addRenderRequest(int id, int contentId) {
-
-    }
-
-    public static boolean renderBattleView() {
+    static boolean renderBattleView() {
         boolean success = false;
 
         if (layout == Layouts.BATTLE_VIEW) {
@@ -138,12 +128,12 @@ public abstract class Render {
                 } else if (multiPlayer) {
                     if (!gameInSession.getPlayer1Turn() && playedCardOne != null) {
                         renderPlayedCard(playedCardOne, false);
-                        fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
+                        fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player2Turn);
                         if (showContinueView)
                             activateContentView(player2Turn);
                     } else if (playedCardTwo != null) {
                         renderPlayedCard(playedCardTwo, false);
-                        fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player2Turn);
+                        fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
                         if (showContinueView)
                             activateContentView(player1Turn);
                     }
@@ -267,7 +257,7 @@ public abstract class Render {
         }
     }
 
-    public static void activateContentView(String playerTurn)
+    private static void activateContentView(String playerTurn)
     {
         mainActivity.setContentView(R.layout.continue_view);
         TextView textView = mainActivity.findViewById(R.id.textViewPlayerTurn);
@@ -319,10 +309,10 @@ public abstract class Render {
         TextView textView = mainActivity.findViewById(R.id.textViewResult);
         if (winner) {
             img.setImageResource(R.drawable.victory);
-            textView.setText("PlAYER 1 WIN");
+            textView.setText("PlAYER 1 WON");
         } else {
             img.setImageResource(R.drawable.defeat);
-            textView.setText("PlAYER 1 LOSE");
+            textView.setText("PlAYER 1 LOST");
             textView.setTextColor(Color.RED);
         }
     }
