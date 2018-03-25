@@ -14,7 +14,7 @@
 
 
         <activity
-            android:name="hackmaster.presentation.SplashActivity"
+            android:name="hackmasterOG.presentation.SplashActivity"
             android:theme="@style/SplashTheme"
             android:screenOrientation="landscape">
             <intent-filter>
@@ -25,7 +25,7 @@
         </activity>
 
         <activity
-            android:name="hackmaster.presentation.MainActivity"
+            android:name="hackmasterOG.presentation.MainActivity"
             android:screenOrientation="landscape">
         </activity>
 

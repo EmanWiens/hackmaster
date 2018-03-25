@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/battle"
     android:minHeight="69dp"
-    tools:context="hackmaster.presentation.MainActivity">
+    tools:context="hackmasterOG.presentation.MainActivity">
 
 
     <TextView
