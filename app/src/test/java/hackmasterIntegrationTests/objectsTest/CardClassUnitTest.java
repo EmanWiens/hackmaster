@@ -3,8 +3,8 @@ package hackmasterIntegrationTests.objectsTest;
 import org.junit.Before;
 import org.junit.Test;
 
-import hackmasterOG.objects.CardClass;
-import hackmasterOG.objects.ResourceClass;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.ResourceClass;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

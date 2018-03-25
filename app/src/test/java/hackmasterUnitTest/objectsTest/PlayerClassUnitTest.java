@@ -6,11 +6,11 @@ import org.junit.Before;
 
 import java.util.ArrayList;
 
-import hackmasterOG.application.Services;
-import hackmasterOG.objects.PlayerClass;
-import hackmasterOG.objects.ResourceClass;
-import hackmasterOG.objects.CardClass;
-import hackmasterOG.business.DeckManager;
+import hackmaster.application.Services;
+import hackmaster.objects.PlayerClass;
+import hackmaster.objects.ResourceClass;
+import hackmaster.objects.CardClass;
+import hackmaster.business.DeckManager;
 import hackmasterUnitTest.persistenceTest.DataAccessStub;
 
 import static org.junit.Assert.assertEquals;

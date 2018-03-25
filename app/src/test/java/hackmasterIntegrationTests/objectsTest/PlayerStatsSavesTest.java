@@ -3,7 +3,7 @@ package hackmasterIntegrationTests.objectsTest;
 import org.junit.Before;
 import org.junit.Test;
 
-import hackmasterOG.objects.PlayerStatsSaves;
+import hackmaster.objects.PlayerStatsSaves;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

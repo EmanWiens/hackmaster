@@ -7,8 +7,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Random;
 
-import hackmasterOG.objects.CardClass;
-import hackmasterOG.objects.PlayerStatsSaves;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.PlayerStatsSaves;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNull;

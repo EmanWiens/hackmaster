@@ -5,15 +5,15 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import hackmasterOG.application.Services;
-import hackmasterOG.business.DeckManager;
-import hackmasterOG.business.Game;
-import hackmasterOG.business.MultiplayerGame;
-import hackmasterOG.business.SetUpGame;
-import hackmasterOG.objects.CardClass;
-import hackmasterOG.objects.EnemyAI;
-import hackmasterOG.objects.PlayerClass;
-import hackmasterOG.objects.ResourceClass;
+import hackmaster.application.Services;
+import hackmaster.business.DeckManager;
+import hackmaster.business.Game;
+import hackmaster.business.MultiplayerGame;
+import hackmaster.business.SetUpGame;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.EnemyAI;
+import hackmaster.objects.PlayerClass;
+import hackmaster.objects.ResourceClass;
 import hackmasterUnitTest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;

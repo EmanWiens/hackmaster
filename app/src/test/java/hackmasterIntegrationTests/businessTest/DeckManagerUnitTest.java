@@ -6,9 +6,9 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import hackmasterOG.application.Services;
-import hackmasterOG.business.DeckManager;
-import hackmasterOG.objects.CardClass;
+import hackmaster.application.Services;
+import hackmaster.business.DeckManager;
+import hackmaster.objects.CardClass;
 import hackmasterIntegrationTests.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertTrue;

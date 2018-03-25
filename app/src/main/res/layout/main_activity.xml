@@ -6,7 +6,7 @@
     android:background="@drawable/backgroundhackertitle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hackmasterOG.presentation.MainActivity">
+    tools:context="hackmaster.presentation.MainActivity">
 
     <ImageButton
         android:id="@+id/singlePlayBtn"

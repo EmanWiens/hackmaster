@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import hackmasterOG.objects.CardClass;
-import hackmasterOG.objects.PlayerStatsSaves;
-import hackmasterOG.objects.ResourceClass;
-import hackmasterOG.persistence.CardDataAccessInterface;
-import hackmasterOG.persistence.DBInterface;
-import hackmasterOG.persistence.PlayerDataAccessInterface;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.PlayerStatsSaves;
+import hackmaster.objects.ResourceClass;
+import hackmaster.persistence.CardDataAccessInterface;
+import hackmaster.persistence.DBInterface;
+import hackmaster.persistence.PlayerDataAccessInterface;
 
 
 public class DataAccessStub implements DBInterface, PlayerDataAccessInterface, CardDataAccessInterface {

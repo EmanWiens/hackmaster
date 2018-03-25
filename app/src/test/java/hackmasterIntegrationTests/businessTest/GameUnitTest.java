@@ -3,12 +3,12 @@ package hackmasterIntegrationTests.businessTest;
 import org.junit.Before;
 import org.junit.Test;
 
-import hackmasterOG.application.Services;
-import hackmasterOG.business.DeckManager;
-import hackmasterOG.business.Game;
-import hackmasterOG.business.SetUpGame;
-import hackmasterOG.objects.CardClass;
-import hackmasterOG.objects.ResourceClass;
+import hackmaster.application.Services;
+import hackmaster.business.DeckManager;
+import hackmaster.business.Game;
+import hackmaster.business.SetUpGame;
+import hackmaster.objects.CardClass;
+import hackmaster.objects.ResourceClass;
 import hackmasterIntegrationTests.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;

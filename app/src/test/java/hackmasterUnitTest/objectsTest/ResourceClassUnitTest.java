@@ -2,7 +2,7 @@ package hackmasterUnitTest.objectsTest;
 
 import org.junit.Before;
 import org.junit.Test;
-import hackmasterOG.objects.ResourceClass;
+import hackmaster.objects.ResourceClass;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 

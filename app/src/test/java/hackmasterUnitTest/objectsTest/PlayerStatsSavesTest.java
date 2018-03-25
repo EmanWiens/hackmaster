@@ -8,7 +8,7 @@ import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
-import hackmasterOG.objects.PlayerStatsSaves;
+import hackmaster.objects.PlayerStatsSaves;
 
 public class PlayerStatsSavesTest {
     private PlayerStatsSaves playerStats;
