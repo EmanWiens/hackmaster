@@ -1,16 +1,17 @@
-package hackmastertest.businessTest;
+package hackmasterIntegrationTests.businessTest;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+
 import hackmaster.application.Services;
 import hackmaster.business.ResourceManager;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
-import hackmastertest.persistenceTest.DataAccessStub;
+import hackmasterIntegrationTests.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.fail;

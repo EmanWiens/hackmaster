@@ -1,14 +1,12 @@
-package hackmastertest.objectsTest;
+package hackmasterIntegrationTests.objectsTest;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.Assert.fail;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertEquals;
 import hackmaster.objects.PlayerStatsSaves;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class PlayerStatsSavesTest {
     private PlayerStatsSaves playerStats;

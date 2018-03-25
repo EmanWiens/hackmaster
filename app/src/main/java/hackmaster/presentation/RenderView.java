@@ -7,8 +7,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Button;
-import android.widget.ImageButton;
+
 import com.example.owner.hackmaster20.R;
 
 import java.util.LinkedList;

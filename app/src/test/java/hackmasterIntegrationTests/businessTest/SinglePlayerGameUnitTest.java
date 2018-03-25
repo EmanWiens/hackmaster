@@ -1,4 +1,4 @@
-package hackmastertest.businessTest;
+package hackmasterIntegrationTests.businessTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,11 +14,10 @@ import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
-import hackmastertest.persistenceTest.DataAccessStub;
+import hackmasterIntegrationTests.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.fail;
 
 public class SinglePlayerGameUnitTest {
     Game game;

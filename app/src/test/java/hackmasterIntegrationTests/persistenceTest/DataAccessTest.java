@@ -1,4 +1,4 @@
-package hackmastertest.persistenceTest;
+package hackmasterIntegrationTests.persistenceTest;
 
 
 import org.junit.Before;

@@ -1,12 +1,10 @@
-package hackmastertest.objectsTest;
+package hackmasterIntegrationTests.objectsTest;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import hackmaster.application.Services;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.ResourceClass;
-import hackmastertest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

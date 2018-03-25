@@ -1,4 +1,4 @@
-package hackmastertest.businessTest;
+package hackmasterUnitTest.businessTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import hackmaster.business.Game;
 import hackmaster.business.SetUpGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.ResourceClass;
-import hackmastertest.persistenceTest.DataAccessStub;
+import hackmasterUnitTest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;

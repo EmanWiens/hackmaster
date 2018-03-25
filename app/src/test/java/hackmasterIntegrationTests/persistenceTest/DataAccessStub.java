@@ -1,4 +1,4 @@
-package hackmastertest.persistenceTest;
+package hackmasterIntegrationTests.persistenceTest;
 
 import java.sql.Statement;
 import java.util.ArrayList;

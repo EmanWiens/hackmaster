@@ -1,22 +1,21 @@
-package hackmastertest.objectsTest;
+package hackmasterIntegrationTests.objectsTest;
 
 
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
 import hackmaster.application.Services;
+import hackmaster.business.DeckManager;
+import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
-import hackmaster.objects.CardClass;
-import hackmaster.business.DeckManager;
-import hackmastertest.persistenceTest.DataAccessStub;
+import hackmasterIntegrationTests.persistenceTest.DataAccessStub;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.fail;
 
 public class PlayerClassUnitTest {
     private PlayerClass player1;
