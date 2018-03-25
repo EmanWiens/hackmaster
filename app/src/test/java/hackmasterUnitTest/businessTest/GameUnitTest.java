@@ -72,8 +72,8 @@ public class GameUnitTest {
         testGame.setDeck(new CardClass[0]);
         assertEquals(0, testGame.getDeck().length);
 
-        testGame.setDeck(resetDeck());
-        assertEquals(10, testGame.getDeck().length);
+        DeckManager.initDeck();
+        assertEquals(29, testGame.getDeck().length);
     }
 
     private void setPlayerHands() {
@@ -209,12 +209,16 @@ public class GameUnitTest {
     @Test
     public void testGameDone() {
         assertFalse(testGame.gameDone());
+
         testGame.addHealthPlayer1(-100);
         assertTrue(testGame.gameDone());
+
         testGame.addHealthPlayer2(-100);
         assertTrue(testGame.gameDone());
+
         testGame.addHealthPlayer1(100);
         assertTrue(testGame.gameDone());
+
         testGame.addHealthPlayer2(100);
         assertFalse(testGame.gameDone());
     }
