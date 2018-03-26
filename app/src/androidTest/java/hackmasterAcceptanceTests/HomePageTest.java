@@ -1,11 +1,8 @@
-package hackmaster.acceptance;
+package hackmasterAcceptanceTests;
 
 import android.test.ActivityInstrumentationTestCase2;
 
-import com.example.owner.hackmaster20.R;
 import com.robotium.solo.Solo;
-
-//import hackmaster.presentation.MainActivity;
 
 public class HomePageTest extends ActivityInstrumentationTestCase2{
 
