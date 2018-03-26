@@ -8,7 +8,10 @@ import com.robotium.solo.Solo;
 
 import java.util.ArrayList;
 
+import hackmaster.application.Services;
+import hackmaster.business.DeckManager;
 import hackmaster.objects.CardClass;
+import hackmaster.persistence.CardDataAccessInterface;
 
 public class GamePlayTest extends ActivityInstrumentationTestCase2{
 
@@ -32,11 +35,12 @@ public class GamePlayTest extends ActivityInstrumentationTestCase2{
     public void setUp() throws Exception {
         super.setUp();
         solo = new Solo(getInstrumentation(), getActivity()); //takes in the instrumentation and the start activity.
-        ArrayList<CardClass> listDeck = new ArrayList<>();
 
-        //TODO get Sequential Cards from Real Data BASE
-        //  db.getCardSequential(listDeck);
-       // game.setDeck(listDeck.toArray(new CardClass[0]));
+        ArrayList<CardClass> listDeck = new ArrayList<>();
+        CardDataAccessInterface cardDataAccess = Services.getCardDataAccess();
+        String eMsg = cardDataAccess.getCardSequential(listDeck);
+        if(eMsg!=null) System.out.println(eMsg);
+        DeckManager.setDeck(listDeck.toArray(new CardClass[0]));
     }
 
     @Override
