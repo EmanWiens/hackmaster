@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import hackmaster.application.Services;
 import hackmaster.business.DeckManager;
 import hackmaster.business.Game;
-import hackmaster.business.SetUpGame;
+import hackmaster.business.SetupGame;
 import hackmaster.business.SinglePlayerGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
@@ -17,11 +17,10 @@ import hackmasterUnitTest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.fail;
 
 public class EnemyAIUnitTest {
 
-    Game game = SetUpGame.setUpSinglePlayerGame();
+    Game game = SetupGame.setUpSinglePlayerGame();
     EnemyAI player;
     int card;
 

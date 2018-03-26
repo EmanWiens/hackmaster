@@ -20,7 +20,7 @@ import java.io.InputStreamReader;
 
 import hackmaster.application.DBController;
 import hackmaster.business.Game;
-import hackmaster.business.SetUpGame;
+import hackmaster.business.SetupGame;
 import hackmaster.objects.PlayerStatsSaves;
 
 public class MainActivity extends AppCompatActivity {
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void singlePlayMessage(View v) {
         Render.setContentView(R.layout.battle_view);
-        gameInSession = SetUpGame.setUpSinglePlayerGame();
+        gameInSession = SetupGame.setUpSinglePlayerGame();
 
         Render.updateRender(gameInSession, this, musicManager);
         Render.setBorderId(-1);
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void multiPlayMessage(View v) {
         Render.setContentView(R.layout.battle_view);
-        gameInSession = SetUpGame.setUpMultiplayerGame();
+        gameInSession = SetupGame.setUpMultiplayerGame();
 
         Render.updateRender(gameInSession, this, musicManager);
         Render.setBorderId(-1);

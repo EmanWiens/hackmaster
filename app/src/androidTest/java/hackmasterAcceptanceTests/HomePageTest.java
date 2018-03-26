@@ -2,6 +2,7 @@ package hackmaster.acceptance;
 
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.example.owner.hackmaster20.R;
 import com.robotium.solo.Solo;
 
 //import hackmaster.presentation.MainActivity;

@@ -20,6 +20,7 @@ public class CardClass {
         player = p;
         enemy = e;
     }
+
     public String toString() {
         String strung;
 
