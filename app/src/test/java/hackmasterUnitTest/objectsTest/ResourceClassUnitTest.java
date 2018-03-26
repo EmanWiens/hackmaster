@@ -1,4 +1,4 @@
-package hackmastertest.objectsTest;
+package hackmasterUnitTest.objectsTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +10,7 @@ public class ResourceClassUnitTest {
     private ResourceClass resource;
 
     @Before
-    public void setUp(){
+    public void setup(){
         resource = new ResourceClass(100,100,5, 0, -2, -50, 0);
     }
 

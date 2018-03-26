@@ -1,12 +1,10 @@
-package hackmastertest.objectsTest;
+package hackmasterUnitTest.objectsTest;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import hackmaster.application.Services;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.ResourceClass;
-import hackmastertest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -17,7 +15,7 @@ public class CardClassUnitTest {
     private ResourceClass player2;
 
     @Before
-    public void setUp(){
+    public void setup(){
         player1 = new ResourceClass(1000,50,3, 53, 2, 55, 1);
         player2 = new ResourceClass(1000,56,8, 54, 1, 99, 10);
         cardObj = new CardClass(1, "TestCard_1", "Upgrade", "desc", player1, player2);

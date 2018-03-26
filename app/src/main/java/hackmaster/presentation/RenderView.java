@@ -7,8 +7,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Button;
-import android.widget.ImageButton;
+
 import com.example.owner.hackmaster20.R;
 
 import java.util.LinkedList;
@@ -49,6 +48,7 @@ public class RenderView {
        if (gameInSession instanceof MultiplayerGame) {
            multiPlayer = true;
        }
+
        player1 = gameInSession.getPlayer1();
        player2 = gameInSession.getPlayer2();
        playerTurnText = mainActivity.findViewById(R.id.playerTurn);
@@ -123,16 +123,16 @@ public class RenderView {
     }
 
     private void renderCards() {
-                if (gameInSession.getPlayer1Turn()) {
-                    renderTheHandDeck(player1);
-                } else {
-                    renderTheHandDeck(player2);
-                }
-                if(gameInSession.getDiscard()) {
-                    setDiscard(false);
-                } else {
-                    setDiscard(true);
-                }
+        if (gameInSession.getPlayer1Turn()) {
+            renderTheHandDeck(player1);
+        } else {
+            renderTheHandDeck(player2);
+        }
+        if (gameInSession.getDiscard()) {
+            setDiscard(false);
+        } else {
+            setDiscard(true);
+        }
     }
 
     private void renderTheHandDeck(PlayerClass player) {
@@ -184,8 +184,8 @@ public class RenderView {
     public void renderCard(CardClass card, int slot) {
         ImageButton imageButton = null;
         int[] imageButtonCardList = new int[]{
-                R.id.imageButtonCard0, R.id.imageButtonCard1,R.id.imageButtonCard2,
-                R.id.imageButtonCard3,R.id.imageButtonCard4};
+                R.id.imageButtonCard0, R.id.imageButtonCard1, R.id.imageButtonCard2,
+                R.id.imageButtonCard3, R.id.imageButtonCard4};
 
         imageButton = mainActivity.findViewById(imageButtonCardList[slot]);
         imageButton.setBackgroundResource(returnImageCardID(card.getID()));
@@ -232,15 +232,15 @@ public class RenderView {
 
     private int returnImageCardID(int cardID) {
         int[] imageCardList = new int[]{
-                R.drawable.morecores,R.drawable.morecores, R.drawable.botnet,
-                R.drawable.cutsomewires, R.drawable.upgradebotnet,R.drawable.upgradecpu,
-                R.drawable.upgradehashrate,R.drawable.ddos,R.drawable.filetransfer,
-                R.drawable.popup,R.drawable.antivirus,R.drawable.firewall,
-                R.drawable.playthemarket,R.drawable.overclock,R.drawable.serverfarm,
-                R.drawable.expand,R.drawable.marketcrash, R.drawable.networkoutage,
-                R.drawable.throttle, R.drawable.hack,R.drawable.debug, R.drawable.exploit,
+                R.drawable.morecores, R.drawable.morecores, R.drawable.botnet,
+                R.drawable.cutsomewires, R.drawable.upgradebotnet, R.drawable.upgradecpu,
+                R.drawable.upgradehashrate, R.drawable.ddos, R.drawable.filetransfer,
+                R.drawable.popup, R.drawable.antivirus, R.drawable.firewall,
+                R.drawable.playthemarket, R.drawable.overclock, R.drawable.serverfarm,
+                R.drawable.expand, R.drawable.marketcrash, R.drawable.networkoutage,
+                R.drawable.throttle, R.drawable.hack, R.drawable.debug, R.drawable.exploit,
                 R.drawable.zeroday, R.drawable.attackplus, R.drawable.attackplusplus,
-                R.drawable.attackphash, R.drawable.extremehack,R.drawable.epichack,
+                R.drawable.attackphash, R.drawable.extremehack, R.drawable.epichack,
                 R.drawable.masshack
         };
         return imageCardList[cardID];
@@ -257,7 +257,7 @@ public class RenderView {
     public void goToVictory(boolean winner) {
         mainActivity.setContentView(R.layout.results_view);
         gameInSession = null;
-        ImageView img= mainActivity.findViewById(R.id.statsImg);
+        ImageView img = mainActivity.findViewById(R.id.statsImg);
         TextView textView = mainActivity.findViewById(R.id.textViewResult);
         if (winner) {
             img.setImageResource(R.drawable.victory);

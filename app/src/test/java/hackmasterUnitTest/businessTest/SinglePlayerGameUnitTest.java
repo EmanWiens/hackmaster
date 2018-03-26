@@ -1,4 +1,4 @@
-package hackmastertest.businessTest;
+package hackmasterUnitTest.businessTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
-import hackmastertest.persistenceTest.DataAccessStub;
+import hackmasterUnitTest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -31,7 +31,7 @@ public class SinglePlayerGameUnitTest {
     CardClass[] player2Hand;
 
     @Before
-    public void setUP(){
+    public void setup(){
         Services.closeDataAccess();
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub,dbStub,dbStub);

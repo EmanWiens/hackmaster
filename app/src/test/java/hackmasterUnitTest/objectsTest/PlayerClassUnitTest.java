@@ -1,4 +1,4 @@
-package hackmastertest.objectsTest;
+package hackmasterUnitTest.objectsTest;
 
 
 import org.junit.Test;
@@ -11,7 +11,7 @@ import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmaster.objects.CardClass;
 import hackmaster.business.DeckManager;
-import hackmastertest.persistenceTest.DataAccessStub;
+import hackmasterUnitTest.persistenceTest.DataAccessStub;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -25,7 +25,7 @@ public class PlayerClassUnitTest {
     private ResourceClass player2;
 
     @Before
-    public void setUp(){
+    public void setup(){
         Services.closeDataAccess();
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub,dbStub,dbStub);

@@ -1,4 +1,4 @@
-package hackmastertest.businessTest;
+package hackmasterUnitTest.businessTest;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import hackmaster.application.Services;
 import hackmaster.business.DeckManager;
 import hackmaster.objects.CardClass;
-import hackmastertest.persistenceTest.DataAccessStub;
+import hackmasterUnitTest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 
 public class DeckManagerUnitTest {
     @Before
-    public void setUP(){
+    public void setup(){
         Services.closeDataAccess();
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub,dbStub,dbStub);

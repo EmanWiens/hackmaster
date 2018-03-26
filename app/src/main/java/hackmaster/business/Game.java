@@ -2,7 +2,6 @@ package hackmaster.business;
 
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
-import hackmaster.objects.PlayerStatsSaves;
 import hackmaster.objects.ResourceClass;
 
 public abstract class Game {
@@ -19,6 +18,7 @@ public abstract class Game {
     private static CardClass playedCardTwo;
 
     private boolean discard;
+    private boolean player1Won;
 
     public Game(PlayerClass p1, PlayerClass p2) {
         player1 = p1;
@@ -78,6 +78,7 @@ public abstract class Game {
         boolean result = false;
         if (player2.getHealth() < 1) {
             result = true;
+            player1Won = true;
         }
         if (player1.getHealth() < 1) {
             result = true;
@@ -110,4 +111,5 @@ public abstract class Game {
     public boolean getDiscard() {return discard;}
     public void addHealthPlayer1(int health) {player1.addHealth(health);}
     public void addHealthPlayer2(int health) {player2.addHealth(health);}
+    public boolean getPlayer1Won() { return player1Won; }
 }

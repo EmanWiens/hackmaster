@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.example.owner.hackmaster20.R;
 
@@ -30,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
     private MusicManager musicManager;
     private Game gameInSession;
-    private RenderView renderView;
-    private Render render;
     private PlayerStatsSaves playerStats;
     private String playerName;
 
@@ -45,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         musicManager.backGroundMusicStart();
         musicManager.initSoundPool();
 
-        render = Render.setUpRender(gameInSession, this, musicManager);
-        render.setContentView(R.layout.signin_view);
+        Render.updateRender(this, musicManager);
+        Render.setContentView(R.layout.main_activity);
     }
 
     @Override
@@ -65,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void muteSoundBackground(View v) {
+        // TODO put in render
         ImageButton muteBtn = findViewById(R.id.muteBtn);
         if (musicManager.getStateMusic()) {
             muteBtn.setBackgroundResource(R.drawable.volumemute);
@@ -77,23 +75,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // TODO move this into render (since this does a lot of render related ops
-        View currLayout = findViewById(android.R.id.content);
-        int currLayoutId = currLayout.getId();
-
-        if (currLayoutId == R.id.main_activity) {
-            return;
-        } else if (gameInSession != null) {
+        if (gameInSession != null) {
             if (!gameInSession.gamePaused()) {
                 exitGameDialog();
             } else if (gameInSession.gamePaused()) {
-                render.setContentView(R.layout.battle_view);
+                Render.setContentView(R.layout.battle_view);
                 gameInSession.unpauseGame();
-                renderView.renderBattleView(-1);
+                Render.setBorderId(-1);
+                Render.updateScreen();
             }
         } else {
             if (gameInSession != null) {
-                render.setContentView(R.layout.main_activity);
+                Render.setContentView(R.layout.main_activity);
                 checkStateSound();
             }
         }
@@ -104,8 +97,9 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage("You are about to exit the game.")
                 .setPositiveButton("Exit game", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        render.setContentView(R.layout.main_activity);
+                        Render.setContentView(R.layout.main_activity);
                         checkStateSound();
+                        gameInSession = null;
                     }
                 })
                 .setNegativeButton("Stay in game", new DialogInterface.OnClickListener() {
@@ -118,85 +112,96 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void statsPress(View v) {
-        render.setContentView(R.layout.stats_view);
+        Render.setContentView(R.layout.stats_view);
     }
 
     public void singlePlayMessage(View v) {
-        render.setContentView(R.layout.battle_view);
-        gameInSession = SetUpGame.setUpSinglePlayerGame(playerName);
+        Render.setContentView(R.layout.battle_view);
+        gameInSession = SetUpGame.setUpSinglePlayerGame();
 
         Render.updateRender(gameInSession, this, musicManager);
-
-        renderView = new RenderView(gameInSession,MainActivity.this,musicManager);
-        renderView.setUpBattleView();
+        Render.setBorderId(-1);
+        Render.updateScreen();
     }
 
     public void multiPlayMessage(View v) {
-        render.setContentView(R.layout.battle_view);
+        Render.setContentView(R.layout.battle_view);
         gameInSession = SetUpGame.setUpMultiplayerGame();
 
         Render.updateRender(gameInSession, this, musicManager);
-
-        renderView = new RenderView(gameInSession, MainActivity.this,musicManager);
-        renderView.setUpBattleView();
+        Render.setBorderId(-1);
+        Render.updateScreen();
     }
 
     public void firstcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
             if (gameInSession.playCardEvent(0)) {
-                renderView.renderBattleView(0);
+                Render.setBorderId(0);
+                Render.updateScreen();
             }
         }
     }
 
     public void secondcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
-           if( gameInSession.playCardEvent(1))
-            renderView.renderBattleView(1);
+           if( gameInSession.playCardEvent(1)) {
+               Render.setBorderId(1);
+               Render.updateScreen();
+           }
         }
     }
 
     public void thirdcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
-            if (gameInSession.playCardEvent(2))
-            renderView.renderBattleView(2);
+            if (gameInSession.playCardEvent(2)) {
+                Render.setBorderId(2);
+                Render.updateScreen();
+            }
         }
     }
 
     public void fourthcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
-           if (gameInSession.playCardEvent(3))
-            renderView.renderBattleView(3);
+           if (gameInSession.playCardEvent(3)) {
+               Render.setBorderId(3);
+               Render.updateScreen();
+           }
         }
     }
 
     public void fifthcardPress(View v) {
         if (!gameInSession.getRenderDelay()) {
-            if (gameInSession.playCardEvent(4))
-            renderView.renderBattleView(4);
+            if (gameInSession.playCardEvent(4)) {
+                Render.setBorderId(4);
+                Render.updateScreen();
+            }
         }
     }
     public void discardPress(View v) {
-        if (gameInSession.getDiscard() == true) {
-            renderView.setDiscard(true);
+        if (gameInSession.getDiscard()) {
+            Render.setDiscard(true);
+            Render.updateScreen();
         } else {
-            renderView.setDiscard(false);
+            Render.setDiscard(false);
+            Render.updateScreen();
         }
     }
     public void pauseMessage(View v) {
         gameInSession.pauseGame();
-        render.setContentView(R.layout.pause_view);
+        Render.setContentView(R.layout.pause_view);
     }
 
     public void pauseResumeMessage(View v) {
-        render.setContentView(R.layout.battle_view);
+        Render.setContentView(R.layout.battle_view);
         gameInSession.unpauseGame();
-        renderView.renderBattleView(-1);
+        Render.setBorderId(-1);
+        Render.updateScreen();
     }
 
     public void resumeFromContinueWindow(View v) {
-        render.setContentView(R.layout.battle_view);
-        renderView.renderBattleView(-1);
+        Render.setContentView(R.layout.battle_view);
+        Render.setBorderId(-1);
+        Render.updateScreen();
     }
 
     public void pauseExitMessage(View v) {
@@ -204,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pauseStatsMessage(View v) {
-        render.setContentView(R.layout.stats_view);
+        Render.setContentView(R.layout.stats_view);
     }
 
     public void signInExitMessage(View v) {
@@ -219,15 +224,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void statsExitMessage(View v) {
         if (gameInSession != null) {
-            render.setContentView(R.layout.pause_view);
+            Render.setContentView(R.layout.pause_view);
         } else {
-            render.setContentView(R.layout.main_activity);
+            Render.setContentView(R.layout.main_activity);
             checkStateSound();
         }
     }
 
+
     public void finishGame(View v) {
-        render.setContentView(R.layout.main_activity);
+        Render.setContentView(R.layout.main_activity);
         checkStateSound();
     }
 

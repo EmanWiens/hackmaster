@@ -1,4 +1,4 @@
-package hackmastertest.objectsTest;
+package hackmasterUnitTest.objectsTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class PlayerStatsSavesTest {
     private PlayerStatsSaves playerStats;
 
     @Before
-    public void Setup() {
+    public void setup() {
         playerStats = new PlayerStatsSaves(0,"Tester",0,0,0,0);
     }
 

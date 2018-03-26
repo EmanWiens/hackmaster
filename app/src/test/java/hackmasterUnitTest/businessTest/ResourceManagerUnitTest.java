@@ -1,4 +1,4 @@
-package hackmastertest.businessTest;
+package hackmasterUnitTest.businessTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import hackmaster.objects.CardClass;
 import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
-import hackmastertest.persistenceTest.DataAccessStub;
+import hackmasterUnitTest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.fail;
@@ -25,7 +25,7 @@ public class ResourceManagerUnitTest {
     private CardClass testCardEffectPlayerAndEnemy;
 
     @Before
-    public void setUp() {
+    public void setup() {
         Services.closeDataAccess();
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub,dbStub,dbStub);
