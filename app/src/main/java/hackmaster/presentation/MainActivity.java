@@ -1,9 +1,7 @@
 package hackmaster.presentation;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.AssetManager;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -13,14 +11,9 @@ import android.widget.ImageButton;
 
 import com.example.owner.hackmaster20.R;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import hackmaster.application.DBController;
 import hackmaster.business.Game;
-import hackmaster.business.SetupDB;
+import hackmaster.application.AppController;
 import hackmaster.business.SetupGame;
 import hackmaster.objects.PlayerStatsSaves;
 
@@ -34,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SetupDB.copyDatabaseToDevice(this);
+        AppController.copyDatabaseToDevice(this);
         DBController.startUp();
         musicManager = new MusicManager(this);
         musicManager.backGroundMusicStart();
