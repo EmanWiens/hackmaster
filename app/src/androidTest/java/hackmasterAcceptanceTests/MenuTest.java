@@ -22,7 +22,6 @@ public class MenuTest extends ActivityInstrumentationTestCase2{
         }
     }
 
-    @SuppressWarnings("unchecked")
     public MenuTest() throws ClassNotFoundException
     {
         super(launcherActivityClass);
@@ -40,7 +39,6 @@ public class MenuTest extends ActivityInstrumentationTestCase2{
         super.tearDown();
     }
 
-    // Please note again that this is not a complete set of acceptance tests
     public void testStats()
     {
         solo.waitForActivity("Main Activity",2000);
@@ -66,7 +64,6 @@ public class MenuTest extends ActivityInstrumentationTestCase2{
         solo.waitForActivity("Main Activity",1000);
         solo.clickOnImageButton(0);
         solo.waitForView(R.id.battle_view);
-//https://guides.codepath.com/android/ui-testing-with-robotium
         solo.clickOnImage(14);
         solo.waitForActivity("pause_view",5000);
         TextView textViewPauseBtn = (TextView) solo.getView(R.id.pauseText);
