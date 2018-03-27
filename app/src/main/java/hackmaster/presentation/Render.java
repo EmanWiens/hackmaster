@@ -154,13 +154,18 @@ public abstract class Render {
                 renderPressedCardBorder(borderId);
                 if (!multiPlayer) {
                     if (playedCardOne != null && !gameInSession.getRenderDelay() &&
-                            (delayState == DelayState.NO_PENDING)) {
+                            delayState == DelayState.NO_PENDING) {
                         renderPlayedCard(playedCardOne, false);
-                        delayState = DelayState.PENDING_DELAY;
                     }
                     fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
                     if (playedCardTwo != null) {
-                        renderPlayedCard(playedCardTwo, true);
+                        if (delayState == DelayState.NO_PENDING) {
+                            renderPlayedCard(playedCardTwo, true);
+                            delayState = DelayState.PENDING_DELAY;
+                        }
+                        else if (delayState == DelayState.FINISHED_DELAY) {
+                            renderPlayedCard(playedCardTwo, false);
+                        }
                     }
                     fillText((TextView)mainActivity.findViewById(R.id.playerTurn), aiTurn);
                 }
@@ -219,6 +224,8 @@ public abstract class Render {
         } else {
             renderTheHandDeck(player2);
         }
+
+        // TODO move this somewhere else
         if (gameInSession.getDiscard()) {
             setDiscard(false);
         } else {
@@ -238,13 +245,13 @@ public abstract class Render {
         if (aiDelay && !gameInSession.gameDone()) {
             handler.postDelayed(delayRender(), aiDelayMilli); // DELAY
             gameInSession.setRenderDelay(true);
-            delayState = DelayState.FINISHED_DELAY;
         }
         else if (gameInSession != null && !gameInSession.gamePaused()) {
             ImageView imageView = mainActivity.findViewById(R.id.imageViewPlayedCard1);
             imageView.setBackgroundResource(returnImageCardID(card.getID()));
 
             if (gameInSession.getRenderDelay()) {
+                delayState = DelayState.FINISHED_DELAY;
                 gameInSession.setRenderDelay(false);
                 fillText((TextView) mainActivity.findViewById(R.id.playerTurn), "Player 1's turn");
             }
