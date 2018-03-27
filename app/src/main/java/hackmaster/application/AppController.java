@@ -16,18 +16,6 @@ import hackmaster.persistence.CardDataAccessInterface;
 import hackmaster.presentation.MainActivity;
 
 public abstract class AppController {
-    public static void initDeck(CardDataAccessInterface cardDataAccess) {
-        cardDataAccess = Services.getCardDataAccess();
-        ArrayList<CardClass> listDeck = new ArrayList<>();
-        String eMsg = cardDataAccess.getRandomDeck(listDeck, new Random());
-
-        if(eMsg!=null) {
-            System.out.println(eMsg);
-        }
-
-        DeckManager.setDeck(listDeck.toArray(new CardClass[0]));
-        DeckManager.resetIndex();
-    }
 
     public static void copyDatabaseToDevice(MainActivity mainActivity) {
         final String DB_PATH = "db";
