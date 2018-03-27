@@ -14,7 +14,7 @@ import hackmasterUnitTest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 
-public class SinglePlayerGameTest {
+public class MultiPlayerGameTest {
     private Game testGame;
     private PlayerClass player1, player2;
     private ResourceClass startResources;
@@ -29,7 +29,7 @@ public class SinglePlayerGameTest {
 
     @Test
     public void setupGameTest() {
-        testGame = SetupGame.setUpSinglePlayerGame();
+        testGame = SetupGame.setUpMultiplayerGame();
 
         player1 = testGame.getPlayer1();
         player2 = testGame.getPlayer2();
