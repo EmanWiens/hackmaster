@@ -1,18 +1,17 @@
-package hackmasterIntegrationTests;
+package hackmasterTests.integrationTests;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import hackmaster.application.Services;
-import hackmaster.business.DeckManager;
 import hackmaster.business.Game;
 import hackmaster.business.SetupGame;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
-import hackmasterUnitTest.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.fail;
 
 public class MultiPlayerGameTest {
     private Game testGame;
@@ -21,14 +20,12 @@ public class MultiPlayerGameTest {
 
     @Before
     public void setup(){
-        Services.closeDataAccess();
-        DataAccessStub dbStub = new DataAccessStub("stub");
-        Services.createDataAccess(dbStub,dbStub,dbStub);
-        DeckManager.initDeck();
+
     }
 
     @Test
     public void setupGameTest() {
+        fail("Make sure that DB is set up properly");
         testGame = SetupGame.setUpMultiplayerGame();
 
         player1 = testGame.getPlayer1();

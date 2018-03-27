@@ -1,4 +1,4 @@
-package hackmasterUnitTest.objectsTest;
+package hackmasterTests.objectsTest;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package hackmasterUnitTest.businessTest;
+package hackmasterTests.businessTest;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import hackmaster.application.Services;
 import hackmaster.business.DeckManager;
 import hackmaster.objects.CardClass;
-import hackmasterUnitTest.persistenceTest.DataAccessStub;
+import hackmasterTests.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;

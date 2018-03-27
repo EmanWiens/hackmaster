@@ -1,4 +1,4 @@
-package hackmasterUnitTest.objectsTest;
+package hackmasterTests.objectsTest;
 
 
 import org.junit.Test;
@@ -11,7 +11,7 @@ import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 import hackmaster.objects.CardClass;
 import hackmaster.business.DeckManager;
-import hackmasterUnitTest.persistenceTest.DataAccessStub;
+import hackmasterTests.persistenceTest.DataAccessStub;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
