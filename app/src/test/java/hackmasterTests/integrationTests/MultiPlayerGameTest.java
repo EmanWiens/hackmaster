@@ -4,14 +4,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import hackmaster.application.DBController;
 import hackmaster.application.Services;
 import hackmaster.business.Game;
 import hackmaster.business.SetupGame;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
-
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.fail;
 
 public class MultiPlayerGameTest {
     private Game testGame;
@@ -20,12 +19,13 @@ public class MultiPlayerGameTest {
 
     @Before
     public void setup(){
+        DBController.startUp();
 
+        // fail("Make sure that DB is set up properly");
     }
 
     @Test
     public void setupGameTest() {
-        fail("Make sure that DB is set up properly");
         testGame = SetupGame.setUpMultiplayerGame();
 
         player1 = testGame.getPlayer1();
