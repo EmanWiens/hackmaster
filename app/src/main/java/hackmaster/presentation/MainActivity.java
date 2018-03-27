@@ -180,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
             Render.updateScreen();
         } else {
             Render.setDiscard(false);
+            musicManager.playCardDestroyed(0.8f, 0.8f);
             Render.updateScreen();
         }
     }

@@ -49,8 +49,8 @@ public abstract class Render {
             multiPlayer = false;
         }
 
-        player1Turn = player1.getName() + "'s Turn";
-        player2Turn = player2.getName() + "'s Turn";
+        player1Turn = "Player 1's Turn";
+        player2Turn = "Player2's Turn";
         aiTurn = "AI's Turn";
     }
 
@@ -144,7 +144,7 @@ public abstract class Render {
 
                 renderDiscard();
                 renderCards();
-
+                renderPressedCardBorder(borderId);
                 if (!multiPlayer) {
                     if (playedCardOne != null && !gameInSession.getRenderDelay())
                         renderPlayedCard(playedCardOne, false);
@@ -152,13 +152,12 @@ public abstract class Render {
                     if (playedCardTwo != null)
                         renderPlayedCard(playedCardTwo, true);
                     fillText((TextView)mainActivity.findViewById(R.id.playerTurn), aiTurn);
-                } else if (multiPlayer) {
+                }
+                else if (multiPlayer) {
                     showContinueView = false;
                     if (borderId != -1) {
-                        renderPressedCardBorder(borderId);
                         showContinueView = true;
                     }
-
                     if (!gameInSession.getPlayer1Turn() && playedCardOne != null) {
                         renderPlayedCard(playedCardOne, false);
                         fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player2Turn);
@@ -190,11 +189,11 @@ public abstract class Render {
     private static void renderDiscard() {
         if (discard) {
             gameInSession.discardOff();
-            ImageButton btn = (ImageButton)mainActivity.findViewById(R.id.discardBtn);
+            ImageButton btn = mainActivity.findViewById(R.id.discardBtn);
             btn.setImageResource(R.drawable.discardbutton);
         } else {
             gameInSession.discardOn();
-            ImageButton btn = (ImageButton)mainActivity.findViewById(R.id.discardBtn);
+            ImageButton btn = mainActivity.findViewById(R.id.discardBtn);
             btn.setImageResource(R.drawable.canceldiscard);
         }
     }
@@ -292,9 +291,10 @@ public abstract class Render {
         mainActivity.setContentView(R.layout.continue_view);
         TextView textView = mainActivity.findViewById(R.id.textViewPlayerTurn);
         textView.setText(playerTurn);
+        textView.setTextColor(Color.RED);
         if (playerTurn.equals("Player 1's Turn"))
         {
-            textView.setTextColor(Color.RED);
+            textView.setTextColor(Color.BLUE);
         }
     }
 
@@ -333,9 +333,10 @@ public abstract class Render {
         if (winner) {
             img.setImageResource(R.drawable.victory);
             textView.setText("PlAYER 1 WON");
+            textView.setTextColor(Color.BLUE);
         } else {
             img.setImageResource(R.drawable.defeat);
-            textView.setText("PlAYER 1 LOST");
+            textView.setText("PlAYER 2 WON");
             textView.setTextColor(Color.RED);
         }
     }
