@@ -1,16 +1,17 @@
 package hackmasterAcceptanceTests;
 
+import android.view.Menu;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-public class RunAcceptanceTests
-{
-	public static TestSuite suite;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
-    public static Test suite()
-    {
-        suite = new TestSuite("Acceptance tests");
-        suite.addTest(AcceptanceTests.suite());
-        return suite;
-    }
-}
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+        MenuTest.class,
+        GamePlayTest.class
+})
+
+public class RunAcceptanceTests { }
