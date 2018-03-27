@@ -4,7 +4,7 @@ import hackmaster.objects.EnemyAI;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
 
-public abstract class SetUpGame {
+public abstract class SetupGame {
     private static final ResourceClass startOfGameResources = new ResourceClass(100, 10, 2, 10, 2, 10, 2);
 
     public static Game setUpSinglePlayerGame() {

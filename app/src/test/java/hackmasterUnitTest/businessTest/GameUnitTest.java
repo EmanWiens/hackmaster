@@ -6,7 +6,7 @@ import org.junit.Test;
 import hackmaster.application.Services;
 import hackmaster.business.DeckManager;
 import hackmaster.business.Game;
-import hackmaster.business.SetUpGame;
+import hackmaster.business.SetupGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.ResourceClass;
 import hackmasterUnitTest.persistenceTest.DataAccessStub;
@@ -27,7 +27,7 @@ public class GameUnitTest {
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub, dbStub, dbStub);
 
-        testGame = SetUpGame.setUpSinglePlayerGame();
+        testGame = SetupGame.setUpSinglePlayerGame();
     }
 
     private CardClass[] resetDeck() {
