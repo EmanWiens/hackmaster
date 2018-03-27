@@ -9,7 +9,9 @@ import java.util.Random;
 
 import hackmaster.application.DBController;
 import hackmaster.application.Services;
+import hackmaster.business.DeckManager;
 import hackmaster.business.Game;
+import hackmaster.business.ResourceManager;
 import hackmaster.business.SetupGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
@@ -21,7 +23,7 @@ import static junit.framework.Assert.assertEquals;
 public class MultiPlayerGameTest {
     private Game testGame;
     private PlayerClass player1, player2;
-    private ResourceClass startResources;
+    private ResourceClass player1Resource, player2Resource;
     private CardDataAccessInterface cardDataAccess;
     private Random RNG;
 
@@ -36,11 +38,13 @@ public class MultiPlayerGameTest {
 
     @Test
     public void setupGameTest() {
+        DeckManager.setRandom(RNG);
         testGame = SetupGame.setUpMultiplayerGame();
 
         player1 = testGame.getPlayer1();
         player2 = testGame.getPlayer2();
-        startResources = SetupGame.startOfGameResources();
+        player1Resource = player1.getResources();
+        player2Resource = player2.getResources();
 
         assertEquals(100, player1.getHealth());
         assertEquals(10, player1.getResources().gethCoin());
@@ -50,16 +54,44 @@ public class MultiPlayerGameTest {
         assertEquals(10, player2.getResources().gethCoin());
         assertEquals(2, player2.getResources().gethCoinRate());
 
-        // play
+        assertEquals(1, player1.getCard(0).getID());
+        assertEquals(20, player1.getCard(1).getID());
+        assertEquals(10, player1.getCard(2).getID());
+        assertEquals(8, player1.getCard(3).getID());
+        assertEquals(7, player1.getCard(4).getID());
+
+        assertEquals(22,player2.getCard(0).getID());
+        assertEquals(27,player2.getCard(1).getID());
+        assertEquals(2,player2.getCard(2).getID());
+        assertEquals(4,player2.getCard(3).getID());
+        assertEquals(26,player2.getCard(4).getID());
+
+        // player 1 turn
+        testGame.playCardEvent(0);
+        assertEquals(3, player1Resource.gethCoinRate());
+        assertEquals(5, player1Resource.gethCoin());
+        assertEquals(90, player2Resource.getHealth());
+        assertEquals(24, player1.getCard(0).getID());
+
+        // player 2 turn
+        testGame.playCardEvent(0);
+        assertEquals(17, player2Resource.gethCoin());
+        assertEquals(2, player2Resource.getBotnet());
+        assertEquals(90, player1Resource.getHealth());
+        assertEquals(3, player2.getCard(0).getID());
+
+        // player 1 turn discard
+        testGame.discardOn();
+        testGame.playCardEvent(0);
+        assertEquals(19, player1.getCard(0).getID());
+
+        // player 2 turn discard
+        testGame.discardOn();
+        testGame.playCardEvent(0);
+        assertEquals(19, player1.getCard(0).getID());
+        assertEquals(0, player2.getCard(0).getID());
     }
 
-    @Test
-    public void cardAccessTest() {
-        ArrayList<CardClass> listDeck = new ArrayList<>();
-        cardDataAccess.getRandomDeck(listDeck, RNG);
-
-        assertEquals(1,listDeck.get(0).getID());
-    }
 
     @After
     public void tearDown() {
