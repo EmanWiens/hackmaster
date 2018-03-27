@@ -50,7 +50,7 @@ public abstract class Render {
         }
 
         player1Turn = "Player 1's Turn";
-        player2Turn = "Player2's Turn";
+        player2Turn = "Player 2's Turn";
         aiTurn = "AI's Turn";
     }
 

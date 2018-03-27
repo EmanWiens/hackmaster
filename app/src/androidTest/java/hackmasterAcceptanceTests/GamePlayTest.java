@@ -97,42 +97,80 @@ public class GamePlayTest extends ActivityInstrumentationTestCase2{
         solo.waitForActivity("Main Activity",1000);
         solo.clickOnImageButton(1);
         solo.waitForView(R.id.battle_view);
-        //solo.sleep(290000000)
+
         solo.sleep(1000);
         TextView textPlayerHealh = (TextView) solo.getView(R.id.healthP);
-        TextView textPlayerMiner = (TextView) solo.getView(R.id.minerP);
-        TextView textPlayerCPU = (TextView) solo.getView(R.id.cSpeedP);
-        TextView textPlayerBotnet = (TextView) solo.getView(R.id.botnetP);
+        TextView textPlayerMiner;
+        TextView textPlayerCPU;
+        TextView textPlayerBotnet;
 
         TextView textEnemyHealh = (TextView) solo.getView(R.id.healthE);
-        TextView textEnemyMiner = (TextView) solo.getView(R.id.minerE);
-        TextView textEnemyCPU = (TextView) solo.getView(R.id.cSpeedE);
-        TextView textEnemyBotnet = (TextView) solo.getView(R.id.botnetE);
-
+        TextView textEnemyMiner;
+        TextView textEnemyCPU;
+        TextView textEnemyBotnet;
+        TextView textPlayerTurn;
         solo.clickOnImageButton(0);
+        textPlayerTurn = (TextView) solo.getView(R.id.textViewPlayerTurn);
+        solo.waitForView(R.id.continue_view);
+        assertEquals("Player 2's Turn", textPlayerTurn.getText().toString());
         solo.clickOnButton(0);
         solo.waitForView(R.id.battle_view);
         assertEquals("Health: 100%", textPlayerHealh.getText().toString());
         assertEquals("Health: 90%", textEnemyHealh.getText().toString());
         solo.clickOnImageButton(3);
+        textPlayerTurn = (TextView) solo.getView(R.id.textViewPlayerTurn);
+        solo.waitForView(R.id.continue_view);
+        assertEquals("Player 1's Turn", textPlayerTurn.getText().toString());
         solo.clickOnButton(0);
         solo.waitForView(R.id.battle_view);
-        //assertEquals("Health: 95%", textPlayerHealh.getText().toString());
+        textPlayerHealh = (TextView) solo.getView(R.id.healthP);
+        textEnemyHealh = (TextView) solo.getView(R.id.healthE);
+        assertEquals("Health: 95%", textPlayerHealh.getText().toString());
         assertEquals("Health: 90%", textEnemyHealh.getText().toString());
         solo.clickOnImageButton(0);
         solo.clickOnButton(0);
         solo.waitForView(R.id.battle_view);
-       // assertEquals("Health: 115%", textPlayerHealh.getText().toString());
+
+
+        textPlayerHealh = (TextView) solo.getView(R.id.healthP);
+        textPlayerMiner = (TextView) solo.getView(R.id.minerP);
+        textPlayerCPU = (TextView) solo.getView(R.id.cSpeedP);
+        textPlayerBotnet = (TextView) solo.getView(R.id.botnetP);
+
+        textEnemyHealh = (TextView) solo.getView(R.id.healthE);
+        textEnemyMiner = (TextView) solo.getView(R.id.minerE);
+        textEnemyCPU = (TextView) solo.getView(R.id.cSpeedE);
+        textEnemyBotnet = (TextView) solo.getView(R.id.botnetE);
+
+        assertEquals("Health: 115%", textPlayerHealh.getText().toString());
         assertEquals("Health: 90%", textEnemyHealh.getText().toString());
+        assertEquals("\nHackCoin Rate: 1" + "\n----\n" + "HackCoin: 8", textPlayerMiner.getText().toString());
+        assertEquals("\nCPU Rate: 2" + "\n----\n" + "CPU: 12", textPlayerCPU.getText().toString());
+        assertEquals("\nBotnet gen: 2" + "\n----\n" + "Botnet: 12", textPlayerBotnet.getText().toString());
 
-//        assertEquals("\nHackCoin Rate: 1" + "\n----\n" + "HackCoin: 8", textPlayerMiner.getText().toString());
-//        assertEquals("\nCPU Rate: 2" + "\n----\n" + "CPU: 12", textPlayerCPU.getText().toString());
-//        assertEquals("\nBotnet gen: 2" + "\n----\n" + "Botnet: 12", textPlayerBotnet.getText().toString());
-
-        assertEquals("\nHackCoin Rate: 2" + "\n----\n" + "HackCoin: 12", textEnemyMiner.getText().toString());
-        assertEquals("\nCPU Rate: 2" + "\n----\n" + "CPU: 12", textEnemyCPU.getText().toString());
-        assertEquals("\nBotnet gen: 2" + "\n----\n" + "Botnet: 12", textEnemyBotnet.getText().toString());
-
+        assertEquals("\nHackCoin Rate: 2" + "\n----\n" + "HackCoin: 14", textEnemyMiner.getText().toString());
+        assertEquals("\nCPU Rate: 2" + "\n----\n" + "CPU: 14", textEnemyCPU.getText().toString());
+        assertEquals("\nBotnet gen: 2" + "\n----\n" + "Botnet: 13", textEnemyBotnet.getText().toString());
+        solo.clickOnImageButton(0);
+        solo.clickOnButton(0);
+        solo.clickOnImageButton(1);
+        solo.clickOnButton(0);
+        solo.clickOnImageButton(2);
+        solo.clickOnButton(0);
+        solo.clickOnImageButton(3);
+        solo.clickOnButton(0);
+        solo.clickOnImageButton(4);
+        solo.clickOnButton(0);
+        solo.clickOnImageButton(2);
+        solo.clickOnButton(0);
+        solo.clickOnImageButton(3);
+        solo.clickOnButton(0);
+        solo.clickOnImageButton(4);
+        solo.clickOnButton(0);
+        solo.clickOnImageButton(3);
+        solo.clickOnButton(0);
+        solo.clickOnImageButton(2);
+        solo.clickOnButton(0);
     }
 
 
