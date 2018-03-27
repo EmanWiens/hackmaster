@@ -35,12 +35,7 @@ public class GamePlayTest extends ActivityInstrumentationTestCase2{
     public void setUp() throws Exception {
         super.setUp();
         solo = new Solo(getInstrumentation(), getActivity()); //takes in the instrumentation and the start activity.
-
-        ArrayList<CardClass> listDeck = new ArrayList<>();
-        CardDataAccessInterface cardDataAccess = Services.getCardDataAccess();
-        String eMsg = cardDataAccess.getCardSequential(listDeck);
-        if(eMsg!=null) System.out.println(eMsg);
-        DeckManager.setDeck(listDeck.toArray(new CardClass[0]));
+        DeckManager.setRandom(new StubRandom());
     }
 
     @Override
