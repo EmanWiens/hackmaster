@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         if (!gameInSession.getRenderDelay()) {
             if (gameInSession.playCardEvent(0)) {
                 Render.setBorderId(0);
+                Render.resetDelayState();
                 Render.updateScreen();
             }
         }
