@@ -24,7 +24,7 @@ public abstract class Render {
     private static Layouts layout;
     private static int contentId;
 
-    private enum DelayState { NO_PENDING, PENDING_DELAY, FINISHED_DELAY}
+    private enum DelayState { NO_PENDING, PENDING_DELAY, FINISHED_DELAY }
     private static DelayState delayState;
 
     private static boolean discard;
@@ -151,6 +151,7 @@ public abstract class Render {
                 renderDiscard();
                 renderCards();
                 renderPressedCardBorder(borderId);
+
                 if (!multiPlayer) {
                     if (playedCardOne != null && !gameInSession.getRenderDelay() &&
                             delayState == DelayState.NO_PENDING) {
@@ -167,6 +168,7 @@ public abstract class Render {
                             renderPlayedCard(playedCardTwo, false);
                             fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
                         }
+                        // setDiscard(true);
                     }
                 }
                 else if (multiPlayer) {
@@ -180,7 +182,7 @@ public abstract class Render {
 
                         if (showContinueView) {
                             activateContentView(player2Turn);
-                            setDiscard(true);
+                            // setDiscard(true);
                         }
                     } else if (playedCardTwo != null) {
                         renderPlayedCard(playedCardTwo, false);
@@ -188,10 +190,12 @@ public abstract class Render {
 
                         if (showContinueView) {
                             activateContentView(player1Turn);
-                            setDiscard(true);
+                            // setDiscard(true);
                         }
                     }
                 }
+                
+                setDiscard(true);
             }
             success = true;
         }
@@ -228,11 +232,11 @@ public abstract class Render {
         }
 
         // TODO move this somewhere else
-        if (gameInSession.getDiscard()) {
+        /*if (gameInSession.getDiscard()) {
             setDiscard(false);
         } else {
             setDiscard(true);
-        }
+        }*/
     }
 
     private static void renderTheHandDeck(PlayerClass player) {
