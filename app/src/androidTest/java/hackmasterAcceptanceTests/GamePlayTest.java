@@ -172,6 +172,4 @@ public class GamePlayTest extends ActivityInstrumentationTestCase2{
         solo.clickOnImageButton(2);
         solo.clickOnButton(0);
     }
-
-
 }

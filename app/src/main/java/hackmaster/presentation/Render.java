@@ -162,12 +162,14 @@ public abstract class Render {
                         if (delayState == DelayState.NO_PENDING) {
                             renderPlayedCard(playedCardTwo, true);
                             delayState = DelayState.PENDING_DELAY;
+                            fillText((TextView)mainActivity.findViewById(R.id.playerTurn), aiTurn);
                         }
                         else if (delayState == DelayState.FINISHED_DELAY) {
                             renderPlayedCard(playedCardTwo, false);
+                            fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
                         }
                     }
-                    fillText((TextView)mainActivity.findViewById(R.id.playerTurn), aiTurn);
+
                 }
                 else if (multiPlayer) {
                     showContinueView = false;
@@ -253,7 +255,7 @@ public abstract class Render {
             if (gameInSession.getRenderDelay()) {
                 delayState = DelayState.FINISHED_DELAY;
                 gameInSession.setRenderDelay(false);
-                fillText((TextView) mainActivity.findViewById(R.id.playerTurn), "Player 1's turn");
+                fillText((TextView) mainActivity.findViewById(R.id.playerTurn), player1Turn);
             }
         }
     }
@@ -315,8 +317,8 @@ public abstract class Render {
         TextView textView = mainActivity.findViewById(R.id.textViewPlayerTurn);
         textView.setText(playerTurn);
         textView.setTextColor(Color.RED);
-        if (playerTurn.equals("Player 1's Turn"))
-        {
+
+        if (playerTurn.equals("Player 1's Turn")) {
             textView.setTextColor(Color.BLUE);
         }
     }
@@ -368,7 +370,5 @@ public abstract class Render {
 
     static void setDiscard(boolean toggle) { discard = toggle; }
     static void setBorderId(int id) { borderId = id; }
-    private static void setDelayStatePending() { delayState = DelayState.PENDING_DELAY; }
     static void resetDelayState() { delayState = DelayState.NO_PENDING; }
-    private static void setDelayStateDoneDelay() { delayState = DelayState.FINISHED_DELAY; }
 }
