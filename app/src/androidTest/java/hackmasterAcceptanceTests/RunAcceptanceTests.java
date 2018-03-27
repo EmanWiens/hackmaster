@@ -1,4 +1,4 @@
-package hackmaster.acceptance;
+package hackmasterAcceptanceTests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
