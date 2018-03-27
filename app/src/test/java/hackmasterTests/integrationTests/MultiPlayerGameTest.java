@@ -34,6 +34,7 @@ public class MultiPlayerGameTest {
         RNG = new Random(0);
     }
 
+    @Test
     public void setupGameTest() {
         testGame = SetupGame.setUpMultiplayerGame();
 
