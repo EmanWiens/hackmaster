@@ -19,8 +19,8 @@ public class MultiPlayerGameTest {
 
     @Before
     public void setup(){
-        DBController.startUp();
 
+        DBController.startUp();
         // fail("Make sure that DB is set up properly");
     }
 

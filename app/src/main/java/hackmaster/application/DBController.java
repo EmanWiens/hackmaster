@@ -3,7 +3,7 @@ package hackmaster.application;
 public abstract class DBController
 {
 	public static final String dbName = "HM_DB";
-	private static String dbPathName = "database/HM_DB";
+	private static String dbPathName = "app/src/main/assets/db/HM_DB";
 
 	public static String getDBPathName() {
 		if (dbPathName == null) {
