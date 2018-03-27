@@ -57,7 +57,7 @@ public class MultiPlayerGameTest {
         ArrayList<CardClass> listDeck = new ArrayList<>();
         cardDataAccess.getRandomDeck(listDeck, RNG);
 
-        assertEquals(0,listDeck.get(0));
+        assertEquals(1,listDeck.get(0).getID());
     }
 
     @After
