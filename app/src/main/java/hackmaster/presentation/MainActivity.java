@@ -124,54 +124,34 @@ public class MainActivity extends AppCompatActivity {
         Render.updateScreen();
     }
 
-    public void firstcardPress(View v) {
+    private void processCardPress(int playerCard) {
         if (!gameInSession.getRenderDelay()) {
-            if (gameInSession.playCardEvent(0)) {
-                Render.setBorderId(0);
+            if (gameInSession.playCardEvent(playerCard)) {
+                Render.setBorderId(playerCard);
                 Render.resetDelayState();
                 Render.updateScreen();
             }
         }
+    }
+
+    public void firstcardPress(View v) {
+        processCardPress(0);
     }
 
     public void secondcardPress(View v) {
-        if (!gameInSession.getRenderDelay()) {
-           if( gameInSession.playCardEvent(1)) {
-               Render.setBorderId(1);
-               Render.resetDelayState();
-               Render.updateScreen();
-           }
-        }
+        processCardPress(1);
     }
 
     public void thirdcardPress(View v) {
-        if (!gameInSession.getRenderDelay()) {
-            if (gameInSession.playCardEvent(2)) {
-                Render.setBorderId(2);
-                Render.resetDelayState();
-                Render.updateScreen();
-            }
-        }
+        processCardPress(2);
     }
 
     public void fourthcardPress(View v) {
-        if (!gameInSession.getRenderDelay()) {
-           if (gameInSession.playCardEvent(3)) {
-               Render.setBorderId(3);
-               Render.resetDelayState();
-               Render.updateScreen();
-           }
-        }
+        processCardPress(3);
     }
 
     public void fifthcardPress(View v) {
-        if (!gameInSession.getRenderDelay()) {
-            if (gameInSession.playCardEvent(4)) {
-                Render.setBorderId(4);
-                Render.resetDelayState();
-                Render.updateScreen();
-            }
-        }
+        processCardPress(4);
     }
     public void discardPress(View v) {
         if (gameInSession.getDiscard()) {
