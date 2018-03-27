@@ -1,6 +1,7 @@
 package hackmaster.business;
 
 import hackmaster.objects.PlayerClass;
+import hackmaster.presentation.Render;
 
 public class MultiplayerGame extends Game {
     public MultiplayerGame(PlayerClass p1, PlayerClass p2) {

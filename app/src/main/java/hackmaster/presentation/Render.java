@@ -8,6 +8,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.example.owner.hackmaster20.R;
 
+import javax.crypto.spec.DESedeKeySpec;
+
 import hackmaster.business.Game;
 import hackmaster.business.MultiplayerGame;
 import hackmaster.objects.CardClass;
@@ -19,9 +21,12 @@ public abstract class Render {
     private static MusicManager musicManager;
     private static boolean firstSetup;
 
-    private enum Layouts { MAIN_ACTIVITY, BATTLE_VIEW, PAUSE_VIEW, RESULTS_VIEW, STATS_VIEW, CONTINUE_VIEW };
+    private enum Layouts { MAIN_ACTIVITY, BATTLE_VIEW, PAUSE_VIEW, RESULTS_VIEW, STATS_VIEW, CONTINUE_VIEW }
     private static Layouts layout;
     private static int contentId;
+
+    private enum DelayState { NO_PENDING, PENDING_DELAY, FINISHED_DELAY}
+    private static DelayState delayState;
 
     private static boolean discard;
     private static int borderId;
@@ -32,6 +37,8 @@ public abstract class Render {
     private static String player2Turn;
     private static String aiTurn;
     private static boolean multiPlayer;
+
+    private static int aiDelayMilli = 1250;
 
     public static void updateRender(Game gameInSes, MainActivity mainAct, MusicManager musicManag) {
         gameInSession = gameInSes;
@@ -62,7 +69,7 @@ public abstract class Render {
     }
 
     public static boolean setContentView(int contId) {
-        boolean success = false;
+        boolean success;
 
         contentId = contId;
         success = updateLayoutId();
@@ -146,11 +153,15 @@ public abstract class Render {
                 renderCards();
                 renderPressedCardBorder(borderId);
                 if (!multiPlayer) {
-                    if (playedCardOne != null && !gameInSession.getRenderDelay())
+                    if (playedCardOne != null && !gameInSession.getRenderDelay() &&
+                            (delayState == DelayState.NO_PENDING)) {
                         renderPlayedCard(playedCardOne, false);
+                        delayState = DelayState.PENDING_DELAY;
+                    }
                     fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
-                    if (playedCardTwo != null)
+                    if (playedCardTwo != null) {
                         renderPlayedCard(playedCardTwo, true);
+                    }
                     fillText((TextView)mainActivity.findViewById(R.id.playerTurn), aiTurn);
                 }
                 else if (multiPlayer) {
@@ -161,13 +172,17 @@ public abstract class Render {
                     if (!gameInSession.getPlayer1Turn() && playedCardOne != null) {
                         renderPlayedCard(playedCardOne, false);
                         fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player2Turn);
-                        if (showContinueView)
+
+                        if (showContinueView) {
                             activateContentView(player2Turn);
+                        }
                     } else if (playedCardTwo != null) {
                         renderPlayedCard(playedCardTwo, false);
                         fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
-                        if (showContinueView)
+
+                        if (showContinueView) {
                             activateContentView(player1Turn);
+                        }
                     }
                 }
             }
@@ -221,8 +236,9 @@ public abstract class Render {
     private static void renderPlayedCard(CardClass card, boolean aiDelay) {
         Handler handler = new Handler();
         if (aiDelay && !gameInSession.gameDone()) {
-            handler.postDelayed(delayRender(), 1850); // DELAY
+            handler.postDelayed(delayRender(), aiDelayMilli); // DELAY
             gameInSession.setRenderDelay(true);
+            delayState = DelayState.FINISHED_DELAY;
         }
         else if (gameInSession != null && !gameInSession.gamePaused()) {
             ImageView imageView = mainActivity.findViewById(R.id.imageViewPlayedCard1);
@@ -343,6 +359,9 @@ public abstract class Render {
 
     private static void fillText (TextView view, String string) { view.setText(string); }
 
-    public static void setDiscard(boolean toggle) { discard = toggle; }
-    public static void setBorderId(int id) { borderId = id; }
+    static void setDiscard(boolean toggle) { discard = toggle; }
+    static void setBorderId(int id) { borderId = id; }
+    private static void setDelayStatePending() { delayState = DelayState.PENDING_DELAY; }
+    static void resetDelayState() { delayState = DelayState.NO_PENDING; }
+    private static void setDelayStateDoneDelay() { delayState = DelayState.FINISHED_DELAY; }
 }

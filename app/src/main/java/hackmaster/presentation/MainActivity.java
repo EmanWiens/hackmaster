@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
         if (!gameInSession.getRenderDelay()) {
            if( gameInSession.playCardEvent(1)) {
                Render.setBorderId(1);
+               Render.resetDelayState();
                Render.updateScreen();
            }
         }
@@ -146,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
         if (!gameInSession.getRenderDelay()) {
             if (gameInSession.playCardEvent(2)) {
                 Render.setBorderId(2);
+                Render.resetDelayState();
                 Render.updateScreen();
             }
         }
@@ -155,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         if (!gameInSession.getRenderDelay()) {
            if (gameInSession.playCardEvent(3)) {
                Render.setBorderId(3);
+               Render.resetDelayState();
                Render.updateScreen();
            }
         }
@@ -164,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         if (!gameInSession.getRenderDelay()) {
             if (gameInSession.playCardEvent(4)) {
                 Render.setBorderId(4);
+                Render.resetDelayState();
                 Render.updateScreen();
             }
         }
