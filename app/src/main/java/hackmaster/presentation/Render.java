@@ -27,7 +27,8 @@ public abstract class Render {
     private enum DelayState { NO_PENDING, PENDING_DELAY, FINISHED_DELAY }
     private static DelayState delayState;
 
-    private static boolean discard;
+    private static boolean turnSwitch;
+
     private static int borderId;
 
     private static PlayerClass player1;
@@ -47,6 +48,7 @@ public abstract class Render {
 
         player1 = gameInSession.getPlayer1();
         player2 = gameInSession.getPlayer2();
+        borderId = -1;
 
         if (gameInSession instanceof MultiplayerGame) {
             multiPlayer = true;
@@ -61,6 +63,7 @@ public abstract class Render {
     }
 
     public static void updateRender(MainActivity mainAct, MusicManager musicManag) {
+        borderId = -1;
         gameInSession = null;
         mainActivity = mainAct;
         musicManager = musicManag;
@@ -172,30 +175,31 @@ public abstract class Render {
                     }
                 }
                 else if (multiPlayer) {
-                    showContinueView = false;
-                    if (borderId != -1) {
-                        showContinueView = true;
+                    // showContinueView = false;
+                    if (turnSwitch) {
+                        turnSwitch = true;
+                        // showContinueView = true;
                     }
                     if (!gameInSession.getPlayer1Turn() && playedCardOne != null) {
                         renderPlayedCard(playedCardOne, false);
                         fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player2Turn);
 
-                        if (showContinueView) {
+                        if (turnSwitch) {
                             activateContentView(player2Turn);
+                            turnSwitch = false;
                             // setDiscard(true);
                         }
                     } else if (playedCardTwo != null) {
                         renderPlayedCard(playedCardTwo, false);
                         fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
 
-                        if (showContinueView) {
+                        if (turnSwitch) {
                             activateContentView(player1Turn);
+                            turnSwitch = false;
                             // setDiscard(true);
                         }
                     }
                 }
-
-                setDiscard(true);
             }
             success = true;
         }
@@ -214,11 +218,9 @@ public abstract class Render {
 
     private static void renderDiscard() {
         ImageButton btn = mainActivity.findViewById(R.id.discardBtn);
-        if (discard) {
-            gameInSession.discardOff();
+        if (!gameInSession.getDiscard()) {
             btn.setImageResource(R.drawable.discardbutton);
         } else {
-            gameInSession.discardOn();
             btn.setImageResource(R.drawable.canceldiscard);
         }
     }
@@ -364,7 +366,7 @@ public abstract class Render {
 
     private static void fillText (TextView view, String string) { view.setText(string); }
 
-    static void setDiscard(boolean toggle) { discard = toggle; }
     static void setBorderId(int id) { borderId = id; }
     static void resetDelayState() { delayState = DelayState.NO_PENDING; }
+    static void setTurnSwitch() { turnSwitch = true; }
 }
