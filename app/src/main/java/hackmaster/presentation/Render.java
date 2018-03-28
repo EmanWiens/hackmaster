@@ -194,7 +194,7 @@ public abstract class Render {
                         }
                     }
                 }
-                
+
                 setDiscard(true);
             }
             success = true;
@@ -213,13 +213,12 @@ public abstract class Render {
     }
 
     private static void renderDiscard() {
+        ImageButton btn = mainActivity.findViewById(R.id.discardBtn);
         if (discard) {
             gameInSession.discardOff();
-            ImageButton btn = mainActivity.findViewById(R.id.discardBtn);
             btn.setImageResource(R.drawable.discardbutton);
         } else {
             gameInSession.discardOn();
-            ImageButton btn = mainActivity.findViewById(R.id.discardBtn);
             btn.setImageResource(R.drawable.canceldiscard);
         }
     }
