@@ -19,6 +19,7 @@ import hackmaster.objects.ResourceClass;
 import hackmaster.persistence.CardDataAccessInterface;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 
 public class SinglePlayerGameTest {
     private Game testGame;
@@ -71,60 +72,52 @@ public class SinglePlayerGameTest {
         assertEquals(4,player2.getCard(3).getID());
         assertEquals(26,player2.getCard(4).getID());
 
-        // player 1 turn
+        // Turn 1
         testGame.playCardEvent(0);
+        assertEquals(1,testGame.getPlayedCardOne().getID());
+        assertEquals(22,testGame.getPlayedCardTwo().getID());
         assertEquals(3, player1Resource.gethCoinRate());
         assertEquals(8, player1Resource.gethCoin());
-        assertEquals(24, player1.getCard(0).getID());
 
         assertEquals(12, player1Resource.getBotnet());
-        assertEquals(2, player1Resource.getBotnetRate());
-
-        assertEquals(90, player2.getHealth());
+        assertEquals(12, player1Resource.getCpu());
+        assertEquals(90, player2Resource.getHealth());
         assertEquals(12, player2Resource.gethCoin());
-        assertEquals(2, player2Resource.gethCoinRate());
         assertEquals(12, player2Resource.getBotnet());
-        assertEquals(2, player2Resource.getBotnetRate());
-
-
-        // player 2 turn
-        testGame.playCardEvent(0);
-        assertEquals(14, player2Resource.gethCoin());
-        assertEquals(9, player2Resource.getBotnet());
+        assertEquals(12, player2Resource.getCpu());
+        assertEquals(24, player1.getCard(0).getID());
         assertEquals(3, player2.getCard(0).getID());
 
-        assertEquals(2, player2Resource.gethCoinRate());
-        assertEquals(2, player2Resource.getBotnetRate());
-
-        assertEquals(100, player1.getHealth());
-        assertEquals(5, player1Resource.gethCoin());
-        assertEquals(3, player1Resource.gethCoinRate());
-        assertEquals(16, player1Resource.getBotnet());
-        assertEquals(2, player1Resource.getBotnetRate());
-
-
-        // player 1 turn discard
+        // Turn 2: player 1 discard
         testGame.discardOn();
         testGame.playCardEvent(0);
+        assertEquals(24,testGame.getPlayedCardOne().getID());
+        assertEquals(2,testGame.getPlayedCardTwo().getID());
+        assertEquals(11, player1Resource.gethCoin());
+        assertEquals(14, player1Resource.getBotnet());
+        assertEquals(14, player1Resource.getCpu());
+        assertEquals(14, player2Resource.gethCoin());
+        assertEquals(9, player2Resource.getBotnet());
+        assertEquals(14, player2Resource.getCpu());
+        assertEquals(19, player1.getCard(0).getID());
+        assertEquals(3, player2.getCard(0).getID());
+
+        // Turn 3
+        testGame.playCardEvent(0);
+        assertEquals(19,testGame.getPlayedCardOne().getID());
+        assertEquals(0,testGame.getPlayedCardTwo().getID());
+        assertEquals(90, player1Resource.getHealth());
+        assertEquals(14, player1Resource.gethCoin());
+        assertEquals(6, player1Resource.getBotnet());
+        assertEquals(16, player1Resource.getCpu());
+        assertEquals(70, player2Resource.getHealth());
+        assertEquals(11, player2Resource.gethCoin());
+        assertEquals(11, player2Resource.getBotnet());
+        assertEquals(17, player2Resource.getCpu());
         assertEquals(23, player1.getCard(0).getID());
-        assert(!testGame.getDiscard());
+        assertEquals(3, player2.getCard(0).getID());
 
-        testGame.discardOn();
-        testGame.playCardEvent(0);
-        assertEquals(11, player1.getCard(0).getID());
-        assert(!testGame.getDiscard());
-        testGame.discardOn();
-        testGame.playCardEvent(0);
-        assertEquals(18, player1.getCard(0).getID());
-        assert(!testGame.getDiscard());
-
-
-        // player 2 turn discard
-        testGame.discardOn();
-        testGame.playCardEvent(0);
-        assertEquals(6, player1.getCard(0).getID());
-        assertEquals(17, player2.getCard(0).getID());
-        assert(!testGame.getDiscard());
+        assertFalse(testGame.gameDone());
     }
 
     @Test
