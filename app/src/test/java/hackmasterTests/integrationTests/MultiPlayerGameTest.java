@@ -20,6 +20,7 @@ import hackmaster.persistence.CardDataAccessInterface;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 
 public class MultiPlayerGameTest {
     private Game testGame;
@@ -38,7 +39,7 @@ public class MultiPlayerGameTest {
     }
 
     @Test
-    public void multiplayerGameTest() {
+    public void testMultiplayerGame() {
         DeckManager.setRandom(RNG);
         DeckManager.resetIndex();
         testGame = SetupGame.setUpMultiplayerGame();
@@ -47,7 +48,6 @@ public class MultiPlayerGameTest {
         player2 = testGame.getPlayer2();
         player1Resource = player1.getResources();
         player2Resource = player2.getResources();
-
 
         // player 1 turn
         testGame.playCardEvent(0);
@@ -68,26 +68,31 @@ public class MultiPlayerGameTest {
         testGame.discardOn();
         testGame.playCardEvent(0);
         assertEquals(24, player1.getCard(0).getID());
-        assert(!testGame.getDiscard());
+        assertTrue(!testGame.getDiscard());
 
         // player 1
         testGame.discardOn();
         testGame.playCardEvent(0);
         assertEquals(19, player1.getCard(0).getID());
-        assert(!testGame.getDiscard());
+        assertTrue(!testGame.getDiscard());
+
+        testGame.pauseGame();
+        assertTrue(testGame.gamePaused());
+        testGame.unpauseGame();
+        assertFalse(testGame.gamePaused());
 
         // player 2
         testGame.discardOn();
         testGame.playCardEvent(0);
         assertEquals(19, player1.getCard(0).getID());
-        assert(!testGame.getDiscard());
+        assertTrue(!testGame.getDiscard());
 
         // player 1 turn discard
         testGame.discardOn();
         testGame.playCardEvent(0);
         assertEquals(23, player1.getCard(0).getID());
         assertEquals(0, player2.getCard(0).getID());
-        assert(!testGame.getDiscard());
+        assertTrue(!testGame.getDiscard());
 
         // player 2 turn
         testGame.playCardEvent(0);
@@ -104,15 +109,20 @@ public class MultiPlayerGameTest {
         assertEquals(16, player1Resource.getBotnet());
         assertEquals(2, player1Resource.getBotnetRate());
 
+        testGame.pauseGame();
+        assertTrue(testGame.gamePaused());
+        testGame.unpauseGame();
+        assertFalse(testGame.gamePaused());
+
         testGame.discardOn();
         testGame.playCardEvent(0);
         assertEquals(11, player1.getCard(0).getID());
         assertEquals(9, player2.getCard(0).getID());
-        assert(!testGame.getDiscard());
+        assertTrue(!testGame.getDiscard());
     }
 
     @Test
-    public void playCardEventTests() {
+    public void testPlayCardEventTest() {
         DeckManager.setRandom(RNG);
         DeckManager.resetIndex();
         testGame = SetupGame.setUpMultiplayerGame();
@@ -150,68 +160,139 @@ public class MultiPlayerGameTest {
         testGame.playCardEvent(0);
         assertEquals(3, player1Resource.gethCoinRate());
         assertEquals(5, player1Resource.gethCoin());
-        assertEquals(24, player1.getCard(0).getID());
-
         assertEquals(10, player1Resource.getBotnet());
         assertEquals(2, player1Resource.getBotnetRate());
-
         assertEquals(90, player2.getHealth());
         assertEquals(12, player2Resource.gethCoin());
         assertEquals(2, player2Resource.gethCoinRate());
         assertEquals(12, player2Resource.getBotnet());
         assertEquals(2, player2Resource.getBotnetRate());
+        assertEquals(24, player1.getCard(0).getID());
 
 
         // player 2 turn
         testGame.playCardEvent(0);
         assertEquals(17, player2Resource.gethCoin());
         assertEquals(2, player2Resource.getBotnet());
-        assertEquals(3, player2.getCard(0).getID());
-
         assertEquals(2, player2Resource.gethCoinRate());
         assertEquals(2, player2Resource.getBotnetRate());
-
         assertEquals(90, player1.getHealth());
         assertEquals(8, player1Resource.gethCoin());
         assertEquals(3, player1Resource.gethCoinRate());
         assertEquals(11, player1Resource.getBotnet());
         assertEquals(1, player1Resource.getBotnetRate());
+        assertEquals(3, player2.getCard(0).getID());
 
 
         // player 1 turn
         testGame.playCardEvent(0);
         assertEquals(3, player1Resource.gethCoinRate());
         assertEquals(2, player1Resource.gethCoin());
-        assertEquals(19, player1.getCard(0).getID());
-
         assertEquals(13, player1Resource.getBotnet());
         assertEquals(1, player1Resource.getBotnetRate());
-
         assertEquals(75, player2.getHealth());
         assertEquals(19, player2Resource.gethCoin());
         assertEquals(2, player2Resource.gethCoinRate());
         assertEquals(4, player2Resource.getBotnet());
         assertEquals(2, player2Resource.getBotnetRate());
+        assertEquals(19, player1.getCard(0).getID());
 
+        assertFalse(testGame.gameDone());
 
         // player 2 turn
         testGame.playCardEvent(0);
         assertEquals(19, player2Resource.gethCoin());
         assertEquals(4, player2Resource.getBotnet());
-        assertEquals(3, player2.getCard(0).getID());
-
         assertEquals(2, player2Resource.gethCoinRate());
         assertEquals(2, player2Resource.getBotnetRate());
-
         assertEquals(90, player1.getHealth());
         assertEquals(2, player1Resource.gethCoin());
         assertEquals(3, player1Resource.gethCoinRate());
         assertEquals(13, player1Resource.getBotnet());
         assertEquals(1, player1Resource.getBotnetRate());
+        assertEquals(3, player2.getCard(0).getID());
 
         assertFalse(testGame.gameDone());
     }
 
+    @Test
+    public void testPlayer1Lose() {
+        DeckManager.setRandom(RNG);
+        DeckManager.resetIndex();
+        testGame = SetupGame.setUpMultiplayerGame();
+
+        player1 = testGame.getPlayer1();
+        player2 = testGame.getPlayer2();
+        player1Resource = player1.getResources();
+        player2Resource = player2.getResources();
+
+        player1.getResources().setHealth(10);
+
+        // player 1 turn
+        testGame.playCardEvent(0);
+        assertEquals(3, player1Resource.gethCoinRate());
+        assertEquals(5, player1Resource.gethCoin());
+        assertEquals(10, player1Resource.getBotnet());
+        assertEquals(2, player1Resource.getBotnetRate());
+        assertEquals(12, player2Resource.gethCoin());
+        assertEquals(2, player2Resource.gethCoinRate());
+        assertEquals(12, player2Resource.getBotnet());
+        assertEquals(2, player2Resource.getBotnetRate());
+        assertEquals(24, player1.getCard(0).getID());
+
+        assertEquals(10, player1.getHealth());
+        assertEquals(90, player2.getHealth());
+
+        assertFalse(testGame.gameDone());
+
+        // player 2 turn
+        testGame.playCardEvent(0);
+        assertEquals(3, player1Resource.gethCoinRate());
+        assertEquals(5, player1Resource.gethCoin());
+        assertEquals(10, player1Resource.getBotnet());
+        assertEquals(2, player1Resource.getBotnetRate());
+        assertEquals(12, player2Resource.gethCoin());
+        assertEquals(2, player2Resource.gethCoinRate());
+        assertEquals(12, player2Resource.getBotnet());
+        assertEquals(2, player2Resource.getBotnetRate());
+        assertEquals(24, player1.getCard(0).getID());
+
+        assertEquals(0, player1.getHealth());
+        assertEquals(100, player2.getHealth());
+
+        assertTrue(testGame.gameDone());
+    }
+
+    @Test
+    public void testPlayer2Lose() {
+        DeckManager.setRandom(RNG);
+        DeckManager.resetIndex();
+        testGame = SetupGame.setUpMultiplayerGame();
+
+        player1 = testGame.getPlayer1();
+        player2 = testGame.getPlayer2();
+        player1Resource = player1.getResources();
+        player2Resource = player2.getResources();
+
+        player2.getResources().setHealth(10);
+
+        // player 1 turn
+        testGame.playCardEvent(0);
+        assertEquals(3, player1Resource.gethCoinRate());
+        assertEquals(5, player1Resource.gethCoin());
+        assertEquals(10, player1Resource.getBotnet());
+        assertEquals(2, player1Resource.getBotnetRate());
+        assertEquals(12, player2Resource.gethCoin());
+        assertEquals(2, player2Resource.gethCoinRate());
+        assertEquals(12, player2Resource.getBotnet());
+        assertEquals(2, player2Resource.getBotnetRate());
+        assertEquals(24, player1.getCard(0).getID());
+
+        assertEquals(100, player1.getHealth());
+        assertEquals(0, player2.getHealth());
+
+        assertTrue(testGame.gameDone());
+    }
 
     @After
     public void tearDown() {
