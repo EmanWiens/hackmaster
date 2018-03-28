@@ -157,10 +157,10 @@ public class SinglePlayerGameTest {
         assertEquals(24, player1Resource.getCpu());
         assertEquals(80, player2Resource.getHealth());
         assertEquals(24, player2Resource.gethCoin());
-        assertEquals(11, player2Resource.getBotnet());
-        assertEquals(17, player2Resource.getCpu());
-        assertEquals(23, player1.getCard(0).getID());
-        assertEquals(3, player2.getCard(0).getID());
+        assertEquals(13, player2Resource.getBotnet());
+        assertEquals(29, player2Resource.getCpu());
+        assertEquals(28, player1.getCard(0).getID());
+        assertEquals(5, player2.getCard(0).getID());
     }
 
     @Test
