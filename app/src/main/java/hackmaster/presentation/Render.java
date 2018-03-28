@@ -27,7 +27,7 @@ public abstract class Render {
     private enum DelayState { NO_PENDING, PENDING_DELAY, FINISHED_DELAY }
     private static DelayState delayState;
 
-    private static boolean turnSwitch;
+    private static boolean showContinueView;
 
     private static int borderId;
 
@@ -135,7 +135,6 @@ public abstract class Render {
 
     private static boolean renderBattleView() {
         boolean success = false;
-        boolean showContinueView;
         CardClass playedCardTwo;
         CardClass playedCardOne;
 
@@ -171,32 +170,24 @@ public abstract class Render {
                             renderPlayedCard(playedCardTwo, false);
                             fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
                         }
-                        // setDiscard(true);
                     }
                 }
                 else if (multiPlayer) {
-                    // showContinueView = false;
-                    if (turnSwitch) {
-                        turnSwitch = true;
-                        // showContinueView = true;
-                    }
                     if (!gameInSession.getPlayer1Turn() && playedCardOne != null) {
                         renderPlayedCard(playedCardOne, false);
                         fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player2Turn);
 
-                        if (turnSwitch) {
+                        if (showContinueView) {
                             activateContentView(player2Turn);
-                            turnSwitch = false;
-                            // setDiscard(true);
+                            showContinueView = false;
                         }
                     } else if (playedCardTwo != null) {
                         renderPlayedCard(playedCardTwo, false);
                         fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
 
-                        if (turnSwitch) {
+                        if (showContinueView) {
                             activateContentView(player1Turn);
-                            turnSwitch = false;
-                            // setDiscard(true);
+                            showContinueView = false;
                         }
                     }
                 }
@@ -213,6 +204,7 @@ public abstract class Render {
             renderPlayerResource(player1);
             renderPlayerResource(player2);
             renderCards();
+            renderDiscard();
         }
     }
 
@@ -368,5 +360,5 @@ public abstract class Render {
 
     static void setBorderId(int id) { borderId = id; }
     static void resetDelayState() { delayState = DelayState.NO_PENDING; }
-    static void setTurnSwitch() { turnSwitch = true; }
+    static void resetShowContinueView() { showContinueView = true; }
 }
