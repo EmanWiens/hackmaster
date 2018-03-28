@@ -39,6 +39,7 @@ public class MultiPlayerGameTest {
     @Test
     public void setupGameTest() {
         DeckManager.setRandom(RNG);
+        DeckManager.resetIndex();
         testGame = SetupGame.setUpMultiplayerGame();
 
         player1 = testGame.getPlayer1();

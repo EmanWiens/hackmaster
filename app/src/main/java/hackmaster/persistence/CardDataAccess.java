@@ -141,7 +141,14 @@ public class CardDataAccess implements CardDataAccessInterface {
                     +", " +card.getPlayerR().getBotnet()
                     +", " +card.getPlayerR().getBotnetRate()
                     +", " +card.getPlayerR().getCpu()
-                    +", " +card.getPlayerR().getCpuRate();
+                    +", " +card.getPlayerR().getCpuRate()
+                    +", " +card.getEnemyR().getHealth()
+                    +", " +card.getEnemyR().gethCoin()
+                    +", " +card.getEnemyR().gethCoinRate()
+                    +", " +card.getEnemyR().getBotnet()
+                    +", " +card.getEnemyR().getBotnetRate()
+                    +", " +card.getEnemyR().getCpu()
+                    +", " +card.getEnemyR().getCpuRate();
             updateCount = statement.executeUpdate("Insert into Cards " +" Values(" +values +")");
             result = DataAccessObject.checkWarning(statement, updateCount);
         }
