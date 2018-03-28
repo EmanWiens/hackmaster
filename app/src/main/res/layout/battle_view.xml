@@ -322,7 +322,7 @@
             android:layout_width="140dp"
             android:layout_height="220dp"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/cardback"
+            android:background="@drawable/deck"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageViewPlayedCard1"
