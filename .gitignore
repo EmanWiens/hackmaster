@@ -10,3 +10,4 @@
 .idea/modules.xml
 .idea/workspace.xml___jb_tmp___
 *.iml
+app/src/main/assets/db/HM_DB.properties

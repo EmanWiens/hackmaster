@@ -22,6 +22,7 @@ public class MusicManager {
     private MediaPlayer mediaPlayer;
     private SoundPool soundPool;
     private int soundIdCardSelected;
+    private int soundIdCardDestroyed;
 
     public MusicManager(Context context) {
         contextVariable= context;
@@ -51,6 +52,7 @@ public class MusicManager {
             }
         });
         this.soundIdCardSelected = this.soundPool.load(contextVariable, R.raw.select,1);
+        this.soundIdCardDestroyed = this.soundPool.load(contextVariable, R.raw.destroycard,1);
     }
 
     public void backGroundMusicStart() {
@@ -70,13 +72,18 @@ public class MusicManager {
             this.soundPool.play(this.soundIdCardSelected,leftVolumn, rightVolumn, 1, 0, 1f);
         }
     }
+    public void playCardDestroyed(float leftVolumn, float rightVolumn) {
+        if(getSoundPoolLoaded()) {
+            this.soundPool.play(this.soundIdCardDestroyed,leftVolumn, rightVolumn, 1, 0, 1f);
+        }
+    }
 
-    public  void pauseBacgroundMusic() {
+    public void pauseBackgroundMusic() {
         mediaPlayer.pause();
         musicOn =false;
     }
 
-    public  void resumeBacgroundMusic() {
+    public  void resumeBackgroundMusic() {
         mediaPlayer.start();
         musicOn =true;
     }

@@ -1,4 +1,4 @@
-package hackmastertest.businessTest;
+package hackmasterTests.businessTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,10 +6,10 @@ import org.junit.Test;
 import hackmaster.application.Services;
 import hackmaster.business.DeckManager;
 import hackmaster.business.Game;
-import hackmaster.business.SetUpGame;
+import hackmaster.business.SetupGame;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.ResourceClass;
-import hackmastertest.persistenceTest.DataAccessStub;
+import hackmasterTests.persistenceTest.DataAccessStub;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -27,7 +27,7 @@ public class GameUnitTest {
         DataAccessStub dbStub = new DataAccessStub("stub");
         Services.createDataAccess(dbStub, dbStub, dbStub);
 
-        testGame = SetUpGame.setUpSinglePlayerGame();
+        testGame = SetupGame.setUpSinglePlayerGame();
     }
 
     private CardClass[] resetDeck() {
@@ -72,8 +72,8 @@ public class GameUnitTest {
         testGame.setDeck(new CardClass[0]);
         assertEquals(0, testGame.getDeck().length);
 
-        testGame.setDeck(resetDeck());
-        assertEquals(10, testGame.getDeck().length);
+        DeckManager.initDeck();
+        assertEquals(29, testGame.getDeck().length);
     }
 
     private void setPlayerHands() {
@@ -209,12 +209,16 @@ public class GameUnitTest {
     @Test
     public void testGameDone() {
         assertFalse(testGame.gameDone());
+
         testGame.addHealthPlayer1(-100);
         assertTrue(testGame.gameDone());
+
         testGame.addHealthPlayer2(-100);
         assertTrue(testGame.gameDone());
+
         testGame.addHealthPlayer1(100);
         assertTrue(testGame.gameDone());
+
         testGame.addHealthPlayer2(100);
         assertFalse(testGame.gameDone());
     }

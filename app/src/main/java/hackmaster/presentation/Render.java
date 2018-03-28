@@ -6,6 +6,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.example.owner.hackmaster20.R;
 
 import hackmaster.business.Game;
@@ -19,9 +20,12 @@ public abstract class Render {
     private static MusicManager musicManager;
     private static boolean firstSetup;
 
-    private enum Layouts { MAIN_ACTIVITY, BATTLE_VIEW, PAUSE_VIEW, RESULTS_VIEW, STATS_VIEW, CONTINUE_VIEW };
+    private enum Layouts { MAIN_ACTIVITY, BATTLE_VIEW, PAUSE_VIEW, RESULTS_VIEW, STATS_VIEW, CONTINUE_VIEW }
     private static Layouts layout;
     private static int contentId;
+
+    private enum DelayState { NO_PENDING, PENDING_DELAY, FINISHED_DELAY }
+    private static DelayState delayState;
 
     private static boolean discard;
     private static int borderId;
@@ -32,6 +36,8 @@ public abstract class Render {
     private static String player2Turn;
     private static String aiTurn;
     private static boolean multiPlayer;
+
+    private static int aiDelayMilli = 1250;
 
     public static void updateRender(Game gameInSes, MainActivity mainAct, MusicManager musicManag) {
         gameInSession = gameInSes;
@@ -49,8 +55,8 @@ public abstract class Render {
             multiPlayer = false;
         }
 
-        player1Turn = player1.getName() + "'s Turn";
-        player2Turn = player2.getName() + "'s Turn";
+        player1Turn = "Player 1's Turn";
+        player2Turn = "Player 2's Turn";
         aiTurn = "AI's Turn";
     }
 
@@ -62,7 +68,7 @@ public abstract class Render {
     }
 
     public static boolean setContentView(int contId) {
-        boolean success = false;
+        boolean success;
 
         contentId = contId;
         success = updateLayoutId();
@@ -144,33 +150,52 @@ public abstract class Render {
 
                 renderDiscard();
                 renderCards();
+                renderPressedCardBorder(borderId);
 
                 if (!multiPlayer) {
-                    if (playedCardOne != null && !gameInSession.getRenderDelay())
+                    if (playedCardOne != null && !gameInSession.getRenderDelay() &&
+                            delayState == DelayState.NO_PENDING) {
                         renderPlayedCard(playedCardOne, false);
+                    }
                     fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
-                    if (playedCardTwo != null)
-                        renderPlayedCard(playedCardTwo, true);
-                    fillText((TextView)mainActivity.findViewById(R.id.playerTurn), aiTurn);
-                } else if (multiPlayer) {
+                    if (playedCardTwo != null) {
+                        if (delayState == DelayState.NO_PENDING) {
+                            renderPlayedCard(playedCardTwo, true);
+                            delayState = DelayState.PENDING_DELAY;
+                            fillText((TextView)mainActivity.findViewById(R.id.playerTurn), aiTurn);
+                        }
+                        else if (delayState == DelayState.FINISHED_DELAY) {
+                            renderPlayedCard(playedCardTwo, false);
+                            fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
+                        }
+                        // setDiscard(true);
+                    }
+                }
+                else if (multiPlayer) {
                     showContinueView = false;
                     if (borderId != -1) {
-                        renderPressedCardBorder(borderId);
                         showContinueView = true;
                     }
-
                     if (!gameInSession.getPlayer1Turn() && playedCardOne != null) {
                         renderPlayedCard(playedCardOne, false);
                         fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player2Turn);
-                        if (showContinueView)
+
+                        if (showContinueView) {
                             activateContentView(player2Turn);
+                            // setDiscard(true);
+                        }
                     } else if (playedCardTwo != null) {
                         renderPlayedCard(playedCardTwo, false);
                         fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
-                        if (showContinueView)
+
+                        if (showContinueView) {
                             activateContentView(player1Turn);
+                            // setDiscard(true);
+                        }
                     }
                 }
+                
+                setDiscard(true);
             }
             success = true;
         }
@@ -190,11 +215,11 @@ public abstract class Render {
     private static void renderDiscard() {
         if (discard) {
             gameInSession.discardOff();
-            ImageButton btn = (ImageButton)mainActivity.findViewById(R.id.discardBtn);
+            ImageButton btn = mainActivity.findViewById(R.id.discardBtn);
             btn.setImageResource(R.drawable.discardbutton);
         } else {
             gameInSession.discardOn();
-            ImageButton btn = (ImageButton)mainActivity.findViewById(R.id.discardBtn);
+            ImageButton btn = mainActivity.findViewById(R.id.discardBtn);
             btn.setImageResource(R.drawable.canceldiscard);
         }
     }
@@ -204,11 +229,6 @@ public abstract class Render {
             renderTheHandDeck(player1);
         } else {
             renderTheHandDeck(player2);
-        }
-        if (gameInSession.getDiscard()) {
-            setDiscard(false);
-        } else {
-            setDiscard(true);
         }
     }
 
@@ -222,7 +242,7 @@ public abstract class Render {
     private static void renderPlayedCard(CardClass card, boolean aiDelay) {
         Handler handler = new Handler();
         if (aiDelay && !gameInSession.gameDone()) {
-            handler.postDelayed(delayRender(), 1850); // DELAY
+            handler.postDelayed(delayRender(), aiDelayMilli); // DELAY
             gameInSession.setRenderDelay(true);
         }
         else if (gameInSession != null && !gameInSession.gamePaused()) {
@@ -230,8 +250,9 @@ public abstract class Render {
             imageView.setBackgroundResource(returnImageCardID(card.getID()));
 
             if (gameInSession.getRenderDelay()) {
+                delayState = DelayState.FINISHED_DELAY;
                 gameInSession.setRenderDelay(false);
-                fillText((TextView) mainActivity.findViewById(R.id.playerTurn), "Player 1's turn");
+                fillText((TextView) mainActivity.findViewById(R.id.playerTurn), player1Turn);
             }
         }
     }
@@ -292,9 +313,10 @@ public abstract class Render {
         mainActivity.setContentView(R.layout.continue_view);
         TextView textView = mainActivity.findViewById(R.id.textViewPlayerTurn);
         textView.setText(playerTurn);
-        if (playerTurn.equals("Player 1's Turn"))
-        {
-            textView.setTextColor(Color.RED);
+        textView.setTextColor(Color.RED);
+
+        if (playerTurn.equals("Player 1's Turn")) {
+            textView.setTextColor(Color.BLUE);
         }
     }
 
@@ -332,16 +354,18 @@ public abstract class Render {
 
         if (winner) {
             img.setImageResource(R.drawable.victory);
-            textView.setText("PlAYER 1 WON");
+            textView.setText("PLAYER 1 WON");
+            textView.setTextColor(Color.BLUE);
         } else {
             img.setImageResource(R.drawable.defeat);
-            textView.setText("PlAYER 1 LOST");
+            textView.setText("PlAYER 1 LOSE");
             textView.setTextColor(Color.RED);
         }
     }
 
     private static void fillText (TextView view, String string) { view.setText(string); }
 
-    public static void setDiscard(boolean toggle) { discard = toggle; }
-    public static void setBorderId(int id) { borderId = id; }
+    static void setDiscard(boolean toggle) { discard = toggle; }
+    static void setBorderId(int id) { borderId = id; }
+    static void resetDelayState() { delayState = DelayState.NO_PENDING; }
 }

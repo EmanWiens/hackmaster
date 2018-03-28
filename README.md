@@ -1,6 +1,6 @@
 # HackMaster
 <br />
-## Branches to look for: Iteration-2-final
+Branches to look for: Iteration-3
 
 HackMaster is a turn based 2-player card game in which you play cards which expend resources. In return the cards can be used for either upgrading, defending, or attacking. The cards cost resources, and resources are incremented by resource rate each time it's the players turn (every second time). <br /><br />
 
@@ -8,9 +8,11 @@ HackMaster is a turn based 2-player card game in which you play cards which expe
 <br />
 The main code of the project is currently split between five packages: Application, Business, Objects, Persistence, and Presentation. These  packages are in the directory hackmaster/app/src/main/java/hackmaster. <br /> <br /> 
 
-The application package cointains the files: <br /> 
-•DBController.java - Manages the name and path of the database. Gets called to start the initial database.<br /> 
+The application package cointains the files: <br />
+•AppController.java - It is used to instantiates the application database.<br />
+•DBController.java - Manages the name and path of the database.<br />
 •Services.java - Starts and stops the database and controls which database is connected.<br /> <br />
+
 
 The business package contains the files: <br />
 •DeckManager.java - Gets cards from the database and deals cards when necessary.<br />
@@ -18,7 +20,7 @@ The business package contains the files: <br />
 health.<br />
 •MultiplayerGame.java - Subclass of Game. Manages the turn and resources of a multiplayer game.<br />
 •ResourceManager.java - Applies cards played to the players.<br />
-•SetUpSingleGame.java - Initializes the game and deck.<br />
+•SetUpGame.java - Initializes the game and deck.<br />
 •SinglePlayerGame.java - Subclass of Game. Manages the turn and resources of a singleplayer game.<br /><br />
 
 The Objects package contains the files: <br /> 
@@ -39,8 +41,9 @@ access.<br />
 •PlayerDataAccessInterface.java - Extends DBComponentInterface. Interface for player stats database.<br /><br /> 
 
 The Presentation package contains the files:<br /> 
-•MainActivity.java - Tracks player input and updates the screen.<br />
+•MainActivity.java - Tracks player input.<br />
 •MusicManager.java - Selects the music to be played.<br />
+•Render.java - Controls and updates the screen.<br />
 •SplashActivity.java - Loading screen for the app.<br /> <br />
    
 The project also contains test packages that mirrors the packages listed above. The test packages are located in hackmaster/app/src/test/java/HackMasterTest/ <br /> <br />
@@ -75,22 +78,18 @@ If you can't run the simulator got on tools->android->sync gradle.<br /><br />
 ## New Features/Changes
  <br />
  Improved UI<br />
-    •Added Background Music<br />
-    •Added Card Images<br />
-    •Added Background Images<br /><br />
- Improved Gameplay<br />
-    •Discard functionality<br />
-    •Added Victory/Defeat Screen<br /><br />
- Enemy AI<br />
-    •AI now looks for the best/worst card to play<br />
-    •AI can discard unplayable cards<br /><br />
- Multiplayer<br />
-    •Added "hotseat" multiplayer<br />
-    •Added screen indication between Player 1 turn and Player 2 turn<br /><br />
- Database<br />
-    •Added a database that handles how cards and player stats are stored<br /><br />
+    •More stylized card images<br />
+    •Added stylized buttons<br />
+    •Added background images<br /><br />
+ Streamlined Rendering<br />
+    •Screen rendering has been improved and revamped<br /><br />
  Refactored Code Base<br />
     •Code base has been refactored for improved interactivity between classes<br /><br />
+    
+## Issues
+ <br />
+March 27, 2018: The rendering may hang when playing a card in single player. Pressing discard renders the correct cards.<br /> <br />
+
     
 ## Credit to Music
 <br />"Java" Song : https://www.youtube.com/watch?v=b-Cr0EWwaTk<br /> 

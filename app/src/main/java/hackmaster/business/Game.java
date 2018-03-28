@@ -2,7 +2,6 @@ package hackmaster.business;
 
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
-import hackmaster.objects.PlayerStatsSaves;
 import hackmaster.objects.ResourceClass;
 
 public abstract class Game {

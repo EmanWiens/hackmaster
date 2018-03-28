@@ -1,27 +1,20 @@
 package hackmaster.presentation;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.AssetManager;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.example.owner.hackmaster20.R;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import hackmaster.application.DBController;
 import hackmaster.business.Game;
-import hackmaster.business.SetUpGame;
+import hackmaster.application.AppController;
+import hackmaster.business.SetupGame;
 import hackmaster.objects.PlayerStatsSaves;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        copyDatabaseToDevice();
+        AppController.copyDatabaseToDevice(this);
         DBController.startUp();
         musicManager = new MusicManager(this);
         musicManager.backGroundMusicStart();
@@ -64,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
         ImageButton muteBtn = findViewById(R.id.muteBtn);
         if (musicManager.getStateMusic()) {
             muteBtn.setBackgroundResource(R.drawable.volumemute);
-            musicManager.pauseBacgroundMusic();
+            musicManager.pauseBackgroundMusic();
         } else {
             muteBtn.setBackgroundResource(R.drawable.volumeunmute);
-            musicManager.resumeBacgroundMusic();
+            musicManager.resumeBackgroundMusic();
         }
     }
 
@@ -115,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void singlePlayMessage(View v) {
         Render.setContentView(R.layout.battle_view);
-        gameInSession = SetUpGame.setUpSinglePlayerGame();
+        gameInSession = SetupGame.setUpSinglePlayerGame();
 
         Render.updateRender(gameInSession, this, musicManager);
         Render.setBorderId(-1);
@@ -124,65 +117,50 @@ public class MainActivity extends AppCompatActivity {
 
     public void multiPlayMessage(View v) {
         Render.setContentView(R.layout.battle_view);
-        gameInSession = SetUpGame.setUpMultiplayerGame();
+        gameInSession = SetupGame.setUpMultiplayerGame();
 
         Render.updateRender(gameInSession, this, musicManager);
         Render.setBorderId(-1);
         Render.updateScreen();
     }
 
-    public void firstcardPress(View v) {
+    private void processCardPress(int playerCard) {
         if (!gameInSession.getRenderDelay()) {
-            if (gameInSession.playCardEvent(0)) {
-                Render.setBorderId(0);
+            if (gameInSession.playCardEvent(playerCard)) {
+                Render.setBorderId(playerCard);
+                Render.resetDelayState();
                 Render.updateScreen();
             }
         }
+    }
+
+    public void firstcardPress(View v) {
+        processCardPress(0);
     }
 
     public void secondcardPress(View v) {
-        if (!gameInSession.getRenderDelay()) {
-           if( gameInSession.playCardEvent(1)) {
-               Render.setBorderId(1);
-               Render.updateScreen();
-           }
-        }
+        processCardPress(1);
     }
 
     public void thirdcardPress(View v) {
-        if (!gameInSession.getRenderDelay()) {
-            if (gameInSession.playCardEvent(2)) {
-                Render.setBorderId(2);
-                Render.updateScreen();
-            }
-        }
+        processCardPress(2);
     }
 
     public void fourthcardPress(View v) {
-        if (!gameInSession.getRenderDelay()) {
-           if (gameInSession.playCardEvent(3)) {
-               Render.setBorderId(3);
-               Render.updateScreen();
-           }
-        }
+        processCardPress(3);
     }
 
     public void fifthcardPress(View v) {
-        if (!gameInSession.getRenderDelay()) {
-            if (gameInSession.playCardEvent(4)) {
-                Render.setBorderId(4);
-                Render.updateScreen();
-            }
-        }
+        processCardPress(4);
     }
     public void discardPress(View v) {
         if (gameInSession.getDiscard()) {
             Render.setDiscard(true);
-            Render.updateScreen();
         } else {
             Render.setDiscard(false);
-            Render.updateScreen();
+            musicManager.playCardDestroyed(0.8f, 0.8f);
         }
+        Render.updateScreen();
     }
     public void pauseMessage(View v) {
         gameInSession.pauseGame();
@@ -224,54 +202,5 @@ public class MainActivity extends AppCompatActivity {
     {
         Render.setContentView(R.layout.main_activity);
         checkStateSound();
-    }
-
-
-    private void copyDatabaseToDevice() {
-        final String DB_PATH = "db";
-
-        String[] assetNames;
-        Context context = getApplicationContext();
-        File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
-        AssetManager assetManager = getAssets();
-
-        try {
-            assetNames = assetManager.list(DB_PATH);
-            for (int i = 0; i < assetNames.length; i++)
-                assetNames[i] = DB_PATH + "/" + assetNames[i];
-
-            copyAssetsToDirectory(assetNames, dataDirectory);
-
-            DBController.setDBPathName(dataDirectory.toString() + "/" + DBController.dbName);
-
-        } catch (IOException ioe) {
-        }
-    }
-
-    public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
-        AssetManager assetManager = getAssets();
-
-        for (String asset : assets) {
-            String[] components = asset.split("/");
-            String copyPath = directory.toString() + "/" + components[components.length - 1];
-            char[] buffer = new char[1024];
-            int count;
-
-            File outFile = new File(copyPath);
-
-            if (!outFile.exists()) {
-                InputStreamReader in = new InputStreamReader(assetManager.open(asset));
-                FileWriter out = new FileWriter(outFile);
-
-                count = in.read(buffer);
-                while (count != -1) {
-                    out.write(buffer, 0, count);
-                    count = in.read(buffer);
-                }
-
-                out.close();
-                in.close();
-            }
-        }
     }
 }

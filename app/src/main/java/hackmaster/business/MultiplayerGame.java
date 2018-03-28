@@ -1,6 +1,7 @@
 package hackmaster.business;
 
 import hackmaster.objects.PlayerClass;
+import hackmaster.presentation.Render;
 
 public class MultiplayerGame extends Game {
     public MultiplayerGame(PlayerClass p1, PlayerClass p2) {
@@ -16,7 +17,6 @@ public class MultiplayerGame extends Game {
                 ResourceManager.applyTurnRate(getPlayer2());
                 setPlayer1Turn(false);
                 canPlay = true;
-                discardOff();
             }
         }
         else if (!gamePaused()) {
@@ -26,7 +26,6 @@ public class MultiplayerGame extends Game {
                 ResourceManager.applyTurnRate(getPlayer1());
                 setPlayer1Turn(true);
                 canPlay = true;
-                discardOff();
             }
         }
         return canPlay;

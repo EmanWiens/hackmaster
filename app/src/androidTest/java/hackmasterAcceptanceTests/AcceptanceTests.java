@@ -1,4 +1,4 @@
-package hackmaster.acceptance;
+package hackmasterAcceptanceTests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -10,7 +10,8 @@ public class AcceptanceTests
     public static Test suite()
     {
         suite = new TestSuite("Acceptance tests");
-        suite.addTestSuite(HomePageTest.class);
+        suite.addTestSuite(MenuTest.class);
+        suite.addTestSuite(GamePlayTest.class);
         return suite;
     }
 }
