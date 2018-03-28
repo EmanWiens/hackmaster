@@ -22,8 +22,7 @@ public class MenuTest extends ActivityInstrumentationTestCase2{
         }
     }
 
-    public MenuTest() throws ClassNotFoundException
-    {
+    public MenuTest() throws ClassNotFoundException {
         super(launcherActivityClass);
     }
 
@@ -33,15 +32,14 @@ public class MenuTest extends ActivityInstrumentationTestCase2{
     }
 
     @Override
-    public void tearDown() throws Exception
-    {
+    public void tearDown() throws Exception {
         solo.finishOpenedActivities();
         super.tearDown();
     }
 
-    public void testStats()
-    {
+    public void testStats() {
         solo.waitForActivity("Main Activity",2000);
+        solo.clickOnImageButton(3);
         solo.clickOnImage(2);
         solo.waitForActivity("stats_view",2000);
 
@@ -59,10 +57,11 @@ public class MenuTest extends ActivityInstrumentationTestCase2{
         solo.waitForActivity("Main Activity");
         solo.clickOnImage(1);
     }
-    public void testPauseMenu()
-    {
+
+    public void testPauseMenu() {
         solo.waitForActivity("Main Activity",1000);
         solo.clickOnImageButton(0);
+        solo.clickOnImageButton(3);
         solo.waitForView(R.id.battle_view);
         solo.clickOnImage(14);
         solo.waitForActivity("pause_view",5000);
