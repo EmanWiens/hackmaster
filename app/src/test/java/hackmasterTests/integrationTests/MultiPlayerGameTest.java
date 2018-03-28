@@ -248,17 +248,17 @@ public class MultiPlayerGameTest {
         // player 2 turn
         testGame.playCardEvent(0);
         assertEquals(3, player1Resource.gethCoinRate());
-        assertEquals(5, player1Resource.gethCoin());
-        assertEquals(10, player1Resource.getBotnet());
-        assertEquals(2, player1Resource.getBotnetRate());
-        assertEquals(12, player2Resource.gethCoin());
+        assertEquals(8, player1Resource.gethCoin());
+        assertEquals(11, player1Resource.getBotnet());
+        assertEquals(1, player1Resource.getBotnetRate());
+        assertEquals(17, player2Resource.gethCoin());
         assertEquals(2, player2Resource.gethCoinRate());
-        assertEquals(12, player2Resource.getBotnet());
+        assertEquals(2, player2Resource.getBotnet());
         assertEquals(2, player2Resource.getBotnetRate());
         assertEquals(24, player1.getCard(0).getID());
 
         assertEquals(0, player1.getHealth());
-        assertEquals(100, player2.getHealth());
+        assertEquals(90, player2.getHealth());
 
         assertTrue(testGame.gameDone());
     }

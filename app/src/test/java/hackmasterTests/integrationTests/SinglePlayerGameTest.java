@@ -150,13 +150,13 @@ public class SinglePlayerGameTest {
 
         testGame.playCardEvent(0);
         assertEquals(6,testGame.getPlayedCardOne().getID());
-        assertEquals(0,testGame.getPlayedCardTwo().getID());
-        assertEquals(90, player1Resource.getHealth());
-        assertEquals(14, player1Resource.gethCoin());
-        assertEquals(6, player1Resource.getBotnet());
-        assertEquals(16, player1Resource.getCpu());
-        assertEquals(70, player2Resource.getHealth());
-        assertEquals(11, player2Resource.gethCoin());
+        assertEquals(17,testGame.getPlayedCardTwo().getID());
+        assertEquals(75, player1Resource.getHealth());
+        assertEquals(19, player1Resource.gethCoin());
+        assertEquals(24, player1Resource.getBotnet());
+        assertEquals(24, player1Resource.getCpu());
+        assertEquals(80, player2Resource.getHealth());
+        assertEquals(24, player2Resource.gethCoin());
         assertEquals(11, player2Resource.getBotnet());
         assertEquals(17, player2Resource.getCpu());
         assertEquals(23, player1.getCard(0).getID());
@@ -253,14 +253,14 @@ public class SinglePlayerGameTest {
         assertEquals(8, player1Resource.gethCoin());
         assertEquals(8, player1Resource.getBotnet());
         assertEquals(16, player1Resource.getCpu());
-        assertEquals(14, player2Resource.gethCoin());
-        assertEquals(9, player2Resource.getBotnet());
-        assertEquals(14, player2Resource.getCpu());
-        assertEquals(19, player1.getCard(0).getID());
+        assertEquals(11, player2Resource.gethCoin());
+        assertEquals(11, player2Resource.getBotnet());
+        assertEquals(17, player2Resource.getCpu());
+        assertEquals(23, player1.getCard(0).getID());
         assertEquals(3, player2.getCard(0).getID());
 
-        assertEquals(10, player1.getHealth());
-        assertEquals(70, player2.getHealth());
+        assertEquals(0, player1.getHealth());
+        assertEquals(55, player2.getHealth());
 
         assertTrue(testGame.gameDone());
     }
