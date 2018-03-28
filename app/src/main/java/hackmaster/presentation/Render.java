@@ -6,9 +6,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.example.owner.hackmaster20.R;
 
-import javax.crypto.spec.DESedeKeySpec;
+import com.example.owner.hackmaster20.R;
 
 import hackmaster.business.Game;
 import hackmaster.business.MultiplayerGame;
@@ -169,7 +168,6 @@ public abstract class Render {
                             fillText((TextView)mainActivity.findViewById(R.id.playerTurn), player1Turn);
                         }
                     }
-
                 }
                 else if (multiPlayer) {
                     showContinueView = false;
@@ -182,6 +180,7 @@ public abstract class Render {
 
                         if (showContinueView) {
                             activateContentView(player2Turn);
+                            setDiscard(true);
                         }
                     } else if (playedCardTwo != null) {
                         renderPlayedCard(playedCardTwo, false);
@@ -189,6 +188,7 @@ public abstract class Render {
 
                         if (showContinueView) {
                             activateContentView(player1Turn);
+                            setDiscard(true);
                         }
                     }
                 }
