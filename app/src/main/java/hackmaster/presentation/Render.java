@@ -357,7 +357,7 @@ public abstract class Render {
 
         if (winner) {
             img.setImageResource(R.drawable.victory);
-            textView.setText("PlAYER 1 WON");
+            textView.setText("PLAYER 1 WON");
             textView.setTextColor(Color.BLUE);
         } else {
             img.setImageResource(R.drawable.defeat);
