@@ -43,7 +43,7 @@ access.<br />
 The Presentation package contains the files:<br /> 
 •MainActivity.java - Tracks player input.<br />
 •MusicManager.java - Selects the music to be played.<br />
-•render.java - Controls and updates the screen.<br />
+•Render.java - Controls and updates the screen.<br />
 •SplashActivity.java - Loading screen for the app.<br /> <br />
    
 The project also contains test packages that mirrors the packages listed above. The test packages are located in hackmaster/app/src/test/java/HackMasterTest/ <br /> <br />
