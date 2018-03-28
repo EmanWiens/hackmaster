@@ -1,6 +1,6 @@
 # HackMaster
 <br />
-## Branches to look for: Iteration-3
+Branches to look for: Iteration-3
 
 HackMaster is a turn based 2-player card game in which you play cards which expend resources. In return the cards can be used for either upgrading, defending, or attacking. The cards cost resources, and resources are incremented by resource rate each time it's the players turn (every second time). <br /><br />
 
