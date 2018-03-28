@@ -1,15 +1,15 @@
-HackMaster
+Hack_Master ReadMe
 
-Branches to look for: Iteration 2
-HackMaster is a turn based 2-player card game in which you play cards which expend resources. In return the cards can be used for either upgrading, defending, or attacking. The cards cost resources, and resources are incremented by resource rate each time it's the players turn (every second time). 
+Branches to look for: Iteration-3
+Hack_Master is a turn based 2-player card game in which you play cards which expend resources. In return the cards can be used for either upgrading, defending, or attacking. The cards cost resources, and resources are incremented by resource rate each time it's the players turn (every second time). 
 
-
-Major packages:
+Major packages
 
 The main code of the project is currently split between five packages: Application, Business, Objects, Persistence, and Presentation. These packages are in the directory hackmaster/app/src/main/java/hackmaster. 
 
-The application package cointains the files: 
-•DBController.java - Manages the name and path of the database. Gets called to start the initial database.
+The application package contains the files: 
+•AppController.java - It is used to instantiates the application database.
+•DBController.java - Manages the name and path of the database.
 •Services.java - Starts and stops the database and controls which database is connected.
 
 
@@ -18,8 +18,8 @@ The business package contains the files:
 •Game.java - Tracks the game as it progresses. Can check if a player can play a card and if a player has lost all of their health.
 •MultiplayerGame.java - Subclass of Game. Manages the turn and resources of a multiplayer game.
 •ResourceManager.java - Applies cards played to the players.
-•SetUpSingleGame.java - Initializes the game and deck.
-•SinglePlayerGame.java - Subclass of Game. Manages the turn and resources of a singleplayer game.
+•SetUpGame.java - Initializes the game and deck.
+•SinglePlayerGame.java - Subclass of Game. Manages the turn and resources of a single player game.
 
 
 The Objects package contains the files: 
@@ -41,13 +41,13 @@ The Persistence package contains the files:
 
 
 The Presentation package contains the files:
-•MainActivity.java - Tracks player input and updates the screen.
+•MainActivity.java - Tracks player input.
 •MusicManager.java - Selects the music to be played.
+•render.java - Controls and updates the screen.
 •SplashActivity.java - Loading screen for the app.
 
 
-The project also contains test packages that mirrors the packages listed above. The test packages are located in hackmaster/app/src/test/java/HackMasterTest/ 
-
+The project also contains test packages that mirrors the packages listed above. The test packages are located in hackmaster/app/src/test/java/hackmasterTest/
 
 Log File
 
@@ -71,50 +71,32 @@ Stats - brings you to the player stats page
 Back - brings you back to pause menu
 Android back button - brings you back in game
 
-Andriod studio
+Android studio
 
 Build once, if build doesn't work go to build->clean build. Then hit play.
 If you can't run the simulator got on tools->android->sync gradle.
 
-New Features/Changes
+New Features/Changes (Iteration 3)
 
 Improved UI
-•Added Background Music
-•Added Card Images
-•Added Background Images
+•More stylized card images
+•Added stylized buttons
+•Added background images
 
-Improved Gameplay
-•Discard functionality
-•Added Victory/Defeat Screen
-
-Enemy AI
-•AI now looks for the best/worst card to play
-•AI can discard unplayable cards
-
-Multiplayer
-•Added "hotseat" multiplayer
-•Added screen indication between Player 1 turn and Player 2 turn
-
-Database
-•Added a database that handles how cards and player stats are stored
+Streamlined Rendering
+•Screen rendering has been improved and revamped
 
 Refactored Code Base
 •Code base has been refactored for improved interactivity between classes
 
 Issues
 
-March 12, 2018: The AI card is applied immediately after the players turn and the AI’s played card will be applied immediately. However, for the sake of smooth gameplay the AI played card is painted with a delay, ideally, we’d like the AI card to be applied after the AI card is drawn.
-
-March 14, 2018: When returning from the pause screen the renderer will show the last cards the user and AI played. The AI’s card is also played with a delay. The cards do not apply again and this is simply a displaying issue.
-
+March 27, 2018: The rendering may hang when playing a card in single player. Pressing discard renders the correct cards.
 Credit to Music
 
-"Java" Song : https://www.youtube.com/watch?v=b-Cr0EWwaTk
-
+"Java" Song: https://www.youtube.com/watch?v=b-Cr0EWwaTk
 "Dual_Core" Song: https://www.youtube.com/watch?v=FoUWHfh733Y&index=21&list=RDiN1uaITfA1c 
-
 "Hacker" Song: https://www.youtube.com/watch?v=iN1uaITfA1c&index=1&list=RDiN1uaITfA1c
-
 "Welcome To Our World" Song: https://www.youtube.com/watch?v=rLsJCCNXUto&list=RDiN1uaITfA1c&index=3
-
 "Pirate Music" Song: https://www.youtube.com/watch?v=Gc74aRe7OLM 
+ 
