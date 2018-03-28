@@ -78,12 +78,12 @@ public class MusicManager {
         }
     }
 
-    public  void pauseBacgroundMusic() {
+    public void pauseBackgroundMusic() {
         mediaPlayer.pause();
         musicOn =false;
     }
 
-    public  void resumeBacgroundMusic() {
+    public  void resumeBackgroundMusic() {
         mediaPlayer.start();
         musicOn =true;
     }

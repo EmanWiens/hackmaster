@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
         ImageButton muteBtn = findViewById(R.id.muteBtn);
         if (musicManager.getStateMusic()) {
             muteBtn.setBackgroundResource(R.drawable.volumemute);
-            musicManager.pauseBacgroundMusic();
+            musicManager.pauseBackgroundMusic();
         } else {
             muteBtn.setBackgroundResource(R.drawable.volumeunmute);
-            musicManager.resumeBacgroundMusic();
+            musicManager.resumeBackgroundMusic();
         }
     }
 

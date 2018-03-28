@@ -230,13 +230,6 @@ public abstract class Render {
         } else {
             renderTheHandDeck(player2);
         }
-
-        // TODO move this somewhere else
-        /*if (gameInSession.getDiscard()) {
-            setDiscard(false);
-        } else {
-            setDiscard(true);
-        }*/
     }
 
     private static void renderTheHandDeck(PlayerClass player) {

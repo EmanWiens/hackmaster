@@ -17,7 +17,6 @@ public class MultiplayerGame extends Game {
                 ResourceManager.applyTurnRate(getPlayer2());
                 setPlayer1Turn(false);
                 canPlay = true;
-                discardOff();
             }
         }
         else if (!gamePaused()) {
@@ -27,7 +26,6 @@ public class MultiplayerGame extends Game {
                 ResourceManager.applyTurnRate(getPlayer1());
                 setPlayer1Turn(true);
                 canPlay = true;
-                discardOff();
             }
         }
         return canPlay;
