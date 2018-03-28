@@ -19,6 +19,7 @@ import hackmaster.objects.ResourceClass;
 import hackmaster.persistence.CardDataAccessInterface;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 
 public class MultiPlayerGameTest {
     private Game testGame;
@@ -37,7 +38,7 @@ public class MultiPlayerGameTest {
     }
 
     @Test
-    public void MultiplayerGameTest() {
+    public void multiplayerGameTest() {
         DeckManager.setRandom(RNG);
         DeckManager.resetIndex();
         testGame = SetupGame.setUpMultiplayerGame();
@@ -117,6 +118,15 @@ public class MultiPlayerGameTest {
         assertEquals(19, player1.getCard(0).getID());
         assertEquals(0, player2.getCard(0).getID());
         assert(!testGame.getDiscard());
+
+        // player 1 turn
+        testGame.playCardEvent(0);
+        assertEquals(3, player1Resource.gethCoinRate());
+        assertEquals(11, player1Resource.gethCoin());
+        assertEquals(70, player2Resource.getHealth());
+        assertEquals(23, player1.getCard(0).getID());
+
+        assertFalse(testGame.gameDone());
     }
 
 
