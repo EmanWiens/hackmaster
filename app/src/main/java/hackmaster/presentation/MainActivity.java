@@ -156,12 +156,11 @@ public class MainActivity extends AppCompatActivity {
     public void discardPress(View v) {
         if (gameInSession.getDiscard()) {
             Render.setDiscard(true);
-            Render.updateScreen();
         } else {
             Render.setDiscard(false);
             musicManager.playCardDestroyed(0.8f, 0.8f);
-            Render.updateScreen();
         }
+        Render.updateScreen();
     }
     public void pauseMessage(View v) {
         gameInSession.pauseGame();
