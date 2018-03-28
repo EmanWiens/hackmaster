@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             gameInSession.playCardEvent(playerCard);
 
             if (tempPlayer1Turn != gameInSession.getPlayer1Turn()) {
-                Render.setTurnSwitch();
+                Render.resetShowContinueView();
             }
 
             if (Game.checkCard(playerCard, gameInSession.getCurrentPlayer())) {
