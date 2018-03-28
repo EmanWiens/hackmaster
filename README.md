@@ -8,7 +8,7 @@ HackMaster is a turn based 2-player card game in which you play cards which expe
 <br />
 The main code of the project is currently split between five packages: Application, Business, Objects, Persistence, and Presentation. These  packages are in the directory hackmaster/app/src/main/java/hackmaster. <br /> <br /> 
 
-The application package cointains the files: <br />
+The application package contains the files: <br />
 •AppController.java - It is used to instantiates the application database.<br />
 •DBController.java - Manages the name and path of the database.<br />
 •Services.java - Starts and stops the database and controls which database is connected.<br /> <br />
@@ -21,7 +21,7 @@ health.<br />
 •MultiplayerGame.java - Subclass of Game. Manages the turn and resources of a multiplayer game.<br />
 •ResourceManager.java - Applies cards played to the players.<br />
 •SetUpGame.java - Initializes the game and deck.<br />
-•SinglePlayerGame.java - Subclass of Game. Manages the turn and resources of a singleplayer game.<br /><br />
+•SinglePlayerGame.java - Subclass of Game. Manages the turn and resources of a single player game.<br /><br />
 
 The Objects package contains the files: <br /> 
 •CardClass.java - A card in the game. Costs resources, gives something in return<br /> 
