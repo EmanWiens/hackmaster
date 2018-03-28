@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void muteSoundBackground(View v) {
-        // TODO put in render
         ImageButton muteBtn = findViewById(R.id.muteBtn);
         if (musicManager.getStateMusic()) {
             muteBtn.setBackgroundResource(R.drawable.volumemute);
