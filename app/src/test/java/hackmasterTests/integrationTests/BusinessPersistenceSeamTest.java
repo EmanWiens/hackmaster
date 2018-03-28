@@ -34,6 +34,7 @@ public class BusinessPersistenceSeamTest {
 
     @Test
     public void testDeckManager() {
+        String result;
         DeckManager.setRandom(RNG);
         DeckManager.initDeck();
 
@@ -47,6 +48,18 @@ public class BusinessPersistenceSeamTest {
         ArrayList<CardClass> randCard = cardDataAccess.getCardRandom(deck[0].getID());
         assertNotNull(randCard);
         assertEquals(1,randCard.get(0).getID());
+
+        ArrayList<CardClass> newDeck = new ArrayList<>();
+        result = cardDataAccess.getCardSequential(newDeck);
+        assertNull(result);
+
+        DeckManager.setDeck(newDeck.toArray(new CardClass[0]));
+        deck = DeckManager.getDeck();
+        assertEquals(0, deck[0].getID());
+        assertEquals(1, deck[1].getID());
+        assertEquals(2, deck[2].getID());
+        assertEquals(3, deck[3].getID());
+        assertEquals(4, deck[4].getID());
     }
 
     @Test
