@@ -112,3 +112,31 @@ Refactoring
 Known bugs: 
 March 12, 2018: The AI card is applied immediately after the players turn and the AI’s played card will be applied immediately. However, for the sake of smoothe gameplay the AI played card is painted with a delay, ideally we’d like the AI card to be applied after the AI card is drawn.
 
+Iteration 3
+
+Bug Fixes
+(name: Emanuel act: 3hrs) (est: 2.5hrs) Fix up discard in single player
+
+Tests
+(name: Jansen act: 8hrs) (est: 6hrs) More integration tests single, multiplayer and seam
+(name: Emanuel act: 6hrs) (est: 6hrs) Write single player and multiplayer integration tests
+(name: Jansen act: 3 hrs) (est: 2 hrs) Random shuffle and tests
+(name: Vlad act: 12hrs)(est: 10hrs) create Acceptance Tests
+
+Refactoring
+(name: Emanuel act: 5hrs) (est: 6hrs) Fix single player render
+(name: Emanuel act: 2hrs) (est: 1.5hrs) Setup integration test folders and files
+(name: Emanuel act: 2hrs) (est: 2hrs) Clean up mainActivity code
+(name: Samuel act: 1 hrs) (est: 1 hrs) Add Predictable RNG and add a way to inject from tests
+(name: Emanuel act: 5hrs) (est: 4hrs) Fix up Render code
+
+UI
+(name: Marc act: 8hrs)(est: 5hrs) Redesign GUI (New card design, background changed)
+(name: Vlad act: 2hrs)(est: 1hrs) add additional Music Effects
+(name: Vlad act: 1hrs)(est: 1hrs) Minor Changes to the Battle_View.xml and Render class
+
+Group Meetings
+March 16, 2018 (duration: 1.5hrs): Initial Iteration #3 group meeting. As a team we decided on what will be the focused changes for Iteration #3. In this meeting we also set deadlines for application features/additions. 
+March 23, 2018 (duration: 1.5hrs): Iteration #3 update meeting. We met up as group and gave updates how each member is progressing on their dev tasks.
+
+
