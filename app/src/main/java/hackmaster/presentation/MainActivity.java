@@ -126,11 +126,23 @@ public class MainActivity extends AppCompatActivity {
 
     private void processCardPress(int playerCard) {
         if (!gameInSession.getRenderDelay()) {
-            if (gameInSession.playCardEvent(playerCard)) {
-                Render.setBorderId(playerCard);
-                Render.resetDelayState();
-                Render.updateScreen();
+            if (gameInSession.getDiscard()) {
+                musicManager.playCardDestroyed(0.8f, 0.8f);
             }
+
+            boolean tempPlayer1Turn = gameInSession.getPlayer1Turn();
+            gameInSession.playCardEvent(playerCard);
+
+            if (tempPlayer1Turn != gameInSession.getPlayer1Turn()) {
+                Render.setTurnSwitch();
+            }
+
+            if (Game.checkCard(playerCard, gameInSession.getCurrentPlayer())) {
+                Render.resetDelayState();
+                Render.setBorderId(playerCard);
+            }
+
+            Render.updateScreen();
         }
     }
 
@@ -155,10 +167,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void discardPress(View v) {
         if (gameInSession.getDiscard()) {
-            Render.setDiscard(true);
+            gameInSession.discardOff();
         } else {
-            Render.setDiscard(false);
-            musicManager.playCardDestroyed(0.8f, 0.8f);
+            // musicManager.playCardDestroyed(0.8f, 0.8f);
+            gameInSession.discardOn();
         }
         Render.updateScreen();
     }

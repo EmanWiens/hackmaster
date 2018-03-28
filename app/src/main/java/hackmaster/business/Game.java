@@ -3,6 +3,7 @@ package hackmaster.business;
 import hackmaster.objects.CardClass;
 import hackmaster.objects.PlayerClass;
 import hackmaster.objects.ResourceClass;
+import hackmaster.presentation.Render;
 
 public abstract class Game {
     public static final int hand = 5;
@@ -41,13 +42,22 @@ public abstract class Game {
         CardClass playedCard = player.getCard(playerCard);
 
         if (getDiscard()) {
-            ResourceManager.applyCard(player1Turn, player1, player2, doNothing);
+            //ResourceManager.applyCard(player1Turn, player1, player2, doNothing);
             discardOff();
         } else {
             ResourceManager.applyCard(player1Turn, player1, player2, playedCard);
         }
 
         player.setCard(playerCard, nextCard);
+    }
+
+    public PlayerClass getCurrentPlayer() {
+        if (player1Turn) {
+            return player1;
+        }
+        else {
+            return player2;
+        }
     }
 
     public void discardCard(int playerCard, PlayerClass player) {

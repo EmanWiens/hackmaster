@@ -83,7 +83,7 @@ public class MusicManager {
         musicOn =false;
     }
 
-    public  void resumeBackgroundMusic() {
+    public void resumeBackgroundMusic() {
         mediaPlayer.start();
         musicOn =true;
     }
