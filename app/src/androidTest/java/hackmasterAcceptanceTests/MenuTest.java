@@ -54,8 +54,6 @@ public class MenuTest extends ActivityInstrumentationTestCase2{
         assertEquals("TheLegend27", textViewLegendaryRank.getText().toString());
 
         solo.clickOnImage(0);
-        solo.waitForActivity("Main Activity");
-        solo.clickOnImage(1);
     }
 
     public void testPauseMenu() {
