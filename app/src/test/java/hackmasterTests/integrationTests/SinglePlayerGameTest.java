@@ -225,7 +225,6 @@ public class SinglePlayerGameTest {
 
         assertEquals(10, player1.getHealth());
         assertEquals(90, player2.getHealth());
-
         assertFalse(testGame.gameDone());
 
         // Turn 2
@@ -244,7 +243,6 @@ public class SinglePlayerGameTest {
 
         assertEquals(10, player1.getHealth());
         assertEquals(75, player2.getHealth());
-
         assertFalse(testGame.gameDone());
 
         testGame.playCardEvent(0);
@@ -261,7 +259,6 @@ public class SinglePlayerGameTest {
 
         assertEquals(0, player1.getHealth());
         assertEquals(55, player2.getHealth());
-
         assertTrue(testGame.gameDone());
     }
 

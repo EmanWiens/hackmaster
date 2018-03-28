@@ -242,7 +242,6 @@ public class MultiPlayerGameTest {
 
         assertEquals(10, player1.getHealth());
         assertEquals(90, player2.getHealth());
-
         assertFalse(testGame.gameDone());
 
         // player 2 turn
@@ -259,7 +258,6 @@ public class MultiPlayerGameTest {
 
         assertEquals(0, player1.getHealth());
         assertEquals(90, player2.getHealth());
-
         assertTrue(testGame.gameDone());
     }
 
@@ -290,7 +288,6 @@ public class MultiPlayerGameTest {
 
         assertEquals(100, player1.getHealth());
         assertEquals(0, player2.getHealth());
-
         assertTrue(testGame.gameDone());
     }
 
