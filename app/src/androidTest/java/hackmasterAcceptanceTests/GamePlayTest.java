@@ -59,34 +59,35 @@ public class GamePlayTest extends ActivityInstrumentationTestCase2{
         solo.sleep (2000);
         assertEquals("Health: 99%", textPlayerHealh.getText().toString());
         assertEquals("Health: 90%", textEnemyHealh.getText().toString());
-        solo.clickOnImageButton(2);
+        solo.clickOnImageButton(6);
+        solo.sleep (2000);
         solo.clickOnImageButton(2);
         solo.sleep (2000);
-        assertEquals("Health: 74%", textPlayerHealh.getText().toString());
+        assertEquals("Health: 99%", textPlayerHealh.getText().toString());
         assertEquals("Health: 90%", textEnemyHealh.getText().toString());
-        solo.clickOnImageButton(0);
+        solo.clickOnImageButton(2);
         solo.sleep (3000);
-        assertEquals("Health: 94%", textPlayerHealh.getText().toString());
+        assertEquals("Health: 74%", textPlayerHealh.getText().toString());
         assertEquals("Health: 90%", textEnemyHealh.getText().toString());
         solo.clickOnImageButton(6);
         solo.sleep (2000);
         solo.clickOnImageButton(0);
         solo.sleep (2000);
-        assertEquals("Health: 94%", textPlayerHealh.getText().toString());
+        assertEquals("Health: 74%", textPlayerHealh.getText().toString());
         assertEquals("Health: 90%", textEnemyHealh.getText().toString());
-        solo.clickOnImageButton(0);
+        solo.clickOnImageButton(3);
         solo.sleep (3000);
 
         assertEquals("Health: 74%", textPlayerHealh.getText().toString());
-        assertEquals("Health: 70%", textEnemyHealh.getText().toString());
+        assertEquals("Health: 90%", textEnemyHealh.getText().toString());
 
-        assertEquals("\nHackCoin Rate: 1" + "\n----\n" + "HackCoin: 3", textPlayerMiner.getText().toString());
-        assertEquals("\nCPU Rate: 2" + "\n----\n" + "CPU: 22", textPlayerCPU.getText().toString());
-        assertEquals("\nBotnet gen: 2" + "\n----\n" + "Botnet: 10", textPlayerBotnet.getText().toString());
+        assertEquals("\nHackCoin Rate: 1" + "\n----\n" + "HackCoin: 2", textPlayerMiner.getText().toString());
+        assertEquals("\nCPU Rate: 3" + "\n----\n" + "CPU: 21", textPlayerCPU.getText().toString());
+        assertEquals("\nBotnet gen: 2" + "\n----\n" + "Botnet: 18", textPlayerBotnet.getText().toString());
 
-        assertEquals("\nHackCoin Rate: 3" + "\n----\n" + "HackCoin: 17", textEnemyMiner.getText().toString());
-        assertEquals("\nCPU Rate: 2" + "\n----\n" + "CPU: 22", textEnemyCPU.getText().toString());
-        assertEquals("\nBotnet gen: 2" + "\n----\n" + "Botnet: 2", textEnemyBotnet.getText().toString());
+        assertEquals("\nHackCoin Rate: 3" + "\n----\n" + "HackCoin: 9", textEnemyMiner.getText().toString());
+        assertEquals("\nCPU Rate: 2" + "\n----\n" + "CPU: 20", textEnemyCPU.getText().toString());
+        assertEquals("\nBotnet gen: 2" + "\n----\n" + "Botnet: 10", textEnemyBotnet.getText().toString());
         solo.goBack();
     }
 
