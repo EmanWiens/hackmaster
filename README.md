@@ -3,7 +3,7 @@
 Branches to look for: Iteration-3
 
 HackMaster is a turn based 2-player card game in which you play cards which expend resources. In return the cards can be used for either upgrading, defending, or attacking. The cards cost resources, and resources are incremented by resource rate each time it's the players turn (every second time). <br /><br />
-
+![](https://github.com/drFruitFace/hackmaster/blob/Iteration-3/app/src/main/res/drawable/results.jpg?raw=true)
 ## Major packages:
 <br />
 The main code of the project is currently split between five packages: Application, Business, Objects, Persistence, and Presentation. These  packages are in the directory hackmaster/app/src/main/java/hackmaster. <br /> <br /> 
